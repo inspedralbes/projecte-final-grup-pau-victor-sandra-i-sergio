@@ -1,3 +1,13 @@
+<script>
+import { RouterLink } from "vue-router";
+export default {
+  components: {
+    RouterLink,
+  },
+};
+
+</script>
+
 <template>
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">

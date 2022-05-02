@@ -1,9 +1,8 @@
 <script>
-import { RouterLink, RouterView } from "vue-router";
+import { RouterView } from "vue-router";
 import Header from "./components/HeaderGeneral.vue";
 export default {
   components: {
-    RouterLink,
     RouterView,
     Header,
   },
@@ -14,11 +13,10 @@ export default {
   <div class="wrapper">
     <nav>
       <Header />
-      <RouterLink to="/inicio"></RouterLink>
     </nav>
-
-    <RouterView />
   </div>
+  <RouterView />
 </template>
 
-<style></style>
+<style>
+</style>

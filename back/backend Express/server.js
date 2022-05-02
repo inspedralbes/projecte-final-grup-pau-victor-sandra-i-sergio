@@ -1,6 +1,12 @@
 const express = require('express');
 const app = express();
 const port = 9000;
+const cors = require('cors');
+
+app.use(cors({
+    origin: '*',
+    methods: ['GET','POST','DELETE','UPDATE','PUT','PATCH']
+}));
 
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
