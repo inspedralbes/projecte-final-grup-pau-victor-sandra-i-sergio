@@ -14,7 +14,7 @@ export default {
   <div class="wrapper">
     <nav>
       <Header />
-      <RouterLink to="/inicio"></RouterLink>
+      <RouterLink to="/"></RouterLink>
     </nav>
 
     <RouterView />
