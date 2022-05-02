@@ -139,56 +139,56 @@ export default {
       </div>
       <br>
       <div id="estado">
-        <div v-if="estado.num==1">
+        <div v-if="selected=='Alegre'">
           <select v-model="selected">
             <option v-for="estado in estado[0].motivos" v-bind:value="estado">
               {{ estado }}
             </option>
           </select>
         </div>
-        <div v-if="estado.num==2">
+        <div v-if="selected=='Energético'">
           <select v-model="selected">
             <option v-for="estado in estado[1].motivos" v-bind:value="estado">
               {{ estado }}
             </option>
           </select>
         </div>
-        <div v-if="estado.num==3">
+        <div v-if="selected=='Desanimado'">
           <select v-model="selected">
             <option v-for="estado in estado[2].motivos" v-bind:value="estado">
               {{ estado }}
             </option>
           </select>
         </div>
-        <div v-if="estado.num==4">
+        <div v-if="selected=='Estresado'">
           <select v-model="selected">
             <option v-for="estado in estado[3].motivos" v-bind:value="estado">
               {{ estado }}
             </option>
           </select>
         </div>
-        <div v-if="estado.num==5">
+        <div v-if="selected=='Irritado'">
           <select v-model="selected">
             <option v-for="estado in estado[4].motivos" v-bind:value="estado">
               {{ estado }}
             </option>
           </select>
         </div>
-        <div v-if="estado.num==6">
+        <div v-if="selected=='Triste'">
           <select v-model="selected">
             <option v-for="estado in estado[5].motivos" v-bind:value="estado">
               {{ estado }}
             </option>
           </select>
         </div>
-        <div v-if="estado.num==7">
+        <div v-if="selected=='Nervioso'">
           <select v-model="selected">
             <option v-for="estado in estado[6].motivos" v-bind:value="estado">
               {{ estado }}
             </option>
           </select>
         </div>
-        <div v-if="estado.num==8">
+        <div v-if="selected=='Enfadado'">
           <select v-model="selected">
             <option v-for="estado in estado[7].motivos" v-bind:value="estado">
               {{ estado }}
