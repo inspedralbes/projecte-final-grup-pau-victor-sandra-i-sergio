@@ -19,7 +19,7 @@ export default {
         { text: 'Nervioso, sientes "miedo"', value: 'Nervioso', emoji: '😖'},
         { text: 'Enfadado', value: 'Enfadado', emoji: '😡'}
       ],
-      motivo: []
+      motivo: [],
     }
   },
   methods: {
