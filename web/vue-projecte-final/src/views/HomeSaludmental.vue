@@ -3,12 +3,12 @@ import Header from "../components/SubHeader.vue";
 
 export default {
   components: {
-  Header,
+    Header,
   },
   data() {
     return {
-      email: '',
-      selected: '',
+      email: "",
+      selected: "",
       estado: [
         { text: 'Alegre', value: 'Alegre', emoji: '😛', num: 1, motivos: {
             motivo1: 'He recibido una buena noticia',
@@ -56,26 +56,39 @@ export default {
     }
   },
   methods: {
-    datos(){
-      const datos = {
-        email: this.email,
-        estado: this.estado.value,
-        select: this.selected
-      };
-      console.log(datos);
-    },
+    // datos() {
+    //   const datos = {
+    //     email: this.email,
+    //     estado: this.estado.value,
+    //   };
+    //   console.log(datos);
+    // },
     onReset(event) {
-      event.preventDefault()
+      event.preventDefault();
       // Reset our form values
-      this.email = '',
-      this.selected = '',
-      this.estado = null
+      (this.email = ""), (this.selected = ""), (this.estado = null);
     },
     retroceder() {
       window.history.back();
     },
-  }
-}
+    enviarFormulario() {
+      var cuestSalud = new URLSearchParams({
+        usuario: "ermengol",
+        estado: this.selected,
+        motivo: "Alegre",
+      });
+      console.log(cuestSalud);
+      fetch("http://192.168.210.161:9000/salud-mental/respuesta-cuestionario", {
+        method: "POST",
+        body: cuestSalud,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        });
+    },
+  },
+};
 </script>
 
 <template>
@@ -84,11 +97,17 @@ export default {
     <h1>Esto es el HOME de SALUD MENTAL</h1>
   </div>
   <div>
-    <form action class="form" @submit.prevent="datos">
-    <h2>Como te sientes HOY?</h2>
-    <hr>
-    <div>
-        <label class="form-label" label="Email" description="We'll never share your email with anyone else." for="#email">Email*:</label>
+    <form action class="form">
+      <h2>Como te sientes HOY?</h2>
+      <hr />
+      <div>
+        <label
+          class="form-label"
+          label="Email"
+          description="We'll never share your email with anyone else."
+          for="#email"
+          >Email*:</label
+        >
         <br />
         <input v-if="email!='null'"
           v-model="email"
@@ -100,17 +119,23 @@ export default {
         />
         <p v-if="email=='null'">ejemplo@inspedralbes.cat</p>
       </div>
-      <br>
-      <br>
+      <br />
+      <br />
       <div>
-        <label class="form-label" label="estado" for="#estado">Como te sientes?</label>
+        <label class="form-label" label="estado" for="#estado"
+          >Como te sientes?</label
+        >
         <br />
-        <select v-model="selected" class="form-select" aria-label="Default select example">
-          <option v-for="option in estado" v-bind:value="option.emoji">
-            {{ option.text }}
+        <select
+          v-model="selected"
+          class="form-select"
+          aria-label="Default select example"
+        >
+          <option v-for="option in estado" v-bind:value="option.value">
+            {{ option.emoji }}{{ option.text }}
           </option>
         </select>
-        <span id="emojis">{{ selected }}</span>
+        <!-- <span id="emojis">{{ selected }}</span> -->
       </div>
       <br>
       <div id="estado">
@@ -172,7 +197,12 @@ export default {
         </div>
       </div>
       <div>
-        <input class="form-submit" type="submit" value="Confirmar dades!" />
+        <input
+          class="btn btn-outline-secondary form-submit"
+          type="button"
+          @click="enviarFormulario()"
+          value="Confirmar dades!"
+        />
       </div>
     </form>
   </div>
@@ -184,20 +214,20 @@ export default {
 </template>
 
 <style>
-  select {
-    background-color: white;
-    color: gray;
-  }
-  #emojis {
-    font-size: 250%;
-  }
-  form {
-    padding-top: 5%;
-    text-align: center;
-    margin-left: 35%;
-    margin-right: 35%;
-  }
-  .form-input-email {
-    width: 250px;
-  }
+select {
+  background-color: white;
+  color: gray;
+}
+#emojis {
+  font-size: 250%;
+}
+form {
+  padding-top: 5%;
+  text-align: center;
+  margin-left: 35%;
+  margin-right: 35%;
+}
+.form-input-email {
+  width: 250px;
+}
 </style>
