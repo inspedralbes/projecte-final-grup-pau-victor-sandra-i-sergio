@@ -38,8 +38,16 @@ export default {
           value: "Riqueza",
         },
         {
-          text: "Caida",
-          value: "Caida",
+          text: "Infancia",
+          value: "Infancia",
+        },
+        {
+          text: "Agua",
+          value: "Agua",
+        },
+        {
+          text: "Arañas",
+          value: "Arañas",
         },
       ],
     };
@@ -71,7 +79,7 @@ export default {
         <div class="col-12 text-center">
           <h2 class="titulo_cuestionario text-center">¿Que has soñado hoy?</h2>
         </div>
-        <div class="col-12 text-center">
+        <div class="col-12 text-center subtitulo">
           <h4>Selecciona las opciones que más se asemejen a tu sueño</h4>
         </div>
       </div>
@@ -111,8 +119,12 @@ export default {
 
 <style scoped>
 .cuestionario_sueño {
-  background-color: lightskyblue;
+  background-color: rgb(199, 234, 255);
   margin-top: 50px;
   padding: 30px;
+}
+
+.subtitulo{
+  margin: 15px;
 }
 </style>
