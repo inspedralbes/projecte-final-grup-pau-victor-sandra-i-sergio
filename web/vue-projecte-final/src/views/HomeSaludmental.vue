@@ -150,6 +150,7 @@ export default {
 </script>
 
 <template>
+<div>
   <div>
     <div>
       <Header />
@@ -224,6 +225,7 @@ export default {
     <button @click="retroceder()" type="button" class="btn btn-outline-danger">
       Retroceder
     </button>
+  </div>
   </div>
 </template>
 
