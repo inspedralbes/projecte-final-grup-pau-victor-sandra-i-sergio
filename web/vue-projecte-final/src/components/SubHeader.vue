@@ -1,7 +1,8 @@
 <template>
+<div>
   <nav
     v-if="this.$route.name == 'descanso' || this.$route.name == 'saludmental'"
-    class="navazul navbar navbar-light bg-light"
+    class="navazul navbar navbar-light bg-light justify-content-center text-center"
   >
     <div class="container-fluid">
       <RouterLink class="btn btn-primary" to="/saludmental"
@@ -13,7 +14,7 @@
   </nav>
   <nav
     v-if="this.$route.name == 'ejercicio'"
-    class="navnaranja navbar navbar-light bg-light"
+    class="navnaranja navbar navbar-light bg-light justify-content-center"
   >
     <div class="container-fluid">
       <RouterLink class="btn btn-primary" to="/saludmental">Rutinas</RouterLink>
@@ -23,7 +24,7 @@
   </nav>
   <nav
     v-if="this.$route.name == 'alimentacion'"
-    class="navverde navbar navbar-light bg-light"
+    class="navverde navbar navbar-light bg-light justify-content-center"
   >
     <div class="container-fluid">
       <RouterLink class="btn btn-primary" to="/saludmental">Recetas</RouterLink>
@@ -31,6 +32,7 @@
       <RouterLink class="btn btn-primary" to="/descanso">Productos</RouterLink>
     </div>
   </nav>
+  </div>
 </template>
 <style scoped>
 .navazul {
