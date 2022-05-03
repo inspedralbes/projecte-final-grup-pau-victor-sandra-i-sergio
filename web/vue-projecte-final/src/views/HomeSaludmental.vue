@@ -150,82 +150,86 @@ export default {
 </script>
 
 <template>
-<div>
   <div>
     <div>
-      <Header />
-      <h1>Esto es el HOME de SALUD MENTAL</h1>
-    </div>
-    <div>
-      <form action class="form">
-        <h2>Como te sientes hoy?</h2>
-        <hr />
-        <div>
-          <label
-            class="form-label"
-            label="Email"
-            description="We'll never share your email with anyone else."
-            for="#email"
-            >Email*:</label
-          >
-          <br />
-          <input
-            v-if="email != 'null'"
-            v-model="email"
-            class="form-input-email"
-            id="email"
-            type="email"
-            required
-            placeholder="Ingresa el email"
-          />
-          <p v-if="email == 'null'">ejemplo@inspedralbes.cat</p>
-        </div>
-        <br />
-        <br />
-        <select
-          class="form-select"
-          aria-label="Default select example"
-          @change="guardarseleccionado($event.target.value)"
-        >
-          <option
-            :key="index"
-            v-for="(option, index) in estado"
-            :value="option.value"
-          >
-            {{ option.emoji }}{{ option.text }}
-          </option>
-        </select>
-        <!-- <span id="emojis">{{ selected }}</span> -->
-        <br />
-        <div id="estado">
-          <div v-if="selected">
-            <select v-model="motivo">
-              <option
-                :key="index"
-                v-for="(estado, index) in selected[0].motivos"
-                v-bind:value="estado"
-              >
-                {{ estado }}
-              </option>
-            </select>
+      <div>
+        <Header />
+        <h1>Esto es el HOME de SALUD MENTAL</h1>
+      </div>
+      <div>
+        <form action class="form">
+          <h2>Como te sientes hoy?</h2>
+          <hr />
+          <div>
+            <label
+              class="form-label"
+              label="Email"
+              description="We'll never share your email with anyone else."
+              for="#email"
+              >Email*:</label
+            >
+            <br />
+            <input
+              v-if="email != 'null'"
+              v-model="email"
+              class="form-input-email"
+              id="email"
+              type="email"
+              required
+              placeholder="Ingresa el email"
+            />
+            <p v-if="email == 'null'">ejemplo@inspedralbes.cat</p>
           </div>
-        </div>
-        <div>
-          <input
-            class="btn btn-outline-secondary form-submit"
-            type="button"
-            @click="enviarFormulario()"
-            value="Confirmar dades!"
-          />
-        </div>
-      </form>
+          <br />
+          <br />
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            @change="guardarseleccionado($event.target.value)"
+          >
+            <option
+              :key="index"
+              v-for="(option, index) in estado"
+              :value="option.value"
+            >
+              {{ option.emoji }}{{ option.text }}
+            </option>
+          </select>
+          <!-- <span id="emojis">{{ selected }}</span> -->
+          <br />
+          <div id="estado">
+            <div v-if="selected">
+              <select v-model="motivo">
+                <option
+                  :key="index"
+                  v-for="(estado, index) in selected[0].motivos"
+                  v-bind:value="estado"
+                >
+                  {{ estado }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <input
+              class="btn btn-outline-secondary form-submit"
+              type="button"
+              @click="enviarFormulario()"
+              value="Confirmar dades!"
+            />
+          </div>
+        </form>
+      </div>
     </div>
-  </div>
-  <div id="retroceder" class="text-center mt-5">
-    <button @click="retroceder()" type="button" class="btn btn-outline-danger">
-      Retroceder
-    </button>
-  </div>
+    <div id="retroceder" class="text-center mt-5">
+      <button
+        @click="retroceder()"
+        type="button"
+        class="btn btn-outline-danger"
+      >
+        Retroceder
+      </button>
+    </div>
   </div>
 </template>
 
