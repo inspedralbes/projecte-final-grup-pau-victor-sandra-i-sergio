@@ -5,7 +5,6 @@ export default {
     RouterLink,
   },
 };
-
 </script>
 
 <template>

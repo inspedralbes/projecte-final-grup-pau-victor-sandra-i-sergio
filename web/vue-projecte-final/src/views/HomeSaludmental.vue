@@ -8,7 +8,8 @@ export default {
   data() {
     return {
       email: "",
-      selected: "",
+      selected: 0,
+      motivo: "",
       estado: [
         {
           text: "Alegre",
@@ -138,6 +139,12 @@ export default {
           console.log(data);
         });
     },
+    guardarseleccionado(valor) {
+      console.log(valor);
+      this.selected = this.estado.filter((v) => {
+        return v.value == valor;
+      });
+    },
   },
 };
 </script>
@@ -174,76 +181,29 @@ export default {
         </div>
         <br />
         <br />
-        <div>
-          <label class="form-label" label="estado" for="#estado"
-            >Como te sientes?</label
+        <select
+          class="form-select"
+          aria-label="Default select example"
+          @change="guardarseleccionado($event.target.value)"
+        >
+          <option
+            :key="index"
+            v-for="(option, index) in estado"
+            :value="option.value"
           >
-          <br />
-          <select
-            v-model="selected"
-            class="form-select"
-            aria-label="Default select example"
-          >
-            <option v-for="option in estado" v-bind:value="option.value">
-              {{ option.emoji }}{{ option.text }}
-            </option>
-          </select>
-          <!-- <span id="emojis">{{ selected }}</span> -->
-        </div>
+            {{ option.emoji }}{{ option.text }}
+          </option>
+        </select>
+        <!-- <span id="emojis">{{ selected }}</span> -->
         <br />
         <div id="estado">
-          <div v-if="selected == 'Alegre'">
-            <select v-model="selected2">
-              <option v-for="estado in estado[0].motivos" v-bind:value="estado">
-                {{ estado }}
-              </option>
-            </select>
-          </div>
-          <div v-if="selected == 'Energético'">
-            <select v-model="selected2">
-              <option v-for="estado in estado[1].motivos" v-bind:value="estado">
-                {{ estado }}
-              </option>
-            </select>
-          </div>
-          <div v-if="selected == 'Desanimado'">
-            <select v-model="selected2">
-              <option v-for="estado in estado[2].motivos" v-bind:value="estado">
-                {{ estado }}
-              </option>
-            </select>
-          </div>
-          <div v-if="selected == 'Estresado'">
-            <select v-model="selected2">
-              <option v-for="estado in estado[3].motivos" v-bind:value="estado">
-                {{ estado }}
-              </option>
-            </select>
-          </div>
-          <div v-if="selected == 'Irritado'">
-            <select v-model="selected2">
-              <option v-for="estado in estado[4].motivos" v-bind:value="estado">
-                {{ estado }}
-              </option>
-            </select>
-          </div>
-          <div v-if="selected == 'Triste'">
-            <select v-model="selected2">
-              <option v-for="estado in estado[5].motivos" v-bind:value="estado">
-                {{ estado }}
-              </option>
-            </select>
-          </div>
-          <div v-if="selected == 'Nervioso'">
-            <select v-model="selected2">
-              <option v-for="estado in estado[6].motivos" v-bind:value="estado">
-                {{ estado }}
-              </option>
-            </select>
-          </div>
-          <div v-if="selected == 'Enfadado'">
-            <select v-model="selected2">
-              <option v-for="estado in estado[7].motivos" v-bind:value="estado">
+          <div v-if="selected">
+            <select v-model="motivo">
+              <option
+                :key="index"
+                v-for="(estado, index) in selected[0].motivos"
+                v-bind:value="estado"
+              >
                 {{ estado }}
               </option>
             </select>
@@ -259,11 +219,11 @@ export default {
         </div>
       </form>
     </div>
-    <div id="retroceder" class="text-center mt-5">
-      <button @click="retroceder()" type="button" class="btn btn-outline-danger">
-        Retroceder
-      </button>
-    </div>
+  </div>
+  <div id="retroceder" class="text-center mt-5">
+    <button @click="retroceder()" type="button" class="btn btn-outline-danger">
+      Retroceder
+    </button>
   </div>
 </template>
 
