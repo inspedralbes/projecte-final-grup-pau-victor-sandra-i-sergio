@@ -13,7 +13,7 @@
     </nav>
     <nav
       v-if="this.$route.name == 'ejercicio'"
-      class="navnaranja navbar navbar-light bg-light"
+      class="navnaranja navbar navbar-light bg-light subheader"
     >
       <div class="container-fluid justify-content-center">
         <RouterLink class="link_header" to="/saludmental">Rutinas</RouterLink> | 
@@ -23,7 +23,7 @@
     </nav>
     <nav
       v-if="this.$route.name == 'alimentacion'"
-      class="navverde navbar navbar-light bg-light"
+      class="navverde navbar navbar-light bg-light subheader"
     >
       <div class="container-fluid justify-content-center">
         <RouterLink class="link_header" to="/saludmental">Recetas</RouterLink> | 
@@ -45,10 +45,11 @@
 }
 
 .link_header {
-  margin: 20px;
+  margin: 15px;
   text-decoration: none;
   color: black;
   font-weight: 650;
+  font-size: 18px;
 }
 
 .link_header:hover {
