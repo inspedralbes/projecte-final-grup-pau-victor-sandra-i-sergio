@@ -126,8 +126,8 @@ export default {
     enviarFormulario() {
       var cuestSalud = new URLSearchParams({
         usuario: "ermengol",
-        estado: this.selected,
-        motivo: "Alegre",
+        estado: this.selected[0].value,
+        motivo: this.motivo,
       });
       console.log(cuestSalud);
       fetch("http://192.168.210.161:9000/salud-mental/respuesta-cuestionario", {
