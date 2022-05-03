@@ -25,8 +25,8 @@ export default {
           },
         },
         {
-          text: "Energético",
-          value: "Energético",
+          text: "Energico",
+          value: "Energico",
           emoji: "😎🏋️‍♀️",
           num: 2,
           motivos: {
@@ -108,17 +108,10 @@ export default {
     };
   },
   methods: {
-    // datos() {
-    //   const datos = {
-    //     email: this.email,
-    //     estado: this.estado.value,
-    //   };
-    //   console.log(datos);
-    // },
     onReset(event) {
       event.preventDefault();
       // Reset our form values
-      (this.email = ""), (this.selected = ""), (this.estado = null);
+      (this.selected = ""), (this.estado = null);
     },
     retroceder() {
       window.history.back();
@@ -161,71 +154,34 @@ export default {
         <div class="col-12 text-center">
           <h2 class="titulo_cuestionario text-center">¿Como te sientes hoy?</h2>
         </div>
-        <div class="col-12 text-center">
-          <h4>Selecciona las opciones que más se identifican con tu estado de animo</h4>
-        </div>
       </div>
 
-      <div class="row email">
-      <div>
-          <label
-            class="form-label"
-            label="Email"
-            description="We'll never share your email with anyone else."
-            for="#email"
-            >Email*:</label
-          >
-          <br />
-          <input
-            v-if="email != 'null'"
-            v-model="email"
-            class="form-input-email"
-            id="email"
-            type="email"
-            required
-            placeholder="Ingresa el email"
-          />
-          <p v-if="email == 'null'">ejemplo@inspedralbes.cat</p>
-        </div>
-        </div>
-        <div class="row">
-        <div
-          class="col-4"
-          v-for="(check, index) in estado"
-          :key="index"
-          v-bind:value="check.value"
-        >
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value="Volar"
-              :id="check.value"
-            />
-            <label class="form-check-label float-start" :for="check.value">{{ check.emoji }}{{ check.text }}</label>
-          </div>
-        </div>
-        
         <div class="row">
           <div
-            class="col-12"
+            class="col-6"
+            v-for="(opcion, index) in estado"
             :key="index"
-            v-for="(estado, index) in estado"
-            v-bind:value="estado.value"
+            v-bind:value="opcion.value"
           >
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value="Volar"
-                id="Checkbox"
-              />
-              <label class="form-check-label float-start" for="Checkbox"> {{ estado.motivos.motivo1 }} </label>
+            <button class="btn btn-light float-start" @click="guardarseleccionado($event.target.id)" :id="opcion.value" :for="opcion.value">{{opcion.emoji}} {{opcion.text}}</button>  
+          </div>
+
+        <div class="row">
+          <div id="estado" >
+            <div v-if="selected" class="" >
+                <button  
+                  :key="index"
+                  v-for="(estado, index) in selected[0].motivos"
+                  v-bind:value="estado"
+                >
+                  {{ estado }}
+                </button>
             </div>
           </div>
         </div>
 
-        
+
+
 
         <div class="col-12 text-center">
           <input
