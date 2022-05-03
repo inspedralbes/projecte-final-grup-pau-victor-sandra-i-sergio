@@ -87,9 +87,9 @@ export default {
               class="form-check-input"
               type="checkbox"
               value="Volar"
-              id="CheckboxInt"
+              :id="check.value"
             />
-            <label class="form-check-label float-start" for="CheckboxInt">{{
+            <label class="form-check-label float-start" :for="check.value">{{
               check.text
             }}</label>
           </div>
