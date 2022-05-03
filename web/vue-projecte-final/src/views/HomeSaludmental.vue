@@ -36,9 +36,9 @@ export default {
           },
         },
         {
-          text: "Desanimado, cansado, con malestar",
+          text: "Desanimado",
           value: "Desanimado",
-          emoji: "😩",
+          emoji: "😔",
           num: 3,
           motivos: {
             motivo1: "He recibidio una mala noticia",
@@ -47,9 +47,9 @@ export default {
           },
         },
         {
-          text: "Estresado, ajetreado",
+          text: "Estresado",
           value: "Estresado",
-          emoji: "😰",
+          emoji: "😩",
           num: 4,
           motivos: {
             motivo1: "Se me estan acumulando trabajos o cosas que hacer",
@@ -59,21 +59,20 @@ export default {
           },
         },
         {
-          text: "Irritado, con incertidumbre",
+          text: "Irritado",
           value: "Irritado",
           emoji: "😠",
           num: 5,
           motivos: {
-            motivo1:
-              "La gente no tiene en cuenta mis ideas o opiniones en general",
+            motivo1:"La gente no tiene en cuenta mis ideas o opiniones en general",
             motivo2: "Me pasan cosas malas que no puedo controlar",
             motivo3: "La suerte no esta nunca de mi lado",
           },
         },
         {
-          text: "Triste, fracaso, momento de transición",
+          text: "Triste",
           value: "Triste",
-          emoji: "😔",
+          emoji: "😢",
           num: 6,
           motivos: {
             motivo1: "He recibido una mala noticia",
@@ -82,26 +81,14 @@ export default {
           },
         },
         {
-          text: 'Nervioso, sientes "miedo"',
+          text: 'Nervioso',
           value: "Nervioso",
-          emoji: "😖",
+          emoji: "😖😟",
           num: 7,
           motivos: {
             motivo1: "Tengo una actividad importante a la vista",
             motivo2: "Estoy esperando una respuesta importante para mi",
             motivo3: "Me he alterado de manera momentanea",
-          },
-        },
-        {
-          text: "Enfadado",
-          value: "Enfadado",
-          emoji: "😡",
-          num: 8,
-          motivos: {
-            motivo1:
-              "Estoy enfadado por alguna cosa que ha pasado con alguna persona (cercana o no)",
-            motivo2: "Me han engañado o estafado",
-            motivo3: "Estoy enfadado por algo que no puedo controlar",
           },
         },
       ],
