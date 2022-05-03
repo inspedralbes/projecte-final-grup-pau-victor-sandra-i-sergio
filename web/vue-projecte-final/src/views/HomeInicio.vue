@@ -10,9 +10,9 @@ export default {
 
   methods: {
     goto(id) {
-      router.push({ name: id })
-    }
-  }
+      router.push({ name: id });
+    },
+  },
 };
 </script>
 
@@ -20,11 +20,15 @@ export default {
   <main class="container landingPage">
     <div class="row">
       <div class="col-12 gy-4">
-        <span @click="this.goto($event.target.id)" id="ejercicio">Ejercicio</span>
-        <img width="70" src="../../public/img/alimentacion.png" alt="">
+        <span @click="this.goto($event.target.id)" id="ejercicio"
+          >Ejercicio</span
+        >
+        <img width="70" src="../../public/img/alimentacion.png" alt="" />
       </div>
       <div class="col-12 text-end gy-4">
-        <span @click="this.goto($event.target.id)" id="alimentacion">Alimentacion</span>
+        <span @click="this.goto($event.target.id)" id="alimentacion"
+          >Alimentacion</span
+        >
       </div>
       <div class="col-12 gy-4">
         <span @click="this.goto($event.target.id)" id="saludmental">
@@ -40,7 +44,7 @@ export default {
   position: relative;
 }
 
-.landingPage .col-12 img{
+.landingPage .col-12 img {
   position: absolute;
 }
 

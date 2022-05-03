@@ -18,5 +18,4 @@ export default {
   <RouterView />
 </template>
 
-<style>
-</style>
+<style></style>
