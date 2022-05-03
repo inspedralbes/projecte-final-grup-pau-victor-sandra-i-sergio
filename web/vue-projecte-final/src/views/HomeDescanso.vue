@@ -64,7 +64,6 @@ export default {
   <div>
     <div>
       <Header />
-      <h1>Esto es el HOME de DESCANSO</h1>
     </div>
 
     <div class="cuestionario_sueño container">
@@ -113,5 +112,7 @@ export default {
 <style scoped>
 .cuestionario_sueño {
   background-color: lightskyblue;
+  margin-top: 50px;
+  padding: 30px;
 }
 </style>

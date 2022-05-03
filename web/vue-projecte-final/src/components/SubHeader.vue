@@ -2,15 +2,19 @@
   <div>
     <nav
       v-if="this.$route.name == 'descanso' || this.$route.name == 'saludmental'"
-      class="navazul navbar navbar-light bg-light justify-content-center"
+      class="navazul navbar navbar-light bg-light "
         >
+        <div class="container-fluid justify-content-center">
+        <RouterLink class="btn btn-primary" to="/saludmental">Salud Mental</RouterLink>
         <RouterLink class="btn btn-primary" to="/descanso">Descanso</RouterLink>
+        </div>
+
     </nav>
     <nav
       v-if="this.$route.name == 'ejercicio'"
-      class="navnaranja navbar navbar-light bg-light justify-content-center"
+      class="navnaranja navbar navbar-light bg-light"
     >
-      <div class="container-fluid">
+      <div class="container-fluid justify-content-center">
         <RouterLink class="btn btn-primary" to="/saludmental">Rutinas</RouterLink>
 
         <RouterLink class="btn btn-primary" to="/descanso">Productos</RouterLink>
@@ -18,9 +22,9 @@
     </nav>
     <nav
       v-if="this.$route.name == 'alimentacion'"
-      class="navverde navbar navbar-light bg-light justify-content-center"
+      class="navverde navbar navbar-light bg-light"
     >
-      <div class="container-fluid">
+      <div class="container-fluid justify-content-center">
         <RouterLink class="btn btn-primary" to="/saludmental">Recetas</RouterLink>
 
         <RouterLink class="btn btn-primary" to="/descanso">Productos</RouterLink>
