@@ -195,30 +195,30 @@ export default {
           </option>
         </select>
         <!-- <span id="emojis">{{ selected }}</span> -->
-      </div>
-      <br />
-      <div id="estado">
-        <div v-if="selected">
-          <select v-model="motivo">
-            <option
-              :key="index"
-              v-for="(estado, index) in selected[0].motivos"
-              v-bind:value="estado"
-            >
-              {{ estado }}
-            </option>
-          </select>
+        <br />
+        <div id="estado">
+          <div v-if="selected">
+            <select v-model="motivo">
+              <option
+                :key="index"
+                v-for="(estado, index) in selected[0].motivos"
+                v-bind:value="estado"
+              >
+                {{ estado }}
+              </option>
+            </select>
+          </div>
         </div>
-      </div>
-      <div>
-        <input
-          class="btn btn-outline-secondary form-submit"
-          type="button"
-          @click="enviarFormulario()"
-          value="Confirmar dades!"
-        />
-      </div>
-    </form>
+        <div>
+          <input
+            class="btn btn-outline-secondary form-submit"
+            type="button"
+            @click="enviarFormulario()"
+            value="Confirmar dades!"
+          />
+        </div>
+      </form>
+    </div>
   </div>
   <div id="retroceder" class="text-center mt-5">
     <button @click="retroceder()" type="button" class="btn btn-outline-danger">

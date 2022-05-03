@@ -36,8 +36,8 @@ export default {
         {
           text: "Riqueza",
           value: "Riqueza",
-        }
-      ]
+        },
+      ],
     };
   },
   methods: {
@@ -49,7 +49,7 @@ export default {
     retroceder() {
       window.history.back();
     },
-    enviarFormulario();
+    // enviarFormulario();
   },
 };
 </script>
@@ -62,13 +62,6 @@ export default {
     </div>
     <div class="cuestionario_sueño">
       <h2>¿Que has soñado hoy?</h2>
-
     </div>
-    
-
-
-
-
-
   </div>
 </template>
