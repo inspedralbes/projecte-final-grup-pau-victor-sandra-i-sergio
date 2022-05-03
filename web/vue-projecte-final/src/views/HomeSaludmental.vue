@@ -156,6 +156,94 @@ export default {
       <Header />
       <h1>Esto es el HOME de SALUD MENTAL</h1>
     </div>
+
+    <div class="cuestionario_estado container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="titulo_cuestionario text-center">¿Como te sientes hoy?</h2>
+        </div>
+        <div class="col-12 text-center">
+          <h4>Selecciona las opciones que más se identifican con tu estado de animo</h4>
+        </div>
+      </div>
+
+      <div class="row email">
+      <div>
+          <label
+            class="form-label"
+            label="Email"
+            description="We'll never share your email with anyone else."
+            for="#email"
+            >Email*:</label
+          >
+          <br />
+          <input
+            v-if="email != 'null'"
+            v-model="email"
+            class="form-input-email"
+            id="email"
+            type="email"
+            required
+            placeholder="Ingresa el email"
+          />
+          <p v-if="email == 'null'">ejemplo@inspedralbes.cat</p>
+        </div>
+        </div>
+        <div class="row">
+        <div
+          class="col-4"
+          v-for="(check, index) in estado"
+          :key="index"
+          v-bind:value="check.value"
+        >
+          <div class="form-check">
+            <input
+              class="form-check-input"
+              type="checkbox"
+              value="Volar"
+              :id="check.value"
+            />
+            <label class="form-check-label float-start" :for="check.value">{{ check.emoji }}{{ check.text }}</label>
+          </div>
+        </div>
+        
+        <div class="row">
+          <div
+            class="col-12"
+            :key="index"
+            v-for="(estado, index) in estado"
+            v-bind:value="estado.value"
+          >
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value="Volar"
+                id="Checkbox"
+              />
+              <label class="form-check-label float-start" for="Checkbox"> {{ estado.motivos.motivo1 }} </label>
+            </div>
+          </div>
+        </div>
+
+        
+
+        <div class="col-12 text-center">
+          <input
+            class="btn btn-outline-secondary form-submit"
+            type="button"
+            @click="enviarFormulario()"
+            value="Confirmar datos"
+          />
+        </div>
+      </div>
+    </div>
+
+
+
+
+
+  <br><br><br><br>
     <div>
       <form action class="form">
         <h2>Como te sientes hoy?</h2>
@@ -195,6 +283,7 @@ export default {
             {{ option.emoji }}{{ option.text }}
           </option>
         </select>
+
         <!-- <span id="emojis">{{ selected }}</span> -->
         <br />
         <div id="estado">
@@ -233,6 +322,15 @@ export default {
 select {
   background-color: white;
   color: gray;
+}
+.cuestionario_estado {
+  background-color: orange;
+}
+.row {
+  margin-top: 2%;
+}
+.email {
+  text-align: center;
 }
 #emojis {
   font-size: 250%;
