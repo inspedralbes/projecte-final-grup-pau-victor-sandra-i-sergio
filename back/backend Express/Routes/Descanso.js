@@ -15,12 +15,14 @@ Descanso.route("/").get((req, res) => {
 
 Descanso.route('/respuesta-cuestionario').post((req, res) => {
     let datos = req.body;
+    datos.descripcionSueno = JSON.parse(datos.descripcionSueno)
+    console.log(datos);
     if (Object.keys(datos).length != 2) { // Solo se pasan 2 campos
         res.status(500);
         res.json({ 'status': false, 'msg': 'Error! Falta/Sobra algún campo' });
     } else {
-        console.log(datos.descripcionSueno)
-        if (!Array.isArray(datos.descripcionSueno) || typeof datos.usuario !== 'string') { // Un campo es string y el otro es array 
+        console.log()
+        if (typeof datos.descripcionSueno !== 'object' || typeof datos.usuario !== 'string') { // Un campo es string y el otro es array 
             res.status(500);
             res.json({ 'status': false, 'msg': 'Error! Dades enviades en un altre format' });
         } else {
