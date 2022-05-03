@@ -7,7 +7,7 @@ export default {
   },
   data() {
     return {
-      selected: "",
+      selected: [],
       elemento: [
         {
           text: "Muerte",
@@ -61,8 +61,28 @@ export default {
     retroceder() {
       window.history.back();
     },
-    enviarFormulario() {
+    guardarseleccionada(id) {
+      if (this.selected.length < 5) {
+        this.selected.push(id);
+      } else {
+        alert("No puedes seleccionar más de 5 opciones");
+      }
 
+      console.log(this.selected);
+    },
+    enviarFormulario() {
+      var cuestDescanso = new FormData();
+      cuestDescanso.append("descripcionSueno", JSON.stringify(this.selected));
+      cuestDescanso.append("usuario", "alvaro");
+
+      fetch("http://192.168.210.161:9000/descanso/respuesta-cuestionario", {
+        method: "POST",
+        body: cuestDescanso,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+        });
     },
   },
 };
@@ -91,16 +111,16 @@ export default {
           :key="index"
           v-bind:value="check.value"
         >
-          <div class="form-check">
-            <input
-              class="form-check-input"
-              type="checkbox"
-              value="Volar"
+          <div>
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              :value="check.value"
               :id="check.value"
-            />
-            <label class="form-check-label float-start" :for="check.value">{{
-              check.text
-            }}</label>
+              @click="guardarseleccionada($event.target.value)"
+            >
+              {{ check.text }}
+            </button>
           </div>
         </div>
 
@@ -124,7 +144,7 @@ export default {
   padding: 30px;
 }
 
-.subtitulo{
+.subtitulo {
   margin: 15px;
 }
 </style>

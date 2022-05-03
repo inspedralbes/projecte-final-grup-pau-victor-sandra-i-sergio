@@ -10,9 +10,13 @@ export default {
 <template>
   <nav class="navbar navbar-light bg-light">
     <div class="container-fluid">
-
       <RouterLink class="navbar-brand" to="/">
-        <img src="../../public/img/GenkiCorpusLogo.png" alt="" width="80" height="80">
+        <img
+          src="../../public/img/GenkiCorpusLogo.png"
+          alt=""
+          width="80"
+          height="80"
+        />
       </RouterLink>
       <RouterLink class="btn btn-primary" to="/">Home</RouterLink>
     </div>

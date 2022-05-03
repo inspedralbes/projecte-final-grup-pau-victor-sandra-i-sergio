@@ -2,21 +2,28 @@
   <div>
     <nav
       v-if="this.$route.name == 'descanso' || this.$route.name == 'saludmental'"
-      class="navazul navbar navbar-light bg-light "
+      class="navazul navbar navbar-light bg-light"
+    >
+      <div class="container-fluid justify-content-center subheader">
+        <a
+          ><RouterLink class="link_header" to="/saludmental"
+            >Salud Mental</RouterLink
+          ></a
         >
-        <div class="container-fluid justify-content-center subheader">
-        <a><RouterLink class="link_header" to="/saludmental">Salud Mental</RouterLink></a> | 
-        <a><RouterLink class="link_header" to="/descanso">Descanso</RouterLink></a>
-        </div>
-        
-
+        |
+        <a
+          ><RouterLink class="link_header" to="/descanso"
+            >Descanso</RouterLink
+          ></a
+        >
+      </div>
     </nav>
     <nav
       v-if="this.$route.name == 'ejercicio'"
       class="navnaranja navbar navbar-light bg-light subheader"
     >
       <div class="container-fluid justify-content-center">
-        <RouterLink class="link_header" to="/saludmental">Rutinas</RouterLink> | 
+        <RouterLink class="link_header" to="/saludmental">Rutinas</RouterLink> |
 
         <RouterLink class="link_header" to="/descanso">Productos</RouterLink>
       </div>
@@ -26,7 +33,7 @@
       class="navverde navbar navbar-light bg-light subheader"
     >
       <div class="container-fluid justify-content-center">
-        <RouterLink class="link_header" to="/saludmental">Recetas</RouterLink> | 
+        <RouterLink class="link_header" to="/saludmental">Recetas</RouterLink> |
 
         <RouterLink class="link_header" to="/descanso">Productos</RouterLink>
       </div>
@@ -61,7 +68,7 @@
   font-weight: 800;
 }
 
-.subheader{
+.subheader {
   padding: 20px;
 }
 </style>
