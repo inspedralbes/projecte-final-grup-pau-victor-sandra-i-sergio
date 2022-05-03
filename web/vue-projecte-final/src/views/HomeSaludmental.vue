@@ -132,10 +132,16 @@ export default {
           console.log(data);
         });
     },
-    guardarseleccionado(valor) {
+    guardarEstado(valor) {
       console.log(valor);
       this.selected = this.estado.filter((v) => {
         return v.value == valor;
+      });
+    },
+    guardarMotivo(motivo) {
+      console.log(motivo);
+      this.selected = this.estado.filter((v) => {
+        return v.motivo == motivo;
       });
     },
   },
@@ -163,13 +169,14 @@ export default {
             :key="index"
             v-bind:value="opcion.value"
           >
-            <button class="btn btn-light float-start" @click="guardarseleccionado($event.target.id)" :id="opcion.value" :for="opcion.value">{{opcion.emoji}} {{opcion.text}}</button>  
+            <button class="btn btn-light float-start" @click="guardarEstado($event.target.id)" :id="opcion.value" :for="opcion.value">{{opcion.emoji}} {{opcion.text}}</button>  
           </div>
 
         <div class="row">
-          <div id="estado" >
-            <div v-if="selected" class="" >
-                <button  
+          <div id="motivo" >
+            <div v-if="selected" class="">
+                <button
+                  @click="guardarMotivo($event.target.value)"  
                   :key="index"
                   v-for="(estado, index) in selected[0].motivos"
                   v-bind:value="estado"
@@ -179,8 +186,6 @@ export default {
             </div>
           </div>
         </div>
-
-
 
 
         <div class="col-12 text-center">
@@ -195,10 +200,6 @@ export default {
     </div>
 
 
-
-
-
-  <br><br><br><br>
     <div>
       <form action class="form">
         <h2>Como te sientes hoy?</h2>
@@ -279,14 +280,12 @@ select {
   color: gray;
 }
 .cuestionario_estado {
-  background-color: orange;
+  background-color: rgb(199, 234, 255);
+  padding: 20px;
+  margin-top: 40px;
 }
-.row {
-  margin-top: 2%;
-}
-.email {
-  text-align: center;
-}
+
+
 #emojis {
   font-size: 250%;
 }
