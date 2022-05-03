@@ -53,7 +53,9 @@ export default {
     retroceder() {
       window.history.back();
     },
-    //enviarFormulario();
+    enviarFormulario() {
+
+    },
   },
 };
 </script>
