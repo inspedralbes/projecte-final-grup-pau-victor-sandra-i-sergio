@@ -151,39 +151,35 @@ export default {
 
 <template>
   <div>
-    <Header />
-    <h1>Esto es el HOME de SALUD MENTAL</h1>
-  </div>
-  <div>
-    <form action class="form">
-      <h2>Como te sientes HOY?</h2>
-      <hr />
-      <div>
-        <label
-          class="form-label"
-          label="Email"
-          description="We'll never share your email with anyone else."
-          for="#email"
-          >Email*:</label
-        >
+    <div>
+      <Header />
+      <h1>Esto es el HOME de SALUD MENTAL</h1>
+    </div>
+    <div>
+      <form action class="form">
+        <h2>Como te sientes hoy?</h2>
+        <hr />
+        <div>
+          <label
+            class="form-label"
+            label="Email"
+            description="We'll never share your email with anyone else."
+            for="#email"
+            >Email*:</label
+          >
+          <br />
+          <input
+            v-if="email != 'null'"
+            v-model="email"
+            class="form-input-email"
+            id="email"
+            type="email"
+            required
+            placeholder="Ingresa el email"
+          />
+          <p v-if="email == 'null'">ejemplo@inspedralbes.cat</p>
+        </div>
         <br />
-        <input
-          v-if="email != 'null'"
-          v-model="email"
-          class="form-input-email"
-          id="email"
-          type="email"
-          required
-          placeholder="Ingresa el email"
-        />
-        <p v-if="email == 'null'">ejemplo@inspedralbes.cat</p>
-      </div>
-      <br />
-      <br />
-      <div>
-        <label class="form-label" label="estado" for="#estado"
-          >Como te sientes?</label
-        >
         <br />
         <select
           class="form-select"
