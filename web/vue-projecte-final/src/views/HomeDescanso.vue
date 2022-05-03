@@ -46,8 +46,8 @@ export default {
           value: "Agua",
         },
         {
-          text: "Arañas",
-          value: "Arañas",
+          text: "Trabajo",
+          value: "Trabjo",
         },
       ],
     };
