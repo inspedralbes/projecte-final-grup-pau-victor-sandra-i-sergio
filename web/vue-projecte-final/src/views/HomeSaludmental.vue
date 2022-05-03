@@ -8,7 +8,8 @@ export default {
   data() {
     return {
       email: "",
-      selected: "",
+      selected: 0,
+      motivo: "",
       estado: [
         {
           text: "Alegre",
@@ -24,8 +25,8 @@ export default {
           },
         },
         {
-          text: "Energético",
-          value: "Energético",
+          text: "Energico",
+          value: "Energico",
           emoji: "😎🏋️‍♀️",
           num: 2,
           motivos: {
@@ -107,17 +108,10 @@ export default {
     };
   },
   methods: {
-    // datos() {
-    //   const datos = {
-    //     email: this.email,
-    //     estado: this.estado.value,
-    //   };
-    //   console.log(datos);
-    // },
     onReset(event) {
       event.preventDefault();
       // Reset our form values
-      (this.email = ""), (this.selected = ""), (this.estado = null);
+      (this.selected = ""), (this.estado = null);
     },
     retroceder() {
       window.history.back();
@@ -125,8 +119,8 @@ export default {
     enviarFormulario() {
       var cuestSalud = new URLSearchParams({
         usuario: "ermengol",
-        estado: this.selected,
-        motivo: "Alegre",
+        estado: this.selected[0].value,
+        motivo: this.motivo,
       });
       console.log(cuestSalud);
       fetch("http://192.168.210.161:9000/salud-mental/respuesta-cuestionario", {
@@ -138,130 +132,181 @@ export default {
           console.log(data);
         });
     },
+    guardarEstado(valor) {
+      console.log(valor);
+      this.selected = this.estado.filter((v) => {
+        return v.value == valor;
+      });
+    },
+
+    guardarMotivo(motivo) {
+      this.motivo = motivo;
+      console.log(motivo);
+    },
   },
 };
 </script>
 
 <template>
   <div>
-    <Header />
-    <h1>Esto es el HOME de SALUD MENTAL</h1>
-  </div>
-  <div>
-    <form action class="form">
-      <h2>Como te sientes HOY?</h2>
-      <hr />
-      <div>
-        <label
-          class="form-label"
-          label="Email"
-          description="We'll never share your email with anyone else."
-          for="#email"
-          >Email*:</label
-        >
-        <br />
-        <input
-          v-if="email != 'null'"
-          v-model="email"
-          class="form-input-email"
-          id="email"
-          type="email"
-          required
-          placeholder="Ingresa el email"
-        />
-        <p v-if="email == 'null'">ejemplo@inspedralbes.cat</p>
+    <div>
+      <Header />
+    </div>
+
+    <div class="cuestionario_estado container">
+      <div class="row">
+        <div class="col-12 text-center">
+          <h2 class="titulo_cuestionario text-center">¿Como te sientes hoy?</h2>
+        </div>
       </div>
-      <br />
-      <br />
-      <div>
-        <label class="form-label" label="estado" for="#estado"
-          >Como te sientes?</label
+
+      <div class="row">
+        <div
+          class="col-6"
+          v-for="(opcion, index) in estado"
+          :key="index"
+          v-bind:value="opcion.value"
         >
+          <button
+            class="btn btn-light float-start"
+            @click="guardarEstado($event.target.id)"
+            :id="opcion.value"
+          >
+            {{ opcion.emoji }} {{ opcion.text }}
+          </button>
+        </div>
+
+        <div class="row">
+          <div id="motivo">
+            <div v-if="selected" class="">
+              <button
+                @click="guardarMotivo($event.target.value)"
+                :key="index"
+                v-for="(estado, index) in selected[0].motivos"
+                :value="estado"
+              >
+                {{ estado }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-12 text-center">
+          <input
+            class="btn btn-outline-secondary form-submit"
+            type="button"
+            @click="enviarFormulario()"
+            value="Confirmar datos"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- <div>
+      <form action class="form">
+        <h2>Como te sientes hoy?</h2>
+        <hr />
+        <div>
+          <label
+            class="form-label"
+            label="Email"
+            description="We'll never share your email with anyone else."
+            for="#email"
+            >Email*:</label
+          >
+          <br />
+          <input
+            v-if="email != 'null'"
+            v-model="email"
+            class="form-input-email"
+            id="email"
+            type="email"
+            required
+            placeholder="Ingresa el email"
+          />
+          <p v-if="email == 'null'">ejemplo@inspedralbes.cat</p>
+        </div>
+        <br />
         <br />
         <select
-          v-model="selected"
           class="form-select"
           aria-label="Default select example"
+          @change="guardarseleccionado($event.target.value)"
         >
-          <option v-for="option in estado" v-bind:value="option.value">
+          <option
+            :key="index"
+            v-for="(option, index) in estado"
+            :value="option.value"
+          >
             {{ option.emoji }}{{ option.text }}
           </option>
         </select>
-        <!-- <span id="emojis">{{ selected }}</span> -->
-      </div>
-      <br />
-      <div id="estado">
-        <div v-if="selected == 'Alegre'">
-          <select v-model="selected2">
-            <option v-for="estado in estado[0].motivos" v-bind:value="estado">
-              {{ estado }}
+
+         <span id="emojis">{{ selected }}</span>
+        <br />
+        <div id="estado">
+          <div v-if="selected">
+            <select v-model="motivo">
+              <option
+                :key="index"
+                v-for="(estado, index) in selected[0].motivos"
+                v-bind:value="estado"
+              >
+                {{ estado }}
+              </option>
+            </select>
+          </div>
+          <br />
+          <br />
+          <select
+            class="form-select"
+            aria-label="Default select example"
+            @change="guardarseleccionado($event.target.value)"
+          >
+            <option
+              :key="index"
+              v-for="(option, index) in estado"
+              :value="option.value"
+            >
+              {{ option.emoji }}{{ option.text }}
             </option>
           </select>
+           <span id="emojis">{{ selected }}</span> 
+          <br />
+          <div id="estado">
+            <div v-if="selected">
+              <select v-model="motivo">
+                <option
+                  :key="index"
+                  v-for="(estado, index) in selected[0].motivos"
+                  v-bind:value="estado"
+                >
+                  {{ estado }}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <input
+              class="btn btn-outline-secondary form-submit"
+              type="button"
+              @click="enviarFormulario()"
+              value="Confirmar dades!"
+            />
+          </div>
         </div>
-        <div v-if="selected == 'Energético'">
-          <select v-model="selected2">
-            <option v-for="estado in estado[1].motivos" v-bind:value="estado">
-              {{ estado }}
-            </option>
-          </select>
-        </div>
-        <div v-if="selected == 'Desanimado'">
-          <select v-model="selected2">
-            <option v-for="estado in estado[2].motivos" v-bind:value="estado">
-              {{ estado }}
-            </option>
-          </select>
-        </div>
-        <div v-if="selected == 'Estresado'">
-          <select v-model="selected2">
-            <option v-for="estado in estado[3].motivos" v-bind:value="estado">
-              {{ estado }}
-            </option>
-          </select>
-        </div>
-        <div v-if="selected == 'Irritado'">
-          <select v-model="selected2">
-            <option v-for="estado in estado[4].motivos" v-bind:value="estado">
-              {{ estado }}
-            </option>
-          </select>
-        </div>
-        <div v-if="selected == 'Triste'">
-          <select v-model="selected2">
-            <option v-for="estado in estado[5].motivos" v-bind:value="estado">
-              {{ estado }}
-            </option>
-          </select>
-        </div>
-        <div v-if="selected == 'Nervioso'">
-          <select v-model="selected2">
-            <option v-for="estado in estado[6].motivos" v-bind:value="estado">
-              {{ estado }}
-            </option>
-          </select>
-        </div>
-        <div v-if="selected == 'Enfadado'">
-          <select v-model="selected2">
-            <option v-for="estado in estado[7].motivos" v-bind:value="estado">
-              {{ estado }}
-            </option>
-          </select>
-        </div>
-      </div>
-      <div>
-        <input
-          class="btn btn-outline-secondary form-submit"
-          type="button"
-          @click="enviarFormulario()"
-          value="Confirmar dades!"
-        />
-      </div>
-    </form>
-  </div>
-  <div id="retroceder" class="text-center mt-5">
-    <button @click="retroceder()" type="button" class="btn btn-outline-danger">
-      Retroceder
-    </button>
+      </form>
+    </div> -->
+
+    <div id="retroceder" class="text-center mt-5">
+      <button
+        @click="retroceder()"
+        type="button"
+        class="btn btn-outline-danger"
+      >
+        Retroceder
+      </button>
+    </div>
   </div>
 </template>
 
@@ -270,6 +315,12 @@ select {
   background-color: white;
   color: gray;
 }
+.cuestionario_estado {
+  background-color: rgb(199, 234, 255);
+  padding: 20px;
+  margin-top: 40px;
+}
+
 #emojis {
   font-size: 250%;
 }

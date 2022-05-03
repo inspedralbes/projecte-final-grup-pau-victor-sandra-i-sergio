@@ -5,13 +5,19 @@ export default {
     RouterLink,
   },
 };
-
 </script>
 
 <template>
   <nav class="navbar navbar-dark bg-dark">
     <div class="container-fluid">
-      <span class="navbar-brand mb-0 h1">Navbar</span>
+      <RouterLink class="navbar-brand" to="/">
+        <img
+          src="../../public/img/GenkiCorpusLogo.png"
+          alt=""
+          width="80"
+          height="80"
+        />
+      </RouterLink>
       <RouterLink class="btn btn-primary" to="/">Home</RouterLink>
     </div>
   </nav>

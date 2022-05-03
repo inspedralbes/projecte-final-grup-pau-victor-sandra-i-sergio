@@ -1,18 +1,15 @@
 <script>
-import { RouterLink, RouterView } from "vue-router";
+// import { RouterLink, RouterView } from "vue-router";
 import router from "@/router";
 
 export default {
-  components: {
-    RouterLink,
-    RouterView,
-  },
+  components: {},
 
   methods: {
     goto(id) {
-      router.push({ name: id })
-    }
-  }
+      router.push({ name: id });
+    },
+  },
 };
 </script>
 
