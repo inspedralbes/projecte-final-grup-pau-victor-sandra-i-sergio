@@ -38,8 +38,16 @@ export default {
           value: "Riqueza",
         },
         {
-          text: "Caida",
-          value: "Caida",
+          text: "Infancia",
+          value: "Infancia",
+        },
+        {
+          text: "Agua",
+          value: "Agua",
+        },
+        {
+          text: "Trabajo",
+          value: "Trabjo",
         },
       ],
     };
@@ -53,7 +61,9 @@ export default {
     retroceder() {
       window.history.back();
     },
-    //enviarFormulario();
+    enviarFormulario() {
+
+    },
   },
 };
 </script>
@@ -62,7 +72,6 @@ export default {
   <div>
     <div>
       <Header />
-      <h1>Esto es el HOME de DESCANSO</h1>
     </div>
 
     <div class="cuestionario_sueño container">
@@ -70,7 +79,7 @@ export default {
         <div class="col-12 text-center">
           <h2 class="titulo_cuestionario text-center">¿Que has soñado hoy?</h2>
         </div>
-        <div class="col-12 text-center">
+        <div class="col-12 text-center subtitulo">
           <h4>Selecciona las opciones que más se asemejen a tu sueño</h4>
         </div>
       </div>
@@ -87,9 +96,9 @@ export default {
               class="form-check-input"
               type="checkbox"
               value="Volar"
-              id="CheckboxInt"
+              :id="check.value"
             />
-            <label class="form-check-label float-start" for="CheckboxInt">{{
+            <label class="form-check-label float-start" :for="check.value">{{
               check.text
             }}</label>
           </div>
@@ -110,6 +119,12 @@ export default {
 
 <style scoped>
 .cuestionario_sueño {
-  background-color: lightskyblue;
+  background-color: rgb(199, 234, 255);
+  margin-top: 50px;
+  padding: 30px;
+}
+
+.subtitulo{
+  margin: 15px;
 }
 </style>
