@@ -138,11 +138,10 @@ export default {
         return v.value == valor;
       });
     },
+
     guardarMotivo(motivo) {
+      this.motivo = motivo;
       console.log(motivo);
-      this.selected = this.estado.filter((v) => {
-        return v.motivo == motivo;
-      });
     },
   },
 };
@@ -161,31 +160,36 @@ export default {
         </div>
       </div>
 
-        <div class="row">
-          <div
-            class="col-6"
-            v-for="(opcion, index) in estado"
-            :key="index"
-            v-bind:value="opcion.value"
+      <div class="row">
+        <div
+          class="col-6"
+          v-for="(opcion, index) in estado"
+          :key="index"
+          v-bind:value="opcion.value"
+        >
+          <button
+            class="btn btn-light float-start"
+            @click="guardarEstado($event.target.id)"
+            :id="opcion.value"
           >
-            <button class="btn btn-light float-start" @click="guardarEstado($event.target.id)" :id="opcion.value" :for="opcion.value">{{opcion.emoji}} {{opcion.text}}</button>  
-          </div>
+            {{ opcion.emoji }} {{ opcion.text }}
+          </button>
+        </div>
 
         <div class="row">
-          <div id="motivo" >
+          <div id="motivo">
             <div v-if="selected" class="">
-                <button
-                  @click="guardarMotivo($event.target.value)"  
-                  :key="index"
-                  v-for="(estado, index) in selected[0].motivos"
-                  v-bind:value="estado"
-                >
-                  {{ estado }}
-                </button>
+              <button
+                @click="guardarMotivo($event.target.value)"
+                :key="index"
+                v-for="(estado, index) in selected[0].motivos"
+                :value="estado"
+              >
+                {{ estado }}
+              </button>
             </div>
           </div>
         </div>
-
 
         <div class="col-12 text-center">
           <input
@@ -198,8 +202,7 @@ export default {
       </div>
     </div>
 
-
-    <div>
+    <!-- <div>
       <form action class="form">
         <h2>Como te sientes hoy?</h2>
         <hr />
@@ -239,7 +242,7 @@ export default {
           </option>
         </select>
 
-        <!-- <span id="emojis">{{ selected }}</span> -->
+         <span id="emojis">{{ selected }}</span>
         <br />
         <div id="estado">
           <div v-if="selected">
@@ -268,7 +271,7 @@ export default {
               {{ option.emoji }}{{ option.text }}
             </option>
           </select>
-          <!-- <span id="emojis">{{ selected }}</span> -->
+           <span id="emojis">{{ selected }}</span> 
           <br />
           <div id="estado">
             <div v-if="selected">
@@ -291,9 +294,10 @@ export default {
               value="Confirmar dades!"
             />
           </div>
-        </form>
-      </div>
-    </div>
+        </div>
+      </form>
+    </div> -->
+
     <div id="retroceder" class="text-center mt-5">
       <button
         @click="retroceder()"
@@ -316,7 +320,6 @@ select {
   padding: 20px;
   margin-top: 40px;
 }
-
 
 #emojis {
   font-size: 250%;
