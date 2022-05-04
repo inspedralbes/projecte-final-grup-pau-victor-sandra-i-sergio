@@ -2,7 +2,6 @@
     "estado": [
         {
             "text": "Desanimado",
-            "value": "Desanimado",
             "emoji": "ruta de la imagen del emoji" ,
             "motivos": {
                 "motivo1": "Últimamente estoy siempre cansado sin importar lo que haga",
