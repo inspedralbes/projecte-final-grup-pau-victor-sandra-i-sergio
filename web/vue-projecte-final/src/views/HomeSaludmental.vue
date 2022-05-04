@@ -47,7 +47,7 @@ export default {
           },
         },
         {
-          text: "Energico",
+          text: "Enérgico",
           value: "Energico",
           emoji: "😎🏋️‍♀️",
         },   
@@ -172,6 +172,35 @@ export default {
       </div>
     </div>
 
+    <div id="card-horizontal" v-if="selected" class="card mb-3">
+      <div class="row">
+        <div class="col-md-4">
+          <p id="emoji-card">{{ selected[0].emoji }}</p>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="d-grid">
+              <div class="botons col-12">
+                <button v-if="selected[0].value=='Alegre' || selected[0].value=='Energico'" class="emoji-value btn btn-outline-info">
+                  Hoy estoy {{ selected[0].text }}
+                </button>
+                <button
+                  class="btn btn-outline-info boton"
+                  type="button"
+                  @click="guardarMotivo($event.target.value)"
+                  :key="index"
+                  v-for="(estado, index) in selected[0].motivos"
+                  :value="estado"
+                >
+                  {{ estado }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="retroceder" class="text-center mt-5">
       <button
         @click="retroceder()"
@@ -194,9 +223,17 @@ select {
   margin-top: 50px;
   padding: 30px;
 }
-
-#emojis {
-  font-size: 250%;
+#card-horizontal {
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50%;
+}
+#emoji-card {
+  font-size:800%;
+}
+.emoji-value {
+  font-size: 350%;
 }
 form {
   padding-top: 5%;
