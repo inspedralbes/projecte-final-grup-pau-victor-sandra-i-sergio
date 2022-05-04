@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const cuestionarioSaludMental = new Schema({
+const respuestaCuestionario = new Schema({
     estado: {
         type: String
     },
@@ -18,7 +18,7 @@ const cuestionarioSaludMental = new Schema({
         type: Date
     }
 }, {
-    collection: 'cuestionarioSaludMental'
+    collection: 'respuestaCuestionarioSaludMental'
 });
 
-module.exports = mongoose.model('cuestionarioSaludMental', cuestionarioSaludMental);
+module.exports = mongoose.model('respuestaCuestionarioSaludMental', respuestaCuestionario);

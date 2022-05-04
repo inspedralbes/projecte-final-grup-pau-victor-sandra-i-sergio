@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const cuestionarioDescanso = new Schema({
+const respuestaCuestionario = new Schema({
     descripcionSueno: {
         type: Array
     },
@@ -14,7 +14,7 @@ const cuestionarioDescanso = new Schema({
         type: Date
     }
 }, {
-    collection: 'cuestionarioDescanso'
+    collection: 'respuestaCuestionarioDescanso'
 });
 
-module.exports = mongoose.model('cuestionarioDescanso', cuestionarioDescanso);
+module.exports = mongoose.model('respuestaCuestionarioDescanso', respuestaCuestionario);

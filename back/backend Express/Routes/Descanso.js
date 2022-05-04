@@ -1,7 +1,10 @@
 const express = require('express');
 const app = express();
 const Descanso = express.Router();
-const CuestionarioDescanso = require('../models/cuestionarioDescanso.model');
+const CuestionarioDescanso = require('../models/Descanso/respuestaCuestionario.model');
+const TipoSueno = require('../models/Descanso/tipoSuenoCuestionario.model');
+// const EstadoEmocional = require('../models/SaludMental/estadoEmocionalCuestionario.model');
+
 
 Descanso.route("/").get((req, res) => {
     CuestionarioDescanso.find(function(err, resultado) {
@@ -12,6 +15,32 @@ Descanso.route("/").get((req, res) => {
         }
     });
 });
+
+Descanso.route("/tipo-sueno").get((req, res) => {
+    TipoSueno.find(function(err, resultado) {
+        if (err) {
+            console.log(err);
+        } else {
+            let r = new Array();
+            resultado.forEach( (e) => {
+                r.push(e.tipo)
+            })
+           
+            res.json({ "respuestas": r });
+        }
+    });
+});
+
+Descanso.route('/anadir-tipo-sueno').post((req, res) => {
+    let datos = req.body;
+    console.log(req.body)
+    const tipoSueno = new TipoSueno(datos);
+    tipoSueno.save();
+    res.status(201)
+    res.json({ 'status': true, 'msg': 'Informacion guardada' });
+
+});
+
 
 Descanso.route('/respuesta-cuestionario').post((req, res) => {
     let datos = req.body;
