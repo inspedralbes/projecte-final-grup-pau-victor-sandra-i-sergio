@@ -19,7 +19,7 @@ export default {
 </template>
 
 <style>
-#app{
+#app {
   min-height: 100vh;
   min-width: 100vw;
 }

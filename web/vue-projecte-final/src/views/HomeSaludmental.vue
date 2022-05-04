@@ -1,9 +1,11 @@
 <script>
 import Header from "../components/SubHeader.vue";
+import CardVertical from "../components/CardVertical.vue";
 
 export default {
   components: {
     Header,
+    CardVertical,
   },
   data() {
     return {
@@ -21,23 +23,26 @@ export default {
           value: "Desanimado",
           emoji: "😔",
           motivos: {
-            motivo1: "Últimamente estoy siempre cansado sin importar lo que haga",
-            motivo2: "Nada me genera especial interés y me cuesta disfrutar de las cosas",
+            motivo1:
+              "Últimamente estoy siempre cansado sin importar lo que haga",
+            motivo2:
+              "Nada me genera especial interés y me cuesta disfrutar de las cosas",
             motivo3: "Otro",
           },
-        }, 
+        },
         {
           text: "Irritado",
           value: "Irritado",
           emoji: "😠",
           motivos: {
-            motivo1:"Estoy pasando situaciones complicadas, estoy a la defensiva",
+            motivo1:
+              "Estoy pasando situaciones complicadas, estoy a la defensiva",
             motivo2: "He tenido un mal dia",
             motivo3: "Otro",
           },
         },
         {
-          text: 'Nervioso',
+          text: "Nervioso",
           value: "Nervioso",
           emoji: "😖😟",
           motivos: {
@@ -47,10 +52,10 @@ export default {
           },
         },
         {
-          text: "Energico",
+          text: "Enérgico",
           value: "Energico",
           emoji: "😎🏋️‍♀️",
-        },   
+        },
         {
           text: "Estresado",
           value: "Estresado",
@@ -101,10 +106,10 @@ export default {
         });
     },
     guardarEstado(valor) {
-      console.log(valor);
       this.selected = this.estado.filter((v) => {
         return v.value == valor;
       });
+      console.log(this.selected);
     },
 
     guardarMotivo(motivo) {
@@ -135,13 +140,10 @@ export default {
           :key="index"
           v-bind:value="opcion.value"
         >
-          <button
-            class="btn btn-light float-start"
-            @click="guardarEstado($event.target.id)"
-            :id="opcion.value"
-          >
-            {{ opcion.emoji }} {{ opcion.text }}
-          </button>
+          <CardVertical
+            @id="this.guardarEstado"
+            :infoCuest="this.estado[index]"
+          />
         </div>
 
         <div class="row">
@@ -172,6 +174,35 @@ export default {
       </div>
     </div>
 
+    <div id="card-horizontal" v-if="selected" class="card mb-3">
+      <div class="row">
+        <div class="col-md-4">
+          <p id="emoji-card">{{ selected[0].emoji }}</p>
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="d-grid">
+              <div class="botons col-12">
+                <button v-if="selected[0].value=='Alegre' || selected[0].value=='Energico'" class="emoji-value btn btn-outline-info">
+                  Hoy estoy {{ selected[0].text }}
+                </button>
+                <button
+                  class="btn btn-outline-info boton"
+                  type="button"
+                  @click="guardarMotivo($event.target.value)"
+                  :key="index"
+                  v-for="(estado, index) in selected[0].motivos"
+                  :value="estado"
+                >
+                  {{ estado }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="retroceder" class="text-center mt-5">
       <button
         @click="retroceder()"
@@ -194,9 +225,17 @@ select {
   margin-top: 50px;
   padding: 30px;
 }
-
-#emojis {
-  font-size: 250%;
+#card-horizontal {
+  margin-top: 2%;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 50%;
+}
+#emoji-card {
+  font-size:800%;
+}
+.emoji-value {
+  font-size: 350%;
 }
 form {
   padding-top: 5%;
