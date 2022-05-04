@@ -15,80 +15,61 @@ export default {
           text: "Alegre",
           value: "Alegre",
           emoji: "😛",
-          num: 1,
-          motivos: {
-            motivo1: "He recibido una buena noticia",
-            motivo2: "He pasado un gran dia con amigos o familiares",
-            motivo3: "He tenido un golpe de suerte",
-            motivo4: "He finalizado una tarea, proyecto o objetivo",
-            motivo5: "He conocido a alguien nuevo",
-          },
-        },
-        {
-          text: "Energico",
-          value: "Energico",
-          emoji: "😎🏋️‍♀️",
-          num: 2,
-          motivos: {
-            motivo1: "He tomado alguna sustancia energetica",
-            motivo2: "He recibido una noticia que no esperaba",
-            motivo3: "Me siento energético porque estoy motivado y contento",
-          },
         },
         {
           text: "Desanimado",
           value: "Desanimado",
           emoji: "😔",
-          num: 3,
           motivos: {
-            motivo1: "He recibidio una mala noticia",
-            motivo2: "He fracasado una tarea, proyecto o objetivo",
-            motivo3: "No tengo a nadie que me pueda ayudar",
+            motivo1: "Últimamente estoy siempre cansado sin importar lo que haga",
+            motivo2: "Nada me genera especial interés y me cuesta disfrutar de las cosas",
+            motivo3: "Otro",
           },
-        },
-        {
-          text: "Estresado",
-          value: "Estresado",
-          emoji: "😩",
-          num: 4,
-          motivos: {
-            motivo1: "Se me estan acumulando trabajos o cosas que hacer",
-            motivo2: "No me sale nada de lo que intento",
-            motivo3:
-              "No aprovecho el tiempo y veo como pasan los meses sin hacer nada",
-          },
-        },
+        }, 
         {
           text: "Irritado",
           value: "Irritado",
           emoji: "😠",
-          num: 5,
           motivos: {
-            motivo1:"La gente no tiene en cuenta mis ideas o opiniones en general",
-            motivo2: "Me pasan cosas malas que no puedo controlar",
-            motivo3: "La suerte no esta nunca de mi lado",
-          },
-        },
-        {
-          text: "Triste",
-          value: "Triste",
-          emoji: "😢",
-          num: 6,
-          motivos: {
-            motivo1: "He recibido una mala noticia",
-            motivo2: "Se ha ido una persona cercana a mi",
-            motivo3: "No tengo a nadie con quien compartir mi tiempo",
+            motivo1:"Estoy pasando situaciones complicadas, estoy a la defensiva",
+            motivo2: "He tenido un mal dia",
+            motivo3: "Otro",
           },
         },
         {
           text: 'Nervioso',
           value: "Nervioso",
           emoji: "😖😟",
-          num: 7,
           motivos: {
-            motivo1: "Tengo una actividad importante a la vista",
-            motivo2: "Estoy esperando una respuesta importante para mi",
-            motivo3: "Me he alterado de manera momentanea",
+            motivo1: "Estoy viviendo situaciones de incertidumbre",
+            motivo2: "Estoy atravesando adversidades",
+            motivo3: "Otro",
+          },
+        },
+        {
+          text: "Energico",
+          value: "Energico",
+          emoji: "😎🏋️‍♀️",
+        },   
+        {
+          text: "Estresado",
+          value: "Estresado",
+          emoji: "😩",
+          motivos: {
+            motivo1: "Estoy siendo muy autoexigente",
+            motivo2: "Tengo una rutina muy ajetreada, me siento sobrecargado",
+            motivo3: "Otro",
+          },
+        },
+        {
+          text: "Triste",
+          value: "Triste",
+          emoji: "😢",
+          motivos: {
+            motivo1: "Estoy experimentando un duelo emocional",
+            motivo2: "Estoy viviendo una época de cambios que me asustan",
+            motivo3: "Siento que he fracasado o me da miedo hacerlo",
+            motivo4: "Otro",
           },
         },
       ],
@@ -165,8 +146,10 @@ export default {
 
         <div class="row">
           <div id="motivo">
-            <div v-if="selected" class="">
+            <div v-if="selected">
               <button
+                class="btn btn-outline-secondary"
+                type="button"
                 @click="guardarMotivo($event.target.value)"
                 :key="index"
                 v-for="(estado, index) in selected[0].motivos"
@@ -183,107 +166,11 @@ export default {
             class="btn btn-outline-secondary form-submit"
             type="button"
             @click="enviarFormulario()"
-            value="Confirmar datos"
+            value="Enviar datos"
           />
         </div>
       </div>
     </div>
-
-    <!-- <div>
-      <form action class="form">
-        <h2>Como te sientes hoy?</h2>
-        <hr />
-        <div>
-          <label
-            class="form-label"
-            label="Email"
-            description="We'll never share your email with anyone else."
-            for="#email"
-            >Email*:</label
-          >
-          <br />
-          <input
-            v-if="email != 'null'"
-            v-model="email"
-            class="form-input-email"
-            id="email"
-            type="email"
-            required
-            placeholder="Ingresa el email"
-          />
-          <p v-if="email == 'null'">ejemplo@inspedralbes.cat</p>
-        </div>
-        <br />
-        <br />
-        <select
-          class="form-select"
-          aria-label="Default select example"
-          @change="guardarseleccionado($event.target.value)"
-        >
-          <option
-            :key="index"
-            v-for="(option, index) in estado"
-            :value="option.value"
-          >
-            {{ option.emoji }}{{ option.text }}
-          </option>
-        </select>
-
-         <span id="emojis">{{ selected }}</span>
-        <br />
-        <div id="estado">
-          <div v-if="selected">
-            <select v-model="motivo">
-              <option
-                :key="index"
-                v-for="(estado, index) in selected[0].motivos"
-                v-bind:value="estado"
-              >
-                {{ estado }}
-              </option>
-            </select>
-          </div>
-          <br />
-          <br />
-          <select
-            class="form-select"
-            aria-label="Default select example"
-            @change="guardarseleccionado($event.target.value)"
-          >
-            <option
-              :key="index"
-              v-for="(option, index) in estado"
-              :value="option.value"
-            >
-              {{ option.emoji }}{{ option.text }}
-            </option>
-          </select>
-           <span id="emojis">{{ selected }}</span> 
-          <br />
-          <div id="estado">
-            <div v-if="selected">
-              <select v-model="motivo">
-                <option
-                  :key="index"
-                  v-for="(estado, index) in selected[0].motivos"
-                  v-bind:value="estado"
-                >
-                  {{ estado }}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div>
-            <input
-              class="btn btn-outline-secondary form-submit"
-              type="button"
-              @click="enviarFormulario()"
-              value="Confirmar dades!"
-            />
-          </div>
-        </div>
-      </form>
-    </div> -->
 
     <div id="retroceder" class="text-center mt-5">
       <button
@@ -304,8 +191,8 @@ select {
 }
 .cuestionario_estado {
   background-color: rgb(199, 234, 255);
-  padding: 20px;
-  margin-top: 40px;
+  margin-top: 50px;
+  padding: 30px;
 }
 
 #emojis {
