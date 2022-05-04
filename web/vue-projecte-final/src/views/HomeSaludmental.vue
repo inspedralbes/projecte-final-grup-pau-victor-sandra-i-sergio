@@ -1,9 +1,11 @@
 <script>
 import Header from "../components/SubHeader.vue";
+import CardVertical from "../components/CardVertical.vue";
 
 export default {
   components: {
     Header,
+    CardVertical,
   },
   data() {
     return {
@@ -21,23 +23,26 @@ export default {
           value: "Desanimado",
           emoji: "😔",
           motivos: {
-            motivo1: "Últimamente estoy siempre cansado sin importar lo que haga",
-            motivo2: "Nada me genera especial interés y me cuesta disfrutar de las cosas",
+            motivo1:
+              "Últimamente estoy siempre cansado sin importar lo que haga",
+            motivo2:
+              "Nada me genera especial interés y me cuesta disfrutar de las cosas",
             motivo3: "Otro",
           },
-        }, 
+        },
         {
           text: "Irritado",
           value: "Irritado",
           emoji: "😠",
           motivos: {
-            motivo1:"Estoy pasando situaciones complicadas, estoy a la defensiva",
+            motivo1:
+              "Estoy pasando situaciones complicadas, estoy a la defensiva",
             motivo2: "He tenido un mal dia",
             motivo3: "Otro",
           },
         },
         {
-          text: 'Nervioso',
+          text: "Nervioso",
           value: "Nervioso",
           emoji: "😖😟",
           motivos: {
@@ -50,7 +55,7 @@ export default {
           text: "Energico",
           value: "Energico",
           emoji: "😎🏋️‍♀️",
-        },   
+        },
         {
           text: "Estresado",
           value: "Estresado",
@@ -101,10 +106,10 @@ export default {
         });
     },
     guardarEstado(valor) {
-      console.log(valor);
       this.selected = this.estado.filter((v) => {
         return v.value == valor;
       });
+      console.log(this.selected);
     },
 
     guardarMotivo(motivo) {
@@ -135,13 +140,10 @@ export default {
           :key="index"
           v-bind:value="opcion.value"
         >
-          <button
-            class="btn btn-light float-start"
-            @click="guardarEstado($event.target.id)"
-            :id="opcion.value"
-          >
-            {{ opcion.emoji }} {{ opcion.text }}
-          </button>
+          <CardVertical
+            @id="this.guardarEstado"
+            :infoCuest="this.estado[index]"
+          />
         </div>
 
         <div class="row">
