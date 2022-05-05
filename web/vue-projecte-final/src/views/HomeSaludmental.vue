@@ -13,76 +13,29 @@ export default {
       disabled: false,
       selected: 0,
       motivo: "",
-      estado: [
-        {
-          value: "Alegre",
-          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Alegre.png",
-        },
-        {
-          value: "Desanimado",
-          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Desanimado.png",
-          motivos: {
-            motivo1:
-              "Últimamente estoy siempre cansado sin importar lo que haga",
-            motivo2:
-              "Nada me genera especial interés y me cuesta disfrutar de las cosas",
-            motivo3: "Otro",
-          },
-        },
-        {
-          value: "Irritado",
-          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Irritado.png",
-          motivos: {
-            motivo1:
-              "Estoy pasando situaciones complicadas, estoy a la defensiva",
-            motivo2: "He tenido un mal dia",
-            motivo3: "Otro",
-          },
-        },
-        {
-          value: "Nervioso",
-          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Nervioso.png",
-          motivos: {
-            motivo1: "Estoy viviendo situaciones de incertidumbre",
-            motivo2: "Estoy atravesando adversidades",
-            motivo3: "Otro",
-          },
-        },
-        {
-          value: "Energico",
-          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Enérgico.png",
-        },
-        {
-          value: "Estresado",
-          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Estresado.png",
-          motivos: {
-            motivo1: "Estoy siendo muy autoexigente",
-            motivo2: "Tengo una rutina muy ajetreada, me siento sobrecargado",
-            motivo3: "Otro",
-          },
-        },
-        {
-          value: "Triste",
-          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Triste.png",
-          motivos: {
-            motivo1: "Estoy experimentando un duelo emocional",
-            motivo2: "Estoy viviendo una época de cambios que me asustan",
-            motivo3: "Siento que he fracasado o me da miedo hacerlo",
-            motivo4: "Otro",
-          },
-        },
-      ],
+      estado: null,
     };
   },
+
+  beforeMount() {
+    fetch("http://192.168.210.161:9000/salud-mental/estado-emocional")
+      .then((response) => response.json())
+      .then((data) => {
+        this.estado = data.estadoEmocional;
+      });
+  },
+
   methods: {
     onReset(event) {
       event.preventDefault();
       // Reset our form values
       (this.selected = ""), (this.estado = null);
     },
+
     retroceder() {
       window.history.back();
     },
+
     enviarFormulario() {
       var cuestSalud = new URLSearchParams({
         usuario: "ermengol",
@@ -182,7 +135,6 @@ export default {
                   </button>
                 </div>
               </div>
-            </div>
           </div>
           <div class="col-12 text-center">
             <input
@@ -196,12 +148,17 @@ export default {
       </div>
     </Transition>
 
-    <div id="retroceder" class="text-center mt-5">
-      <button
-        @click="retroceder()"
+    <div class="col-12 text-center">
+      <input
+        class="btn btn-outline-secondary form-submit"
         type="button"
-        class="btn btn-outline-danger"
-      >
+        @click="enviarFormulario()"
+        value="Enviar datos"
+      />
+    </div>
+
+    <div id="retroceder" class="text-center mt-5">
+      <button @click="retroceder()" type="button" class="btn btn-outline-danger">
         Retroceder
       </button>
     </div>
@@ -213,26 +170,43 @@ select {
   background-color: white;
   color: gray;
 }
+
 .cuestionario_estado {
   background-color: rgb(199, 234, 255);
   margin-top: 50px;
   padding: 30px;
 }
+
 #card-horizontal {
   margin-top: 2%;
   margin-left: auto;
   margin-right: auto;
   max-width: 50%;
 }
-#emoji-card {
-  font-size: 800%;
-}
 .img-emoji {
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
-.emoji-value {
-  font-size: 350%;
+#emoji-card {
+  max-width: 120px;
+  max-height: 120px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
+.button {
+  padding: auto auto;
+  display: block;
+  text-align: left;
+  color: gray;
+  font-size: 1rem;
+  transition: all 0.3s;
+  overflow: hidden;
+}
+.pregunta {
+  font-size: 1.1rem;
+}
+
 form {
   padding-top: 5%;
   text-align: center;

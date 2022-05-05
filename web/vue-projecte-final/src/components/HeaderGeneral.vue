@@ -19,12 +19,10 @@ export default {
         />
       </RouterLink>
 
-      <span class="material-symbols-outlined"> home </span>
-
-      <!-- Pantalla pequeña -->
+      <!-- Menú Lateral -->
 
       <button
-        class="navbar-toggler"
+        class="navbar-toggler mx-3"
         type="button"
         data-bs-toggle="offcanvas"
         data-bs-target="#offcanvasNavbar"
@@ -40,9 +38,9 @@ export default {
         aria-labelledby="offcanvasNavbarLabel"
       >
         <div class="offcanvas-header">
-          <h4 class="offcanvas-title" id="offcanvasNavbarLabel">
+          <h3 class="offcanvas-title" id="offcanvasNavbarLabel">
             Genki Corpus
-          </h4>
+          </h3>
           <button
             type="button"
             class="btn-close text-reset"
@@ -52,35 +50,92 @@ export default {
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/">Iniciar sesión</RouterLink>
+            <li class="nav-item my-1">
+              <RouterLink class="nav-link" to="/">
+                <div class="d-flex align-items-center link_cuenta">
+                  <div class="align-self-center d-flex align-content-center">
+                    <span class="material-symbols-outlined"
+                      >account_circle</span
+                    >
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Iniciar sesión</span>
+                  </div>
+                </div>
+              </RouterLink>
             </li>
 
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/">Inicio</RouterLink>
+            <li class="nav-item my-1">
+              <RouterLink class="nav-link" to="/">
+                <div class="d-flex align-items-center link_inicio">
+                  <div class="align-self-center d-flex align-content-center">
+                    <span class="material-symbols-outlined">home</span>
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Inicio</span>
+                  </div>
+                </div>
+              </RouterLink>
             </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/alimentacion"
-                >Alimentación</RouterLink
-              >
+
+            <li class="nav-item my-1">
+              <RouterLink class="nav-link" to="/alimentacion">
+                <div class="d-flex align-items-center link_alimentacion">
+                  <div class="align-self-center d-flex align-content-center">
+                    <span class="material-symbols-outlined">restaurant</span>
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Alimentación</span>
+                  </div>
+                </div>
+              </RouterLink>
             </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/ejercicio"
-                >Ejercicio</RouterLink
-              >
+
+            <li class="nav-item my-1">
+              <RouterLink class="nav-link" to="/ejercicio">
+                <div class="d-flex align-items-center link_ejercicio">
+                  <div class="align-self-center d-flex align-content-center">
+                    <span class="material-symbols-outlined"
+                      >fitness_center</span
+                    >
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Ejercicio</span>
+                  </div>
+                </div>
+              </RouterLink>
             </li>
-            <li class="nav-item">
-              <RouterLink class="nav-link" to="/saludmental"
-                >Salud mental y Descanso</RouterLink
-              >
+
+            <li class="nav-item my-1">
+              <RouterLink class="nav-link" to="/saludmental">
+                <div class="d-flex align-items-center link_saludmental">
+                  <div class="align-self-center d-flex align-content-center">
+                    <span class="material-symbols-outlined"
+                      >self_improvement</span
+                    >
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Salud Mental y Descanso</span>
+                  </div>
+                </div>
+              </RouterLink>
+            </li>
+
+            <li class="nav-item my-1">
+              <RouterLink class="nav-link" to="/">
+                <div class="d-flex align-items-center link_about_us">
+                  <div class="align-self-center d-flex align-content-center">
+                    <span class="material-symbols-outlined">group</span>
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Sobre nosotros</span>
+                  </div>
+                </div>
+              </RouterLink>
             </li>
           </ul>
         </div>
       </div>
-
-      <!-- Pantalla pequeña -->
-
-      <RouterLink class="btn btn-primary" to="/">Inicio</RouterLink>
     </div>
   </nav>
 </template>
@@ -88,5 +143,32 @@ export default {
 <style scoped>
 a {
   color: black !important;
+}
+
+.link_cuenta:hover {
+  color: #a8cf45;
+}
+
+.link_inicio:hover {
+  color: #28844b;
+}
+
+.link_alimentacion:hover {
+  color: #7ed957;
+}
+
+.link_ejercicio:hover {
+  color: #ff914d;
+}
+
+.link_saludmental:hover {
+  color: #5cb8e6;
+}
+.link_about_us:hover {
+  color: #28844b;
+}
+
+.bold {
+  font-weight: 550;
 }
 </style>

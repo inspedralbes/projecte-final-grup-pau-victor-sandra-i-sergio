@@ -3,9 +3,8 @@ const app = express();
 const Descanso = express.Router();
 const CuestionarioDescanso = require('../models/Descanso/respuestaCuestionario.model');
 const TipoSueno = require('../models/Descanso/tipoSuenoCuestionario.model');
-// const EstadoEmocional = require('../models/SaludMental/estadoEmocionalCuestionario.model');
 
-
+// Todas las respuestas al cuestionario
 Descanso.route("/").get((req, res) => {
     CuestionarioDescanso.find(function(err, resultado) {
         if (err) {
@@ -16,21 +15,25 @@ Descanso.route("/").get((req, res) => {
     });
 });
 
-Descanso.route("/tipo-sueno").get((req, res) => {
+// Todos los tipos de sueño
+Descanso.route("/tipos-suenos").get((req, res) => {
     TipoSueno.find(function(err, resultado) {
         if (err) {
             console.log(err);
         } else {
+            console.log(resultado);
             let r = new Array();
             resultado.forEach( (e) => {
                 r.push(e.tipo)
             })
            
-            res.json({ "respuestas": r });
+            res.json({ "tipoSueno": r });
         }
     });
 });
 
+
+// Añadir tipo de sueño
 Descanso.route('/anadir-tipo-sueno').post((req, res) => {
     let datos = req.body;
     console.log(req.body)
@@ -38,10 +41,9 @@ Descanso.route('/anadir-tipo-sueno').post((req, res) => {
     tipoSueno.save();
     res.status(201)
     res.json({ 'status': true, 'msg': 'Informacion guardada' });
-
 });
 
-
+// Añadir una respuesta del cuestionario 
 Descanso.route('/respuesta-cuestionario').post((req, res) => {
     let datos = req.body;
     datos.descripcionSueno = JSON.parse(datos.descripcionSueno)
