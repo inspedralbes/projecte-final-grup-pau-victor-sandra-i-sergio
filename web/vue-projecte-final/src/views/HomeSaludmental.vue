@@ -169,7 +169,7 @@ export default {
 
     <div id="card-horizontal" v-if="selected" class="card mb-3">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 img-emoji">
           <img :src="selected[0].emoji" id="emoji-card" />
         </div>
         <div class="col-md-8">
@@ -232,6 +232,9 @@ select {
 }
 #emoji-card {
   font-size: 800%;
+}
+.img-emoji {
+  text-align: center;
 }
 .emoji-value {
   font-size: 350%;
