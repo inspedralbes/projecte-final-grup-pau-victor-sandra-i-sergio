@@ -173,20 +173,19 @@ export default {
           <img :src="selected[0].emoji" id="emoji-card" />
         </div>
         <div class="col-md-8">
-          <div class="card-body">
-            <div class="d-grid">
-              <div class="botons col-12">
+          <div class="row">
+              <div class="col-12">
                 <button
                   v-if="
                     selected[0].value == 'Alegre' ||
                     selected[0].value == 'Energico'
                   "
-                  class="emoji-value btn btn-outline-info"
+                  class="emoji-value button btn"
                 >
                   Hoy estoy {{ selected[0].value }}
                 </button>
                 <button
-                  class="btn btn-outline-info boton"
+                  class="btn button"
                   type="button"
                   @click="guardarMotivo($event.target.value)"
                   :key="index"
@@ -196,7 +195,6 @@ export default {
                   {{ estado }}
                 </button>
               </div>
-            </div>
           </div>
         </div>
       </div>
@@ -235,20 +233,21 @@ select {
 }
 .img-emoji {
   text-align: center;
+  display: block;
 }
-.emoji-value {
-  font-size: 350%;
+.button {
+  padding: auto auto;
+  display: block;
+  color: gray;
+  font-size: 1rem;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
 }
 form {
   padding-top: 5%;
   text-align: center;
   margin-left: 35%;
   margin-right: 35%;
-}
-.form-input-email {
-  width: 250px;
-}
-.btn {
-  margin: 20px;
 }
 </style>
