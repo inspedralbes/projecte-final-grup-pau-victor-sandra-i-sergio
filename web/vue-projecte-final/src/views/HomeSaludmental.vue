@@ -175,6 +175,10 @@ export default {
         <div class="col-md-8">
           <div class="row">
               <div class="col-12">
+                <span class="pregunta" v-if="
+                    selected[0].value != 'Alegre' &&
+                    selected[0].value != 'Energico'
+                  " >¿Porque estas {{ selected[0].value }}?</span>
                 <button
                   v-if="
                     selected[0].value == 'Alegre' ||
@@ -228,12 +232,16 @@ select {
   margin-right: auto;
   max-width: 50%;
 }
-#emoji-card {
-  font-size: 800%;
-}
 .img-emoji {
   text-align: center;
-  display: block;
+  display: flex;
+  justify-content: center;
+}
+#emoji-card {
+  max-width: 120px;
+  max-height: 120px;
+  margin-top: auto;
+  margin-bottom: auto;
 }
 .button {
   padding: auto auto;
@@ -243,6 +251,9 @@ select {
   transition: all .3s;
   position: relative;
   overflow: hidden;
+}
+.pregunta {
+  font-size: 1.1rem;
 }
 form {
   padding-top: 5%;
