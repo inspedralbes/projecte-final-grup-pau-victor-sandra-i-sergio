@@ -24,13 +24,13 @@ export default {
     :id="infoCuest.value"
   >
     <img
-      src="../../public/img/Enamorarse.png"
+      :src="infoCuest.emoji"
       class="card-img-top"
       alt="emoticono"
       :id="infoCuest.value"
     />
     <div class="card-body" :id="infoCuest.value">
-      <h5 class="card-title" :id="infoCuest.value">{{ infoCuest.text }}</h5>
+      <h5 class="card-title" :id="infoCuest.value">{{ infoCuest.value }}</h5>
     </div>
   </div>
 </template>
