@@ -12,14 +12,14 @@ export default {
     };
   },
 
-  beforeMount () {
-    fetch('http://192.168.210.161:9000/descanso/tipos-suenos').then(response => response.json()).then(
-      data => { 
+  beforeMount() {
+    fetch("http://192.168.210.161:9000/descanso/tipos-suenos")
+      .then((response) => response.json())
+      .then((data) => {
         console.log(data);
         this.elemento = data.tipoSueno;
-        console.log(this.elemento)
-      }
-    ) ;
+        console.log(this.elemento);
+      });
   },
 
   methods: {
@@ -59,6 +59,8 @@ export default {
 </script>
 
 <template>
+<main>
+  <div class="submain">
   <div>
     <div>
       <Header />
@@ -89,7 +91,9 @@ export default {
               :id="check"
               @click="guardarseleccionada($event.target.value)"
             >
+            <img class="emoji_sueño" src="../../public/img/EMOJIS SUEÑO/agua.png" alt="">
               {{ check }}
+              
             </button>
           </div>
         </div>
@@ -105,6 +109,8 @@ export default {
       </div>
     </div>
   </div>
+  </div>
+  </main>
 </template>
 
 <style scoped>
@@ -117,4 +123,33 @@ export default {
 .subtitulo {
   margin: 15px;
 }
+
+.emoji_sueño {
+  width: 35px;
+}
+
+main {
+  height:89.9vh;
+  background: linear-gradient(90deg, #162046 0%, #0A0B0E 100%);
+
+
+}
+
+.submain {
+  height:100%;
+  width: 100%;
+  background-image:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/stars-back.png');
+  background-size: 400px;
+  background-repeat: repeat;
+  position:absolute;
+}
+
+
+
+
+
+
+
+
+
 </style>

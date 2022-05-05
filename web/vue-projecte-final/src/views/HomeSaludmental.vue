@@ -10,20 +10,21 @@ export default {
   data() {
     return {
       email: "",
+      disabled: false,
+      disabled2: false,
       selected: 0,
       motivo: "",
-      estado: null
+      estado: null,
     };
   },
 
   beforeMount() {
-    fetch("http://192.168.210.161:9000/salud-mental/estado-emocional").then(response => response.json()).then(
-      data => {
+    fetch("http://192.168.210.161:9000/salud-mental/estado-emocional")
+      .then((response) => response.json())
+      .then((data) => {
         this.estado = data.estadoEmocional;
-      }
-    );
+      });
   },
-
 
   methods: {
     onReset(event) {
@@ -53,9 +54,13 @@ export default {
         });
     },
     guardarEstado(valor) {
-      this.selected = this.estado.filter((v) => {
-        return v.value == valor;
-      });
+      this.disabled = true;
+      this.disabled2 = true;
+      setTimeout(() => {
+        this.selected = this.estado.filter((v) => {
+          return v.value == valor;
+        });
+      }, 1500);
       console.log(this.selected);
     },
 
@@ -72,83 +77,101 @@ export default {
     <div>
       <Header />
     </div>
-
-    <div class="cuestionario_estado container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <h2 class="titulo_cuestionario text-center">¿Como te sientes hoy?</h2>
-        </div>
-      </div>
-
-      <div class="row justify-content-center">
-        <div class="col-3 d-flex justify-content-center" v-for="(opcion, index) in estado" :key="index"
-          v-bind:value="opcion.value">
-          <CardVertical @id="this.guardarEstado" :infoCuest="this.estado[index]" />
-        </div>
-
-        <!-- <div class="row">
-          <div id="motivo">
-            <div v-if="selected">
-              <button
-                class="btn btn-outline-secondary"
-                type="button"
-                @click="guardarMotivo($event.target.value)"
-                :key="index"
-                v-for="(estado, index) in selected[0].motivos"
-                :value="estado"
-              >
-                {{ estado }}
-              </button>
-            </div>
+    <Transition name="bounce">
+      <div class="cuestionario_estado container px-4" v-if="disabled == false">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2 class="titulo_cuestionario text-center">
+              ¿Como te sientes hoy?
+            </h2>
           </div>
-        </div> -->
+        </div>
 
-        <div class="col-12 text-center">
-          <input class="btn btn-outline-secondary form-submit" type="button" @click="enviarFormulario()"
-            value="Enviar datos" />
+        <div class="row justify-content-center cartas">
+          <div
+            class="col-lg-3 col-sm- d-flex justify-content-center"
+            v-for="(opcion, index) in estado"
+            :key="index"
+            v-bind:value="opcion.value"
+          >
+            <CardVertical
+              @id="this.guardarEstado"
+              :infoCuest="this.estado[index]"
+            />
+          </div>
         </div>
       </div>
-    </div>
+      </div>
+    </Transition>
 
-    <div id="card-horizontal" v-if="selected" class="card mb-3">
-      <div class="row">
-        <div class="col-md-4 img-emoji">
-          <img :src="selected[0].emoji" id="emoji-card" />
-        </div>
-        <div class="col-md-8">
-          <div class="row">
-              <div class="col-12">
-                <span class="pregunta" v-if="
+    <Transition name="bounce2">
+      <div
+        id="card-horizontal"
+        v-if="selected && disabled2 == true"
+        class="card mb-3"
+      >
+        <div class="row">
+          <div class="col-md-4 img-emoji">
+            <img :src="selected[0].emoji" id="emoji-card" />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div class="d-grid">
+                <div class="botons col-12">
+                  <span class="pregunta" v-if="
                     selected[0].value != 'Alegre' &&
                     selected[0].value != 'Energico'
                   " >¿Porque estas {{ selected[0].value }}?</span>
-                <button
-                  v-if="
-                    selected[0].value == 'Alegre' ||
-                    selected[0].value == 'Energico'
-                  "
-                  class="emoji-value button btn"
-                >
-                  Hoy estoy {{ selected[0].value }}
-                </button>
-                <button
-                  class="btn button"
-                  type="button"
-                  @click="guardarMotivo($event.target.value)"
-                  :key="index"
-                  v-for="(estado, index) in selected[0].motivos"
-                  :value="estado"
-                >
-                  {{ estado }}
-                </button>
+                  <button
+                    v-if="
+                      selected[0].value == 'Alegre' ||
+                      selected[0].value == 'Energico'
+                    "
+                    class="value button btn"
+                  >
+                    Hoy estoy {{ selected[0].value }}
+                  </button>
+                  <button
+                    class="emoji-value button btn"
+                    type="button"
+                    @click="guardarMotivo($event.target.value)"
+                    :key="index"
+                    v-for="(estado, index) in selected[0].motivos"
+                    :value="estado"
+                  >
+                    {{ estado }}
+                  </button>
+                </div>
               </div>
+            </div>
+          </div>
+          <div class="col-12 text-center">
+            <input
+              class="btn btn-outline-secondary form-submit"
+              type="button"
+              @click="enviarFormulario()"
+              value="Enviar datos"
+            />
           </div>
         </div>
       </div>
-    </div>
+    </Transition>
+
+    <!-- <div class="col-12 text-center">
+      <input
+        class="btn btn-outline-secondary form-submit"
+        type="button"
+        @click="enviarFormulario()"
+        value="Enviar datos"
+      />
+    </div> -->
 
     <div id="retroceder" class="text-center mt-5">
-      <button @click="retroceder()" type="button" class="btn btn-outline-danger">
+      <button
+        @click="retroceder()"
+        type="button"
+        class="btn btn-outline-danger"
+      >
         Retroceder
       </button>
     </div>
@@ -158,12 +181,12 @@ export default {
 <style>
 select {
   background-color: white;
-  color: gray;
+  color: rgb(168, 225, 248);
 }
 
 .cuestionario_estado {
-  background-color: rgb(199, 234, 255);
-  margin-top: 50px;
+  background-color: rgb(233, 247, 255);
+  margin-top: 60px;
   padding: 30px;
 }
 
@@ -187,14 +210,25 @@ select {
 .button {
   padding: auto auto;
   display: block;
+  text-align: left;
   color: gray;
   font-size: 1rem;
-  transition: all .3s;
-  position: relative;
+  transition: all 0.3s;
   overflow: hidden;
 }
 .pregunta {
   font-size: 1.1rem;
+}
+
+@media only screen and (min-width: 1400px) {
+  .cartas {
+    width: 80%;
+    margin: auto;
+  }
+
+  .pregunta {
+    font-size: 1.1rem;
+  }
 }
 
 form {
@@ -202,5 +236,44 @@ form {
   text-align: center;
   margin-left: 35%;
   margin-right: 35%;
+}
+.form-input-email {
+  width: 250px;
+}
+.btn {
+  margin: 20px;
+}
+.bounce-enter-active {
+  animation: bounce-in 1s ease 0s 2 normal none running;
+  transition: transform translate(0, -700px);
+}
+
+.bounce-leave-active {
+  animation: bounce-in 1s ease 0s 2 normal none running;
+  transition: transform translate(0, -700px);
+}
+@keyframes bounce-in {
+  0% {
+  }
+  100% {
+    transform: translate(0, -700px);
+    opacity: 0;
+  }
+}
+
+.bounce2-enter-active {
+  animation: bounce2-in 1s ease 0s 2 normal none running;
+}
+
+.bounce2-leave-active {
+  animation: bounce2-in 1s ease 0s 2 normal none running;
+}
+@keyframes bounce-in2 {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 </style>
