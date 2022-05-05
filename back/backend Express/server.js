@@ -28,7 +28,7 @@ mongoose.Promise = global.Promise;
 mongoose.connect('mongodb+srv://a20paumunoli:a20paumunoli_mongoDB@cluster.qpuxh.mongodb.net/ProjecteFinal?retryWrites=true&w=majority');
 
 
-app.listen(port, () => {
+app.listen((process.env.PORT || port), () => {
     console.log('Servidor obert al port 9000\n' + 'http://localhost:9000');
 });
 
