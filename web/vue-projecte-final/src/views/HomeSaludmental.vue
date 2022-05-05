@@ -104,6 +104,7 @@ export default {
           />
         </div>
       </div>
+      </div>
     </Transition>
 
     <Transition name="bounce2">
