@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const estadoEmocional = new Schema({
-    text: {
+    value: {
         type: String
     },
 
@@ -14,7 +14,7 @@ const estadoEmocional = new Schema({
         type: Object
     }
 }, {
-    collection: 'estadoEmocionalCuestionario'
+    collection: 'estadoEmocional'
 });
 
 module.exports = mongoose.model('estadoEmocionalCuestionario', estadoEmocional);

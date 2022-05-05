@@ -51,10 +51,16 @@ export default {
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item my-1">
-              <RouterLink class="nav-link " to="/">
+              <RouterLink class="nav-link" to="/">
                 <div class="d-flex align-items-center link_cuenta">
-                  <div class="align-self-center d-flex align-content-center"><span class="material-symbols-outlined">account_circle</span></div>
-                  <div class="align-self-center mx-2"><span class="bold">Iniciar sesión</span></div>
+                  <div class="align-self-center d-flex align-content-center">
+                    <span class="material-symbols-outlined"
+                      >account_circle</span
+                    >
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Iniciar sesión</span>
+                  </div>
                 </div>
               </RouterLink>
             </li>
@@ -62,8 +68,12 @@ export default {
             <li class="nav-item my-1">
               <RouterLink class="nav-link" to="/">
                 <div class="d-flex align-items-center link_inicio">
-                  <div class="align-self-center d-flex align-content-center"><span class="material-symbols-outlined">home</span></div>
-                  <div class="align-self-center mx-2"><span class="bold">Inicio</span></div>
+                  <div class="align-self-center d-flex align-content-center">
+                    <span class="material-symbols-outlined">home</span>
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Inicio</span>
+                  </div>
                 </div>
               </RouterLink>
             </li>
@@ -71,8 +81,12 @@ export default {
             <li class="nav-item my-1">
               <RouterLink class="nav-link" to="/alimentacion">
                 <div class="d-flex align-items-center link_alimentacion">
-                  <div class="align-self-center d-flex align-content-center"><span class="material-symbols-outlined">restaurant</span></div>
-                  <div class="align-self-center mx-2"><span class="bold">Alimentación</span></div>
+                  <div class="align-self-center d-flex align-content-center">
+                    <span class="material-symbols-outlined">restaurant</span>
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Alimentación</span>
+                  </div>
                 </div>
               </RouterLink>
             </li>
@@ -80,8 +94,14 @@ export default {
             <li class="nav-item my-1">
               <RouterLink class="nav-link" to="/ejercicio">
                 <div class="d-flex align-items-center link_ejercicio">
-                  <div class="align-self-center d-flex align-content-center"><span class="material-symbols-outlined">fitness_center</span></div>
-                  <div class="align-self-center mx-2"><span class="bold">Ejercicio</span></div>
+                  <div class="align-self-center d-flex align-content-center">
+                    <span class="material-symbols-outlined"
+                      >fitness_center</span
+                    >
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Ejercicio</span>
+                  </div>
                 </div>
               </RouterLink>
             </li>
@@ -89,8 +109,14 @@ export default {
             <li class="nav-item my-1">
               <RouterLink class="nav-link" to="/saludmental">
                 <div class="d-flex align-items-center link_saludmental">
-                  <div class="align-self-center d-flex align-content-center"><span class="material-symbols-outlined">self_improvement</span></div>
-                  <div class="align-self-center mx-2"><span class="bold">Salud Mental y Descanso</span></div>
+                  <div class="align-self-center d-flex align-content-center">
+                    <span class="material-symbols-outlined"
+                      >self_improvement</span
+                    >
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Salud Mental y Descanso</span>
+                  </div>
                 </div>
               </RouterLink>
             </li>
@@ -98,20 +124,21 @@ export default {
             <li class="nav-item my-1">
               <RouterLink class="nav-link" to="/">
                 <div class="d-flex align-items-center link_about_us">
-                  <div class="align-self-center d-flex align-content-center"><span class="material-symbols-outlined">group</span></div>
-                  <div class="align-self-center mx-2"><span class="bold">Sobre nosotros</span></div>
+                  <div class="align-self-center d-flex align-content-center">
+                    <span class="material-symbols-outlined">group</span>
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Sobre nosotros</span>
+                  </div>
                 </div>
               </RouterLink>
             </li>
-  
           </ul>
-
         </div>
       </div>
     </div>
   </nav>
 </template>
-
 
 <style scoped>
 a {
@@ -123,7 +150,7 @@ a {
 }
 
 .link_inicio:hover {
-  color:#28844b ;
+  color: #28844b;
 }
 
 .link_alimentacion:hover {
@@ -144,6 +171,4 @@ a {
 .bold {
   font-weight: 550;
 }
-
-
 </style>
