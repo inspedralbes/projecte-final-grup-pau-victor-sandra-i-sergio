@@ -116,21 +116,32 @@ export default {
           <img :src="selected[0].emoji" id="emoji-card" />
         </div>
         <div class="col-md-8">
-          <div class="card-body">
-            <div class="d-grid">
-              <div class="botons col-12">
-                <button v-if="
-                  selected[0].value == 'Alegre' ||
-                  selected[0].value == 'Energico'
-                " class="emoji-value btn btn-outline-info">
+          <div class="row">
+              <div class="col-12">
+                <span class="pregunta" v-if="
+                    selected[0].value != 'Alegre' &&
+                    selected[0].value != 'Energico'
+                  " >¿Porque estas {{ selected[0].value }}?</span>
+                <button
+                  v-if="
+                    selected[0].value == 'Alegre' ||
+                    selected[0].value == 'Energico'
+                  "
+                  class="emoji-value button btn"
+                >
                   Hoy estoy {{ selected[0].value }}
                 </button>
-                <button class="btn btn-outline-info boton" type="button" @click="guardarMotivo($event.target.value)"
-                  :key="index" v-for="(estado, index) in selected[0].motivos" :value="estado">
+                <button
+                  class="btn button"
+                  type="button"
+                  @click="guardarMotivo($event.target.value)"
+                  :key="index"
+                  v-for="(estado, index) in selected[0].motivos"
+                  :value="estado"
+                >
                   {{ estado }}
                 </button>
               </div>
-            </div>
           </div>
         </div>
       </div>
@@ -162,17 +173,28 @@ select {
   margin-right: auto;
   max-width: 50%;
 }
-
-#emoji-card {
-  font-size: 800%;
-}
-
 .img-emoji {
   text-align: center;
+  display: flex;
+  justify-content: center;
 }
-
-.emoji-value {
-  font-size: 350%;
+#emoji-card {
+  max-width: 120px;
+  max-height: 120px;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.button {
+  padding: auto auto;
+  display: block;
+  color: gray;
+  font-size: 1rem;
+  transition: all .3s;
+  position: relative;
+  overflow: hidden;
+}
+.pregunta {
+  font-size: 1.1rem;
 }
 
 form {
@@ -180,13 +202,5 @@ form {
   text-align: center;
   margin-left: 35%;
   margin-right: 35%;
-}
-
-.form-input-email {
-  width: 250px;
-}
-
-.btn {
-  margin: 20px;
 }
 </style>
