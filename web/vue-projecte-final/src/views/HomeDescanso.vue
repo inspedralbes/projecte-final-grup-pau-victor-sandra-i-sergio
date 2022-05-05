@@ -12,14 +12,14 @@ export default {
     };
   },
 
-  beforeMount () {
-    fetch('http://192.168.210.161:9000/descanso/tipos-suenos').then(response => response.json()).then(
-      data => { 
+  beforeMount() {
+    fetch("http://192.168.210.161:9000/descanso/tipos-suenos")
+      .then((response) => response.json())
+      .then((data) => {
         console.log(data);
         this.elemento = data.tipoSueno;
-        console.log(this.elemento)
-      }
-    ) ;
+        console.log(this.elemento);
+      });
   },
 
   methods: {

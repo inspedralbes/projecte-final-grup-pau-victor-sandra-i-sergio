@@ -11,6 +11,7 @@ export default {
     return {
       email: "",
       disabled: false,
+      disabled2: false,
       selected: 0,
       motivo: "",
       estado: null,
@@ -53,11 +54,13 @@ export default {
         });
     },
     guardarEstado(valor) {
-      this.selected = this.estado.filter((v) => {
-        return v.value == valor;
-      });
       this.disabled = true;
-
+      this.disabled2 = true;
+      setTimeout(() => {
+        this.selected = this.estado.filter((v) => {
+          return v.value == valor;
+        });
+      }, 1500);
       console.log(this.selected);
     },
 
@@ -74,34 +77,28 @@ export default {
     <div>
       <Header />
     </div>
-  <Transition name="bounce">
-    <div class="cuestionario_estado container px-4" v-if="disabled == false">
-      <div class="row">
-        <div class="col-12 text-center">
-          <h2 class="titulo_cuestionario text-center">¿Como te sientes hoy?</h2>
-        </div>
-      </div>
-
-      <div class="row justify-content-center cartas">
-        <div
-          class="col-lg-3 col-sm- d-flex justify-content-center"
-          v-for="(opcion, index) in estado"
-          :key="index"
-          v-bind:value="opcion.value"
-        >
-          <CardVertical
-            @id="this.guardarEstado"
-            :infoCuest="this.estado[index]"
-          />
+    <Transition name="bounce">
+      <div class="cuestionario_estado container px-4" v-if="disabled == false">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2 class="titulo_cuestionario text-center">
+              ¿Como te sientes hoy?
+            </h2>
+          </div>
         </div>
 
-        <div class="col-12 text-center">
-          <input
-            class="btn btn-outline-secondary form-submit"
-            type="button"
-            @click="enviarFormulario()"
-            value="Enviar datos"
-          />
+        <div class="row justify-content-center cartas">
+          <div
+            class="col-lg-3 col-sm- d-flex justify-content-center"
+            v-for="(opcion, index) in estado"
+            :key="index"
+            v-bind:value="opcion.value"
+          >
+            <CardVertical
+              @id="this.guardarEstado"
+              :infoCuest="this.estado[index]"
+            />
+          </div>
         </div>
       </div>
       </div>
@@ -110,7 +107,7 @@ export default {
     <Transition name="bounce2">
       <div
         id="card-horizontal"
-        v-if="selected && disabled == true"
+        v-if="selected && disabled2 == true"
         class="card mb-3"
       >
         <div class="row">
@@ -146,6 +143,7 @@ export default {
                   </button>
                 </div>
               </div>
+            </div>
           </div>
           <div class="col-12 text-center">
             <input
@@ -157,20 +155,23 @@ export default {
           </div>
         </div>
       </div>
-       </div>
     </Transition>
 
-    <div class="col-12 text-center">
+    <!-- <div class="col-12 text-center">
       <input
         class="btn btn-outline-secondary form-submit"
         type="button"
         @click="enviarFormulario()"
         value="Enviar datos"
       />
-    </div>
+    </div> -->
 
     <div id="retroceder" class="text-center mt-5">
-      <button @click="retroceder()" type="button" class="btn btn-outline-danger">
+      <button
+        @click="retroceder()"
+        type="button"
+        class="btn btn-outline-danger"
+      >
         Retroceder
       </button>
     </div>
@@ -219,7 +220,6 @@ select {
   font-size: 1.1rem;
 }
 
-
 @media only screen and (min-width: 1400px) {
   .cartas {
     width: 80%;
@@ -227,8 +227,8 @@ select {
   }
 
   .pregunta {
-  font-size: 1.1rem;
-}
+    font-size: 1.1rem;
+  }
 }
 
 form {
@@ -244,16 +244,16 @@ form {
   margin: 20px;
 }
 .bounce-enter-active {
-  animation: bounce-in 0.5s ease 0s 2 normal none running;
+  animation: bounce-in 1s ease 0s 2 normal none running;
+  transition: transform translate(0, -700px);
 }
 
 .bounce-leave-active {
-  animation: bounce-in 0.5s ease 0s 2 normal none running;
+  animation: bounce-in 1s ease 0s 2 normal none running;
+  transition: transform translate(0, -700px);
 }
 @keyframes bounce-in {
   0% {
-  }
-  50% {
   }
   100% {
     transform: translate(0, -700px);
@@ -268,14 +268,12 @@ form {
 .bounce2-leave-active {
   animation: bounce2-in 1s ease 0s 2 normal none running;
 }
-@keyframes bounce2-in {
+@keyframes bounce-in2 {
   0% {
-    visibility: hidden;
-  }
-  50% {
+    opacity: 0;
   }
   100% {
-    visibility: visible;
+    opacity: 1;
   }
 }
 </style>
