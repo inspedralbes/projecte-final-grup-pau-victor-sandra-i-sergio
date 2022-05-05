@@ -20,17 +20,12 @@ export default {
   <div
     style="width: 18rem"
     class="card btn btn-outline-secondary float-start"
-    @click="$emit('id', $event.target.id)"
+    @click="$emit('id', infoCuest.value)"
     :id="infoCuest.value"
   >
-    <img
-      :src="infoCuest.emoji"
-      class="card-img-top"
-      alt="emoticono"
-      :id="infoCuest.value"
-    />
-    <div class="card-body" :id="infoCuest.value">
-      <h5 class="card-title" :id="infoCuest.value">{{ infoCuest.value }}</h5>
+    <img :src="infoCuest.emoji" class="card-img-top" alt="emoticono" />
+    <div class="card-body">
+      <h5 class="card-title">{{ infoCuest.value }}</h5>
     </div>
   </div>
 </template>

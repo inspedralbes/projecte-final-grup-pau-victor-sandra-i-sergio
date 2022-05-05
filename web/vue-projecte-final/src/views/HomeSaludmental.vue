@@ -10,6 +10,7 @@ export default {
   data() {
     return {
       email: "",
+      disabled: false,
       selected: 0,
       motivo: "",
       estado: [
@@ -102,6 +103,8 @@ export default {
       this.selected = this.estado.filter((v) => {
         return v.value == valor;
       });
+      this.disabled = true;
+
       console.log(this.selected);
     },
 
@@ -118,89 +121,80 @@ export default {
     <div>
       <Header />
     </div>
-
-    <div class="cuestionario_estado container">
-      <div class="row">
-        <div class="col-12 text-center">
-          <h2 class="titulo_cuestionario text-center">¿Como te sientes hoy?</h2>
-        </div>
-      </div>
-
-      <div class="row justify-content-center">
-        <div
-          class="col-3 d-flex justify-content-center"
-          v-for="(opcion, index) in estado"
-          :key="index"
-          v-bind:value="opcion.value"
-        >
-          <CardVertical
-            @id="this.guardarEstado"
-            :infoCuest="this.estado[index]"
-          />
-        </div>
-
-        <!-- <div class="row">
-          <div id="motivo">
-            <div v-if="selected">
-              <button
-                class="btn btn-outline-secondary"
-                type="button"
-                @click="guardarMotivo($event.target.value)"
-                :key="index"
-                v-for="(estado, index) in selected[0].motivos"
-                :value="estado"
-              >
-                {{ estado }}
-              </button>
-            </div>
+    <Transition name="bounce">
+      <div class="cuestionario_estado container" v-if="disabled == false">
+        <div class="row">
+          <div class="col-12 text-center">
+            <h2 class="titulo_cuestionario text-center">
+              ¿Como te sientes hoy?
+            </h2>
           </div>
-        </div> -->
+        </div>
 
-        <div class="col-12 text-center">
-          <input
-            class="btn btn-outline-secondary form-submit"
-            type="button"
-            @click="enviarFormulario()"
-            value="Enviar datos"
-          />
+        <div class="row justify-content-center">
+          <div
+            class="col-3 d-flex justify-content-center"
+            v-for="(opcion, index) in estado"
+            :key="index"
+            v-bind:value="opcion.value"
+          >
+            <CardVertical
+              @id="this.guardarEstado"
+              :infoCuest="this.estado[index]"
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </Transition>
 
-    <div id="card-horizontal" v-if="selected" class="card mb-3">
-      <div class="row">
-        <div class="col-md-4 img-emoji">
-          <img :src="selected[0].emoji" id="emoji-card" />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <div class="d-grid">
-              <div class="botons col-12">
-                <button
-                  v-if="
-                    selected[0].value == 'Alegre' ||
-                    selected[0].value == 'Energico'
-                  "
-                  class="emoji-value btn btn-outline-info"
-                >
-                  Hoy estoy {{ selected[0].value }}
-                </button>
-                <button
-                  class="btn btn-outline-info boton"
-                  type="button"
-                  @click="guardarMotivo($event.target.value)"
-                  :key="index"
-                  v-for="(estado, index) in selected[0].motivos"
-                  :value="estado"
-                >
-                  {{ estado }}
-                </button>
+    <Transition name="bounce2">
+      <div
+        id="card-horizontal"
+        v-if="selected && disabled == true"
+        class="card mb-3"
+      >
+        <div class="row">
+          <div class="col-md-4 img-emoji">
+            <img :src="selected[0].emoji" id="emoji-card" />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div class="d-grid">
+                <div class="botons col-12">
+                  <button
+                    v-if="
+                      selected[0].value == 'Alegre' ||
+                      selected[0].value == 'Energico'
+                    "
+                    class="emoji-value btn btn-outline-info"
+                  >
+                    Hoy estoy {{ selected[0].value }}
+                  </button>
+                  <button
+                    class="btn btn-outline-info boton"
+                    type="button"
+                    @click="guardarMotivo($event.target.value)"
+                    :key="index"
+                    v-for="(estado, index) in selected[0].motivos"
+                    :value="estado"
+                  >
+                    {{ estado }}
+                  </button>
+                </div>
               </div>
             </div>
           </div>
+          <div class="col-12 text-center">
+            <input
+              class="btn btn-outline-secondary form-submit"
+              type="button"
+              @click="enviarFormulario()"
+              value="Enviar datos"
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </Transition>
 
     <div id="retroceder" class="text-center mt-5">
       <button
@@ -250,5 +244,40 @@ form {
 }
 .btn {
   margin: 20px;
+}
+.bounce-enter-active {
+  animation: bounce-in 0.5s ease 0s 2 normal none running;
+}
+
+.bounce-leave-active {
+  animation: bounce-in 0.5s ease 0s 2 normal none running;
+}
+@keyframes bounce-in {
+  0% {
+  }
+  50% {
+  }
+  100% {
+    transform: translate(0, -700px);
+    opacity: 0;
+  }
+}
+
+.bounce2-enter-active {
+  animation: bounce2-in 1s ease 0s 2 normal none running;
+}
+
+.bounce2-leave-active {
+  animation: bounce2-in 1s ease 0s 2 normal none running;
+}
+@keyframes bounce2-in {
+  0% {
+    visibility: hidden;
+  }
+  50% {
+  }
+  100% {
+    visibility: visible;
+  }
 }
 </style>
