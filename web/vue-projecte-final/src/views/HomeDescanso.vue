@@ -8,50 +8,20 @@ export default {
   data() {
     return {
       selected: [],
-      elemento: [
-        {
-          text: "Muerte",
-          value: "Muerte",
-        },
-        {
-          text: "Desnudo/a",
-          value: "Desnudo",
-        },
-        {
-          text: "Volar",
-          value: "Volar",
-        },
-        {
-          text: "Perseguido/a",
-          value: "Perseguido",
-        },
-        {
-          text: "Infidelidad",
-          value: "Infidelidad",
-        },
-        {
-          text: "Caida dientes",
-          value: "Caida_dientes",
-        },
-        {
-          text: "Riqueza",
-          value: "Riqueza",
-        },
-        {
-          text: "Infancia",
-          value: "Infancia",
-        },
-        {
-          text: "Agua",
-          value: "Agua",
-        },
-        {
-          text: "Trabajo",
-          value: "Trabjo",
-        },
-      ],
+      elemento: [],
     };
   },
+
+  beforeMount () {
+    fetch('http://192.168.210.161:9000/descanso/tipos-suenos').then(response => response.json()).then(
+      data => { 
+        console.log(data);
+        this.elemento = data.tipoSueno;
+        console.log(this.elemento)
+      }
+    ) ;
+  },
+
   methods: {
     onReset(event) {
       event.preventDefault();
@@ -109,17 +79,17 @@ export default {
           class="col-4"
           v-for="(check, index) in elemento"
           :key="index"
-          v-bind:value="check.value"
+          v-bind:value="check"
         >
           <div>
             <button
               class="btn btn-outline-secondary"
               type="button"
-              :value="check.value"
-              :id="check.value"
+              :value="check"
+              :id="check"
               @click="guardarseleccionada($event.target.value)"
             >
-              {{ check.value }}
+              {{ check }}
             </button>
           </div>
         </div>

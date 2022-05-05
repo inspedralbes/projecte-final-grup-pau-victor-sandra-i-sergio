@@ -16,7 +16,7 @@ Descanso.route("/").get((req, res) => {
 });
 
 // Todos los tipos de sueño
-Descanso.route("/tipo-sueno").get((req, res) => {
+Descanso.route("/tipos-suenos").get((req, res) => {
     TipoSueno.find(function(err, resultado) {
         if (err) {
             console.log(err);
@@ -27,7 +27,7 @@ Descanso.route("/tipo-sueno").get((req, res) => {
                 r.push(e.tipo)
             })
            
-            res.json({ "tipoSueño": r });
+            res.json({ "tipoSueno": r });
         }
     });
 });
