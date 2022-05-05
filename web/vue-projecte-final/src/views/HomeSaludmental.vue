@@ -14,14 +14,12 @@ export default {
       motivo: "",
       estado: [
         {
-          text: "Alegre",
           value: "Alegre",
-          emoji: "😛",
+          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Alegre.png",
         },
         {
-          text: "Desanimado",
           value: "Desanimado",
-          emoji: "😔",
+          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Desanimado.png",
           motivos: {
             motivo1:
               "Últimamente estoy siempre cansado sin importar lo que haga",
@@ -31,9 +29,8 @@ export default {
           },
         },
         {
-          text: "Irritado",
           value: "Irritado",
-          emoji: "😠",
+          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Irritado.png",
           motivos: {
             motivo1:
               "Estoy pasando situaciones complicadas, estoy a la defensiva",
@@ -42,9 +39,8 @@ export default {
           },
         },
         {
-          text: "Nervioso",
           value: "Nervioso",
-          emoji: "😖😟",
+          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Nervioso.png",
           motivos: {
             motivo1: "Estoy viviendo situaciones de incertidumbre",
             motivo2: "Estoy atravesando adversidades",
@@ -52,14 +48,12 @@ export default {
           },
         },
         {
-          text: "Enérgico",
           value: "Energico",
-          emoji: "😎🏋️‍♀️",
+          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Enérgico.png",
         },
         {
-          text: "Estresado",
           value: "Estresado",
-          emoji: "😩",
+          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Estresado.png",
           motivos: {
             motivo1: "Estoy siendo muy autoexigente",
             motivo2: "Tengo una rutina muy ajetreada, me siento sobrecargado",
@@ -67,9 +61,8 @@ export default {
           },
         },
         {
-          text: "Triste",
           value: "Triste",
-          emoji: "😢",
+          emoji: "@/../public/img/EMOJIS ESTADO ÁNIMO/Triste.png",
           motivos: {
             motivo1: "Estoy experimentando un duelo emocional",
             motivo2: "Estoy viviendo una época de cambios que me asustan",
@@ -133,9 +126,9 @@ export default {
         </div>
       </div>
 
-      <div class="row">
+      <div class="row justify-content-center">
         <div
-          class="col-6"
+          class="col-3 d-flex justify-content-center"
           v-for="(opcion, index) in estado"
           :key="index"
           v-bind:value="opcion.value"
@@ -146,7 +139,7 @@ export default {
           />
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div id="motivo">
             <div v-if="selected">
               <button
@@ -161,7 +154,7 @@ export default {
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="col-12 text-center">
           <input
@@ -176,15 +169,21 @@ export default {
 
     <div id="card-horizontal" v-if="selected" class="card mb-3">
       <div class="row">
-        <div class="col-md-4">
-          <p id="emoji-card">{{ selected[0].emoji }}</p>
+        <div class="col-md-4 img-emoji">
+          <img :src="selected[0].emoji" id="emoji-card" />
         </div>
         <div class="col-md-8">
           <div class="card-body">
             <div class="d-grid">
               <div class="botons col-12">
-                <button v-if="selected[0].value=='Alegre' || selected[0].value=='Energico'" class="emoji-value btn btn-outline-info">
-                  Hoy estoy {{ selected[0].text }}
+                <button
+                  v-if="
+                    selected[0].value == 'Alegre' ||
+                    selected[0].value == 'Energico'
+                  "
+                  class="emoji-value btn btn-outline-info"
+                >
+                  Hoy estoy {{ selected[0].value }}
                 </button>
                 <button
                   class="btn btn-outline-info boton"
@@ -232,7 +231,10 @@ select {
   max-width: 50%;
 }
 #emoji-card {
-  font-size:800%;
+  font-size: 800%;
+}
+.img-emoji {
+  text-align: center;
 }
 .emoji-value {
   font-size: 350%;
