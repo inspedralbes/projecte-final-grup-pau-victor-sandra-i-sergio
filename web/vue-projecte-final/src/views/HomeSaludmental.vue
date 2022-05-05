@@ -146,23 +146,6 @@ export default {
           />
         </div>
 
-        <div class="row">
-          <div id="motivo">
-            <div v-if="selected">
-              <button
-                class="btn btn-outline-secondary"
-                type="button"
-                @click="guardarMotivo($event.target.value)"
-                :key="index"
-                v-for="(estado, index) in selected[0].motivos"
-                :value="estado"
-              >
-                {{ estado }}
-              </button>
-            </div>
-          </div>
-        </div>
-
         <div class="col-12 text-center">
           <input
             class="btn btn-outline-secondary form-submit"
@@ -176,7 +159,7 @@ export default {
 
     <div id="card-horizontal" v-if="selected" class="card mb-3">
       <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-4 img-emoji">
           <p id="emoji-card">{{ selected[0].emoji }}</p>
         </div>
         <div class="col-md-8">
@@ -233,6 +216,9 @@ select {
 }
 #emoji-card {
   font-size:800%;
+}
+.img-emoji {
+  text-align: center;
 }
 .emoji-value {
   font-size: 350%;
