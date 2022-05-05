@@ -138,34 +138,8 @@ export default {
             :infoCuest="this.estado[index]"
           />
         </div>
-
-        <!-- <div class="row">
-          <div id="motivo">
-            <div v-if="selected">
-              <button
-                class="btn btn-outline-secondary"
-                type="button"
-                @click="guardarMotivo($event.target.value)"
-                :key="index"
-                v-for="(estado, index) in selected[0].motivos"
-                :value="estado"
-              >
-                {{ estado }}
-              </button>
-            </div>
-          </div>
-        </div> -->
-
-        <div class="col-12 text-center">
-          <input
-            class="btn btn-outline-secondary form-submit"
-            type="button"
-            @click="enviarFormulario()"
-            value="Enviar datos"
-          />
-        </div>
       </div>
-    </div>
+    </div> 
 
     <div id="card-horizontal" v-if="selected" class="card mb-3">
       <div class="row">
@@ -202,6 +176,15 @@ export default {
           </div>
         </div>
       </div>
+    </div>
+
+    <div class="col-12 text-center">
+      <input
+        class="btn btn-outline-secondary form-submit"
+        type="button"
+        @click="enviarFormulario()"
+        value="Enviar datos"
+      />
     </div>
 
     <div id="retroceder" class="text-center mt-5">
@@ -246,19 +229,13 @@ select {
 .button {
   padding: auto auto;
   display: block;
+  text-align: left;
   color: gray;
   font-size: 1rem;
   transition: all .3s;
-  position: relative;
   overflow: hidden;
 }
 .pregunta {
   font-size: 1.1rem;
-}
-form {
-  padding-top: 5%;
-  text-align: center;
-  margin-left: 35%;
-  margin-right: 35%;
 }
 </style>
