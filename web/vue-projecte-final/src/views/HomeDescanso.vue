@@ -59,6 +59,8 @@ export default {
 </script>
 
 <template>
+<main>
+  <div class="submain">
   <div>
     <div>
       <Header />
@@ -107,6 +109,8 @@ export default {
       </div>
     </div>
   </div>
+  </div>
+  </main>
 </template>
 
 <style scoped>
@@ -123,5 +127,29 @@ export default {
 .emoji_sueño {
   width: 35px;
 }
+
+main {
+  height:89.9vh;
+  background: linear-gradient(90deg, #162046 0%, #0A0B0E 100%);
+
+
+}
+
+.submain {
+  height:100%;
+  width: 100%;
+  background-image:url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/stars-back.png');
+  background-size: 400px;
+  background-repeat: repeat;
+  position:absolute;
+}
+
+
+
+
+
+
+
+
 
 </style>
