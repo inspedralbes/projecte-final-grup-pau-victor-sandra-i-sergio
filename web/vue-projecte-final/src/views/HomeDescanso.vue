@@ -89,7 +89,9 @@ export default {
               :id="check"
               @click="guardarseleccionada($event.target.value)"
             >
+            <img class="emoji_sueño" src="../../public/img/EMOJIS SUEÑO/agua.png" alt="">
               {{ check }}
+              
             </button>
           </div>
         </div>
@@ -117,4 +119,9 @@ export default {
 .subtitulo {
   margin: 15px;
 }
+
+.emoji_sueño {
+  width: 35px;
+}
+
 </style>

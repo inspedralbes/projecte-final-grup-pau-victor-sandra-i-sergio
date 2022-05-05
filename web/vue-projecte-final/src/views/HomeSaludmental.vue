@@ -101,6 +101,7 @@ export default {
           </div>
         </div>
       </div>
+      </div>
     </Transition>
 
     <Transition name="bounce2">
@@ -117,17 +118,21 @@ export default {
             <div class="card-body">
               <div class="d-grid">
                 <div class="botons col-12">
+                  <span class="pregunta" v-if="
+                    selected[0].value != 'Alegre' &&
+                    selected[0].value != 'Energico'
+                  " >¿Porque estas {{ selected[0].value }}?</span>
                   <button
                     v-if="
                       selected[0].value == 'Alegre' ||
                       selected[0].value == 'Energico'
                     "
-                    class="emoji-value btn btn-outline-info"
+                    class="value button btn"
                   >
                     Hoy estoy {{ selected[0].value }}
                   </button>
                   <button
-                    class="btn btn-outline-info boton"
+                    class="emoji-value button btn"
                     type="button"
                     @click="guardarMotivo($event.target.value)"
                     :key="index"
@@ -210,6 +215,9 @@ select {
   font-size: 1rem;
   transition: all 0.3s;
   overflow: hidden;
+}
+.pregunta {
+  font-size: 1.1rem;
 }
 
 @media only screen and (min-width: 1400px) {
