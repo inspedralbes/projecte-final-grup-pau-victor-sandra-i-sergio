@@ -119,7 +119,7 @@ export default {
               :id="check.value"
               @click="guardarseleccionada($event.target.value)"
             >
-              {{ check.text }}
+              {{ check.value }}
             </button>
           </div>
         </div>
