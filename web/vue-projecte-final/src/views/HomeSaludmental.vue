@@ -139,7 +139,7 @@ export default {
           />
         </div>
 
-        <div class="row">
+        <!-- <div class="row">
           <div id="motivo">
             <div v-if="selected">
               <button
@@ -154,7 +154,7 @@ export default {
               </button>
             </div>
           </div>
-        </div>
+        </div> -->
 
         <div class="col-12 text-center">
           <input

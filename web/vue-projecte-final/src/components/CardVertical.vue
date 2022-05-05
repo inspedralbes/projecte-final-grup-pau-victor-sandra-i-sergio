@@ -19,7 +19,7 @@ export default {
 <template>
   <div
     style="width: 18rem"
-    class="card btn btn-outline-success float-start"
+    class="card btn btn-outline-secondary float-start"
     @click="$emit('id', $event.target.id)"
     :id="infoCuest.value"
   >
