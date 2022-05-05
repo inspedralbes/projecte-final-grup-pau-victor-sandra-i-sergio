@@ -2,9 +2,10 @@ const express = require('express');
 const app = express();
 const SaludMental = express.Router();
 const CuestionarioSaludMental = require('../models/SaludMental/respuestaCuestionario.model');
+const EstadoEmocional = require('../models/SaludMental/estadoEmocionalCuestionario.model');
+
 
 // GET - OBTENER TODAS RESPUESTAS AL CUESTIONARIO
-
 SaludMental.route('/').get(function(req, res) {
     CuestionarioSaludMental.find(function(err, resultado) {
         if (err) {
@@ -15,10 +16,31 @@ SaludMental.route('/').get(function(req, res) {
     });
 });
 
+// Todos los tipos de sueño
+SaludMental.route("/estado-emocional").get((req, res) => {
+    EstadoEmocional.find(function(err, resultado) {
+        if (err) {
+            console.log(err);
+        } else {
+            res.json({ "estadoEmocional": resultado });
+        }
+    });
+});
 
+// Añadir tipo de sueño
+SaludMental.route('/anadir-estado-emocional').post((req, res) => {
+    let datos = req.body;
+    datos.motivos = JSON.parse(datos.motivos);
+    console.log(req.body)
+
+    const estadoEmocional = new EstadoEmocional(datos);
+    estadoEmocional.save();
+
+    res.status(201)
+    res.json({ 'status': true, 'msg': 'Informacion guardada' });
+});
 
 // POST - RESPONDER EL CUESTIONARIO
-
 SaludMental.route('/respuesta-cuestionario').post((req, res) => {
     let datos = req.body;
     if (Object.keys(datos).length != 3) { // Solo se pasan 3 campos
