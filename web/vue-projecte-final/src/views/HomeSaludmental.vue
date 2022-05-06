@@ -20,7 +20,7 @@ export default {
 
   beforeMount() {
     fetch("http://192.168.210.161:9000/salud-mental/estado-emocional")
-    // fetch("http://localhost:9000/salud-mental/estado-emocional")
+      // fetch("http://localhost:9000/salud-mental/estado-emocional")
       .then((response) => response.json())
       .then((data) => {
         this.estado = data.estadoEmocional;
@@ -46,7 +46,7 @@ export default {
       });
       console.log(cuestSalud);
       fetch("http://192.168.210.161:9000/salud-mental/respuesta-cuestionario", {
-      // fetch("http://localhost:9000/salud-mental/respuesta-cuestionario", {
+        // fetch("http://localhost:9000/salud-mental/respuesta-cuestionario", {
         method: "POST",
         body: cuestSalud,
       })
@@ -56,13 +56,13 @@ export default {
         });
     },
     guardarEstado(valor) {
-      this.disabled = true;
-      this.disabled2 = true;
       setTimeout(() => {
         this.selected = this.estado.filter((v) => {
           return v.value == valor;
         });
       }, 1500);
+      this.disabled = true;
+      this.disabled2 = true;
       console.log(this.selected);
     },
 
@@ -90,9 +90,16 @@ export default {
         </div>
 
         <div class="row justify-content-center cartas">
-          <div class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center" v-for="(opcion, index) in estado" :key="index"
-            v-bind:value="opcion.value">
-            <CardVertical @id="this.guardarEstado" :infoCuest="this.estado[index]" />
+          <div
+            class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center"
+            v-for="(opcion, index) in estado"
+            :key="index"
+            v-bind:value="opcion.value"
+          >
+            <CardVertical
+              @id="this.guardarEstado"
+              :infoCuest="this.estado[index]"
+            />
           </div>
         </div>
       </div>
@@ -100,7 +107,11 @@ export default {
   </div>
 
   <Transition name="bounce2">
-    <div id="card-horizontal" v-if="selected && disabled2 == true" class="card mb-3">
+    <div
+      id="card-horizontal"
+      v-if="selected && disabled2 == true"
+      class="card mb-3"
+    >
       <div class="row">
         <div class="col-md-4 img-emoji">
           <img :src="selected[0].emoji" id="emoji-card" />
@@ -109,18 +120,31 @@ export default {
           <div class="card-body">
             <div class="d-grid">
               <div class="botons col-12">
-                <span class="pregunta" v-if="
-                  selected[0].value != 'Alegre' &&
-                  selected[0].value != 'Energico'
-                ">¿Porque estas {{ selected[0].value }}?</span>
-                <button v-if="
-                  selected[0].value == 'Alegre' ||
-                  selected[0].value == 'Energico'
-                " class="value button btn">
+                <span
+                  class="pregunta"
+                  v-if="
+                    selected[0].value != 'Alegre' &&
+                    selected[0].value != 'Energico'
+                  "
+                  >¿Porque estas {{ selected[0].value }}?</span
+                >
+                <button
+                  v-if="
+                    selected[0].value == 'Alegre' ||
+                    selected[0].value == 'Energico'
+                  "
+                  class="value button btn"
+                >
                   Hoy estoy {{ selected[0].value }}
                 </button>
-                <button class="emoji-value button btn" type="button" @click="guardarMotivo($event.target.value)"
-                  :key="index" v-for="(estado, index) in selected[0].motivos" :value="estado">
+                <button
+                  class="emoji-value button btn"
+                  type="button"
+                  @click="guardarMotivo($event.target.value)"
+                  :key="index"
+                  v-for="(estado, index) in selected[0].motivos"
+                  :value="estado"
+                >
                   {{ estado }}
                 </button>
               </div>
@@ -128,27 +152,25 @@ export default {
           </div>
         </div>
         <div class="col-12 text-center">
-          <input class="btn btn-outline-secondary form-submit" type="button" @click="enviarFormulario()"
-            value="Enviar datos" />
+          <input
+            class="btn btn-outline-secondary form-submit"
+            type="button"
+            @click="enviarFormulario()"
+            value="Enviar datos"
+          />
+        </div>
+        <div id="retroceder" class="text-center mt-5">
+          <button
+            @click="retroceder()"
+            type="button"
+            class="btn btn-outline-danger"
+          >
+            Retroceder
+          </button>
         </div>
       </div>
     </div>
   </Transition>
-
-  <!-- <div class="col-12 text-center">
-      <input
-        class="btn btn-outline-secondary form-submit"
-        type="button"
-        @click="enviarFormulario()"
-        value="Enviar datos"
-      />
-    </div> -->
-
-  <div id="retroceder" class="text-center mt-5">
-    <button @click="retroceder()" type="button" class="btn btn-outline-danger">
-      Retroceder
-    </button>
-  </div>
 </template>
 
 <style>
@@ -220,39 +242,50 @@ form {
 }
 
 .bounce-enter-active {
-  animation: bounce-in 1s ease 0s 2 normal none running;
-  transition: transform translate(0, -700px);
+  animation: bounce-in 1s ease-in-out 0s 1 normal;
 }
 
 .bounce-leave-active {
-  animation: bounce-in 1s ease 0s 2 normal none running;
-  transition: transform translate(0, -700px);
+  animation: bounce-in 1s ease-in-out 0s 1 normal;
 }
 
 @keyframes bounce-in {
-  0% {}
+  from {
+  }
 
-  100% {
+  40% {
+    transform: translate(0, 100px);
+  }
+
+  to {
     transform: translate(0, -700px);
     opacity: 0;
   }
 }
 
 .bounce2-enter-active {
-  animation: bounce2-in 1s ease 0s 2 normal none running;
+  animation: bounce2-in 0.5s ease 0s 1 normal none running;
 }
 
 .bounce2-leave-active {
-  animation: bounce2-in 1s ease 0s 2 normal none running;
+  animation: bounce2-in 0.5s ease 0s 1 normal none running;
 }
 
-@keyframes bounce-in2 {
-  0% {
+@keyframes bounce2-in {
+  from {
     opacity: 0;
+    transform: translate(0, 300px);
   }
 
-  100% {
+  50% {
     opacity: 1;
   }
+
+  to {
+  }
+}
+
+.pos_fixed {
+  position: fixed;
 }
 </style>
