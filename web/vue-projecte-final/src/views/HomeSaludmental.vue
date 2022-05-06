@@ -77,77 +77,79 @@ export default {
 <template>
   <div>
     <div>
-      <Header />
-    </div>
-    <Transition name="bounce">
-      <div class="cuestionario_estado container px-4" v-if="disabled == false">
-        <div class="row">
-          <div class="col-12 text-center">
-            <h2 class="titulo_cuestionario text-center">
-              ¿Como te sientes hoy?
-            </h2>
+      <div>
+        <Header />
+      </div>
+      <Transition name="bounce">
+        <div class="cuestionario_estado container px-4" v-if="disabled == false">
+          <div class="row">
+            <div class="col-12 text-center">
+              <h2 class="titulo_cuestionario text-center">
+                ¿Como te sientes hoy?
+              </h2>
+            </div>
+          </div>
+
+          <div class="row justify-content-center cartas">
+            <div class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center" v-for="(opcion, index) in estado" :key="index"
+              v-bind:value="opcion.value">
+              <CardVertical @id="this.guardarEstado" :infoCuest="this.estado[index]" />
+            </div>
           </div>
         </div>
+      </Transition>
+    </div>
 
-        <div class="row justify-content-center cartas">
-          <div class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center" v-for="(opcion, index) in estado" :key="index"
-            v-bind:value="opcion.value">
-            <CardVertical @id="this.guardarEstado" :infoCuest="this.estado[index]" />
+    <Transition name="bounce2">
+      <div id="card-horizontal" v-if="selected && disabled2 == true" class="card mb-3">
+        <div class="row">
+          <div class="col-md-4 img-emoji">
+            <img :src="selected[0].emoji" id="emoji-card" />
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <div class="d-grid">
+                <div class="botons col-12">
+                  <span class="pregunta" v-if="
+                    selected[0].value != 'Alegre' &&
+                    selected[0].value != 'Energico'
+                  ">¿Por qué estás {{ selected[0].value }}?</span>
+                  <button v-if="
+                    selected[0].value == 'Alegre' ||
+                    selected[0].value == 'Energico'
+                  " class="value button btn">
+                    Hoy estoy {{ selected[0].value }}
+                  </button>
+                  <button class="emoji-value button btn" type="button" @click="guardarMotivo($event.target.value)"
+                    :key="index" v-for="(estado, index) in selected[0].motivos" :value="estado">
+                    {{ estado }}
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-12 text-center">
+            <input class="btn btn-outline-secondary form-submit" type="button" @click="enviarFormulario()"
+              value="Enviar datos" />
           </div>
         </div>
       </div>
     </Transition>
-  </div>
 
-  <Transition name="bounce2">
-    <div id="card-horizontal" v-if="selected && disabled2 == true" class="card mb-3">
-      <div class="row">
-        <div class="col-md-4 img-emoji">
-          <img :src="selected[0].emoji" id="emoji-card" />
-        </div>
-        <div class="col-md-8">
-          <div class="card-body">
-            <div class="d-grid">
-              <div class="botons col-12">
-                <span class="pregunta" v-if="
-                  selected[0].value != 'Alegre' &&
-                  selected[0].value != 'Energico'
-                ">¿Porque estas {{ selected[0].value }}?</span>
-                <button v-if="
-                  selected[0].value == 'Alegre' ||
-                  selected[0].value == 'Energico'
-                " class="value button btn">
-                  Hoy estoy {{ selected[0].value }}
-                </button>
-                <button class="emoji-value button btn" type="button" @click="guardarMotivo($event.target.value)"
-                  :key="index" v-for="(estado, index) in selected[0].motivos" :value="estado">
-                  {{ estado }}
-                </button>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-12 text-center">
-          <input class="btn btn-outline-secondary form-submit" type="button" @click="enviarFormulario()"
-            value="Enviar datos" />
-        </div>
-      </div>
+    <!-- <div class="col-12 text-center">
+        <input
+          class="btn btn-outline-secondary form-submit"
+          type="button"
+          @click="enviarFormulario()"
+          value="Enviar datos"
+        />
+      </div> -->
+
+    <div id="retroceder" class="text-center mt-5">
+      <button @click="retroceder()" type="button" class="btn btn-outline-danger">
+        Retroceder
+      </button>
     </div>
-  </Transition>
-
-  <!-- <div class="col-12 text-center">
-      <input
-        class="btn btn-outline-secondary form-submit"
-        type="button"
-        @click="enviarFormulario()"
-        value="Enviar datos"
-      />
-    </div> -->
-
-  <div id="retroceder" class="text-center mt-5">
-    <button @click="retroceder()" type="button" class="btn btn-outline-danger">
-      Retroceder
-    </button>
   </div>
 </template>
 
