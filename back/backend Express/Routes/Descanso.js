@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const Descanso = express.Router();
-const CuestionarioDescanso = require('../models/Descanso/respuestaCuestionario.model');
-const TipoSueno = require('../models/Descanso/tipoSuenoCuestionario.model');
+const CuestionarioDescanso = require('../models/descanso/respuestaCuestionario.model');
+const TipoSueno = require('../models/descanso/tipoSuenoCuestionario.model');
 
 // Todas las respuestas al cuestionario
 Descanso.route("/").get((req, res) => {

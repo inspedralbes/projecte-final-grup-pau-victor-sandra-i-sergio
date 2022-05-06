@@ -20,7 +20,7 @@ export default {
 
   beforeMount() {
     fetch("http://192.168.210.161:9000/salud-mental/estado-emocional")
-    // fetch("http://localhost:9000/salud-mental/estado-emocional")
+      // fetch("http://localhost:9000/salud-mental/estado-emocional")
       .then((response) => response.json())
       .then((data) => {
         this.estado = data.estadoEmocional;
@@ -46,7 +46,7 @@ export default {
       });
       console.log(cuestSalud);
       fetch("http://192.168.210.161:9000/salud-mental/respuesta-cuestionario", {
-      // fetch("http://localhost:9000/salud-mental/respuesta-cuestionario", {
+        // fetch("http://localhost:9000/salud-mental/respuesta-cuestionario", {
         method: "POST",
         body: cuestSalud,
       })
@@ -56,13 +56,13 @@ export default {
         });
     },
     guardarEstado(valor) {
-      this.disabled = true;
-      this.disabled2 = true;
       setTimeout(() => {
         this.selected = this.estado.filter((v) => {
           return v.value == valor;
         });
       }, 1500);
+      this.disabled = true;
+      this.disabled2 = true;
       console.log(this.selected);
     },
 
@@ -75,7 +75,6 @@ export default {
 </script>
 
 <template>
-  <div>
     <div>
       <div>
         <Header />
@@ -100,57 +99,71 @@ export default {
       </Transition>
     </div>
 
-    <Transition name="bounce2">
-      <div id="card-horizontal" v-if="selected && disabled2 == true" class="card mb-3">
-        <div class="row">
-          <div class="col-md-4 img-emoji">
-            <img :src="selected[0].emoji" id="emoji-card" />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <div class="d-grid">
-                <div class="botons col-12">
-                  <span class="pregunta" v-if="
+  <Transition name="bounce2">
+    <div
+      id="card-horizontal"
+      v-if="selected && disabled2 == true"
+      class="card mb-3"
+    >
+      <div class="row card-border rounded">
+        <div class="col-md-4 img-emoji">
+          <img :src="selected[0].emoji" id="emoji-card" />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <div class="d-grid">
+              <div class="botons col-12">
+                <span
+                  class="pregunta"
+                  v-if="
                     selected[0].value != 'Alegre' &&
                     selected[0].value != 'Energico'
-                  ">¿Por qué estás {{ selected[0].value }}?</span>
-                  <h4 v-if="
+                  "
+                  >¿Porque estas {{ selected[0].value }}?</span
+                >
+                <button
+                  v-if="
                     selected[0].value == 'Alegre' ||
                     selected[0].value == 'Energico'
-                  " class="value button">
-                    Hoy estoy {{ selected[0].value }}
-                  </h4>
-                  <button class="emoji-value button btn" type="button" @click="guardarMotivo($event.target.value)"
-                    :key="index" v-for="(estado, index) in selected[0].motivos" :value="estado">
-                    {{ estado }}
-                  </button>
-                </div>
+                  "
+                  class="value hoy-estoy"
+                >
+                  Hoy estoy {{ selected[0].value }}
+                </button>
+                <button
+                  class="emoji-value button btn"
+                  type="button"
+                  @click="guardarMotivo($event.target.value)"
+                  :key="index"
+                  v-for="(estado, index) in selected[0].motivos"
+                  :value="estado"
+                >
+                  {{ estado }}
+                </button>
               </div>
             </div>
           </div>
-          <div class="col-12 text-center">
-            <input class="btn btn-outline-secondary form-submit" type="button" @click="enviarFormulario()"
-              value="Enviar datos" />
-          </div>
         </div>
-      </div>
-    </Transition>
-
-    <!-- <div class="col-12 text-center">
+      </div>  
+      <div class="col-12 text-center boton-enviar">
         <input
           class="btn btn-outline-secondary form-submit"
           type="button"
           @click="enviarFormulario()"
           value="Enviar datos"
         />
-      </div> -->
-
-    <div id="retroceder" class="text-center mt-5">
-      <button @click="retroceder()" type="button" class="btn btn-outline-danger">
-        Retroceder
-      </button>
+      </div>
+      <div id="retroceder" class="text-center mt-5">
+        <button
+          @click="retroceder()"
+          type="button"
+          class="btn btn-outline-danger"
+        >
+          Retroceder
+        </button>
+      </div>
     </div>
-  </div>
+  </Transition>
 </template>
 
 <style>
@@ -166,10 +179,19 @@ select {
 }
 
 #card-horizontal {
-  margin-top: 2%;
+  margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
   max-width: 50%;
+  border: 0;
+}
+
+.boton-enviar {
+  margin-top: 5%;
+}
+
+.card-border {
+  border: 2px dashed gray;
 }
 
 .img-emoji {
@@ -189,7 +211,16 @@ select {
   padding: auto auto;
   display: block;
   text-align: left;
-  color: gray;
+  color: lightgray;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.hoy-estoy {
+  padding: auto auto;
+  display: block;
+  text-align: left;
+  color: black;
   font-size: 1rem;
   transition: all 0.3s;
 }
@@ -221,39 +252,50 @@ form {
 }
 
 .bounce-enter-active {
-  animation: bounce-in 1s ease 0s 2 normal none running;
-  transition: transform translate(0, -700px);
+  animation: bounce-in 1s ease-in-out 0s 1 normal;
 }
 
 .bounce-leave-active {
-  animation: bounce-in 1s ease 0s 2 normal none running;
-  transition: transform translate(0, -700px);
+  animation: bounce-in 1s ease-in-out 0s 1 normal;
 }
 
 @keyframes bounce-in {
-  0% {}
+  from {
+  }
 
-  100% {
+  40% {
+    transform: translate(0, 100px);
+  }
+
+  to {
     transform: translate(0, -700px);
     opacity: 0;
   }
 }
 
 .bounce2-enter-active {
-  animation: bounce2-in 1s ease 0s 2 normal none running;
+  animation: bounce2-in 0.5s ease 0s 1 normal none running;
 }
 
 .bounce2-leave-active {
-  animation: bounce2-in 1s ease 0s 2 normal none running;
+  animation: bounce2-in 0.5s ease 0s 1 normal none running;
 }
 
-@keyframes bounce-in2 {
-  0% {
+@keyframes bounce2-in {
+  from {
     opacity: 0;
+    transform: translate(0, 300px);
   }
 
-  100% {
+  50% {
     opacity: 1;
   }
+
+  to {
+  }
+}
+
+.pos_fixed {
+  position: fixed;
 }
 </style>

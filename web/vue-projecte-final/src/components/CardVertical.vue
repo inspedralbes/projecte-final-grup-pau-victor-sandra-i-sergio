@@ -12,29 +12,34 @@ export default {
   beforeMount() {
     console.log(this.infoCuest);
   },
-  methods: {
-  },
+  methods: {},
 };
 </script>
 
 <template>
-  <div style="max-width: 12rem" class="card p-2" @click="$emit('id', $event.target.id)" @mouseover="this.selected = 1"
-    @mouseleave="this.selected = 0" :id="infoCuest.value">
+  <div
+    style="max-width: 12rem"
+    class="card p-2"
+    @click="$emit('id', $event.target.id)"
+    @mouseover="this.selected = 1"
+    @mouseleave="this.selected = 0"
+    :id="infoCuest.value"
+  >
     <div :class="[this.selected ? 'appear' : 'disappear']" class="checked">
-      <span class="material-symbols-outlined">
-        done
-      </span>
+      <span class="material-symbols-outlined"> done </span>
     </div>
     <div class="d-flex justify-content-center pt-2">
-      <img :src="infoCuest.emoji" class="card-img-top" alt="emoticono" :id="infoCuest.value" />
+      <img
+        :src="infoCuest.emoji"
+        class="card-img-top"
+        alt="emoticono"
+        :id="infoCuest.value"
+      />
     </div>
     <div class="card-body mt-3 mb-1 text-center" :id="infoCuest.value">
       <h5 class="card-title" :id="infoCuest.value">{{ infoCuest.value }}</h5>
     </div>
   </div>
-
-
-
 </template>
 
 <style scoped>
@@ -55,12 +60,12 @@ export default {
 }
 
 .card-body {
-  padding: 0.2rem
+  padding: 0.2rem;
 }
 
 .card-img-top {
   max-width: 80%;
-  width: auto
+  width: auto;
 }
 
 @media only screen and (max-width: 500px) {
@@ -71,7 +76,7 @@ export default {
 
 .checked {
   opacity: 0;
-  transition: all .5s ease-in-out;
+  transition: all 0.5s ease-in-out;
   position: absolute;
   top: 0px;
   left: 0px;
@@ -92,7 +97,8 @@ export default {
   z-index: -1;
 }
 
-.card:hover .checked, .card:hover .checked::before {
+.card:hover .checked,
+.card:hover .checked::before {
   opacity: 1;
 }
 

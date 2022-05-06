@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const SaludMental = express.Router();
-const CuestionarioSaludMental = require('../models/SaludMental/respuestaCuestionario.model');
-const EstadoEmocional = require('../models/SaludMental/estadoEmocionalCuestionario.model');
+const CuestionarioSaludMental = require('../models/saludMental/respuestaCuestionario.model');
+const EstadoEmocional = require('../models/saludMental/estadoEmocionalCuestionario.model');
 
 
 // GET - OBTENER TODAS RESPUESTAS AL CUESTIONARIO
