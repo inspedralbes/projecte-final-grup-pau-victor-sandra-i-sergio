@@ -102,7 +102,7 @@ export default {
 
     <Transition name="bounce2">
       <div id="card-horizontal" v-if="selected && disabled2 == true" class="card mb-3">
-        <div class="row">
+        <div class="row card-border rounded">
           <div class="col-md-4 img-emoji">
             <img :src="selected[0].emoji" id="emoji-card" />
           </div>
@@ -117,7 +117,7 @@ export default {
                   <h4 v-if="
                     selected[0].value == 'Alegre' ||
                     selected[0].value == 'Energico'
-                  " class="value button">
+                  " class="value hoy-estoy">
                     Hoy estoy {{ selected[0].value }}
                   </h4>
                   <button class="emoji-value button btn" type="button" @click="guardarMotivo($event.target.value)"
@@ -128,11 +128,12 @@ export default {
               </div>
             </div>
           </div>
-          <div class="col-12 text-center">
+          </div>
+          <div class="col-12 text-center boton-enviar">
             <input class="btn btn-outline-secondary form-submit" type="button" @click="enviarFormulario()"
               value="Enviar datos" />
           </div>
-        </div>
+         
       </div>
     </Transition>
 
@@ -166,10 +167,19 @@ select {
 }
 
 #card-horizontal {
-  margin-top: 2%;
+  margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
   max-width: 50%;
+  border: 0;
+}
+
+.boton-enviar {
+  margin-top: 5%;
+}
+
+.card-border {
+  border: 2px dashed gray;
 }
 
 .img-emoji {
@@ -189,7 +199,16 @@ select {
   padding: auto auto;
   display: block;
   text-align: left;
-  color: gray;
+  color: lightgray;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.hoy-estoy {
+  padding: auto auto;
+  display: block;
+  text-align: left;
+  color: black;
   font-size: 1rem;
   transition: all 0.3s;
 }
