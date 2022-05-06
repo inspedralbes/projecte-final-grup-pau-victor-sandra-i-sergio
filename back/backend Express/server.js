@@ -33,11 +33,11 @@ app.listen((process.env.PORT || port), () => {
 });
 
 
-const SaludMental = require('./routes/SaludMental');
+const SaludMental = require('./routes/SaludMental.js');
 app.use('/salud-mental', SaludMental);
 
 
-const Descanso = require('./routes/Descanso');
+const Descanso = require('./routes/Descanso.js');
 app.use('/descanso', Descanso);
 
 
