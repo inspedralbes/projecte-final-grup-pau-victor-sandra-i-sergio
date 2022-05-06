@@ -137,12 +137,13 @@ export default {
 
 .fondo {
   width: 100vw;
-  min-height: 81vh;
+  min-height: 81.3vh;
   background: linear-gradient(90deg, #162046 0%, #0a0b0e 100%);
 }
 
 .submain {
   width: 100%;
+  min-height: 81.3vh;
   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/stars-back.png");
   background-size: 400px;
   background-repeat: repeat;
