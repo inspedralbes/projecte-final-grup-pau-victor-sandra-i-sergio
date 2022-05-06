@@ -14,7 +14,7 @@ export default {
 
   beforeMount() {
     fetch("http://192.168.210.161:9000/descanso/tipos-suenos")
-    // fetch("http://localhost:9000/descanso/tipos-suenos")
+      // fetch("http://localhost:9000/descanso/tipos-suenos")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -47,7 +47,7 @@ export default {
       cuestDescanso.append("usuario", "alvaro");
 
       fetch("http://192.168.210.161:9000/descanso/respuesta-cuestionario", {
-      // fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
+        // fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
         method: "POST",
         body: cuestDescanso,
       })
@@ -61,14 +61,15 @@ export default {
 </script>
 
 <template>
-  <main>
-    <div class="submain">
-      <div>
-        <div>
-          <Header />
-        </div>
 
-        <div class="cuestionario_sueño container">
+  <div>
+    <div>
+      <Header />
+    </div>
+
+    <div class="fondo">
+      <div class="submain">
+        <div class="container cuestionario_sueño">
           <div class="row">
             <div class="col-12 text-center">
               <h2 class="titulo_cuestionario text-center">¿Que has soñado hoy?</h2>
@@ -98,7 +99,9 @@ export default {
         </div>
       </div>
     </div>
-  </main>
+
+  </div>
+
 </template>
 
 <style scoped>
@@ -109,22 +112,20 @@ export default {
 }
 
 .subtitulo {
-  margin: 15px;
+  padding: 15px;
 }
 
 .emoji_sueño {
   width: 35px;
 }
 
-main {
-  height: 89.9vh;
+.fondo {
+  width: 100vw;
+  min-height: 81vh;
   background: linear-gradient(90deg, #162046 0%, #0A0B0E 100%);
-
-
 }
 
 .submain {
-  height: 100%;
   width: 100%;
   background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/stars-back.png');
   background-size: 400px;
