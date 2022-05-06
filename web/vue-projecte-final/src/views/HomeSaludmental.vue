@@ -75,7 +75,6 @@ export default {
 </script>
 
 <template>
-  <div>
     <div>
       <div>
         <Header />
@@ -145,23 +144,23 @@ export default {
             </div>
           </div>
         </div>
-        <div class="col-12 text-center">
-          <input
-            class="btn btn-outline-secondary form-submit"
-            type="button"
-            @click="enviarFormulario()"
-            value="Enviar datos"
-          />
-        </div>
-        <div id="retroceder" class="text-center mt-5">
-          <button
-            @click="retroceder()"
-            type="button"
-            class="btn btn-outline-danger"
-          >
-            Retroceder
-          </button>
-        </div>
+      </div>  
+      <div class="col-12 text-center boton-enviar">
+        <input
+          class="btn btn-outline-secondary form-submit"
+          type="button"
+          @click="enviarFormulario()"
+          value="Enviar datos"
+        />
+      </div>
+      <div id="retroceder" class="text-center mt-5">
+        <button
+          @click="retroceder()"
+          type="button"
+          class="btn btn-outline-danger"
+        >
+          Retroceder
+        </button>
       </div>
     </div>
   </Transition>
