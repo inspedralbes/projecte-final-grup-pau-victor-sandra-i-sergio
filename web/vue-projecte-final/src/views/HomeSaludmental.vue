@@ -76,7 +76,6 @@ export default {
 </script>
 
 <template>
-  <div>
     <div>
       <div>
         <Header />
@@ -192,10 +191,19 @@ select {
 }
 
 #card-horizontal {
-  margin-top: 2%;
+  margin-top: 5%;
   margin-left: auto;
   margin-right: auto;
   max-width: 50%;
+  border: 0;
+}
+
+.boton-enviar {
+  margin-top: 5%;
+}
+
+.card-border {
+  border: 2px dashed gray;
 }
 
 .img-emoji {
@@ -215,7 +223,16 @@ select {
   padding: auto auto;
   display: block;
   text-align: left;
-  color: gray;
+  color: lightgray;
+  font-size: 1rem;
+  transition: all 0.3s;
+}
+
+.hoy-estoy {
+  padding: auto auto;
+  display: block;
+  text-align: left;
+  color: black;
   font-size: 1rem;
   transition: all 0.3s;
 }
