@@ -61,7 +61,6 @@ export default {
 </script>
 
 <template>
-
   <div>
     <div>
       <Header />
@@ -72,7 +71,9 @@ export default {
         <div class="container cuestionario_sueño">
           <div class="row">
             <div class="col-12 text-center">
-              <h2 class="titulo_cuestionario text-center">¿Que has soñado hoy?</h2>
+              <h2 class="titulo_cuestionario text-center">
+                ¿Que has soñado hoy?
+              </h2>
             </div>
             <div class="col-12 text-center subtitulo">
               <h4>Selecciona las opciones que más se asemejen a tu sueño</h4>
@@ -80,28 +81,43 @@ export default {
           </div>
 
           <div class="row">
-            <div class="col-4" v-for="(check, index) in elemento" :key="index" v-bind:value="check">
+            <div
+              class="col-4"
+              v-for="(check, index) in elemento"
+              :key="index"
+              v-bind:value="check"
+            >
               <div>
-                <button class="btn btn-outline-secondary" type="button" :value="check" :id="check"
-                  @click="guardarseleccionada($event.target.value)">
-                  <img class="emoji_sueño" src="../../public/img/EMOJIS SUEÑO/agua.png" alt="">
+                <button
+                  class="btn btn-outline-secondary"
+                  type="button"
+                  :value="check"
+                  :id="check"
+                  @click="guardarseleccionada($event.target.value)"
+                >
+                  <img
+                    class="emoji_sueño"
+                    src="../../public/img/EMOJIS SUEÑO/agua.png"
+                    alt=""
+                  />
                   {{ check }}
-
                 </button>
               </div>
             </div>
 
             <div class="col-12 text-center">
-              <input class="btn btn-outline-secondary form-submit" type="button" @click="enviarFormulario()"
-                value="Analizar sueño" />
+              <input
+                class="btn btn-outline-secondary form-submit"
+                type="button"
+                @click="enviarFormulario()"
+                value="Analizar sueño"
+              />
             </div>
           </div>
         </div>
       </div>
     </div>
-
   </div>
-
 </template>
 
 <style scoped>
@@ -121,13 +137,14 @@ export default {
 
 .fondo {
   width: 100vw;
-  min-height: 81vh;
-  background: linear-gradient(90deg, #162046 0%, #0A0B0E 100%);
+  min-height: 81.3vh;
+  background: linear-gradient(90deg, #162046 0%, #0a0b0e 100%);
 }
 
 .submain {
   width: 100%;
-  background-image: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/stars-back.png');
+  min-height: 81.3vh;
+  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/stars-back.png");
   background-size: 400px;
   background-repeat: repeat;
   position: absolute;
