@@ -77,34 +77,28 @@ export default {
 <template>
   <div>
     <div>
-      <Header />
-    </div>
-    <Transition name="bounce">
-      <div class="cuestionario_estado container px-4" v-if="disabled == false">
-        <div class="row">
-          <div class="col-12 text-center">
-            <h2 class="titulo_cuestionario text-center">
-              ¿Como te sientes hoy?
-            </h2>
-          </div>
-        </div>
-
-        <div class="row justify-content-center cartas">
-          <div
-            class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center"
-            v-for="(opcion, index) in estado"
-            :key="index"
-            v-bind:value="opcion.value"
-          >
-            <CardVertical
-              @id="this.guardarEstado"
-              :infoCuest="this.estado[index]"
-            />
-          </div>
-        </div>
+      <div>
+        <Header />
       </div>
-    </Transition>
-  </div>
+      <Transition name="bounce">
+        <div class="cuestionario_estado container px-4" v-if="disabled == false">
+          <div class="row">
+            <div class="col-12 text-center">
+              <h2 class="titulo_cuestionario text-center">
+                ¿Como te sientes hoy?
+              </h2>
+            </div>
+          </div>
+
+          <div class="row justify-content-center cartas">
+            <div class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center" v-for="(opcion, index) in estado" :key="index"
+              v-bind:value="opcion.value">
+              <CardVertical @id="this.guardarEstado" :infoCuest="this.estado[index]" />
+            </div>
+          </div>
+        </div>
+      </Transition>
+    </div>
 
   <Transition name="bounce2">
     <div
@@ -212,7 +206,6 @@ select {
   color: gray;
   font-size: 1rem;
   transition: all 0.3s;
-  overflow: hidden;
 }
 
 .pregunta {

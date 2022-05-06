@@ -54,7 +54,7 @@ export default {
               <RouterLink class="nav-link" to="/">
                 <div class="d-flex align-items-center link_cuenta">
                   <div class="align-self-center d-flex align-content-center">
-                    <span class="material-symbols-outlined"
+                    <span class="icono_cuenta material-symbols-outlined"
                       >account_circle</span
                     >
                   </div>
@@ -69,7 +69,7 @@ export default {
               <RouterLink class="nav-link" to="/">
                 <div class="d-flex align-items-center link_inicio">
                   <div class="align-self-center d-flex align-content-center">
-                    <span class="material-symbols-outlined">home</span>
+                    <span class="icono_inicio material-symbols-outlined">home</span>
                   </div>
                   <div class="align-self-center mx-2">
                     <span class="bold">Inicio</span>
@@ -82,7 +82,7 @@ export default {
               <RouterLink class="nav-link" to="/alimentacion">
                 <div class="d-flex align-items-center link_alimentacion">
                   <div class="align-self-center d-flex align-content-center">
-                    <span class="material-symbols-outlined">restaurant</span>
+                    <span class="icono_alimentacion material-symbols-outlined">restaurant</span>
                   </div>
                   <div class="align-self-center mx-2">
                     <span class="bold">Alimentación</span>
@@ -95,7 +95,7 @@ export default {
               <RouterLink class="nav-link" to="/ejercicio">
                 <div class="d-flex align-items-center link_ejercicio">
                   <div class="align-self-center d-flex align-content-center">
-                    <span class="material-symbols-outlined"
+                    <span class="icono_ejercicio material-symbols-outlined"
                       >fitness_center</span
                     >
                   </div>
@@ -110,7 +110,7 @@ export default {
               <RouterLink class="nav-link" to="/saludmental">
                 <div class="d-flex align-items-center link_saludmental">
                   <div class="align-self-center d-flex align-content-center">
-                    <span class="material-symbols-outlined"
+                    <span class="icono_saludmental material-symbols-outlined"
                       >self_improvement</span
                     >
                   </div>
@@ -125,7 +125,7 @@ export default {
               <RouterLink class="nav-link" to="/">
                 <div class="d-flex align-items-center link_about_us">
                   <div class="align-self-center d-flex align-content-center">
-                    <span class="material-symbols-outlined">group</span>
+                    <span class="icono_about material-symbols-outlined">group</span>
                   </div>
                   <div class="align-self-center mx-2">
                     <span class="bold">Sobre nosotros</span>
@@ -146,11 +146,11 @@ a {
 }
 
 .link_cuenta:hover {
-  color: #a8cf45;
+  color: #8a8a8a;
 }
 
 .link_inicio:hover {
-  color: #28844b;
+  color: #8a8a8a;
 }
 
 .link_alimentacion:hover {
@@ -164,9 +164,15 @@ a {
 .link_saludmental:hover {
   color: #5cb8e6;
 }
+
 .link_about_us:hover {
-  color: #28844b;
+  color: #8a8a8a;
 }
+
+
+
+
+
 
 .bold {
   font-weight: 550;

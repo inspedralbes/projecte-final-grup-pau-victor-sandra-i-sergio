@@ -61,14 +61,14 @@ export default {
 </script>
 
 <template>
-  <main>
-    <div class="submain">
-      <div>
-        <div>
-          <Header />
-        </div>
+  <div>
+    <div>
+      <Header />
+    </div>
 
-        <div class="cuestionario_sueño container">
+    <div class="fondo">
+      <div class="submain">
+        <div class="container cuestionario_sueño">
           <div class="row">
             <div class="col-12 text-center">
               <h2 class="titulo_cuestionario text-center">
@@ -117,7 +117,7 @@ export default {
         </div>
       </div>
     </div>
-  </main>
+  </div>
 </template>
 
 <style scoped>
@@ -128,20 +128,20 @@ export default {
 }
 
 .subtitulo {
-  margin: 15px;
+  padding: 15px;
 }
 
 .emoji_sueño {
   width: 35px;
 }
 
-main {
-  height: 89.9vh;
+.fondo {
+  width: 100vw;
+  min-height: 81vh;
   background: linear-gradient(90deg, #162046 0%, #0a0b0e 100%);
 }
 
 .submain {
-  height: 100%;
   width: 100%;
   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/stars-back.png");
   background-size: 400px;
