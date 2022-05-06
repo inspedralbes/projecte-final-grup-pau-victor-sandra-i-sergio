@@ -114,12 +114,12 @@ export default {
                     selected[0].value != 'Alegre' &&
                     selected[0].value != 'Energico'
                   ">¿Por qué estás {{ selected[0].value }}?</span>
-                  <button v-if="
+                  <h4 v-if="
                     selected[0].value == 'Alegre' ||
                     selected[0].value == 'Energico'
-                  " class="value button btn">
+                  " class="value button">
                     Hoy estoy {{ selected[0].value }}
-                  </button>
+                  </h4>
                   <button class="emoji-value button btn" type="button" @click="guardarMotivo($event.target.value)"
                     :key="index" v-for="(estado, index) in selected[0].motivos" :value="estado">
                     {{ estado }}
@@ -192,7 +192,6 @@ select {
   color: gray;
   font-size: 1rem;
   transition: all 0.3s;
-  overflow: hidden;
 }
 
 .pregunta {
