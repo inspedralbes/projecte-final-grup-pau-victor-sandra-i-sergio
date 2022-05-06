@@ -69,7 +69,9 @@ export default {
               <RouterLink class="nav-link" to="/">
                 <div class="d-flex align-items-center link_inicio">
                   <div class="align-self-center d-flex align-content-center">
-                    <span class="icono_inicio material-symbols-outlined">home</span>
+                    <span class="icono_inicio material-symbols-outlined"
+                      >home</span
+                    >
                   </div>
                   <div class="align-self-center mx-2">
                     <span class="bold">Inicio</span>
@@ -82,7 +84,9 @@ export default {
               <RouterLink class="nav-link" to="/alimentacion">
                 <div class="d-flex align-items-center link_alimentacion">
                   <div class="align-self-center d-flex align-content-center">
-                    <span class="icono_alimentacion material-symbols-outlined">restaurant</span>
+                    <span class="icono_alimentacion material-symbols-outlined"
+                      >restaurant</span
+                    >
                   </div>
                   <div class="align-self-center mx-2">
                     <span class="bold">Alimentación</span>
@@ -125,7 +129,9 @@ export default {
               <RouterLink class="nav-link" to="/">
                 <div class="d-flex align-items-center link_about_us">
                   <div class="align-self-center d-flex align-content-center">
-                    <span class="icono_about material-symbols-outlined">group</span>
+                    <span class="icono_about material-symbols-outlined"
+                      >group</span
+                    >
                   </div>
                   <div class="align-self-center mx-2">
                     <span class="bold">Sobre nosotros</span>
@@ -168,11 +174,6 @@ a {
 .link_about_us:hover {
   color: #8a8a8a;
 }
-
-
-
-
-
 
 .bold {
   font-weight: 550;

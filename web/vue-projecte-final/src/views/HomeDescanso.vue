@@ -95,11 +95,11 @@ export default {
                   :id="check"
                   @click="guardarseleccionada($event.target.value)"
                 >
-                  <img
+                  <!-- <img
                     class="emoji_sueño"
                     src="../../public/img/EMOJIS SUEÑO/agua.png"
                     alt=""
-                  />
+                  /> -->
                   {{ check }}
                 </button>
               </div>
