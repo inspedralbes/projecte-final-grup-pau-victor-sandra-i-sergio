@@ -80,88 +80,115 @@ export default {
     <div>
       <Header />
     </div>
-    <Transition name="bounce">
-      <div class="cuestionario_estado container px-4" v-if="disabled == false">
-        <div class="row">
-          <div class="col-12 text-center">
-            <h2 class="titulo_cuestionario text-center">
-              ¿Como te sientes hoy?
-            </h2>
+    <section>
+      <Transition name="bounce">
+        <div class="cuestionario_estado container px-4" v-if="disabled == false">
+          <div class="row">
+            <div class="col-12 text-center">
+              <h2 class="titulo_cuestionario text-center">
+                ¿Como te sientes hoy?
+              </h2>
+            </div>
+          </div>
+
+          <div class="row justify-content-center cartas">
+            <div class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center" v-for="(opcion, index) in estado"
+              :key="index" v-bind:value="opcion.value">
+              <CardVertical @id="this.guardarEstado" :infoCuest="this.estado[index]" />
+            </div>
           </div>
         </div>
+      </Transition>
 
-        <div class="row justify-content-center cartas">
-          <div class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center" v-for="(opcion, index) in estado"
-            :key="index" v-bind:value="opcion.value">
-            <CardVertical @id="this.guardarEstado" :infoCuest="this.estado[index]" />
-          </div>
-        </div>
-      </div>
-    </Transition>
+      <Transition name="bounce2">
+        <div class="container">
+          <div id="card-horizontal" v-if="selected && disabled2" class="card mb-3 shadow">
 
-    <Transition name="bounce2">
-      <div id="card-horizontal" v-if="selected && disabled2 == true" class="card mb-3">
-        <div class="row">
-          <div class="col-md-4 img-emoji">
-            <img :src="selected[0].emoji" id="emoji-card" />
-          </div>
-          <div class="col-md-8">
-            <div class="card-body">
-              <div class="d-grid">
-                <div class="botons col-12">
-                  <span class="pregunta" v-if="
+            <div class="row">
+              <div class="col-12 retroceder">
+                <a @click="retroceder()">
+                  <span class="material-symbols-outlined ">
+                    arrow_back
+                  </span>
+                </a>
+              </div>
+
+              <div class="col-md-4 gy-3 img-emoji">
+                <img :src="selected[0].emoji" id="emoji-card" />
+              </div>
+
+
+              <div class="col-md-8">
+                <div class="card-body">
+                  <h5 class="text-center card-body-tit" v-if="
                     selected[0].value != 'Alegre' &&
                     selected[0].value != 'Energico'
-                  ">¿Porque estas {{ selected[0].value }}?</span>
-                  <button v-if="
+                  ">¿Porqué estás {{ selected[0].value }}?</h5>
+
+
+                  <h5 class="text-center card-body-tit" v-if="
                     selected[0].value == 'Alegre' ||
                     selected[0].value == 'Energico'
-                  " class="value button btn">
-                    Hoy estoy {{ selected[0].value }}
-                  </button>
+                  ">Hoy estoy {{ selected[0].value }}</h5>
 
                   <div :key="index" v-for="(estado, index) in selected[0].motivos">
                     <div class="form-check">
                       <input class="form-check-input" type="radio" @click="guardarMotivo($event.target.value)"
-                        :value="index" :name="index" :id="index">
+                        :value="index" name="motivo" :id="index">
                       <label class="form-check-label" :for="index">
                         {{ estado }}
                       </label>
                     </div>
                   </div>
-
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
-                  <label class="form-check-label" for="flexRadioDefault1">
-                    Default radio
-                  </label>
-                </div>
-                <div class="form-check">
-                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
-                  <label class="form-check-label" for="flexRadioDefault2">
-                    Default checked radio
-                  </label>
                 </div>
               </div>
+
+              <div class="col-12 gy-2 text-center">
+                <input class="btn btn-outline-secondary btn-enviarRespuesta" type="button" @click="enviarFormulario()"
+                  value="Enviar respuesta" />
+              </div>
+
             </div>
           </div>
-          <div class="col-12 text-center">
-            <input class="btn btn-outline-secondary form-submit" type="button" @click="enviarFormulario()"
-              value="Enviar datos" />
-          </div>
-          <div id="retroceder" class="text-center mt-5">
-            <button @click="retroceder()" type="button" class="btn btn-outline-danger">
-              Retroceder
-            </button>
-          </div>
         </div>
-      </div>
-    </Transition>
+      </Transition>
+    </section>
   </div>
 </template>
 
-<style>
+<style scoped>
+section {
+  min-height: 81vh;
+  height: auto;
+}
+
+#card-horizontal {
+  padding: 15px;
+  margin-top: 20px
+}
+
+#card-horizontal .card-body-tit {
+  margin-bottom: 20px
+}
+
+.retroceder {
+  padding: 5px 17px;
+  position: absolute;
+  top: 0;
+  left: -10px
+}
+
+.retroceder span {
+  color: darkblue;
+  padding: 5px;
+  border-radius: 40%;
+  transition: all 0.3s ease-in-out
+}
+
+.retroceder span:hover {
+  background-color: #d3d3d35b;
+}
+
 select {
   background-color: white;
   color: rgb(168, 225, 248);
@@ -173,33 +200,15 @@ select {
   padding: 30px;
 }
 
-#card-horizontal {
-  margin-top: 5%;
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 50%;
-  border: 0;
-}
-
-.boton-enviar {
-  margin-top: 5%;
-}
-
-.card-border {
-  border: 2px dashed gray;
-}
-
 .img-emoji {
   text-align: center;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 #emoji-card {
-  max-width: 120px;
-  max-height: 120px;
-  margin-top: auto;
-  margin-bottom: auto;
+  height: 80%
 }
 
 .button {
@@ -218,10 +227,6 @@ select {
   color: black;
   font-size: 1rem;
   transition: all 0.3s;
-}
-
-.pregunta {
-  font-size: 1.1rem;
 }
 
 @media only screen and (min-width: 1400px) {

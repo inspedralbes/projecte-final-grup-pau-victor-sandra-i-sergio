@@ -80,10 +80,10 @@ export default {
             </div>
           </div>
 
-          <div class="row justify-content-center">
-            <div class="col-6 col-md-4 col-lg-3 gy-3" v-for="(check, index) in elemento" :key="index" v-bind:value="check">
+          <div class="row justify-content-center mt-3">
+            <div class="col-6 col-sm-4 col-md-3 col-lg-2 gy-3" v-for="(check, index) in elemento" :key="index" v-bind:value="check">
 
-              <div class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light"
+              <div class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light p-2"
                 :id="check" @click="guardarseleccionada(check)">
                 <div class="col-4">
                   <img class="emoji_sueño" src="../../public/img/EMOJIS SUEÑO/agua.png" alt="" />
@@ -96,7 +96,7 @@ export default {
             </div>
 
             <div class="col-12 gy-4 text-center">
-              <input class="btn btn-outline-secondary form-submit" type="button" @click="enviarFormulario()"
+              <input class="btn btn-outline-light form-submit" type="button" @click="enviarFormulario()"
                 value="Analizar sueño" />
             </div>
           </div>
