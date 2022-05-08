@@ -19,8 +19,8 @@ export default {
   },
 
   beforeMount() {
-    fetch("http://192.168.210.161:9000/salud-mental/estado-emocional")
-      // fetch("http://localhost:9000/salud-mental/estado-emocional")
+    // fetch("http://192.168.210.161:9000/salud-mental/estado-emocional")
+    fetch("http://localhost:9000/salud-mental/estado-emocional")
       .then((response) => response.json())
       .then((data) => {
         this.estado = data.estadoEmocional;
@@ -46,8 +46,8 @@ export default {
         motivo: this.motivo,
       });
       console.log(cuestSalud);
-      fetch("http://192.168.210.161:9000/salud-mental/respuesta-cuestionario", {
-        // fetch("http://localhost:9000/salud-mental/respuesta-cuestionario", {
+      // fetch("http://192.168.210.161:9000/salud-mental/respuesta-cuestionario", {
+      fetch("http://localhost:wd/salud-mental/respuesta-cuestionario", {
         method: "POST",
         body: cuestSalud,
       })
@@ -91,27 +91,16 @@ export default {
         </div>
 
         <div class="row justify-content-center cartas">
-          <div
-            class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center"
-            v-for="(opcion, index) in estado"
-            :key="index"
-            v-bind:value="opcion.value"
-          >
-            <CardVertical
-              @id="this.guardarEstado"
-              :infoCuest="this.estado[index]"
-            />
+          <div class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center" v-for="(opcion, index) in estado"
+            :key="index" v-bind:value="opcion.value">
+            <CardVertical @id="this.guardarEstado" :infoCuest="this.estado[index]" />
           </div>
         </div>
       </div>
     </Transition>
 
     <Transition name="bounce2">
-      <div
-        id="card-horizontal"
-        v-if="selected && disabled2 == true"
-        class="card mb-3"
-      >
+      <div id="card-horizontal" v-if="selected && disabled2 == true" class="card mb-3">
         <div class="row">
           <div class="col-md-4 img-emoji">
             <img :src="selected[0].emoji" id="emoji-card" />
@@ -120,51 +109,49 @@ export default {
             <div class="card-body">
               <div class="d-grid">
                 <div class="botons col-12">
-                  <span
-                    class="pregunta"
-                    v-if="
-                      selected[0].value != 'Alegre' &&
-                      selected[0].value != 'Energico'
-                    "
-                    >¿Porque estas {{ selected[0].value }}?</span
-                  >
-                  <button
-                    v-if="
-                      selected[0].value == 'Alegre' ||
-                      selected[0].value == 'Energico'
-                    "
-                    class="value button btn"
-                  >
+                  <span class="pregunta" v-if="
+                    selected[0].value != 'Alegre' &&
+                    selected[0].value != 'Energico'
+                  ">¿Porque estas {{ selected[0].value }}?</span>
+                  <button v-if="
+                    selected[0].value == 'Alegre' ||
+                    selected[0].value == 'Energico'
+                  " class="value button btn">
                     Hoy estoy {{ selected[0].value }}
                   </button>
-                  <button
-                    class="emoji-value button btn"
-                    type="button"
-                    @click="guardarMotivo($event.target.value)"
-                    :key="index"
-                    v-for="(estado, index) in selected[0].motivos"
-                    :value="estado"
-                  >
-                    {{ estado }}
-                  </button>
+
+                  <div :key="index" v-for="(estado, index) in selected[0].motivos">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" @click="guardarMotivo($event.target.value)"
+                        :value="index" :name="index" :id="index">
+                      <label class="form-check-label" :for="index">
+                        {{ estado }}
+                      </label>
+                    </div>
+                  </div>
+
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                  <label class="form-check-label" for="flexRadioDefault1">
+                    Default radio
+                  </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                  <label class="form-check-label" for="flexRadioDefault2">
+                    Default checked radio
+                  </label>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-12 text-center">
-            <input
-              class="btn btn-outline-secondary form-submit"
-              type="button"
-              @click="enviarFormulario()"
-              value="Enviar datos"
-            />
+            <input class="btn btn-outline-secondary form-submit" type="button" @click="enviarFormulario()"
+              value="Enviar datos" />
           </div>
           <div id="retroceder" class="text-center mt-5">
-            <button
-              @click="retroceder()"
-              type="button"
-              class="btn btn-outline-danger"
-            >
+            <button @click="retroceder()" type="button" class="btn btn-outline-danger">
               Retroceder
             </button>
           </div>
@@ -268,8 +255,7 @@ form {
 }
 
 @keyframes bounce-in {
-  from {
-  }
+  from {}
 
   40% {
     transform: translate(0, 100px);
@@ -299,8 +285,7 @@ form {
     opacity: 1;
   }
 
-  to {
-  }
+  to {}
 }
 
 .pos_fixed {

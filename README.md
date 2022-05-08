@@ -15,11 +15,12 @@ Aplicació web que engloba tots els aspectes de la salut (activitat fisica, alim
 És obligatori seguir aquesta estructura tot i que la podeu ampliar.
 
 # Aquest fitxer ha de contenir com a mínim:
- * URL de producció (quan la tingueu)
+ * URL de producció frontend: ""
+ * URL de producció backend: ""
  * Estat: (explicació de en quin punt està)
 
 
 // obtenir dades de mibands per dormir (consumir les dades).
 
 # Backlog & Sprints
-* https://institutpedralbes.teamwork.com/#/projects/14122/tasks/board
+ * https://institutpedralbes.teamwork.com/#/projects/14122/tasks/board

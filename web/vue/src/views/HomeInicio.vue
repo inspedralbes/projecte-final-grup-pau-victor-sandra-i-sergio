@@ -80,7 +80,7 @@ export default {
   </main>
 </template>
 
-<style>
+<style scoped>
 .landingPage .col-12 span {
   font-size: 6vw;
 }
@@ -135,6 +135,10 @@ export default {
   padding: 10px 10px 10px 10px;
   text-transform: uppercase;
   position: relative;
+}
+
+.alimentacion:hover{
+box-shadow: red;
 }
 
 @media only screen and (min-width: 626px) {

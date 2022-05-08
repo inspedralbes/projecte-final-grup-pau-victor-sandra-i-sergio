@@ -13,8 +13,8 @@ export default {
   },
 
   beforeMount() {
-    fetch("http://192.168.210.161:9000/descanso/tipos-suenos")
-      // fetch("http://localhost:9000/descanso/tipos-suenos")
+    // fetch("http://192.168.210.161:9000/descanso/tipos-suenos")
+    fetch("http://localhost:9000/descanso/tipos-suenos")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -46,8 +46,8 @@ export default {
       cuestDescanso.append("descripcionSueno", JSON.stringify(this.selected));
       cuestDescanso.append("usuario", "alvaro");
 
-      fetch("http://192.168.210.161:9000/descanso/respuesta-cuestionario", {
-        // fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
+      // fetch("http://192.168.210.161:9000/descanso/respuesta-cuestionario", {
+      fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
         method: "POST",
         body: cuestDescanso,
       })
@@ -80,38 +80,24 @@ export default {
             </div>
           </div>
 
-          <div class="row">
-            <div
-              class="col-4"
-              v-for="(check, index) in elemento"
-              :key="index"
-              v-bind:value="check"
-            >
-              <div>
-                <button
-                  class="btn btn-outline-secondary"
-                  type="button"
-                  :value="check"
-                  :id="check"
-                  @click="guardarseleccionada($event.target.value)"
-                >
-                  <!-- <img
-                    class="emoji_sueño"
-                    src="../../public/img/EMOJIS SUEÑO/agua.png"
-                    alt=""
-                  /> -->
-                  {{ check }}
-                </button>
+          <div class="row justify-content-center">
+            <div class="col-6 col-md-4 col-lg-3 gy-3" v-for="(check, index) in elemento" :key="index" v-bind:value="check">
+
+              <div class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light"
+                :id="check" @click="guardarseleccionada(check)">
+                <div class="col-4">
+                  <img class="emoji_sueño" src="../../public/img/EMOJIS SUEÑO/agua.png" alt="" />
+                </div>
+
+                <div class="col-8">
+                  <p class="text-start">{{ check }}</p>
+                </div>
               </div>
             </div>
 
-            <div class="col-12 text-center">
-              <input
-                class="btn btn-outline-secondary form-submit"
-                type="button"
-                @click="enviarFormulario()"
-                value="Analizar sueño"
-              />
+            <div class="col-12 gy-4 text-center">
+              <input class="btn btn-outline-secondary form-submit" type="button" @click="enviarFormulario()"
+                value="Analizar sueño" />
             </div>
           </div>
         </div>
@@ -137,7 +123,8 @@ export default {
 
 .fondo {
   width: 100vw;
-  min-height: 81.2vh;
+  min-height: 100vh;
+  height: auto;
   background: linear-gradient(90deg, #162046 0%, #0a0b0e 100%);
 }
 
@@ -148,5 +135,9 @@ export default {
   background-size: 400px;
   background-repeat: repeat;
   position: absolute;
+}
+
+.submain .col-8 p {
+  margin: 0 0 0 7px;
 }
 </style>
