@@ -35,6 +35,7 @@ export default {
     guardarseleccionada(id) {
       if (this.selected.length < 5) {
         this.selected.push(id);
+        //console.log(this.selected);
       } else {
         alert("No puedes seleccionar más de 5 opciones");
       }
@@ -88,7 +89,14 @@ export default {
               v-bind:value="check"
             >
               <div
-                class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light p-2"
+                class="
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                  flex-direction-row
+                  btn btn-outline-light
+                  p-2
+                "
                 :id="check"
                 @click="guardarseleccionada(check)"
               >
@@ -116,6 +124,8 @@ export default {
             </div>
           </div>
         </div>
+
+        <!-- Card Respuesta -->
       </div>
     </div>
   </div>
