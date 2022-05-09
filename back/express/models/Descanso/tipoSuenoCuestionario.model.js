@@ -5,6 +5,14 @@ const tipoSueno = new Schema({
     tipo: {
         type: String
     },
+
+    img: {
+        type: String
+    }, 
+    
+    respuesta: {
+        type: String
+    }
 }, {
     collection: 'tipoSueno'
 });

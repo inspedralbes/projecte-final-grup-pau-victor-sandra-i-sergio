@@ -16,6 +16,7 @@ SaludMental.route('/').get(function(req, res) {
     });
 });
 
+
 // Todos los tipos de sueño
 SaludMental.route("/estado-emocional").get((req, res) => {
     EstadoEmocional.find(function(err, resultado) {
@@ -26,6 +27,7 @@ SaludMental.route("/estado-emocional").get((req, res) => {
         }
     });
 });
+
 
 // Añadir tipo de sueño
 SaludMental.route('/anadir-estado-emocional').post((req, res) => {
@@ -40,8 +42,9 @@ SaludMental.route('/anadir-estado-emocional').post((req, res) => {
     res.json({ 'status': true, 'msg': 'Informacion guardada' });
 });
 
+
 // POST - RESPONDER EL CUESTIONARIO
-SaludMental.route('/respuesta-cuestionario').post((req, res) => {
+SaludMental.route('/guardar-datos-cuestionario').post((req, res) => {
     let datos = req.body;
     if (Object.keys(datos).length != 3) { // Solo se pasan 3 campos
         res.status(500);
@@ -64,5 +67,31 @@ SaludMental.route('/respuesta-cuestionario').post((req, res) => {
         }
     }
 });
+
+
+SaludMental.route('/respuesta-cuestionario').post((req, res) => {
+    let datos = req.body;
+    let motivo, r;
+
+
+    EstadoEmocional.find({ value: datos.estado }, function(err, resultado) {
+        if (err) { console.log(err); } else {
+            resultado = resultado[0];
+
+            Object.entries(resultado.motivos).forEach(([key, value]) => {
+                if (value == datos.motivo) motivo = key;
+            });
+
+            r = {
+                "estado" : resultado.value,
+                "motivo" : resultado.motivos[motivo],
+                "respuesta" : resultado.respuestas[motivo]
+            }
+
+            res.json({ 'status': true, 'resultado': r });
+        }
+    });
+});
+
 
 module.exports = SaludMental;

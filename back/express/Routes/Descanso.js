@@ -21,12 +21,11 @@ Descanso.route("/tipos-suenos").get((req, res) => {
         if (err) {
             console.log(err);
         } else {
-            console.log(resultado);
             let r = new Array();
-            resultado.forEach( (e) => {
+            resultado.forEach((e) => {
                 r.push(e.tipo)
             })
-           
+
             res.json({ "tipoSueno": r });
         }
     });
@@ -44,10 +43,9 @@ Descanso.route('/anadir-tipo-sueno').post((req, res) => {
 });
 
 // Añadir una respuesta del cuestionario 
-Descanso.route('/respuesta-cuestionario').post((req, res) => {
+Descanso.route('/guardar-datos-cuestionario').post((req, res) => {
     let datos = req.body;
     datos.descripcionSueno = JSON.parse(datos.descripcionSueno)
-    console.log(datos);
     if (Object.keys(datos).length != 2) { // Solo se pasan 2 campos
         res.status(500);
         res.json({ 'status': false, 'msg': 'Error! Falta/Sobra algún campo' });
@@ -69,6 +67,49 @@ Descanso.route('/respuesta-cuestionario').post((req, res) => {
             }
         }
     }
+});
+
+Descanso.route('/respuesta-cuestionario').post((req, res) => {
+    const datos = req.body;
+    datos.tipo = JSON.parse(datos.tipo);
+
+    TipoSueno.find({}, function(err, resultado) {
+        if (err) {
+            console.log(err);
+        } else {
+            const r = [];
+            console.log(resultado)
+
+            // resultado.forEach((el) => {
+            //     datos.tipo.forEach((tip) => {
+            //         if(el == tip){
+            //             return r = {
+            //                 "tipo": tip,
+            //                 "respuesta": resultado.respuesta
+            //             };
+            //         }
+            //     })
+            // });
+
+            r = resultado.filter(v => {
+                let aa = []
+                datos.tipo.forEach((el) => {
+                    if (v == el) aa.push({
+                        "tipo": tip,
+                        "respuesta": resultado.respuesta
+                    })
+                })
+
+                return aa;
+            })
+
+
+            res.json({ 'status': true, 'resultado': r });
+
+        }
+    });
+
+
 });
 
 module.exports = Descanso;

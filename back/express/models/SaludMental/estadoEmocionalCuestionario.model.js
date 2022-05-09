@@ -12,6 +12,10 @@ const estadoEmocional = new Schema({
 
     motivos: {
         type: Object
+    },
+    
+    respuestas:{
+        type: Object
     }
 }, {
     collection: 'estadoEmocional'
