@@ -1,9 +1,11 @@
 <script>
 import Header from "../components/SubHeader.vue";
+import CardSuenos from "../components/CardSuenos.vue";
 
 export default {
   components: {
     Header,
+    CardSuenos,
   },
   data() {
     return {
@@ -19,7 +21,6 @@ export default {
       .then((data) => {
         console.log(data);
         this.elemento = data.tipoSueno;
-        console.log(this.elemento);
       });
   },
 
@@ -34,15 +35,33 @@ export default {
     },
     guardarseleccionada(id) {
       if (this.selected.length < 5) {
-        this.selected.push(id);
-        //console.log(this.selected);
+        if (this.selected.includes(id)) {
+          this.selected = this.selected.filter((v) => {
+            console.log(v);
+            return v != id;
+          });
+        } else {
+          this.selected.push(id);
+        }
       } else {
-        alert("No puedes seleccionar más de 5 opciones");
+        if (this.selected.includes(id)) {
+          this.selected = this.selected.filter((v) => {
+            return v != id;
+          });
+        } else {
+          alert("No puedes seleccionar más de 5 opciones");
+        }
       }
 
+      //console.log(this.selected);
+
       console.log(this.selected);
+      console.log(this.selected.length);
     },
     enviarFormulario() {
+      let divResultado = document.getElementById("card-respuesta");
+      divResultado.style.display = 'block';
+
       var cuestDescanso = new FormData();
       cuestDescanso.append("descripcionSueno", JSON.stringify(this.selected));
       cuestDescanso.append("usuario", "alvaro");
@@ -88,7 +107,20 @@ export default {
               :key="index"
               v-bind:value="check"
             >
-              <div
+              <CardSuenos
+                class="
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                  flex-direction-row
+                  btn btn-outline-light
+                  p-2
+                "
+                @id="this.guardarseleccionada"
+                :infoCuest="check"
+                :contador="this.selected.length"
+              />
+              <!-- <div
                 class="
                   d-flex
                   align-items-center
@@ -111,7 +143,7 @@ export default {
                 <div class="col-8">
                   <p class="text-start">{{ check }}</p>
                 </div>
-              </div>
+              </div> -->
             </div>
 
             <div class="col-12 gy-4 text-center">
@@ -125,7 +157,27 @@ export default {
           </div>
         </div>
 
+
         <!-- Card Respuesta -->
+        <div id="card-respuesta">
+          <div class="card-group">
+            <div v-for="n in this.selected.length" class="col-6 card">
+              <img src="http://cantina2.alumnes.inspedralbes.cat/projecteCantina/css/bocadillo1.jpg" class="card-img-top">
+              <div class="card-body">
+                <h5 class="card-title">{{this.selected[n-1]}}</h5>
+                <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
+                <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Official website</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+
+
       </div>
     </div>
   </div>
@@ -144,6 +196,21 @@ export default {
 
 .emoji_sueño {
   width: 35px;
+}
+
+.card-group {
+  display: flex;
+  justify-content: center;
+}
+
+#card-respuesta {
+  display: none;
+}
+
+.card {
+  max-width: 15%;
+  min-width: 150px;
+  margin: 1%;
 }
 
 .fondo {
