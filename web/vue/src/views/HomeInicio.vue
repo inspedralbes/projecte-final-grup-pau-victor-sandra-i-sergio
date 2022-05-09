@@ -99,7 +99,7 @@ export default {
 
 .alimentacion span {
   border-radius: 10px;
-  background-color: #ffc65594;
+  background-color: #7ed957c4;
   padding: 10px 60px 10px 10px;
   text-transform: uppercase;
   position: relative;
@@ -115,7 +115,7 @@ export default {
 
 .ejercicio span {
   border-radius: 10px;
-  background-color: #ffc65594;
+  background-color: #ff914dc4;
   padding: 10px 10px 10px 60px;
   text-transform: uppercase;
   position: relative;
@@ -131,7 +131,7 @@ export default {
 
 .saludmental span {
   border-radius: 10px;
-  background-color: #a6bfd094;
+  background-color: #5cb8e6c4;
   padding: 10px 10px 10px 10px;
   text-transform: uppercase;
   position: relative;
