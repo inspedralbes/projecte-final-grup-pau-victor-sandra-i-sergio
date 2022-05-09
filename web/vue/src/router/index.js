@@ -5,6 +5,7 @@ import HomeAlimentacion from "../views/HomeAlimentacion.vue";
 import HomeSaludmental from "../views/HomeSaludmental.vue";
 import HomeInicio from "../views/HomeInicio.vue";
 import HomeDescanso from "../views/HomeDescanso.vue";
+import IniciarSesion from "../views/IniciarSesion.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,6 +34,11 @@ const router = createRouter({
       path: "/descanso",
       name: "descanso",
       component: HomeDescanso,
+    },
+    {
+      path: "/iniciarSesion",
+      name: "iniciarSesion",
+      component: IniciarSesion,
     },
   ],
 });

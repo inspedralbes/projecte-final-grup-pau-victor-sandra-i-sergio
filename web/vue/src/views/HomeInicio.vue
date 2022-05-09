@@ -137,8 +137,8 @@ export default {
   position: relative;
 }
 
-.alimentacion:hover{
-box-shadow: red;
+.alimentacion:hover {
+  box-shadow: red;
 }
 
 @media only screen and (min-width: 626px) {
