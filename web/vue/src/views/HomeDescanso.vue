@@ -41,8 +41,10 @@ export default {
       }
 
       console.log(this.selected);
+      console.log(this.selected.length);
     },
     enviarFormulario() {
+
       var cuestDescanso = new FormData();
       cuestDescanso.append("descripcionSueno", JSON.stringify(this.selected));
       cuestDescanso.append("usuario", "alvaro");
@@ -125,7 +127,82 @@ export default {
           </div>
         </div>
 
+
         <!-- Card Respuesta -->
+        <!-- Modo muy feo pero fucniona -->
+        <!--<div class="card-group" id="divResultado">
+            <div v-if="this.selected[0]!=null" class="card">
+              <img id="imgRespuesta" src="http://cantina2.alumnes.inspedralbes.cat/projecteCantina/css/bocadillo1.jpg" class="card-img-top" >
+              <div class="card-body">
+                <h5 class="card-title">{{this.selected[0]}}</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Official website</small>
+              </div>
+            </div>
+            <div v-if="this.selected[1]!=null" class="card">
+              <img id="imgRespuesta" src="http://cantina2.alumnes.inspedralbes.cat/projecteCantina/css/bocadillo1.jpg" class="card-img-top" >
+              <div class="card-body">
+                <h5 class="card-title">{{this.selected[1]}}</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Official website</small>
+              </div>
+            </div>
+            <div v-if="this.selected[2]!=null" class="card">
+              <img id="imgRespuesta" src="http://cantina2.alumnes.inspedralbes.cat/projecteCantina/css/bocadillo1.jpg" class="card-img-top" >
+              <div class="card-body">
+                <h5 class="card-title">{{this.selected[2]}}</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Official website</small>
+              </div>
+            </div>
+          </div>
+          <div class="card-group" id="divResultado">
+            <div v-if="this.selected[3]!=null" class="card">
+              <img id="imgRespuesta" src="http://cantina2.alumnes.inspedralbes.cat/projecteCantina/css/bocadillo1.jpg" class="card-img-top" >
+              <div class="card-body">
+                <h5 class="card-title">{{this.selected[3]}}</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Official website</small>
+              </div>
+            </div>
+            <div v-if="this.selected[4]!=null" class="card">
+              <img id="imgRespuesta" src="http://cantina2.alumnes.inspedralbes.cat/projecteCantina/css/bocadillo1.jpg" class="card-img-top" >
+              <div class="card-body">
+                <h5 class="card-title">{{this.selected[4]}}</h5>
+                <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+              </div>
+              <div class="card-footer">
+                <small class="text-muted">Official website</small>
+              </div>
+            </div>
+        </div>-->
+
+
+        <div class="card-group">
+          <div v-for="n in this.selected.length" class="col-6 card">
+            <img src="http://cantina2.alumnes.inspedralbes.cat/projecteCantina/css/bocadillo1.jpg" class="card-img-top">
+            <div class="card-body">
+              <h5 class="card-title">{{this.selected[n-1]}}</h5>
+              <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
+              <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+            </div>
+            <div class="card-footer">
+              <small class="text-muted">Official website</small>
+            </div>
+          </div>
+        </div>
+
+
+
+
       </div>
     </div>
   </div>
@@ -144,6 +221,15 @@ export default {
 
 .emoji_sueño {
   width: 35px;
+}
+
+.card-group {
+  justify-content: center;
+}
+
+.card {
+  max-width: 15%;
+  margin: 1%;
 }
 
 .fondo {

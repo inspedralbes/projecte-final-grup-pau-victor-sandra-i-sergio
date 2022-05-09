@@ -169,11 +169,10 @@ export default {
                         <input
                           class="form-check-input"
                           type="radio"
-                          :value="index"
                           name="motivo"
-                          :id="index"
+                          checked
                         />
-                        <label class="form-check-label" :for="index">
+                        <label class="form-check-label">
                           Estoy {{ selected[0].value }}
                         </label>
                       </div>
