@@ -1,0 +1,9 @@
+{
+    "status" : true,
+    "respuestas":[
+        {
+            "tipo": "Muerte",
+            "respuesta": "link"
+        }
+    ]
+}
