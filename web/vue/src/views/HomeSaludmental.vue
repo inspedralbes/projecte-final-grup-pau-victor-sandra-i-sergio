@@ -135,43 +135,48 @@ export default {
 
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5
-                    class="text-center card-body-tit"
-                    v-if="
-                      selected[0].value != 'Alegre' &&
-                      selected[0].value != 'Energico'
-                    "
-                  >
-                    ¿Porqué estás {{ selected[0].value }}?
-                  </h5>
-
-                  <h5
-                    class="text-center card-body-tit"
-                    v-if="
-                      selected[0].value == 'Alegre' ||
-                      selected[0].value == 'Energico'
-                    "
-                  >
-                    Hoy estoy {{ selected[0].value }}
-                  </h5>
-
-                  <div
-                    :key="index"
-                    v-for="(estado, index) in selected[0].motivos"
-                  >
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        @click="guardarMotivo($event.target.value)"
-                        :value="index"
-                        name="motivo"
-                        :id="index"
-                      />
-                      <label class="form-check-label" :for="index">
-                        {{ estado }}
-                      </label>
+                  <div v-if="selected[0].value != 'Alegre' && selected[0].value != 'Energico'">
+                    <h5 class="text-center card-body-tit">
+                      ¿Porqué estás {{ selected[0].value }}?
+                    </h5>
+                    <div
+                      :key="index"
+                      v-for="(estado, index) in selected[0].motivos"
+                    >
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          @click="guardarMotivo($event.target.value)"
+                          :value="index"
+                          name="motivo"
+                          :id="index"
+                        />
+                        <label class="form-check-label" :for="index">
+                          {{ estado }}
+                        </label>
+                      </div>
                     </div>
+                  </div>
+
+                  <div  v-if="selected[0].value == 'Alegre' || selected[0].value == 'Energico'">
+                    <h5
+                      class="text-center card-body-tit"
+                    >
+                      Hoy estoy {{ selected[0].value }}
+                    </h5>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          :value="index"
+                          name="motivo"
+                          :id="index"
+                        />
+                        <label class="form-check-label" :for="index">
+                          Estoy {{ selected[0].value }}
+                        </label>
+                      </div>
                   </div>
                 </div>
               </div>
