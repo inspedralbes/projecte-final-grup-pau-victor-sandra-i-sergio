@@ -40,6 +40,8 @@ export default {
     },
 
     enviarFormulario() {
+      let divresultado = document.getElementById("divResultado");
+      divresultado.style.display = 'block';
       var cuestSalud = new URLSearchParams({
         usuario: "ermengol",
         estado: this.selected[0].value,
@@ -152,6 +154,24 @@ export default {
           </div>
         </div>
       </Transition>
+
+      
+      <div v-if="selected && disabled2" >
+        <div v-if="selected[0].value != 'Alegre' && selected[0].value != 'Energico'" id="divResultado" class="card-respuesta card text-center">
+          <div class="card-header">
+            Información sobre mi estado de ánimo actual
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Hoy estoy {{ selected[0].value }} <img id="emojiTexto" :src="selected[0].emoji"  /></h5>
+            <p class="card-text">Información sobre porque estoy {{ selected[0].value }} y como puedo cambiar este sentimiento</p>
+            <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+          </div>
+          <div class="card-footer text-muted">
+            Official website
+          </div>
+        </div>
+      </div>
+
     </section>
   </div>
 </template>
@@ -169,6 +189,13 @@ section {
 
 #card-horizontal .card-body-tit {
   margin-bottom: 20px
+}
+
+.card-respuesta {
+  display: none;
+  margin-top: 5%;
+  margin-left: 15%;
+  margin-right: 15%;
 }
 
 .retroceder {
@@ -209,6 +236,10 @@ select {
 
 #emoji-card {
   height: 80%
+}
+
+#emojiTexto {
+  width: 25px;
 }
 
 .button {
