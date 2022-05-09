@@ -6,7 +6,7 @@ const TipoSueno = require('../models/descanso/tipoSuenoCuestionario.model');
 
 // Todas las respuestas al cuestionario
 Descanso.route("/").get((req, res) => {
-    CuestionarioDescanso.find(function(err, resultado) {
+    CuestionarioDescanso.find(function (err, resultado) {
         if (err) {
             console.log(err);
         } else {
@@ -17,7 +17,7 @@ Descanso.route("/").get((req, res) => {
 
 // Todos los tipos de sueño
 Descanso.route("/tipos-suenos").get((req, res) => {
-    TipoSueno.find(function(err, resultado) {
+    TipoSueno.find(function (err, resultado) {
         if (err) {
             console.log(err);
         } else {
@@ -73,39 +73,24 @@ Descanso.route('/respuesta-cuestionario').post((req, res) => {
     const datos = req.body;
     datos.tipo = JSON.parse(datos.tipo);
 
-    TipoSueno.find({}, function(err, resultado) {
+    TipoSueno.find({}, function (err, resultado) {
         if (err) {
             console.log(err);
         } else {
-            const r = [];
-            console.log(resultado)
+            let r = [];
+            for (let i = 0; i < resultado.length; i++) {
+                for (let j = 0; j < datos.tipo.length; j++) {
+                    if (datos.tipo[j] == resultado[i].tipo) {
+                        r.push({
+                            "tipo": resultado[i].tipo,
+                            "respuesta": resultado[i].respuesta
+                        })
+                    }
+                }
+            }
 
-            // resultado.forEach((el) => {
-            //     datos.tipo.forEach((tip) => {
-            //         if(el == tip){
-            //             return r = {
-            //                 "tipo": tip,
-            //                 "respuesta": resultado.respuesta
-            //             };
-            //         }
-            //     })
-            // });
-
-            r = resultado.filter(v => {
-                let aa = []
-                datos.tipo.forEach((el) => {
-                    if (v == el) aa.push({
-                        "tipo": tip,
-                        "respuesta": resultado.respuesta
-                    })
-                })
-
-                return aa;
-            })
-
-
+            res.status(202)
             res.json({ 'status': true, 'resultado': r });
-
         }
     });
 
