@@ -1,3 +1,13 @@
 {
-    "opciones": [ "Muerte", "...."]
+    "estado": [
+        {
+            "text": "Desanimado",
+            "emoji": "ruta de la imagen del emoji" ,
+            "motivos": {
+                "motivo1": "Últimamente estoy siempre cansado sin importar lo que haga",
+                "motivo2": "Nada me genera especial interés y me cuesta disfrutar de las cosas",
+                "motivo3": "Otro"
+            }
+        }
+    ]
 }
