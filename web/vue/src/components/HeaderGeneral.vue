@@ -51,7 +51,7 @@ export default {
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="nav-item my-1">
-              <RouterLink class="nav-link" to="/">
+              <RouterLink class="nav-link" to="/iniciarSesion">
                 <div class="d-flex align-items-center link_cuenta">
                   <div class="align-self-center d-flex align-content-center">
                     <span class="icono_cuenta material-symbols-outlined"

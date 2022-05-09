@@ -20,7 +20,7 @@ export default {
 
   beforeMount() {
     fetch("http://192.168.210.161:9000/salud-mental/estado-emocional")
-    // fetch("http://localhost:9000/salud-mental/estado-emocional")
+      // fetch("http://localhost:9000/salud-mental/estado-emocional")
       .then((response) => response.json())
       .then((data) => {
         this.estado = data.estadoEmocional;
@@ -46,11 +46,14 @@ export default {
         motivo: this.motivo,
       });
       console.log(cuestSalud);
-      ("http://192.168.210.161:9000/salud-mental/respuesta-cuestionario", {
-      // fetch("http://localhost:wd/salud-mental/respuesta-cuestionario", {
-        method: "POST",
-        body: cuestSalud,
-      })
+      fetch(
+        "http://192.168.210.161:9000/salud-mental/guardar-datos-cuestionario",
+        {
+          // fetch("http://localhost:wd/salud-mental/guardar-datos-cuestionario", {
+          method: "POST",
+          body: cuestSalud,
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
@@ -82,7 +85,10 @@ export default {
     </div>
     <section>
       <Transition name="bounce">
-        <div class="cuestionario_estado container px-4" v-if="disabled == false">
+        <div
+          class="cuestionario_estado container px-4"
+          v-if="disabled == false"
+        >
           <div class="row">
             <div class="col-12 text-center">
               <h2 class="titulo_cuestionario text-center">
@@ -92,9 +98,16 @@ export default {
           </div>
 
           <div class="row justify-content-center cartas">
-            <div class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center" v-for="(opcion, index) in estado"
-              :key="index" v-bind:value="opcion.value">
-              <CardVertical @id="this.guardarEstado" :infoCuest="this.estado[index]" />
+            <div
+              class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center"
+              v-for="(opcion, index) in estado"
+              :key="index"
+              v-bind:value="opcion.value"
+            >
+              <CardVertical
+                @id="this.guardarEstado"
+                :infoCuest="this.estado[index]"
+              />
             </div>
           </div>
         </div>
@@ -102,14 +115,15 @@ export default {
 
       <Transition name="bounce2">
         <div class="container">
-          <div id="card-horizontal" v-if="selected && disabled2" class="card mb-3 shadow">
-
+          <div
+            id="card-horizontal"
+            v-if="selected && disabled2"
+            class="card mb-3 shadow"
+          >
             <div class="row">
               <div class="col-12 retroceder">
                 <a @click="retroceder()">
-                  <span class="material-symbols-outlined ">
-                    arrow_back
-                  </span>
+                  <span class="material-symbols-outlined"> arrow_back </span>
                 </a>
               </div>
 
@@ -117,24 +131,41 @@ export default {
                 <img :src="selected[0].emoji" id="emoji-card" />
               </div>
 
-
               <div class="col-md-8">
                 <div class="card-body">
-                  <h5 class="text-center card-body-tit" v-if="
-                    selected[0].value != 'Alegre' &&
-                    selected[0].value != 'Energico'
-                  ">¿Porqué estás {{ selected[0].value }}?</h5>
+                  <h5
+                    class="text-center card-body-tit"
+                    v-if="
+                      selected[0].value != 'Alegre' &&
+                      selected[0].value != 'Energico'
+                    "
+                  >
+                    ¿Porqué estás {{ selected[0].value }}?
+                  </h5>
 
+                  <h5
+                    class="text-center card-body-tit"
+                    v-if="
+                      selected[0].value == 'Alegre' ||
+                      selected[0].value == 'Energico'
+                    "
+                  >
+                    Hoy estoy {{ selected[0].value }}
+                  </h5>
 
-                  <h5 class="text-center card-body-tit" v-if="
-                    selected[0].value == 'Alegre' ||
-                    selected[0].value == 'Energico'
-                  ">Hoy estoy {{ selected[0].value }}</h5>
-
-                  <div :key="index" v-for="(estado, index) in selected[0].motivos">
+                  <div
+                    :key="index"
+                    v-for="(estado, index) in selected[0].motivos"
+                  >
                     <div class="form-check">
-                      <input class="form-check-input" type="radio" @click="guardarMotivo($event.target.value)"
-                        :value="index" name="motivo" :id="index">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        @click="guardarMotivo($event.target.value)"
+                        :value="index"
+                        name="motivo"
+                        :id="index"
+                      />
                       <label class="form-check-label" :for="index">
                         {{ estado }}
                       </label>
@@ -144,10 +175,13 @@ export default {
               </div>
 
               <div class="col-12 gy-2 text-center">
-                <input class="btn btn-outline-secondary btn-enviarRespuesta" type="button" @click="enviarFormulario()"
-                  value="Enviar respuesta" />
+                <input
+                  class="btn btn-outline-secondary btn-enviarRespuesta"
+                  type="button"
+                  @click="enviarFormulario()"
+                  value="Enviar respuesta"
+                />
               </div>
-
             </div>
           </div>
         </div>
@@ -164,25 +198,25 @@ section {
 
 #card-horizontal {
   padding: 15px;
-  margin-top: 20px
+  margin-top: 20px;
 }
 
 #card-horizontal .card-body-tit {
-  margin-bottom: 20px
+  margin-bottom: 20px;
 }
 
 .retroceder {
   padding: 5px 17px;
   position: absolute;
   top: 0;
-  left: -10px
+  left: -10px;
 }
 
 .retroceder span {
   color: darkblue;
   padding: 5px;
   border-radius: 40%;
-  transition: all 0.3s ease-in-out
+  transition: all 0.3s ease-in-out;
 }
 
 .retroceder span:hover {
@@ -208,7 +242,7 @@ select {
 }
 
 #emoji-card {
-  height: 80%
+  height: 80%;
 }
 
 .button {
@@ -260,7 +294,8 @@ form {
 }
 
 @keyframes bounce-in {
-  from {}
+  from {
+  }
 
   40% {
     transform: translate(0, 100px);
@@ -290,7 +325,8 @@ form {
     opacity: 1;
   }
 
-  to {}
+  to {
+  }
 }
 
 .pos_fixed {
