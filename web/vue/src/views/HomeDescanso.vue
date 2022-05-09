@@ -1,9 +1,11 @@
 <script>
 import Header from "../components/SubHeader.vue";
+import CardSuenos from "../components/CardSuenos.vue";
 
 export default {
   components: {
     Header,
+    CardSuenos,
   },
   data() {
     return {
@@ -19,7 +21,6 @@ export default {
       .then((data) => {
         console.log(data);
         this.elemento = data.tipoSueno;
-        console.log(this.elemento);
       });
   },
 
@@ -34,11 +35,25 @@ export default {
     },
     guardarseleccionada(id) {
       if (this.selected.length < 5) {
-        this.selected.push(id);
-        //console.log(this.selected);
+        if (this.selected.includes(id)) {
+          this.selected = this.selected.filter((v) => {
+            console.log(v);
+            return v != id;
+          });
+        } else {
+          this.selected.push(id);
+        }
       } else {
-        alert("No puedes seleccionar más de 5 opciones");
+        if (this.selected.includes(id)) {
+          this.selected = this.selected.filter((v) => {
+            return v != id;
+          });
+        } else {
+          alert("No puedes seleccionar más de 5 opciones");
+        }
       }
+
+      //console.log(this.selected);
 
       console.log(this.selected);
     },
@@ -88,7 +103,20 @@ export default {
               :key="index"
               v-bind:value="check"
             >
-              <div
+              <CardSuenos
+                class="
+                  d-flex
+                  align-items-center
+                  justify-content-center
+                  flex-direction-row
+                  btn btn-outline-light
+                  p-2
+                "
+                @id="this.guardarseleccionada"
+                :infoCuest="check"
+                :contador="this.selected.length"
+              />
+              <!-- <div
                 class="
                   d-flex
                   align-items-center
@@ -111,7 +139,7 @@ export default {
                 <div class="col-8">
                   <p class="text-start">{{ check }}</p>
                 </div>
-              </div>
+              </div> -->
             </div>
 
             <div class="col-12 gy-4 text-center">
