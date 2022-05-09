@@ -35,6 +35,7 @@ export default {
     guardarseleccionada(id) {
       if (this.selected.length < 5) {
         this.selected.push(id);
+        //console.log(this.selected);
       } else {
         alert("No puedes seleccionar más de 5 opciones");
       }
@@ -47,7 +48,6 @@ export default {
       cuestDescanso.append("usuario", "alvaro");
 
       fetch("http://192.168.210.161:9000/descanso/respuesta-cuestionario", {
-      // fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
         method: "POST",
         body: cuestDescanso,
       })
@@ -101,6 +101,12 @@ export default {
             </div>
           </div>
         </div>
+
+
+  <!-- Card Respuesta -->
+
+
+
       </div>
     </div>
   </div>
