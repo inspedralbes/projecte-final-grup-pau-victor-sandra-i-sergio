@@ -41,7 +41,7 @@ export default {
 
     enviarFormulario() {
       let divresultado = document.getElementById("divResultado");
-      divresultado.style.display = 'block';
+      divresultado.style.display = "block";
       var cuestSalud = new URLSearchParams({
         usuario: "ermengol",
         estado: this.selected[0].value,
@@ -161,23 +161,26 @@ export default {
                       </div>
                     </div>
 
-                  <div  v-if="selected[0].value == 'Alegre' || selected[0].value == 'Energico'">
-                    <h5
-                      class="text-center card-body-tit"
-                    >
+                  <div
+                    v-if="
+                      selected[0].value == 'Alegre' ||
+                      selected[0].value == 'Energico'
+                    "
+                  >
+                    <h5 class="text-center card-body-tit">
                       Hoy estoy {{ selected[0].value }}
                     </h5>
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="motivo"
-                          checked
-                        />
-                        <label class="form-check-label">
-                          Estoy {{ selected[0].value }}
-                        </label>
-                      </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="motivo"
+                        checked
+                      />
+                      <label class="form-check-label">
+                        Estoy {{ selected[0].value }}
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -196,9 +199,14 @@ export default {
         </div>
       </Transition>
 
-      
-      <div v-if="selected && disabled2" >
-        <div v-if="selected[0].value != 'Alegre' && selected[0].value != 'Energico'" id="divResultado" class="card-respuesta card text-center">
+      <div v-if="selected && disabled2">
+        <div
+          v-if="
+            selected[0].value != 'Alegre' && selected[0].value != 'Energico'
+          "
+          id="divResultado"
+          class="card-respuesta card text-center"
+        >
           <div class="card-header">
             Información sobre mi estado de ánimo actual
           </div>
@@ -209,7 +217,6 @@ export default {
           </div>
         </div>
       </div>
-
     </section>
   </div>
 </template>

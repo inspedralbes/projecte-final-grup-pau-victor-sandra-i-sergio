@@ -16,7 +16,6 @@ export default {
 };
 </script>
 
-
 <template>
   <div class="container align-items-center justify-content-center text-center">
     <div class="flip-box">
@@ -101,7 +100,6 @@ export default {
     </div>
   </div>
 </template>
-
 
 <style scoped>
 .container {
