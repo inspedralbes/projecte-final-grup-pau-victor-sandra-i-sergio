@@ -6,7 +6,7 @@ const TipoSueno = require('../models/descanso/tipoSuenoCuestionario.model');
 
 // Todas las respuestas al cuestionario
 Descanso.route("/").get((req, res) => {
-    CuestionarioDescanso.find(function(err, resultado) {
+    CuestionarioDescanso.find(function (err, resultado) {
         if (err) {
             console.log(err);
         } else {
@@ -17,16 +17,15 @@ Descanso.route("/").get((req, res) => {
 
 // Todos los tipos de sueño
 Descanso.route("/tipos-suenos").get((req, res) => {
-    TipoSueno.find(function(err, resultado) {
+    TipoSueno.find(function (err, resultado) {
         if (err) {
             console.log(err);
         } else {
-            console.log(resultado);
             let r = new Array();
-            resultado.forEach( (e) => {
+            resultado.forEach((e) => {
                 r.push(e.tipo)
             })
-           
+
             res.json({ "tipoSueno": r });
         }
     });
@@ -44,10 +43,9 @@ Descanso.route('/anadir-tipo-sueno').post((req, res) => {
 });
 
 // Añadir una respuesta del cuestionario 
-Descanso.route('/respuesta-cuestionario').post((req, res) => {
+Descanso.route('/guardar-datos-cuestionario').post((req, res) => {
     let datos = req.body;
     datos.descripcionSueno = JSON.parse(datos.descripcionSueno)
-    console.log(datos);
     if (Object.keys(datos).length != 2) { // Solo se pasan 2 campos
         res.status(500);
         res.json({ 'status': false, 'msg': 'Error! Falta/Sobra algún campo' });
@@ -69,6 +67,36 @@ Descanso.route('/respuesta-cuestionario').post((req, res) => {
             }
         }
     }
+});
+
+Descanso.route('/respuesta-cuestionario').post((req, res) => {
+    const datos = req.body;
+    console.log(datos);
+    datos.descripcionSueno = JSON.parse(datos.descripcionSueno);
+    console.log(datos);
+
+    TipoSueno.find({}, function (err, resultado) {
+        if (err) {
+            console.log(err);
+        } else {
+            let r = [];
+            for (let i = 0; i < resultado.length; i++) {
+                for (let j = 0; j < datos.descripcionSueno.length; j++) {
+                    if (datos.descripcionSueno[j] == resultado[i].tipo) {
+                        r.push({
+                            "tipo": resultado[i].tipo,
+                            "respuesta": resultado[i].respuesta
+                        })
+                    }
+                }
+            }
+
+            res.status(202)
+            res.json({ 'status': true, 'resultado': r });
+        }
+    });
+
+
 });
 
 module.exports = Descanso;

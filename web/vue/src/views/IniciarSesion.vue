@@ -2,87 +2,117 @@
 export default {
   data() {
     return {
-     click: 0,
-    }
+      click: 0,
+    };
   },
   methods: {
     cambiar() {
-      this.click=1;
+      this.click = 1;
     },
-  }
-}
+  },
+};
 </script>
 >
 
 
 
 <template>
-	<div class="container align-items-center justify-content-center text-center">
-      
-
-<div class="flip-box">
-  <div class="flip-box-inner">
-     <!-- INICIAR SESIÓN -->
-    <div class="flip-box-front carta_singup_front row row-cols">
-      <div class="col-12 iniciar_sesion">
+  <div class="container align-items-center justify-content-center text-center">
+    <div class="flip-box">
+      <div class="flip-box-inner">
+        <!-- INICIAR SESIÓN -->
+        <div class="flip-box-front carta_singup_front row row-cols">
+          <div class="col-12 iniciar_sesion">
             <h3>Iniciar Sesión</h3>
             <div class="input-group mb-2 mt-5">
-              <span class="input-group-text material-symbols-outlined">alternate_email</span>
-              <input type="text" class="form-control" placeholder="Correo" aria-label="Correo" aria-describedby="basic-addon1">
+              <span class="input-group-text material-symbols-outlined"
+                >alternate_email</span
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Correo"
+                aria-label="Correo"
+                aria-describedby="basic-addon1"
+              />
             </div>
 
             <div class="input-group mb-2 mt-3">
-              <span class="input-group-text material-symbols-outlined">lock</span>
-              <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon2">
+              <span class="input-group-text material-symbols-outlined"
+                >lock</span
+              >
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Contraseña"
+                aria-label="Contraseña"
+                aria-describedby="basic-addon2"
+              />
             </div>
 
-            <button class="btn btn-primary mt-4" >Iniciar Sesión</button>
-            <div class="login_singup col-12 mt-4 mb-5" @click="cambiar"><span>No tienes cuenta?</span></div>
-            
+            <button class="btn btn-primary mt-4">Iniciar Sesión</button>
+            <div class="login_singup col-12 mt-4 mb-5" @click="cambiar">
+              <span>No tienes cuenta?</span>
+            </div>
           </div>
-    </div>
-    <!-- REGISTRO -->
-    <div class="flip-box-back carta_singup_back row row-cols">
-      <div class="col-12 registrarse">
+        </div>
+        <!-- REGISTRO -->
+        <div class="flip-box-back carta_singup_back row row-cols">
+          <div class="col-12 registrarse">
             <h3>Unete a Genki Body</h3>
 
             <div class="input-group mb-2 mt-5">
-              <span class="input-group-text material-symbols-outlined">person</span>
-              <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre" aria-describedby="basic-addon1">
+              <span class="input-group-text material-symbols-outlined"
+                >person</span
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Nombre"
+                aria-label="Nombre"
+                aria-describedby="basic-addon1"
+              />
             </div>
 
             <div class="input-group mb-2 mt-3">
-              <span class="input-group-text material-symbols-outlined">alternate_email</span>
-              <input type="text" class="form-control" placeholder="Correo" aria-label="Correo" aria-describedby="basic-addon1">
+              <span class="input-group-text material-symbols-outlined"
+                >alternate_email</span
+              >
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Correo"
+                aria-label="Correo"
+                aria-describedby="basic-addon1"
+              />
             </div>
 
             <div class="input-group mb-2 mt-3">
-              <span class="input-group-text material-symbols-outlined">lock</span>
-              <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña" aria-describedby="basic-addon2">
+              <span class="input-group-text material-symbols-outlined"
+                >lock</span
+              >
+              <input
+                type="password"
+                class="form-control"
+                placeholder="Contraseña"
+                aria-label="Contraseña"
+                aria-describedby="basic-addon2"
+              />
             </div>
 
             <button class="btn btn-primary mt-4">Registrar</button>
-            <div class="login_singup vcol-12 mt-4 mb-1" @click="cambiar"><span>Ya tienes cuenta?</span></div>
+            <div class="login_singup vcol-12 mt-4 mb-1" @click="cambiar">
+              <span>Ya tienes cuenta?</span>
+            </div>
           </div>
+        </div>
+      </div>
     </div>
   </div>
-</div>
-
-
-  
-
-       
-        
-        
-        
-
-    </div>
-
 </template>
 
 
 <style scoped>
-
 .container {
   display: flex;
   justify-content: center;
@@ -101,7 +131,7 @@ export default {
 }*/
 
 .input-group-text {
-  background-color: #ffffff ;
+  background-color: #ffffff;
   color: black;
 }
 
@@ -132,11 +162,11 @@ h3 {
   border-radius: 10px;
 }
 
-.carta_singup_front, .carta_singup_back {
+.carta_singup_front,
+.carta_singup_back {
   position: absolute;
   height: 450px;
 }
-
 
 /************************************/
 
@@ -159,8 +189,8 @@ h3 {
   transform: rotateY(180deg);
 }
 
-
-.flip-box-front, .flip-box-back {
+.flip-box-front,
+.flip-box-back {
   position: absolute;
   width: 380px;
   height: 450px;
@@ -168,11 +198,7 @@ h3 {
   backface-visibility: hidden;
 }
 
-
 .flip-box-back {
   transform: rotateY(180deg);
 }
-
-
-
 </style>
