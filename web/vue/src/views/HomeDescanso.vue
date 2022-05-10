@@ -158,7 +158,7 @@ export default {
         </Transition>
 
         <!-- Card Respuesta -->
-        <!-- Manera cutre pero que funciona -->
+        <!-- METODO ACCORDION PERO DE MANERA CUTRE -->
         <!--<div class="accordion" id="card-respuesta">
           <div v-if="this.selected[0]!=null" class="accordion-item">
             <h2 class="accordion-header" id="panelsStayOpen-headingOne">
@@ -227,12 +227,12 @@ export default {
           </div>
         </div>-->
 
-
+        <!-- ESTE ES EL METODO ACCORDION -->
         <!--<div class="accordion" id="card-respuesta">
           <div class="accordion-item">
             <div v-for="n in this.selected.length" class="col-6 card">
 
-              //ESTE ES EL METODO ACCORDION
+              
               <h2 class="accordion-header" @id="accordionID[n-1]">
                 <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="accordionClass[n-1]" aria-expanded="true" :aria-controls="accordionClass[n-1]">
                   {{this.selected[n-1]}}
@@ -250,7 +250,75 @@ export default {
 
 
         <Transition name="bounce2">
-          <div id="card-respuesta" v-if="this.animacion2">
+        <div v-if="this.animacion2" class="accordion">
+          <div v-if="this.selected[0]!=null" class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                {{this.selected[0].tipo}}
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+              <div class="accordion-body">
+                <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
+                <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+              </div>
+            </div>
+          </div>
+          <div v-if="this.selected[1]!=null" class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                {{this.selected[1].tipo}}
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+              <div class="accordion-body">
+                <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
+                <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+              </div>
+            </div>
+          </div>
+          <div v-if="this.selected[2]!=null" class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                {{this.selected[2].tipo}}
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+              <div class="accordion-body">
+                <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
+                <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+              </div>
+            </div>
+          </div>
+          <div v-if="this.selected[3]!=null" class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                {{this.selected[3].tipo}}
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+              <div class="accordion-body">
+                <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
+                <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+              </div>
+            </div>
+          </div>
+          <div v-if="this.selected[4]!=null" class="accordion-item">
+            <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
+                {{this.selected[4].tipo}}
+              </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
+              <div class="accordion-body">
+                <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
+                <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+          <!--<div id="card-respuesta" v-if="this.animacion2">
             <div class="card-group">
               <div v-for="n in this.selected.length" class="col-6 card">
                 <img
@@ -272,9 +340,8 @@ export default {
                   <small class="text-muted">Official website</small>
                 </div>
               </div>
-
             </div>
-          </div>
+          </div>-->
           
         </Transition>
       </div>
