@@ -11,7 +11,7 @@ export default {
     },
     cambiar_login() {
       this.click_registro = 0;
-    }
+    },
   },
 };
 </script>
@@ -19,13 +19,18 @@ export default {
 <template>
   <div class="container align-items-center justify-content-center text-center">
     <div class="flip-box">
-      <div class="flip-box-inner" v-bind:class="[this.click_registro ? 'flip' : '']">
+      <div
+        class="flip-box-inner"
+        v-bind:class="[this.click_registro ? 'flip' : '']"
+      >
         <!-- INICIAR SESIÓN -->
         <div class="flip-box-front carta_singup_front row row-cols shadow">
           <div class="col-12 iniciar_sesion">
             <h3>Iniciar Sesión</h3>
             <div class="input-group mb-2 mt-5">
-              <span class="input-group-text material-symbols-outlined">alternate_email</span>
+              <span class="input-group-text material-symbols-outlined"
+                >alternate_email</span
+              >
               <input
                 type="text"
                 class="form-control"
@@ -36,7 +41,9 @@ export default {
             </div>
 
             <div class="input-group mb-2 mt-3">
-              <span class="input-group-text material-symbols-outlined">lock</span>
+              <span class="input-group-text material-symbols-outlined"
+                >lock</span
+              >
               <input
                 type="password"
                 class="form-control"
@@ -47,7 +54,10 @@ export default {
             </div>
 
             <button class="btn btn-primary mt-4">Iniciar Sesión</button>
-            <div class="login_singup col-12 mt-4 mb-5" @click="cambiar_registro">
+            <div
+              class="login_singup col-12 mt-4 mb-5"
+              @click="cambiar_registro"
+            >
               <span>No tienes cuenta?</span>
             </div>
           </div>
@@ -58,7 +68,9 @@ export default {
             <h3>Unete a Genki Body</h3>
 
             <div class="input-group mb-2 mt-5">
-              <span class="input-group-text material-symbols-outlined">person</span>
+              <span class="input-group-text material-symbols-outlined"
+                >person</span
+              >
               <input
                 type="text"
                 class="form-control"
@@ -69,7 +81,9 @@ export default {
             </div>
 
             <div class="input-group mb-2 mt-3">
-              <span class="input-group-text material-symbols-outlined">alternate_email</span>
+              <span class="input-group-text material-symbols-outlined"
+                >alternate_email</span
+              >
               <input
                 type="text"
                 class="form-control"
@@ -80,7 +94,9 @@ export default {
             </div>
 
             <div class="input-group mb-2 mt-3">
-              <span class="input-group-text material-symbols-outlined">lock</span>
+              <span class="input-group-text material-symbols-outlined"
+                >lock</span
+              >
               <input
                 type="password"
                 class="form-control"
@@ -124,7 +140,8 @@ h3 {
   cursor: pointer;
 }
 
-.carta_singup_front, .carta_singup_back {
+.carta_singup_front,
+.carta_singup_back {
   padding: 70px 30px 30px 30px;
   background-image: url(../../public/img/login.png);
   background-size: 450px;

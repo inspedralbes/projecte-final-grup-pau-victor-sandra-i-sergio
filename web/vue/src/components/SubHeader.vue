@@ -1,15 +1,24 @@
 <template>
   <div>
-
     <!-- Apartado Salud Mental y Descanso -->
     <nav
-      v-if="this.$route.name == 'descanso' || this.$route.name == 'saludmental' || this.$route.name == 'articulos'"
+      v-if="
+        this.$route.name == 'descanso' ||
+        this.$route.name == 'saludmental' ||
+        this.$route.name == 'articulos'
+      "
       class="navazul navbar navbar-light bg-light"
     >
       <div class="container-fluid justify-content-center subheader">
-        <RouterLink class="link_header" to="/saludmental">Salud Mental</RouterLink>
-        <RouterLink class="link_header barra-vertical" to="/descanso">Descanso</RouterLink>
-        <RouterLink class="link_header barra-vertical" to="/articulos">Artículos</RouterLink>
+        <RouterLink class="link_header" to="/saludmental"
+          >Salud Mental</RouterLink
+        >
+        <RouterLink class="link_header barra-vertical" to="/descanso"
+          >Descanso</RouterLink
+        >
+        <RouterLink class="link_header barra-vertical" to="/articulos"
+          >Artículos</RouterLink
+        >
       </div>
     </nav>
 
@@ -20,7 +29,9 @@
     >
       <div class="container-fluid justify-content-center">
         <RouterLink class="link_header" to="">Rutinas</RouterLink>
-        <RouterLink class="link_header barra-vertical" to="">Productos</RouterLink>
+        <RouterLink class="link_header barra-vertical" to=""
+          >Productos</RouterLink
+        >
       </div>
     </nav>
 
@@ -31,13 +42,13 @@
     >
       <div class="container-fluid justify-content-center">
         <RouterLink class="link_header" to="">Recetas</RouterLink>
-        <RouterLink class="link_header barra-vertical" to="">Productos</RouterLink>
+        <RouterLink class="link_header barra-vertical" to=""
+          >Productos</RouterLink
+        >
       </div>
     </nav>
   </div>
 </template>
-
-
 
 <style scoped>
 .navazul {

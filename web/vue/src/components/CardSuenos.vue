@@ -67,12 +67,12 @@ export default {
   color: black;
 }
 
-.card:hover {
+/* .card {
   box-shadow: 5px 10px 60px -12px rgba(0, 0, 0, 0.67);
   background-color: #c4c4c4;
   border: 2px solid #535353;
   border-radius: 0px 8px 8px 8px;
-}
+} */
 
 .card-body {
   padding: 0.2rem;
@@ -132,5 +132,9 @@ export default {
 }
 .seleccionado {
   background-color: #a4ffb8;
+  transition: all 0.5s ease-in-out;
+  top: 0px;
+  left: 0px;
+  z-index: 1;
 }
 </style>

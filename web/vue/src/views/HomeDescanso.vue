@@ -13,20 +13,24 @@ export default {
       elemento: [],
       animacion1: false,
       animacion2: false,
-      accordionID: [{
-        valor1: "panelsStayOpen-headingOne",
-        valor2: "panelsStayOpen-headingTwo",
-        valor3: "panelsStayOpen-headingThree",
-        valor4: "panelsStayOpen-headingFour",
-        valor5: "panelsStayOpen-headingFive",
-      }],
-      accordionClass: [{
-        valor1: "panelsStayOpen-collapseOne",
-        valor2: "panelsStayOpen-collapseTwo",
-        valor3: "panelsStayOpen-collapseThree",
-        valor4: "panelsStayOpen-collapseFour",
-        valor5: "panelsStayOpen-collapseFive",
-      }],
+      accordionID: [
+        {
+          valor1: "panelsStayOpen-headingOne",
+          valor2: "panelsStayOpen-headingTwo",
+          valor3: "panelsStayOpen-headingThree",
+          valor4: "panelsStayOpen-headingFour",
+          valor5: "panelsStayOpen-headingFive",
+        },
+      ],
+      accordionClass: [
+        {
+          valor1: "panelsStayOpen-collapseOne",
+          valor2: "panelsStayOpen-collapseTwo",
+          valor3: "panelsStayOpen-collapseThree",
+          valor4: "panelsStayOpen-collapseFour",
+          valor5: "panelsStayOpen-collapseFive",
+        },
+      ],
     };
   },
 
@@ -131,14 +135,7 @@ export default {
                 v-bind:value="check"
               >
                 <CardSuenos
-                  class="
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    flex-direction-row
-                    btn btn-outline-light
-                    p-2
-                  "
+                  class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light p-2"
                   @id="this.guardarseleccionada"
                   :infoCuest="check"
                   :contador="this.selected.length"
@@ -248,75 +245,159 @@ export default {
           </div>
         </div>-->
 
-
         <Transition name="bounce2">
-        <div v-if="this.animacion2" class="accordion">
-          <div v-if="this.selected[0]!=null" class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-              <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                {{this.selected[0].tipo}}
-              </button>
-            </h2>
-            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-              <div class="accordion-body">
-                <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
-                <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+          <div v-if="this.animacion2" class="accordion">
+            <div v-if="this.selected[0] != null" class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseOne"
+                  aria-expanded="true"
+                  aria-controls="panelsStayOpen-collapseOne"
+                >
+                  {{ this.selected[0].tipo }}
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseOne"
+                class="accordion-collapse collapse show"
+                aria-labelledby="panelsStayOpen-headingOne"
+              >
+                <div class="accordion-body">
+                  <p class="card-text">
+                    Para saber mas sobre el sueño visite la siguiente página
+                  </p>
+                  <a
+                    href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
+                    class="link"
+                    >Click para saber más</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div v-if="this.selected[1] != null" class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseTwo"
+                  aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseTwo"
+                >
+                  {{ this.selected[1].tipo }}
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseTwo"
+                class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingTwo"
+              >
+                <div class="accordion-body">
+                  <p class="card-text">
+                    Para saber mas sobre el sueño visite la siguiente página
+                  </p>
+                  <a
+                    href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
+                    class="link"
+                    >Click para saber más</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div v-if="this.selected[2] != null" class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseThree"
+                  aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseThree"
+                >
+                  {{ this.selected[2].tipo }}
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseThree"
+                class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingThree"
+              >
+                <div class="accordion-body">
+                  <p class="card-text">
+                    Para saber mas sobre el sueño visite la siguiente página
+                  </p>
+                  <a
+                    href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
+                    class="link"
+                    >Click para saber más</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div v-if="this.selected[3] != null" class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseFour"
+                  aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseFour"
+                >
+                  {{ this.selected[3].tipo }}
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseFour"
+                class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingFour"
+              >
+                <div class="accordion-body">
+                  <p class="card-text">
+                    Para saber mas sobre el sueño visite la siguiente página
+                  </p>
+                  <a
+                    href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
+                    class="link"
+                    >Click para saber más</a
+                  >
+                </div>
+              </div>
+            </div>
+            <div v-if="this.selected[4] != null" class="accordion-item">
+              <h2 class="accordion-header" id="panelsStayOpen-headingFive">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#panelsStayOpen-collapseFive"
+                  aria-expanded="false"
+                  aria-controls="panelsStayOpen-collapseFive"
+                >
+                  {{ this.selected[4].tipo }}
+                </button>
+              </h2>
+              <div
+                id="panelsStayOpen-collapseFive"
+                class="accordion-collapse collapse"
+                aria-labelledby="panelsStayOpen-headingFive"
+              >
+                <div class="accordion-body">
+                  <p class="card-text">
+                    Para saber mas sobre el sueño visite la siguiente página
+                  </p>
+                  <a
+                    href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
+                    class="link"
+                    >Click para saber más</a
+                  >
+                </div>
               </div>
             </div>
           </div>
-          <div v-if="this.selected[1]!=null" class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                {{this.selected[1].tipo}}
-              </button>
-            </h2>
-            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-              <div class="accordion-body">
-                <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
-                <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
-              </div>
-            </div>
-          </div>
-          <div v-if="this.selected[2]!=null" class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                {{this.selected[2].tipo}}
-              </button>
-            </h2>
-            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-              <div class="accordion-body">
-                <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
-                <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
-              </div>
-            </div>
-          </div>
-          <div v-if="this.selected[3]!=null" class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-                {{this.selected[3].tipo}}
-              </button>
-            </h2>
-            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
-              <div class="accordion-body">
-                <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
-                <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
-              </div>
-            </div>
-          </div>
-          <div v-if="this.selected[4]!=null" class="accordion-item">
-            <h2 class="accordion-header" id="panelsStayOpen-headingFive">
-              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
-                {{this.selected[4].tipo}}
-              </button>
-            </h2>
-            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
-              <div class="accordion-body">
-                <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
-                <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
-              </div>
-            </div>
-          </div>
-        </div>
 
           <!--<div id="card-respuesta" v-if="this.animacion2">
             <div class="card-group">
@@ -342,7 +423,6 @@ export default {
               </div>
             </div>
           </div>-->
-          
         </Transition>
       </div>
     </div>
@@ -378,7 +458,6 @@ export default {
   margin-left: 10%;
   margin-right: 10%;
 }
-
 
 .card {
   max-width: 15%;
