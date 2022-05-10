@@ -3,6 +3,7 @@ const app = express();
 const SaludMental = express.Router();
 const CuestionarioSaludMental = require('../models/saludMental/respuestaCuestionario.model');
 const EstadoEmocional = require('../models/saludMental/estadoEmocionalCuestionario.model');
+const Usuario = require('../models/Usuario/usuario.model');
 
 
 // GET - OBTENER TODAS RESPUESTAS AL CUESTIONARIO
@@ -33,7 +34,6 @@ SaludMental.route("/estado-emocional").get((req, res) => {
 SaludMental.route('/anadir-estado-emocional').post((req, res) => {
     let datos = req.body;
     datos.motivos = JSON.parse(datos.motivos);
-    console.log(req.body)
 
     const estadoEmocional = new EstadoEmocional(datos);
     estadoEmocional.save();
@@ -75,7 +75,9 @@ SaludMental.route('/respuesta-cuestionario').post((req, res) => {
 
 
     EstadoEmocional.find({ value: datos.estado }, function(err, resultado) {
-        if (err) { console.log(err); } else {
+        if (err) {
+            console.log(err);
+        } else {
             resultado = resultado[0];
 
             Object.entries(resultado.motivos).forEach(([key, value]) => {
@@ -83,9 +85,9 @@ SaludMental.route('/respuesta-cuestionario').post((req, res) => {
             });
 
             r = {
-                "estado" : resultado.value,
-                "motivo" : resultado.motivos[motivo],
-                "respuesta" : resultado.respuestas[motivo]
+                "estado": resultado.value,
+                "motivo": resultado.motivos[motivo],
+                "respuesta": resultado.respuestas[motivo]
             }
 
             res.json({ 'status': true, 'resultado': r });
