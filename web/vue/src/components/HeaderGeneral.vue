@@ -70,7 +70,7 @@ export default {
                 <div class="d-flex link_cuenta">
                   <div id="divAvatar">
                     <span id="avatar_usuario" class="icono_cuenta material-symbols-outlined"
-                      ><img src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"/></span
+                      ><img id="img-usuario" src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"/></span
                     >
                   </div>
                   <div class="align-self-center mx-4">
@@ -214,7 +214,7 @@ a {
   max-width: 24px;
 }
 
-img {
+#img-usuario {
   max-width: 40px;
 }
 
