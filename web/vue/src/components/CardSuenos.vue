@@ -32,8 +32,8 @@ export default {
   <div
     style="max-width: 12rem"
     class="card p-2"
-    @click="enviarID(infoCuest), seleccionado()"
-    :id="infoCuest"
+    @click="enviarID(infoCuest.tipo), seleccionado()"
+    :id="infoCuest.tipo"
     v-bind:class="
       ([this.selected ? 'appear' : 'disappear'],
       [this.selected ? 'seleccionado' : ''])
@@ -42,16 +42,16 @@ export default {
     <div class="checked">
       <span class="material-symbols-outlined"> done </span>
     </div>
-    <!-- <div class="d-flex justify-content-center pt-2">
+    <div class="d-flex justify-content-center pt-2">
       <img
-        :src="infoCuest.emoji"
+        :src="infoCuest.img"
         class="card-img-top"
         alt="emoticono"
-        :id="infoCuest.value"
+        :id="infoCuest.tipo"
       />
-    </div> -->
-    <div class="card-body mt-3 mb-1 text-center" :id="infoCuest">
-      <h5 class="card-title" :id="infoCuest">{{ infoCuest }}</h5>
+    </div>
+    <div class="card-body mt-3 mb-1 text-center" :id="infoCuest.tipo">
+      <h5 class="card-title" :id="infoCuest.tipo">{{ infoCuest.tipo }}</h5>
     </div>
   </div>
 </template>

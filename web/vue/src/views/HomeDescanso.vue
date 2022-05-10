@@ -17,7 +17,7 @@ export default {
   },
 
   beforeMount() {
-    fetch("http://192.168.210.161:9000/descanso/tipos-suenos")
+    fetch("http://192.168.210.162:9000/descanso/tipos-suenos")
       // fetch("http://localhost:9000/descanso/tipos-suenos")
       .then((response) => response.json())
       .then((data) => {
@@ -30,7 +30,7 @@ export default {
     onReset(event) {
       event.preventDefault();
       // Reset our form values
-      (this.selected = ""), (this.elementos = null);
+      (this.selected = ""), (this.elemento = null);
     },
     retroceder() {
       window.history.back();
@@ -68,7 +68,7 @@ export default {
       cuestDescanso.append("descripcionSueno", JSON.stringify(this.selected));
       cuestDescanso.append("usuario", "alvaro");
 
-      fetch("http://192.168.210.161:9000/descanso/respuesta-cuestionario", {
+      fetch("http://192.168.210.162:9000/descanso/respuesta-cuestionario", {
         // fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
         method: "POST",
         body: cuestDescanso,

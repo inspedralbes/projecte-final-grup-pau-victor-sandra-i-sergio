@@ -19,7 +19,7 @@ export default {
   },
 
   beforeMount() {
-    fetch("http://192.168.210.161:9000/salud-mental/estado-emocional")
+    fetch("http://192.168.210.162:9000/salud-mental/estado-emocional")
       // fetch("http://localhost:9000/salud-mental/estado-emocional")
       .then((response) => response.json())
       .then((data) => {
@@ -49,7 +49,7 @@ export default {
       });
       console.log(cuestSalud);
       fetch(
-        "http://192.168.210.161:9000/salud-mental/guardar-datos-cuestionario",
+        "http://192.168.210.162:9000/salud-mental/guardar-datos-cuestionario",
         {
           // fetch("http://localhost:wd/salud-mental/guardar-datos-cuestionario", {
           method: "POST",
