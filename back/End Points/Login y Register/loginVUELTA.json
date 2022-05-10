@@ -1,0 +1,10 @@
+{
+    "status": true,
+    "usuario":{
+        "_id": "dfadfadsfadfadf",
+        "nombre": "dfad",
+        "apellidos": "sdfadfadsf",
+        "correo": "asdfadfasdf",
+        "fotoPerfil": "dsfadfdf" 
+    }
+}

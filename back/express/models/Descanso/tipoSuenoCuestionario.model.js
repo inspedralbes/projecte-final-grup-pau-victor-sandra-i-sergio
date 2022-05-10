@@ -8,8 +8,8 @@ const tipoSueno = new Schema({
 
     img: {
         type: String
-    }, 
-    
+    },
+
     respuesta: {
         type: String
     }

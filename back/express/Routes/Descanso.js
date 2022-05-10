@@ -71,7 +71,9 @@ Descanso.route('/guardar-datos-cuestionario').post((req, res) => {
 
 Descanso.route('/respuesta-cuestionario').post((req, res) => {
     const datos = req.body;
-    datos.tipo = JSON.parse(datos.tipo);
+    console.log(datos);
+    datos.descripcionSueno = JSON.parse(datos.descripcionSueno);
+    console.log(datos);
 
     TipoSueno.find({}, function (err, resultado) {
         if (err) {
@@ -79,8 +81,8 @@ Descanso.route('/respuesta-cuestionario').post((req, res) => {
         } else {
             let r = [];
             for (let i = 0; i < resultado.length; i++) {
-                for (let j = 0; j < datos.tipo.length; j++) {
-                    if (datos.tipo[j] == resultado[i].tipo) {
+                for (let j = 0; j < datos.descripcionSueno.length; j++) {
+                    if (datos.descripcionSueno[j] == resultado[i].tipo) {
                         r.push({
                             "tipo": resultado[i].tipo,
                             "respuesta": resultado[i].respuesta

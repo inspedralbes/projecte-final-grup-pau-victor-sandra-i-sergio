@@ -41,7 +41,7 @@ export default {
 
     enviarFormulario() {
       let divresultado = document.getElementById("divResultado");
-      divresultado.style.display = 'block';
+      divresultado.style.display = "block";
       var cuestSalud = new URLSearchParams({
         usuario: "ermengol",
         estado: this.selected[0].value,
@@ -135,7 +135,12 @@ export default {
 
               <div class="col-md-8">
                 <div class="card-body">
-                  <div v-if="selected[0].value != 'Alegre' && selected[0].value != 'Energico'">
+                  <div
+                    v-if="
+                      selected[0].value != 'Alegre' &&
+                      selected[0].value != 'Energico'
+                    "
+                  >
                     <h5 class="text-center card-body-tit">
                       ¿Porqué estás {{ selected[0].value }}?
                     </h5>
@@ -159,23 +164,26 @@ export default {
                     </div>
                   </div>
 
-                  <div  v-if="selected[0].value == 'Alegre' || selected[0].value == 'Energico'">
-                    <h5
-                      class="text-center card-body-tit"
-                    >
+                  <div
+                    v-if="
+                      selected[0].value == 'Alegre' ||
+                      selected[0].value == 'Energico'
+                    "
+                  >
+                    <h5 class="text-center card-body-tit">
                       Hoy estoy {{ selected[0].value }}
                     </h5>
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          name="motivo"
-                          checked
-                        />
-                        <label class="form-check-label">
-                          Estoy {{ selected[0].value }}
-                        </label>
-                      </div>
+                    <div class="form-check">
+                      <input
+                        class="form-check-input"
+                        type="radio"
+                        name="motivo"
+                        checked
+                      />
+                      <label class="form-check-label">
+                        Estoy {{ selected[0].value }}
+                      </label>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -193,23 +201,35 @@ export default {
         </div>
       </Transition>
 
-      
-      <div v-if="selected && disabled2" >
-        <div v-if="selected[0].value != 'Alegre' && selected[0].value != 'Energico'" id="divResultado" class="card-respuesta card text-center">
+      <div v-if="selected && disabled2">
+        <div
+          v-if="
+            selected[0].value != 'Alegre' && selected[0].value != 'Energico'
+          "
+          id="divResultado"
+          class="card-respuesta card text-center"
+        >
           <div class="card-header">
             Información sobre mi estado de ánimo actual
           </div>
           <div class="card-body">
-            <h5 class="card-title">Hoy estoy {{ selected[0].value }} <img id="emojiTexto" :src="selected[0].emoji"  /></h5>
-            <p class="card-text">Información sobre porque estoy {{ selected[0].value }} y como puedo cambiar este sentimiento</p>
-            <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+            <h5 class="card-title">
+              Hoy estoy {{ selected[0].value }}
+              <img id="emojiTexto" :src="selected[0].emoji" />
+            </h5>
+            <p class="card-text">
+              Información sobre porque estoy {{ selected[0].value }} y como
+              puedo cambiar este sentimiento
+            </p>
+            <a
+              href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
+              class="link"
+              >Click para saber más</a
+            >
           </div>
-          <div class="card-footer text-muted">
-            Official website
-          </div>
+          <div class="card-footer text-muted">Official website</div>
         </div>
       </div>
-
     </section>
   </div>
 </template>
