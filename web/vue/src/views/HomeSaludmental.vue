@@ -116,7 +116,7 @@ export default {
       </Transition>
 
       <Transition name="bounce2">
-        <div class="container">
+        <div class="container card_motivos ">
           <div
             id="card-horizontal"
             v-if="selected && disabled2"
@@ -130,12 +130,12 @@ export default {
               </div>
 
 
-              <div class="row justify-content-md-center">
-                <div class="col-md-3 gy-3 img-emoji">
+              <div class="row justify-content-md-center ">
+                <div class="col-md-4 gy-3 img-emoji">
                   <img :src="selected[0].emoji" id="emoji-card" />
                 </div>
 
-                <div class="col-md-7">
+                <div class="col-md-6">
                   <div class="card-body">
                     <div v-if="selected[0].value != 'Alegre' && selected[0].value != 'Energico'">
                       <h5 class="text-center card-body-tit">
@@ -313,6 +313,16 @@ select {
 
   .pregunta {
     font-size: 1.1rem;
+  }
+}
+
+.card_motivos {
+  padding: 30px;
+}
+
+@media only screen and (min-width: 1200px) {
+.card_motivos {
+  max-width: 836px !important;
   }
 }
 
