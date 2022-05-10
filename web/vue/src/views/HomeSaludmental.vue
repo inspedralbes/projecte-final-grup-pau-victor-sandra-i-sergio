@@ -19,7 +19,7 @@ export default {
   },
 
   beforeMount() {
-    fetch("http://192.168.210.161:9000/salud-mental/estado-emocional")
+    fetch("http://192.168.210.162:9000/salud-mental/estado-emocional")
       // fetch("http://localhost:9000/salud-mental/estado-emocional")
       .then((response) => response.json())
       .then((data) => {
@@ -41,7 +41,7 @@ export default {
 
     enviarFormulario() {
       let divresultado = document.getElementById("divResultado");
-      divresultado.style.display = 'block';
+      divresultado.style.display = "block";
       var cuestSalud = new URLSearchParams({
         usuario: "ermengol",
         estado: this.selected[0].value,
@@ -49,7 +49,7 @@ export default {
       });
       console.log(cuestSalud);
       fetch(
-        "http://192.168.210.161:9000/salud-mental/guardar-datos-cuestionario",
+        "http://192.168.210.162:9000/salud-mental/guardar-datos-cuestionario",
         {
           // fetch("http://localhost:wd/salud-mental/guardar-datos-cuestionario", {
           method: "POST",
@@ -116,7 +116,7 @@ export default {
       </Transition>
 
       <Transition name="bounce2">
-        <div class="container">
+        <div class="container card_motivos">
           <div
             id="card-horizontal"
             v-if="selected && disabled2"
@@ -129,42 +129,51 @@ export default {
                 </a>
               </div>
 
-              <div class="col-md-4 gy-3 img-emoji">
-                <img :src="selected[0].emoji" id="emoji-card" />
-              </div>
+              <div class="row justify-content-md-center">
+                <div class="col-md-4 gy-3 img-emoji">
+                  <img :src="selected[0].emoji" id="emoji-card" />
+                </div>
 
-              <div class="col-md-8">
-                <div class="card-body">
-                  <div v-if="selected[0].value != 'Alegre' && selected[0].value != 'Energico'">
-                    <h5 class="text-center card-body-tit">
-                      ¿Porqué estás {{ selected[0].value }}?
-                    </h5>
+                <div class="col-md-6">
+                  <div class="card-body">
                     <div
-                      :key="index"
-                      v-for="(estado, index) in selected[0].motivos"
+                      v-if="
+                        selected[0].value != 'Alegre' &&
+                        selected[0].value != 'Energico'
+                      "
                     >
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          @click="guardarMotivo($event.target.value)"
-                          :value="index"
-                          name="motivo"
-                          :id="index"
-                        />
-                        <label class="form-check-label" :for="index">
-                          {{ estado }}
-                        </label>
+                      <h5 class="text-center card-body-tit">
+                        ¿Por qué estás {{ selected[0].value }}?
+                      </h5>
+                      <div
+                        :key="index"
+                        v-for="(estado, index) in selected[0].motivos"
+                      >
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            @click="guardarMotivo($event.target.value)"
+                            :value="index"
+                            name="motivo"
+                            :id="index"
+                          />
+                          <label class="form-check-label" :for="index">
+                            {{ estado }}
+                          </label>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
-                  <div  v-if="selected[0].value == 'Alegre' || selected[0].value == 'Energico'">
-                    <h5
-                      class="text-center card-body-tit"
+                    <div
+                      v-if="
+                        selected[0].value == 'Alegre' ||
+                        selected[0].value == 'Energico'
+                      "
                     >
-                      Hoy estoy {{ selected[0].value }}
-                    </h5>
+                      <h5 class="text-center card-body-tit">
+                        Hoy estoy {{ selected[0].value }}
+                      </h5>
                       <div class="form-check">
                         <input
                           class="form-check-input"
@@ -176,6 +185,7 @@ export default {
                           Estoy {{ selected[0].value }}
                         </label>
                       </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -193,23 +203,34 @@ export default {
         </div>
       </Transition>
 
-      
-      <div v-if="selected && disabled2" >
-        <div v-if="selected[0].value != 'Alegre' && selected[0].value != 'Energico'" id="divResultado" class="card-respuesta card text-center">
+      <div v-if="selected && disabled2">
+        <div
+          v-if="
+            selected[0].value != 'Alegre' && selected[0].value != 'Energico'
+          "
+          id="divResultado"
+          class="card-respuesta card text-center"
+        >
           <div class="card-header">
             Información sobre mi estado de ánimo actual
           </div>
           <div class="card-body">
-            <h5 class="card-title">Hoy estoy {{ selected[0].value }} <img id="emojiTexto" :src="selected[0].emoji"  /></h5>
-            <p class="card-text">Información sobre porque estoy {{ selected[0].value }} y como puedo cambiar este sentimiento</p>
-            <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
-          </div>
-          <div class="card-footer text-muted">
-            Official website
+            <h5 class="card-title">
+              Hoy estoy {{ selected[0].value }}
+              <img id="emojiTexto" :src="selected[0].emoji" />
+            </h5>
+            <p class="card-text">
+              Información sobre porque estoy {{ selected[0].value }} y como
+              puedo cambiar este sentimiento
+            </p>
+            <a
+              href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
+              class="link"
+              >Click para saber más</a
+            >
           </div>
         </div>
       </div>
-
     </section>
   </div>
 </template>
@@ -306,6 +327,16 @@ select {
 
   .pregunta {
     font-size: 1.1rem;
+  }
+}
+
+.card_motivos {
+  padding: 30px;
+}
+
+@media only screen and (min-width: 1200px) {
+  .card_motivos {
+    max-width: 836px !important;
   }
 }
 

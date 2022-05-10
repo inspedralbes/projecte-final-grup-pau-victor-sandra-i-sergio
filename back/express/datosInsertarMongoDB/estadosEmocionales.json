@@ -1,7 +1,7 @@
 [
     {
         "value": "Alegre",
-        "emoji": "@/../public/img/EMOJIS ESTADO ÁNIMO/Alegre.png",
+        "emoji": "@/../public/img/emojis_estado_animo/Alegre.png",
         "motivos": {
             "motivo1": "Algo",
             "motivo2": "Algo2",
@@ -15,7 +15,7 @@
     },
     {
         "value": "Desanimado",
-        "emoji": "@/../public/img/EMOJIS ESTADO ÁNIMO/Desanimado.png",
+        "emoji": "@/../public/img/emojis_estado_animo/Desanimado.png",
         "motivos": {
             "motivo1": "Últimamente estoy siempre cansado sin importar lo que haga",
             "motivo2": "Nada me genera especial interés y me cuesta disfrutar de las cosas",
@@ -32,7 +32,7 @@
     },
     {
         "value": "Irritado",
-        "emoji": "@/../public/img/EMOJIS ESTADO ÁNIMO/Irritado.png",
+        "emoji": "@/../public/img/emojis_estado_animo/Irritado.png",
         "motivos": {
             "motivo1": "Estoy pasando situaciones complicadas, estoy a la defensiva",
             "motivo2": "He tenido un mal dia",
@@ -52,7 +52,7 @@
     },
     {
         "value": "Nervioso",
-        "emoji": "@/../public/img/EMOJIS ESTADO ÁNIMO/Nervioso.png",
+        "emoji": "@/../public/img/emojis_estado_animo/Nervioso.png",
         "motivos": {
             "motivo1": "Estoy viviendo situaciones de incertidumbre",
             "motivo2": "Estoy atravesando adversidades",
@@ -66,7 +66,7 @@
     },
     {
         "value": "Energico",
-        "emoji": "@/../public/img/EMOJIS ESTADO ÁNIMO/Enérgico.png",
+        "emoji": "@/../public/img/emojis_estado_animo/Enérgico.png",
         "motivos": {
             "motivo1": "asdf",
             "motivo2": "adsfasdf",
@@ -80,7 +80,7 @@
     },
     {
         "value": "Estresado",
-        "emoji": "@/../public/img/EMOJIS ESTADO ÁNIMO/Estresado.png",
+        "emoji": "@/../public/img/emojis_estado_animo/Estresado.png",
         "motivos": {
             "motivo1": "Estoy siendo muy autoexigente",
             "motivo2": "Tengo una rutina muy ajetreada, me siento sobrecargado",
@@ -94,7 +94,7 @@
     },
     {
         "value": "Triste",
-        "emoji": "@/../public/img/EMOJIS ESTADO ÁNIMO/Triste.png",
+        "emoji": "@/../public/img/emojis_estado_animo/Triste.png",
         "motivos": {
             "motivo1": "Estoy experimentando un duelo emocional",
             "motivo2": "Estoy viviendo una época de cambios que me asustan",
