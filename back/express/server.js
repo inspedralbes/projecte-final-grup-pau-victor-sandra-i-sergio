@@ -25,7 +25,7 @@ app.use(express.static('public'));
 // Conexio amb mongoDB
 const mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
-mongoose.connect('mongodb+srv://a20paumunoli:a20paumunoli_mongoDB@cluster.qpuxh.mongodb.net/ProjecteFinal?retryWrites=true&w=majority');
+mongoose.connect('mongodb+srv://a20paumunoli:a20paumunoli@cluster.qpuxh.mongodb.net/ProjecteFinal?retryWrites=true&w=majority');
 
 
 app.listen((process.env.PORT || port), () => {
