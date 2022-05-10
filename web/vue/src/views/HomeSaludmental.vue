@@ -122,7 +122,7 @@ export default {
             v-if="selected && disabled2"
             class="card mb-3 shadow"
           >
-            <div class="row">
+            <div class="row card_motivos">
               <div class="col-12 retroceder">
                 <a @click="retroceder()">
                   <span class="material-symbols-outlined"> arrow_back </span>
@@ -139,13 +139,13 @@ export default {
                   <div class="card-body">
                     <div v-if="selected[0].value != 'Alegre' && selected[0].value != 'Energico'">
                       <h5 class="text-center card-body-tit">
-                        ¿Por qué estás {{ selected[0].value }}?
+                        ¿Por qué estás <span style="font-weight:bold">{{ selected[0].value }}</span>?
                       </h5>
-                      <div
+                      <div 
                         :key="index"
                         v-for="(estado, index) in selected[0].motivos"
                       >
-                        <div class="form-check">
+                        <div class="form-check my-3">
                           <input
                             class="form-check-input"
                             type="radio"
@@ -168,7 +168,7 @@ export default {
                     "
                   >
                     <h5 class="text-center card-body-tit">
-                      Hoy estoy {{ selected[0].value }}
+                      Hoy estoy <span style="font-weight:bold">{{ selected[0].value }}</span>
                     </h5>
                     <div class="form-check">
                       <input
@@ -233,7 +233,8 @@ section {
 }
 
 #card-horizontal .card-body-tit {
-  margin-bottom: 20px;
+  color: #038ed3;
+  margin-bottom: 35px;
 }
 
 .card-respuesta {
@@ -244,21 +245,22 @@ section {
 }
 
 .retroceder {
-  padding: 5px 17px;
+  padding: 16px 25px;
   position: absolute;
   top: 0;
   left: -10px;
 }
 
 .retroceder span {
-  color: darkblue;
+  color: #1490ce;
+  font-weight: 600;
   padding: 5px;
-  border-radius: 40%;
+  border-radius: 20px;
   transition: all 0.3s ease-in-out;
 }
 
 .retroceder span:hover {
-  background-color: #d3d3d35b;
+  background-color: #b0c8d85b;
 }
 
 select {
@@ -279,8 +281,9 @@ select {
   align-items: center;
 }
 
-#emoji-card {
-  height: 80%;
+.form-check-input:checked {
+  background-color: #5cb8e6;
+  border-color: #5cb8e6;
 }
 
 #emojiTexto {
@@ -316,13 +319,21 @@ select {
   }
 }
 
+.opcion_motivo {
+  padding: 20px;
+}
+
 .card_motivos {
   padding: 30px;
 }
 
 @media only screen and (min-width: 1200px) {
-.card_motivos {
-  max-width: 836px !important;
+  .card_motivos {
+    max-width: 836px !important;
+    }
+
+    #emoji-card {
+    height: 160px;
   }
 }
 
@@ -337,6 +348,8 @@ form {
   width: 250px;
 }
 
+/*****  ANIMACIONES  *****/
+
 .bounce-enter-active {
   animation: bounce-in 1s ease-in-out 0s 1 normal reverse;
 }
@@ -348,11 +361,9 @@ form {
 @keyframes bounce-in {
   from {
   }
-
   40% {
     transform: translate(0, 100px);
   }
-
   to {
     transform: translate(0, -700px);
     opacity: 0;

@@ -17,8 +17,11 @@ export default {
 </script>
 
 <template>
-  <div class="container align-items-center justify-content-center text-center">
-    <div class="flip-box">
+<div>
+
+  <!-- CARTA INICIAR SESIÓN / REGISTRO -->
+  <div class="container align-items-center justify-content-center text-center">  
+    <div class="flip-box ">
       <div class="flip-box-inner" v-bind:class="[this.click_registro ? 'flip' : '']">
         <!-- INICIAR SESIÓN -->
         <div class="flip-box-front carta_singup_front row row-cols shadow">
@@ -52,6 +55,7 @@ export default {
             </div>
           </div>
         </div>
+     
         <!-- REGISTRO -->
         <div class="flip-box-back carta_singup_back row row-cols shadow">
           <div class="col-12 registrarse">
@@ -99,6 +103,67 @@ export default {
       </div>
     </div>
   </div>
+
+
+
+  <!-- P.2 REGISTRO - DATOS DEL USUARIO -->
+  <div class="container REGISTRO2 align-items-center justify-content-center ocultar">
+    <div class="div_datos">
+      <h3 class="text-center titulo my-5">Cuentanos un poco más sobre ti</h3>
+
+      <div class="row">
+        <div class="col-md-2">
+          <label for="inputEmail4" class="form-label">Edad</label>
+          <input type="text" class="form-control" id="inputEmail4">
+        </div>
+
+        <div class="col-2 ocupacion mx-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Ocupacion" id="trabajador">
+              <label class="form-check-label" for="trabajador">Trabajo</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="Ocupacion" id="estudiante">
+              <label class="form-check-label" for="Ocupacion">Estudio</label>
+            </div>
+            <div class="form-check">
+            <input class="form-check-input" type="radio" name="Ocupacion" id="otro">
+              <label class="form-check-label" for="Ocupacion">Otro</label>
+            </div>
+        </div>
+        
+
+        <div class="col-2 sexo mx-3">
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="sexo" id="mujer">
+              <label class="form-check-label" for="trabajador">Mujer</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="radio" name="sexo" id="hombre">
+              <label class="form-check-label" for="Ocupacion">Hombre</label>
+            </div>
+        </div>
+      </div>
+
+      <div class="col-6 nivel m-3">
+        <label for="nivel" class="form-label">Nivel físico</label>
+        <input type="range" class="form-range" min="1" max="3" id="nivel">
+        <span class="form-label m-1">Principiante</span>
+        <span class="form-label m-6">Intermedio</span>
+        <span class="form-label m-4">Avanzado</span>
+      </div>
+
+
+    </div>
+  </div>
+    
+
+
+
+
+</div>
+
+
 </template>
 
 <style scoped>
@@ -110,7 +175,7 @@ export default {
   width: 100vw;
 }
 
-.input-group-text {
+.input-group-text /* iconos formulario */{
   background-color: #ffffff;
   color: black;
 }
@@ -136,6 +201,43 @@ h3 {
   position: absolute;
   height: 450px;
 }
+
+.ocultar {
+  display: none;
+}
+
+
+
+/***** Parte 2 registro ******/ 
+
+.titulo {
+
+}
+
+.sexo {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 8px;
+}
+
+.ocupacion {
+  background-color: rgba(255, 255, 255, 0.5);
+  padding: 8px;
+}
+
+.REGISTRO2 {
+  background-image: url(../../public/img/login.png);
+  background-size: 1000px;
+  margin-top: 50px;
+  height: 700px;
+  width: 800px;
+}
+
+.div_datos {
+  width: 100%;
+  height: 600px;
+}
+
+
 
 /***** Transformación Flip *****/
 
