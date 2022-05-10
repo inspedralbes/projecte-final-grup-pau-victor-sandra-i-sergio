@@ -17,82 +17,83 @@ export default {
 </script>
 
 <template>
-<div>
+  <div>
 
-  <!-- CARTA INICIAR SESIÓN / REGISTRO -->
-  <div class="container align-items-center justify-content-center text-center">  
-    <div class="flip-box ">
-      <div class="flip-box-inner" v-bind:class="[this.click_registro ? 'flip' : '']">
-        <!-- INICIAR SESIÓN -->
-        <div class="flip-box-front carta_singup_front row row-cols shadow">
-          <div class="col-12 iniciar_sesion">
-            <h3>Iniciar Sesión</h3>
-            <div class="input-group mb-2 mt-5">
-              <span class="input-group-text material-symbols-outlined">alternate_email</span>
-              <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
-                aria-describedby="basic-addon1" />
-            </div>
+    <!-- CARTA INICIAR SESIÓN / REGISTRO -->
+    <div class="container">
+      <div class="flip-box">
+        <div class="flip-box-inner d-flex align-items-center" v-bind:class="[this.click_registro ? 'flip' : '']">
 
-            <div class="input-group mb-2 mt-3">
-              <span class="input-group-text material-symbols-outlined">lock</span>
-              <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
-                aria-describedby="basic-addon2" />
-            </div>
+          <!-- INICIAR SESIÓN -->
+          <div class="flip-box-front carta_singup_front shadow col-12">
+            <div class="iniciar_sesion">
+              <h3>Iniciar Sesión</h3>
+              <div class="input-group mb-2 mt-5">
+                <span class="input-group-text material-symbols-outlined">alternate_email</span>
+                <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
+                  aria-describedby="basic-addon1" />
+              </div>
 
-            <button class="btn btn-primary mt-4">Iniciar Sesión</button>
-            <div class="login_singup col-12 mt-4 mb-5" @click="cambiar_registro">
-              <span>No tienes cuenta?</span>
+              <div class="input-group mb-2 mt-3">
+                <span class="input-group-text material-symbols-outlined">lock</span>
+                <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
+                  aria-describedby="basic-addon2" />
+              </div>
+
+              <button class="btn btn-primary mt-4">Iniciar Sesión</button>
+              <div class="login_singup col-12 mt-4 mb-5" @click="cambiar_registro">
+                <span>No tienes cuenta?</span>
+              </div>
             </div>
           </div>
-        </div>
-     
-        <!-- REGISTRO -->
-        <div class="flip-box-back carta_singup_back row row-cols shadow">
-          <div class="col-12 registrarse">
-            <h3>Unete a Genki Body</h3>
 
-            <div class="input-group mb-2 mt-5">
-              <span class="input-group-text material-symbols-outlined">person</span>
-              <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre"
-                aria-describedby="basic-addon1" />
-            </div>
+          <!-- REGISTRO -->
+          <div class="flip-box-back carta_singup_back shadow col-12">
+            <div class="col-12 registrarse">
+              <h3>Unete a Genki Body</h3>
 
-            <div class="input-group mb-2 mt-3">
-              <span class="input-group-text material-symbols-outlined">alternate_email</span>
-              <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
-                aria-describedby="basic-addon1" />
-            </div>
+              <div class="input-group mb-2 mt-5">
+                <span class="input-group-text material-symbols-outlined">person</span>
+                <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre"
+                  aria-describedby="basic-addon1" />
+              </div>
 
-            <div class="input-group mb-2 mt-3">
-              <span class="input-group-text material-symbols-outlined">lock</span>
-              <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
-                aria-describedby="basic-addon2" />
-            </div>
+              <div class="input-group mb-2 mt-3">
+                <span class="input-group-text material-symbols-outlined">alternate_email</span>
+                <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
+                  aria-describedby="basic-addon1" />
+              </div>
 
-            <button class="btn btn-primary mt-4">Registrar</button>
-            <div class="login_singup vcol-12 mt-4 mb-1" @click="cambiar_login">
-              <span>Ya tienes cuenta?</span>
+              <div class="input-group mb-2 mt-3">
+                <span class="input-group-text material-symbols-outlined">lock</span>
+                <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
+                  aria-describedby="basic-addon2" />
+              </div>
+
+              <button class="btn btn-primary mt-4">Registrar</button>
+              <div class="login_singup vcol-12 mt-4 mb-1" @click="cambiar_login">
+                <span>Ya tienes cuenta?</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
 
 
-  <!-- P.2 REGISTRO - DATOS DEL USUARIO -->
-  <div class="container REGISTRO2 align-items-center justify-content-center ocultar">
-    <div class="div_datos">
-      <h3 class="text-center titulo my-5">Cuentanos un poco más sobre ti</h3>
+    <!-- P.2 REGISTRO - DATOS DEL USUARIO -->
+    <div class="container REGISTRO2 align-items-center justify-content-center ocultar">
+      <div class="div_datos">
+        <h3 class="text-center titulo my-5">Cuentanos un poco más sobre ti</h3>
 
-      <div class="row">
-        <div class="col-md-2">
-          <label for="inputEmail4" class="form-label">Edad</label>
-          <input type="text" class="form-control" id="inputEmail4">
-        </div>
+        <div class="row">
+          <div class="col-md-2">
+            <label for="inputEmail4" class="form-label">Edad</label>
+            <input type="text" class="form-control" id="inputEmail4">
+          </div>
 
-        <div class="col-2 ocupacion mx-3">
+          <div class="col-2 ocupacion mx-3">
             <div class="form-check">
               <input class="form-check-input" type="radio" name="Ocupacion" id="trabajador">
               <label class="form-check-label" for="trabajador">Trabajo</label>
@@ -102,13 +103,13 @@ export default {
               <label class="form-check-label" for="Ocupacion">Estudio</label>
             </div>
             <div class="form-check">
-            <input class="form-check-input" type="radio" name="Ocupacion" id="otro">
+              <input class="form-check-input" type="radio" name="Ocupacion" id="otro">
               <label class="form-check-label" for="Ocupacion">Otro</label>
             </div>
-        </div>
-        
+          </div>
 
-        <div class="col-2 sexo mx-3">
+
+          <div class="col-2 sexo mx-3">
             <div class="form-check">
               <input class="form-check-input" type="radio" name="sexo" id="mujer">
               <label class="form-check-label" for="trabajador">Mujer</label>
@@ -117,40 +118,40 @@ export default {
               <input class="form-check-input" type="radio" name="sexo" id="hombre">
               <label class="form-check-label" for="Ocupacion">Hombre</label>
             </div>
+          </div>
         </div>
+
+        <div class="col-6 nivel m-3">
+          <label for="nivel" class="form-label">Nivel físico</label>
+          <input type="range" class="form-range" min="1" max="3" id="nivel">
+          <span class="form-label m-1">Principiante</span>
+          <span class="form-label m-6">Intermedio</span>
+          <span class="form-label m-4">Avanzado</span>
+        </div>
+
+
       </div>
-
-      <div class="col-6 nivel m-3">
-        <label for="nivel" class="form-label">Nivel físico</label>
-        <input type="range" class="form-range" min="1" max="3" id="nivel">
-        <span class="form-label m-1">Principiante</span>
-        <span class="form-label m-6">Intermedio</span>
-        <span class="form-label m-4">Avanzado</span>
-      </div>
-
-
     </div>
+
+
+
+
+
   </div>
-    
-
-
-
-
-</div>
 
 
 </template>
 
 <style scoped>
 .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 85vh;
+  height: 88vh;
   width: 100vw;
 }
 
-.input-group-text /* iconos formulario */{
+.input-group-text
+
+/* iconos formulario */
+  {
   background-color: #ffffff;
   color: black;
 }
@@ -166,7 +167,7 @@ h3 {
 
 .carta_singup_front,
 .carta_singup_back {
-  padding: 70px 30px 30px 30px;
+  padding: 40px 30px 30px 30px;
   background-image: url(../../public/img/login.png);
   background-size: 450px;
   border-radius: 10px;
@@ -184,11 +185,9 @@ h3 {
 
 
 
-/***** Parte 2 registro ******/ 
+/***** Parte 2 registro ******/
 
-.titulo {
-
-}
+.titulo {}
 
 .sexo {
   background-color: rgba(255, 255, 255, 0.5);
@@ -217,47 +216,26 @@ h3 {
 
 /***** Transformación Flip *****/
 
-/* .flip-box {
-  background-color: transparent;
-  width: 380px;
-  height: 450px;
-  perspective: 10000px;
-}
-
-.flip-box-inner {
-  width: 380px;
-  height: 450px;
-  text-align: center;
-  transition: transform 1.8s;
-  transform-style: preserve-3d;
-}
-
-.flip {
-  transform: rotateY(180deg);
-}
-
-.flip-box-front,
-.flip-box-back {
-  position: absolute;
-  width: 380px;
-  height: 450px;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-} */
-
 .flip-box {
   background-color: transparent;
-  width: 40vw;
-  height: auto;
+  height: initial;
   perspective: 10000px;
 }
 
 .flip-box-inner {
-  width: 40vw;
-  height: 50vh;
+  height: 88vh;
   text-align: center;
   transition: transform 1.8s;
   transform-style: preserve-3d;
+  width: 100%;
+  margin: auto;
+}
+
+@media only screen and (min-width: 380px) {
+  .flip-box-inner {
+    max-width: 350px;
+    width: 100%
+  }
 }
 
 .flip {
@@ -267,8 +245,6 @@ h3 {
 .flip-box-front,
 .flip-box-back {
   position: absolute;
-  width: 40vh;
-  height: auto;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
