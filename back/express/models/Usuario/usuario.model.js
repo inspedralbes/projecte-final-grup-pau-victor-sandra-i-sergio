@@ -18,6 +18,10 @@ const usuario = new Schema({
 
     fotoPerfil: {
         type: String
+    },
+
+    datosPersonales:{
+        type: Object
     }
 }, {
     collection: 'usuario'
