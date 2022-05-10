@@ -222,7 +222,7 @@ export default {
 
 .submain {
   width: 100%;
-  min-height: 81.2vh;
+  min-height: 80vh;
   background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/stars-back.png");
   background-size: 400px;
   background-repeat: repeat;

@@ -58,7 +58,7 @@ export default {
 
 <style scoped>
 .card {
-  border-radius: 5%;
+  border-radius: 8px;
   box-shadow: 25px 38px 53px 0px rgba(0, 0, 0, 0.16);
   transition: all 0.2s ease-in-out;
   position: relative;
@@ -71,7 +71,7 @@ export default {
   box-shadow: 5px 10px 60px -12px rgba(0, 0, 0, 0.67);
   background-color: #c4c4c4;
   border: 2px solid #535353;
-  border-radius: 0% 5% 5% 5%;
+  border-radius: 0px 8px 8px 8px;
 }
 
 .card-body {
