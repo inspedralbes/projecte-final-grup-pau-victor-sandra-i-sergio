@@ -116,7 +116,7 @@ export default {
       </Transition>
 
       <Transition name="bounce2">
-        <div class="container card_motivos ">
+        <div class="container card_motivos">
           <div
             id="card-horizontal"
             v-if="selected && disabled2"
@@ -129,15 +129,19 @@ export default {
                 </a>
               </div>
 
-
-              <div class="row justify-content-md-center ">
+              <div class="row justify-content-md-center">
                 <div class="col-md-4 gy-3 img-emoji">
                   <img :src="selected[0].emoji" id="emoji-card" />
                 </div>
 
                 <div class="col-md-6">
                   <div class="card-body">
-                    <div v-if="selected[0].value != 'Alegre' && selected[0].value != 'Energico'">
+                    <div
+                      v-if="
+                        selected[0].value != 'Alegre' &&
+                        selected[0].value != 'Energico'
+                      "
+                    >
                       <h5 class="text-center card-body-tit">
                         ¿Por qué estás {{ selected[0].value }}?
                       </h5>
@@ -161,30 +165,30 @@ export default {
                       </div>
                     </div>
 
-                  <div
-                    v-if="
-                      selected[0].value == 'Alegre' ||
-                      selected[0].value == 'Energico'
-                    "
-                  >
-                    <h5 class="text-center card-body-tit">
-                      Hoy estoy {{ selected[0].value }}
-                    </h5>
-                    <div class="form-check">
-                      <input
-                        class="form-check-input"
-                        type="radio"
-                        name="motivo"
-                        checked
-                      />
-                      <label class="form-check-label">
-                        Estoy {{ selected[0].value }}
-                      </label>
+                    <div
+                      v-if="
+                        selected[0].value == 'Alegre' ||
+                        selected[0].value == 'Energico'
+                      "
+                    >
+                      <h5 class="text-center card-body-tit">
+                        Hoy estoy {{ selected[0].value }}
+                      </h5>
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="radio"
+                          name="motivo"
+                          checked
+                        />
+                        <label class="form-check-label">
+                          Estoy {{ selected[0].value }}
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
 
               <div class="col-12 gy-2 text-center">
                 <input
@@ -211,9 +215,19 @@ export default {
             Información sobre mi estado de ánimo actual
           </div>
           <div class="card-body">
-            <h5 class="card-title">Hoy estoy {{ selected[0].value }} <img id="emojiTexto" :src="selected[0].emoji"  /></h5>
-            <p class="card-text">Información sobre porque estoy {{ selected[0].value }} y como puedo cambiar este sentimiento</p>
-            <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+            <h5 class="card-title">
+              Hoy estoy {{ selected[0].value }}
+              <img id="emojiTexto" :src="selected[0].emoji" />
+            </h5>
+            <p class="card-text">
+              Información sobre porque estoy {{ selected[0].value }} y como
+              puedo cambiar este sentimiento
+            </p>
+            <a
+              href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
+              class="link"
+              >Click para saber más</a
+            >
           </div>
         </div>
       </div>
@@ -321,8 +335,8 @@ select {
 }
 
 @media only screen and (min-width: 1200px) {
-.card_motivos {
-  max-width: 836px !important;
+  .card_motivos {
+    max-width: 836px !important;
   }
 }
 

@@ -16,20 +16,23 @@ export default {
     <div>
       <Header />
     </div>
-    
-    <div class="alimentacion aling-items-center align-items-center justify-content-center text-center" >
-      <img class="imgg" src="../../public/img/cooking.png" alt="ilustración de personas cocinando">
+
+    <div
+      class="alimentacion aling-items-center align-items-center justify-content-center text-center"
+    >
+      <img
+        class="imgg"
+        src="../../public/img/cooking.png"
+        alt="ilustración de personas cocinando"
+      />
       <h2>Cooming soon ...</h2>
     </div>
   </div>
 </template>
 
-
 <style scoped>
-
 .imgg {
   margin: 50px;
   width: 950px;
 }
-
 </style>

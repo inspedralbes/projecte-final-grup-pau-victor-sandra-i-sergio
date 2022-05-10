@@ -2,17 +2,16 @@
 import Header from "../components/SubHeader.vue";
 
 export default {
-    components: {
-        Header,
-    },
-}
-
+  components: {
+    Header,
+  },
+};
 </script>
 
 <template>
+  <div>
     <div>
-        <div>
-            <Header/>
-        </div>
+      <Header />
     </div>
+  </div>
 </template>
