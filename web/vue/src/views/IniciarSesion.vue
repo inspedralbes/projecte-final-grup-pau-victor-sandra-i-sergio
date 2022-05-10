@@ -2,30 +2,30 @@
 export default {
   data() {
     return {
-      click: 0,
+      click_registro: 0,
     };
   },
   methods: {
-    cambiar() {
-      this.click = 1;
+    cambiar_registro() {
+      this.click_registro = 1;
     },
+    cambiar_login() {
+      this.click_registro = 0;
+    }
   },
 };
 </script>
->
 
 <template>
   <div class="container align-items-center justify-content-center text-center">
     <div class="flip-box">
-      <div class="flip-box-inner">
+      <div class="flip-box-inner" v-bind:class="[this.click_registro ? 'flip' : '']">
         <!-- INICIAR SESIÓN -->
-        <div class="flip-box-front carta_singup_front row row-cols">
+        <div class="flip-box-front carta_singup_front row row-cols shadow">
           <div class="col-12 iniciar_sesion">
             <h3>Iniciar Sesión</h3>
             <div class="input-group mb-2 mt-5">
-              <span class="input-group-text material-symbols-outlined"
-                >alternate_email</span
-              >
+              <span class="input-group-text material-symbols-outlined">alternate_email</span>
               <input
                 type="text"
                 class="form-control"
@@ -36,9 +36,7 @@ export default {
             </div>
 
             <div class="input-group mb-2 mt-3">
-              <span class="input-group-text material-symbols-outlined"
-                >lock</span
-              >
+              <span class="input-group-text material-symbols-outlined">lock</span>
               <input
                 type="password"
                 class="form-control"
@@ -49,20 +47,18 @@ export default {
             </div>
 
             <button class="btn btn-primary mt-4">Iniciar Sesión</button>
-            <div class="login_singup col-12 mt-4 mb-5" @click="cambiar">
+            <div class="login_singup col-12 mt-4 mb-5" @click="cambiar_registro">
               <span>No tienes cuenta?</span>
             </div>
           </div>
         </div>
         <!-- REGISTRO -->
-        <div class="flip-box-back carta_singup_back row row-cols">
+        <div class="flip-box-back carta_singup_back row row-cols shadow">
           <div class="col-12 registrarse">
             <h3>Unete a Genki Body</h3>
 
             <div class="input-group mb-2 mt-5">
-              <span class="input-group-text material-symbols-outlined"
-                >person</span
-              >
+              <span class="input-group-text material-symbols-outlined">person</span>
               <input
                 type="text"
                 class="form-control"
@@ -73,9 +69,7 @@ export default {
             </div>
 
             <div class="input-group mb-2 mt-3">
-              <span class="input-group-text material-symbols-outlined"
-                >alternate_email</span
-              >
+              <span class="input-group-text material-symbols-outlined">alternate_email</span>
               <input
                 type="text"
                 class="form-control"
@@ -86,9 +80,7 @@ export default {
             </div>
 
             <div class="input-group mb-2 mt-3">
-              <span class="input-group-text material-symbols-outlined"
-                >lock</span
-              >
+              <span class="input-group-text material-symbols-outlined">lock</span>
               <input
                 type="password"
                 class="form-control"
@@ -99,7 +91,7 @@ export default {
             </div>
 
             <button class="btn btn-primary mt-4">Registrar</button>
-            <div class="login_singup vcol-12 mt-4 mb-1" @click="cambiar">
+            <div class="login_singup vcol-12 mt-4 mb-1" @click="cambiar_login">
               <span>Ya tienes cuenta?</span>
             </div>
           </div>
@@ -118,22 +110,9 @@ export default {
   width: 100vw;
 }
 
-/*.carta_singup {
-  padding: 70px 30px 30px 30px;
-  height: 450px;
-  background-image: url(../assets/login3.png);
-  border-radius: 10px;
-  background-size: 500px;
-  backface-visibility: hidden;
-}*/
-
 .input-group-text {
   background-color: #ffffff;
   color: black;
-}
-
-p {
-  padding-top: 50px;
 }
 
 h3 {
@@ -145,17 +124,10 @@ h3 {
   cursor: pointer;
 }
 
-.carta_singup_front {
+.carta_singup_front, .carta_singup_back {
   padding: 70px 30px 30px 30px;
-  background-image: url(../assets/login3.png);
-  background-size: 500px;
-  border-radius: 10px;
-}
-
-.carta_singup_back {
-  padding: 70px 30px 30px 30px;
-  background-image: url(../assets/login3.png);
-  background-size: 500px;
+  background-image: url(../../public/img/login.png);
+  background-size: 450px;
   border-radius: 10px;
 }
 
@@ -165,7 +137,7 @@ h3 {
   height: 450px;
 }
 
-/************************************/
+/***** Transformación Flip *****/
 
 .flip-box {
   background-color: transparent;
@@ -182,7 +154,7 @@ h3 {
   transform-style: preserve-3d;
 }
 
-.flip-box-inner:hover {
+.flip {
   transform: rotateY(180deg);
 }
 
