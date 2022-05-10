@@ -12,6 +12,8 @@ export default {
       email: "",
       disabled: false,
       disabled2: false,
+      disabled3: false,
+      disabled4: false,
       selected: 0,
       motivo: "",
       estado: null,
@@ -40,8 +42,8 @@ export default {
     },
 
     enviarFormulario() {
-      let divresultado = document.getElementById("divResultado");
-      divresultado.style.display = "block";
+      // let divresultado = document.getElementById("divResultado");
+      // divresultado.style.display = "block";
       var cuestSalud = new URLSearchParams({
         usuario: "ermengol",
         estado: this.selected[0].value,
@@ -59,6 +61,10 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          this.disabled2 = false;
+          setTimeout(() => {
+            this.disabled3 = true;
+          }, 1500);
         });
     },
     guardarEstado(valor) {
@@ -87,10 +93,7 @@ export default {
     </div>
     <section>
       <Transition name="bounce">
-        <div
-          class="cuestionario_estado container px-4"
-          v-if="disabled == false"
-        >
+        <div class="cuestionario_estado container px-4" v-if="!this.disabled">
           <div class="row">
             <div class="col-12 text-center">
               <h2 class="titulo_cuestionario text-center">
@@ -123,21 +126,28 @@ export default {
             class="card mb-3 shadow"
           >
             <div class="row card_motivos">
+        <div class="container card_motivos" v-if="this.disabled2">
+          <div id="card-horizontal" v-if="selected" class="card mb-3 shadow">
+            <div class="row">
               <div class="col-12 retroceder">
                 <a @click="retroceder()">
                   <span class="material-symbols-outlined"> arrow_back </span>
                 </a>
               </div>
 
-
-              <div class="row justify-content-md-center ">
+              <div class="row justify-content-md-center">
                 <div class="col-md-4 gy-3 img-emoji">
                   <img :src="selected[0].emoji" id="emoji-card" />
                 </div>
 
                 <div class="col-md-6">
                   <div class="card-body">
-                    <div v-if="selected[0].value != 'Alegre' && selected[0].value != 'Energico'">
+                    <div
+                      v-if="
+                        selected[0].value != 'Alegre' &&
+                        selected[0].value != 'Energico'
+                      "
+                    >
                       <h5 class="text-center card-body-tit">
                         ¿Por qué estás <span style="font-weight:bold">{{ selected[0].value }}</span>?
                       </h5>
@@ -184,7 +194,6 @@ export default {
                   </div>
                 </div>
               </div>
-            </div>
 
               <div class="col-12 gy-2 text-center">
                 <input
@@ -198,25 +207,36 @@ export default {
           </div>
         </div>
       </Transition>
-
-      <div v-if="selected && disabled2">
-        <div
-          v-if="
-            selected[0].value != 'Alegre' && selected[0].value != 'Energico'
-          "
-          id="divResultado"
-          class="card-respuesta card text-center"
-        >
-          <div class="card-header">
-            Información sobre mi estado de ánimo actual
-          </div>
-          <div class="card-body">
-            <h5 class="card-title">Hoy estoy {{ selected[0].value }} <img id="emojiTexto" :src="selected[0].emoji"  /></h5>
-            <p class="card-text">Información sobre porque estoy {{ selected[0].value }} y como puedo cambiar este sentimiento</p>
-            <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+      <Transition name="bounce3">
+        <div v-if="selected && disabled3">
+          <div
+            v-if="
+              selected[0].value != 'Alegre' && selected[0].value != 'Energico'
+            "
+            id="divResultado"
+            class="card-respuesta card text-center"
+          >
+            <div class="card-header">
+              Información sobre mi estado de ánimo actual
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">
+                Hoy estoy {{ selected[0].value }}
+                <img id="emojiTexto" :src="selected[0].emoji" />
+              </h5>
+              <p class="card-text">
+                Información sobre porque estoy {{ selected[0].value }} y como
+                puedo cambiar este sentimiento
+              </p>
+              <a
+                href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
+                class="link"
+                >Click para saber más</a
+              >
+            </div>
           </div>
         </div>
-      </div>
+      </Transition>
     </section>
   </div>
 </template>
@@ -237,12 +257,12 @@ section {
   margin-bottom: 35px;
 }
 
-.card-respuesta {
+/* .card-respuesta {
   display: none;
   margin-top: 5%;
   margin-left: 15%;
   margin-right: 15%;
-}
+} */
 
 .retroceder {
   padding: 16px 25px;
@@ -371,24 +391,43 @@ form {
 }
 
 .bounce2-enter-active {
-  animation: bounce2-in 0.5s ease 0s 1 normal none running;
+  animation: bounce2-in 1s ease 0s 1 normal reverse;
 }
 
 .bounce2-leave-active {
-  animation: bounce2-in 0.5s ease 0s 1 normal none running reverse;
+  animation: bounce2-in 1s ease 0s 1 normal;
 }
 
 @keyframes bounce2-in {
   from {
-    opacity: 0;
-    transform: translate(0, 300px);
   }
 
-  50% {
-    opacity: 1;
+  40% {
+    transform: translate(0, 100px);
   }
 
   to {
+    transform: translate(0, -700px);
+    opacity: 0;
+  }
+}
+
+.bounce3-enter-active {
+  animation: bounce3-in 0.5s ease 0s 1 normal;
+}
+
+.bounce3-leave-active {
+  animation: bounce3-in 0.5s ease 0s 1 normal reverse;
+}
+
+@keyframes bounce3-in {
+  from {
+    opacity: 0;
+    transform: translate(0, 700px);
+  }
+
+  to {
+    opacity: 1;
   }
 }
 

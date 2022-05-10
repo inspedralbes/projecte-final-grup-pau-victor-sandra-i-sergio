@@ -11,7 +11,7 @@ export default {
     },
     cambiar_login() {
       this.click_registro = 0;
-    }
+    },
   },
 };
 </script>
@@ -29,24 +29,14 @@ export default {
             <h3>Iniciar Sesión</h3>
             <div class="input-group mb-2 mt-5">
               <span class="input-group-text material-symbols-outlined">alternate_email</span>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Correo"
-                aria-label="Correo"
-                aria-describedby="basic-addon1"
-              />
+              <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
+                aria-describedby="basic-addon1" />
             </div>
 
             <div class="input-group mb-2 mt-3">
               <span class="input-group-text material-symbols-outlined">lock</span>
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Contraseña"
-                aria-label="Contraseña"
-                aria-describedby="basic-addon2"
-              />
+              <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
+                aria-describedby="basic-addon2" />
             </div>
 
             <button class="btn btn-primary mt-4">Iniciar Sesión</button>
@@ -63,35 +53,20 @@ export default {
 
             <div class="input-group mb-2 mt-5">
               <span class="input-group-text material-symbols-outlined">person</span>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Nombre"
-                aria-label="Nombre"
-                aria-describedby="basic-addon1"
-              />
+              <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre"
+                aria-describedby="basic-addon1" />
             </div>
 
             <div class="input-group mb-2 mt-3">
               <span class="input-group-text material-symbols-outlined">alternate_email</span>
-              <input
-                type="text"
-                class="form-control"
-                placeholder="Correo"
-                aria-label="Correo"
-                aria-describedby="basic-addon1"
-              />
+              <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
+                aria-describedby="basic-addon1" />
             </div>
 
             <div class="input-group mb-2 mt-3">
               <span class="input-group-text material-symbols-outlined">lock</span>
-              <input
-                type="password"
-                class="form-control"
-                placeholder="Contraseña"
-                aria-label="Contraseña"
-                aria-describedby="basic-addon2"
-              />
+              <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
+                aria-describedby="basic-addon2" />
             </div>
 
             <button class="btn btn-primary mt-4">Registrar</button>
@@ -189,7 +164,8 @@ h3 {
   cursor: pointer;
 }
 
-.carta_singup_front, .carta_singup_back {
+.carta_singup_front,
+.carta_singup_back {
   padding: 70px 30px 30px 30px;
   background-image: url(../../public/img/login.png);
   background-size: 450px;
@@ -241,7 +217,7 @@ h3 {
 
 /***** Transformación Flip *****/
 
-.flip-box {
+/* .flip-box {
   background-color: transparent;
   width: 380px;
   height: 450px;
@@ -265,6 +241,34 @@ h3 {
   position: absolute;
   width: 380px;
   height: 450px;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+} */
+
+.flip-box {
+  background-color: transparent;
+  width: 40vw;
+  height: auto;
+  perspective: 10000px;
+}
+
+.flip-box-inner {
+  width: 40vw;
+  height: 50vh;
+  text-align: center;
+  transition: transform 1.8s;
+  transform-style: preserve-3d;
+}
+
+.flip {
+  transform: rotateY(180deg);
+}
+
+.flip-box-front,
+.flip-box-back {
+  position: absolute;
+  width: 40vh;
+  height: auto;
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
 }
