@@ -2,126 +2,126 @@
     {
         "tipo": "Muerte",
         "respuesta": "https://lamenteesmaravillosa.com/que-significa-sonar-con-la-muerte/",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Muerte.png"
     },
     {
         "tipo": "Desnudo",
         "respuesta": "https://www.elespanol.com/como/significa-sonar-desnudo-significado-suenos/491201938_0.amp.html",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Desnudo.png"
     },
     {
         "tipo": "Volar",
         "respuesta": "https://www.euroresidentes.com/suenos/diccionario_significado_de/sonar_volar.htm",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Volar.png"
     },
     {
         "tipo": "Perseguido",
         "respuesta": "https://laverdadnoticias.com/estiloyvida/Que-significa-sonar-que-eres-perseguido-20200721-0098.html",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Perseguido.png"
     },
     {
         "tipo": "Infidelidad",
         "respuesta": "https://www.psicologia-online.com/que-significa-sonar-con-una-infidelidad-5877.html",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Infidelidad.png"
     },
     {
         "tipo": "Caida dientes",
         "respuesta": "https://www.psicologia-online.com/que-significa-sonar-que-se-te-cae-un-diente-487.html",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Dientes.png"
     },
     {
         "tipo": "Riqueza",
         "respuesta": "https://psicologiaymente.com/psicologia/sonar-con-dinero",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Dinero.png"
     },
     {
         "tipo": "Infancia",
         "respuesta": "",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Infancia.png"
     },
     {
         "tipo": "Agua",
         "respuesta": "https://www.psicologia-online.com/que-significa-sonar-con-agua-5437.html",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Agua.png"
     },
     {
         "tipo": "Trabajo",
         "respuesta": "https://www.psicologia-online.com/que-significa-sonar-con-el--5837.html",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Trabajo.png"
     },
     {
         "tipo": "Comida",
         "respuesta": "https://www.psicologia-online.com/que-significa-sonar-con-comida-5537.html",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Comida.png"
     },
     {
         "tipo": "Secuestro",
         "respuesta": "https://misignificadodelossuenos.com/sonar-con-secuestro/",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Secuestro.png"
     },
     {
         "tipo": "Enamorarse",
         "respuesta": "https://www.oniricos.com/sonar-que-te-enamoras/ ",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Enamorarse.png"
     },
     {
         "tipo": "Fiesta",
         "respuesta": "https://significadode.online/sonar-con-fiesta/",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Fiesta.png"
     },
     {
         "tipo": "Operación",
         "respuesta": "https://www.psicologia-online.com/que-significa-sonar-con-una-operacion-5696.html",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Operación.png"
     },
     {
         "tipo": "Pelea",
         "respuesta": "https://www.psicologia-online.com/que-significa-sonar-con-una-pelea-5592.html",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Pelea.png"
     },
     {
         "tipo": "Lluvia",
         "respuesta": "https://www.psicologia-online.com/que-significa-sonar-con-lluvia-5790.html",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Lluvia.png"
     },
     {
         "tipo": "Llegar tarde",
         "respuesta": "https://www.mis-suenos.org/interpretaciones/buscar?text=llegar+tarde+a+un+lugar",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Tarde.png"
     },
     {
         "tipo": "Entrevista de trabajo",
         "respuesta": "",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Entrevista.png"
     },
     {
         "tipo": "Ser famoso",
         "respuesta": "",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Famoso.png"
     },
     {
         "tipo": "Coche",
         "respuesta": "https://elderecho.online/entretenimiento/que-significa-sonar-con-un-coche/",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Coche.png"
     },
     {
         "tipo": "Soledad",
         "respuesta": "",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Soledad.png"
     },
     {
         "tipo": "Enfermedad",
         "respuesta": "https://www.psicologia-online.com/que-significa-sonar-con-una-enfermedad-5685.html",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Enfermedad.png"
     },
     {
         "tipo": "Casarse",
         "respuesta": "https://vibra.co/significado-suenos/sonar-con-matrimonio/",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Casarse.png"
     },
     {
         "tipo": "Plumas",
         "respuesta": "https://www.provechososite.com/sonar-con-plumas-significado-de-los-suenos/",
-        "img": ""
+        "img": "@/../public/img/emojis_suenos/Plumas.png"
     }
 ]
