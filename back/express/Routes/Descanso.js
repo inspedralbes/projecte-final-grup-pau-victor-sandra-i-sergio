@@ -23,7 +23,7 @@ Descanso.route("/tipos-suenos").get((req, res) => {
         } else {
             let r = new Array();
             resultado.forEach((e) => {
-                r.push(e.tipo)
+                r.push(e)
             })
 
             res.json({ "tipoSueno": r });
@@ -35,7 +35,6 @@ Descanso.route("/tipos-suenos").get((req, res) => {
 // Añadir tipo de sueño
 Descanso.route('/anadir-tipo-sueno').post((req, res) => {
     let datos = req.body;
-    console.log(req.body)
     const tipoSueno = new TipoSueno(datos);
     tipoSueno.save();
     res.status(201)
@@ -50,7 +49,6 @@ Descanso.route('/guardar-datos-cuestionario').post((req, res) => {
         res.status(500);
         res.json({ 'status': false, 'msg': 'Error! Falta/Sobra algún campo' });
     } else {
-        console.log()
         if (typeof datos.descripcionSueno !== 'object' || typeof datos.usuario !== 'string') { // Un campo es string y el otro es array 
             res.status(500);
             res.json({ 'status': false, 'msg': 'Error! Dades enviades en un altre format' });
@@ -71,9 +69,7 @@ Descanso.route('/guardar-datos-cuestionario').post((req, res) => {
 
 Descanso.route('/respuesta-cuestionario').post((req, res) => {
     const datos = req.body;
-    console.log(datos);
     datos.descripcionSueno = JSON.parse(datos.descripcionSueno);
-    console.log(datos);
 
     TipoSueno.find({}, function (err, resultado) {
         if (err) {
