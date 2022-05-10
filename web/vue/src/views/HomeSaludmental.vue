@@ -129,40 +129,37 @@ export default {
                 </a>
               </div>
 
-              <div class="col-md-4 gy-3 img-emoji">
-                <img :src="selected[0].emoji" id="emoji-card" />
-              </div>
 
-              <div class="col-md-8">
-                <div class="card-body">
-                  <div
-                    v-if="
-                      selected[0].value != 'Alegre' &&
-                      selected[0].value != 'Energico'
-                    "
-                  >
-                    <h5 class="text-center card-body-tit">
-                      ¿Porqué estás {{ selected[0].value }}?
-                    </h5>
-                    <div
-                      :key="index"
-                      v-for="(estado, index) in selected[0].motivos"
-                    >
-                      <div class="form-check">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          @click="guardarMotivo($event.target.value)"
-                          :value="index"
-                          name="motivo"
-                          :id="index"
-                        />
-                        <label class="form-check-label" :for="index">
-                          {{ estado }}
-                        </label>
+              <div class="row justify-content-md-center">
+                <div class="col-md-3 gy-3 img-emoji">
+                  <img :src="selected[0].emoji" id="emoji-card" />
+                </div>
+
+                <div class="col-md-7">
+                  <div class="card-body">
+                    <div v-if="selected[0].value != 'Alegre' && selected[0].value != 'Energico'">
+                      <h5 class="text-center card-body-tit">
+                        ¿Por qué estás {{ selected[0].value }}?
+                      </h5>
+                      <div
+                        :key="index"
+                        v-for="(estado, index) in selected[0].motivos"
+                      >
+                        <div class="form-check">
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            @click="guardarMotivo($event.target.value)"
+                            :value="index"
+                            name="motivo"
+                            :id="index"
+                          />
+                          <label class="form-check-label" :for="index">
+                            {{ estado }}
+                          </label>
+                        </div>
                       </div>
                     </div>
-                  </div>
 
                   <div
                     v-if="
@@ -187,6 +184,7 @@ export default {
                   </div>
                 </div>
               </div>
+            </div>
 
               <div class="col-12 gy-2 text-center">
                 <input
@@ -213,21 +211,10 @@ export default {
             Información sobre mi estado de ánimo actual
           </div>
           <div class="card-body">
-            <h5 class="card-title">
-              Hoy estoy {{ selected[0].value }}
-              <img id="emojiTexto" :src="selected[0].emoji" />
-            </h5>
-            <p class="card-text">
-              Información sobre porque estoy {{ selected[0].value }} y como
-              puedo cambiar este sentimiento
-            </p>
-            <a
-              href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
-              class="link"
-              >Click para saber más</a
-            >
+            <h5 class="card-title">Hoy estoy {{ selected[0].value }} <img id="emojiTexto" :src="selected[0].emoji"  /></h5>
+            <p class="card-text">Información sobre porque estoy {{ selected[0].value }} y como puedo cambiar este sentimiento</p>
+            <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
           </div>
-          <div class="card-footer text-muted">Official website</div>
         </div>
       </div>
     </section>
