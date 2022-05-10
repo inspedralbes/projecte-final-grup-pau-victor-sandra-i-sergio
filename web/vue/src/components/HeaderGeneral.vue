@@ -67,6 +67,21 @@ export default {
 
             <li class="nav-item my-1">
               <RouterLink class="nav-link" to="/">
+                <div class="d-flex link_cuenta">
+                  <div id="divAvatar">
+                    <span id="avatar_usuario" class="icono_cuenta material-symbols-outlined"
+                      ><img src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"/></span
+                    >
+                  </div>
+                  <div class="align-self-center mx-4">
+                    <span class="bold">Nombre usuario</span>
+                  </div>
+                </div>         
+              </RouterLink>
+            </li>
+
+            <li class="nav-item my-1">
+              <RouterLink class="nav-link" to="/">
                 <div class="d-flex align-items-center link_inicio">
                   <div class="align-self-center d-flex align-content-center">
                     <span class="icono_inicio material-symbols-outlined"
@@ -139,6 +154,22 @@ export default {
                 </div>
               </RouterLink>
             </li>
+
+            <li class="nav-item my-1">
+              <RouterLink class="nav-link" to="/">
+                <div class="d-flex align-items-center link_cerrarSession">
+                  <div class="align-self-center d-flex align-content-center">
+                    <span  class="material-symbols-outlined"
+                      >logout</span
+                    >
+                  </div>
+                  <div class="align-self-center mx-2">
+                    <span class="bold">Cerrar Session</span>
+                  </div>
+                </div>
+              </RouterLink>
+            </li>
+
           </ul>
         </div>
       </div>
@@ -173,6 +204,18 @@ a {
 
 .link_about_us:hover {
   color: #8a8a8a;
+}
+
+.link_cerrarSession:hover {
+  color: #ff0000;
+}
+
+#divAvatar {
+  max-width: 24px;
+}
+
+img {
+  max-width: 40px;
 }
 
 .bold {
