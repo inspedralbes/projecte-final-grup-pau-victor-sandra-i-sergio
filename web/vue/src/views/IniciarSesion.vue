@@ -3,8 +3,10 @@ export default {
   data() {
     return {
       click_registro: 0,
+      a: 0
     };
   },
+
   methods: {
     cambiar_registro() {
       this.click_registro = 1;
