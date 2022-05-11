@@ -1,16 +1,20 @@
 <script>
 import Header from "../components/SubHeader.vue";
 import CardSuenos from "../components/CardSuenos.vue";
+import Acordeon from "../components/AcordeonDescanso.vue";
 
 export default {
   components: {
     Header,
     CardSuenos,
+    Acordeon,
   },
   data() {
     return {
       selected: [],
       elemento: [],
+      resultado: [],
+      sueno: null,
       animacion1: false,
       animacion2: false,
       accordionID: [
@@ -93,13 +97,12 @@ export default {
       })
         .then((response) => response.json())
         .then((data) => {
-          for(let i = 0; i < this.selected.length; i++){
+          for (let i = 0; i < this.selected.length; i++) {
             console.log(i);
             console.log(data.resultado[i].tipo);
             console.log(data.resultado[i].respuesta);
+            this.resultado = data.resultado;
           }
-          
-          
         });
     },
     activar() {
@@ -141,7 +144,14 @@ export default {
                 v-bind:value="check"
               >
                 <CardSuenos
-                  class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light p-2"
+                  class="
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                    flex-direction-row
+                    btn btn-outline-light
+                    p-2
+                  "
                   @id="this.guardarseleccionada"
                   :infoCuest="check"
                   :contador="this.selected.length"
@@ -184,98 +194,26 @@ export default {
         </div>-->
 
         <Transition name="bounce2">
-          <div v-if="this.animacion2" class="accordion">
-              <div v-if="this.selected[0]!=null" class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
-                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
-                    {{this.selected[0]}}
-                  </button>
-                </h2>
-                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
-                  <div class="accordion-body">
-                    <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
-                    <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
-                  </div>
-                </div>
-              </div>
-              <div v-if="this.selected[1]!=null" class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
-                    {{this.selected[1]}}
-                  </button>
-                </h2>
-                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
-                  <div class="accordion-body">
-                    <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
-                    <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
-                  </div>
-                </div>
-              </div>
-              <div v-if="this.selected[2]!=null" class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
-                    {{this.selected[2]}}
-                  </button>
-                </h2>
-                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
-                  <div class="accordion-body">
-                    <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
-                    <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
-                  </div>
-                </div>
-              </div>
-              <div v-if="this.selected[3]!=null" class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingFour">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
-                    {{this.selected[3]}}
-                  </button>
-                </h2>
-                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
-                  <div class="accordion-body">
-                    <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
-                    <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
-                  </div>
-                </div>
-              </div>
-              <div v-if="this.selected[4]!=null" class="accordion-item">
-                <h2 class="accordion-header" id="panelsStayOpen-headingFive">
-                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFive" aria-expanded="false" aria-controls="panelsStayOpen-collapseFive">
-                    {{this.selected[4]}}
-                  </button>
-                </h2>
-                <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFive">
-                  <div class="accordion-body">
-                    <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
-                    <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
-                  </div>
+          <div
+            v-if="this.animacion2"
+            class="container accordion acordion-margin-top"
+          >
+            <div class="row">
+              <div
+                v-for="(sueno, index) in selected"
+                :key="index"
+                v-bind:value="sueno.value"
+                class="col-12"
+              >
+                <div class="align-items-center justify-content-center">
+                  <Acordeon
+                    :infoAcordeon="this.resultado[index]"
+                    :index="index"
+                  />
                 </div>
               </div>
             </div>
-
-           <!--<div id="card-respuesta" v-if="this.animacion2">
-            <div class="card-group">
-              <div v-for="n in this.selected.length" class="col-6 card">
-                <img
-                  src="http://cantina2.alumnes.inspedralbes.cat/projecteCantina/css/bocadillo1.jpg"
-                  class="card-img-top"
-                />
-                <div class="card-body">
-                  <h5 class="card-title">{{ this.selected[n - 1] }}</h5>
-                  <p class="card-text">
-                    Para saber mas sobre el sueño visite la siguiente página
-                  </p>
-                  <a 
-                    href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
-                    class="link"
-                    >Click para saber más</a
-                  >
-                </div>
-                <div class="card-footer">
-                  <small class="text-muted">Official website</small>
-                </div>
-              </div>
-            </div>
-          </div>-->
+          </div>
         </Transition>
       </div>
     </div>
@@ -306,11 +244,6 @@ export default {
   display: none;
   margin-bottom: 10%;
 } */
-
-.accordion-item {
-  margin-left: 15%;
-  margin-right: 15%;
-}
 
 .card {
   max-width: 15%;
@@ -377,5 +310,9 @@ export default {
   to {
     opacity: 1;
   }
+}
+
+.acordion-margin-top {
+  margin-top: 5%;
 }
 </style>
