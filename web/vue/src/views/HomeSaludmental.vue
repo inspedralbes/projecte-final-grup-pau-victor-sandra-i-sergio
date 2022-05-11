@@ -1,6 +1,8 @@
 <script>
 import Header from "../components/SubHeader.vue";
 import CardVertical from "../components/CardVertical.vue";
+import { sesionStore } from '@/stores/sesionStore'
+import { mapStores } from 'pinia'
 
 export default {
   components: {
@@ -20,6 +22,14 @@ export default {
       motivo: "",
       estado: null,
     };
+  },
+
+  computed: {
+    ...mapStores(sesionStore),
+  },
+
+  mounted() {
+    this.sesionStore.setRutaActual(this.$route.name)
   },
 
   beforeMount() {
@@ -118,16 +128,9 @@ export default {
           </div>
 
           <div class="row justify-content-center cartas">
-            <div
-              class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center"
-              v-for="(opcion, index) in estado"
-              :key="index"
-              v-bind:value="opcion.value"
-            >
-              <CardVertical
-                @id="this.guardarEstado"
-                :infoCuest="this.estado[index]"
-              />
+            <div class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center" v-for="(opcion, index) in estado"
+              :key="index" v-bind:value="opcion.value">
+              <CardVertical @id="this.guardarEstado" :infoCuest="this.estado[index]" />
             </div>
           </div>
         </div>
@@ -151,32 +154,20 @@ export default {
 
                   <div class="col-md-6">
                     <div class="card-body">
-                      <div
-                        v-if="
-                          selected[0].value != 'Alegre' &&
-                          selected[0].value != 'Energico'
-                        "
-                      >
+                      <div v-if="
+                        selected[0].value != 'Alegre' &&
+                        selected[0].value != 'Energico'
+                      ">
                         <h5 class="text-center card-body-tit">
                           ¿Por qué estás
                           <span style="font-weight: bold">{{
-                            selected[0].value
-                          }}</span
-                          >?
+                              selected[0].value
+                          }}</span>?
                         </h5>
-                        <div
-                          :key="index"
-                          v-for="(estado, index) in selected[0].motivos"
-                        >
+                        <div :key="index" v-for="(estado, index) in selected[0].motivos">
                           <div class="form-check my-3">
-                            <input
-                              class="form-check-input"
-                              type="radio"
-                              @click="guardarMotivo($event.target.value)"
-                              :value="index"
-                              name="motivo"
-                              :id="index"
-                            />
+                            <input class="form-check-input" type="radio" @click="guardarMotivo($event.target.value)"
+                              :value="index" name="motivo" :id="index" />
                             <label class="form-check-label" :for="index">
                               {{ estado }}
                             </label>
@@ -184,25 +175,18 @@ export default {
                         </div>
                       </div>
 
-                      <div
-                        v-if="
-                          selected[0].value == 'Alegre' ||
-                          selected[0].value == 'Energico'
-                        "
-                      >
+                      <div v-if="
+                        selected[0].value == 'Alegre' ||
+                        selected[0].value == 'Energico'
+                      ">
                         <h5 class="text-center card-body-tit">
                           Hoy estoy
                           <span style="font-weight: bold">{{
-                            selected[0].value
+                              selected[0].value
                           }}</span>
                         </h5>
                         <div class="form-check">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            name="motivo"
-                            checked
-                          />
+                          <input class="form-check-input" type="radio" name="motivo" checked />
                           <label class="form-check-label">
                             Estoy {{ selected[0].value }}
                           </label>
@@ -212,12 +196,8 @@ export default {
                   </div>
 
                   <div class="col-12 gy-2 text-center">
-                    <input
-                      class="btn btn-outline-secondary btn-enviarRespuesta"
-                      type="button"
-                      @click="enviarFormulario()"
-                      value="Enviar respuesta"
-                    />
+                    <input class="btn btn-outline-secondary btn-enviarRespuesta" type="button"
+                      @click="enviarFormulario()" value="Enviar respuesta" />
                   </div>
                 </div>
               </div>
@@ -228,13 +208,9 @@ export default {
 
       <Transition name="bounce3">
         <div v-if="selected && disabled3">
-          <div
-            v-if="
-              selected[0].value != 'Alegre' && selected[0].value != 'Energico'
-            "
-            id="divResultado"
-            class="card-respuesta card text-center"
-          >
+          <div v-if="
+            selected[0].value != 'Alegre' && selected[0].value != 'Energico'
+          " id="divResultado" class="card-respuesta card text-center">
             <div class="card-header">
               Información sobre mi estado de ánimo actual
             </div>
@@ -247,12 +223,8 @@ export default {
                 Información sobre porque estoy {{ selected[0].value }} y como
                 puedo cambiar este sentimiento
               </p>
-              <a
-                href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
-                target="_blank"
-                class="link"
-                >Click para saber más</a
-              >
+              <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" target="_blank" class="link">Click para
+                saber más</a>
             </div>
           </div>
         </div>
@@ -263,8 +235,7 @@ export default {
 
 <style scoped>
 section {
-  min-height: 81vh;
-  height: auto;
+  min-height: 74vh;
 }
 
 #card-horizontal {
@@ -405,8 +376,7 @@ form {
 }
 
 @keyframes bounce-in {
-  from {
-  }
+  from {}
 
   40% {
     transform: translate(0, 100px);
@@ -427,8 +397,7 @@ form {
 }
 
 @keyframes bounce2-in {
-  from {
-  }
+  from {}
 
   40% {
     transform: translate(0, 100px);

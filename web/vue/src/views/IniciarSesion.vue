@@ -1,10 +1,26 @@
 <script>
+import { sesionStore } from '@/stores/sesionStore'
+import { mapStores } from 'pinia'
+import router from "@/router"
+
 export default {
   data() {
     return {
       click_registro: 0,
-      a: 0
+      passwordLogin: "",
+      emailLogin: "",
+      passwordRegister: "",
+      emailRegister: "",
+      nomApeRegister: ""
     };
+  },
+
+  computed: {
+    ...mapStores(sesionStore),
+  },
+
+  mounted(){
+    this.sesionStore.setRutaActual(this.$route.name)
   },
 
   methods: {
@@ -14,6 +30,43 @@ export default {
     cambiar_login() {
       this.click_registro = 0;
     },
+
+    iniciarSesion() {
+      let login = new FormData();
+      login.append('email', this.emailLogin);
+      login.append('password', this.passwordLogin)
+
+      fetch('http://192.168.210.162:9000/usuario/login', {
+        method: "POST",
+        body: login
+      }).then(response => response.json()).then(data => {
+        alert(data.msg);
+        if (data.status) {
+          console.log('asdf')
+          this.sesionStore.setUsuario(data.usuario)
+          router.push({ name: this.sesionStore.getRutaAnterior });
+        }
+      })
+    },
+
+    registrarse() {
+      let register = new FormData();
+      register.append('email', this.emailRegister);
+      register.append('password', this.passwordRegister);
+      register.append('nombreApellidos', this.nomApeRegister)
+
+      fetch('http://192.168.210.162:9000/usuario/register', {
+        method: "POST",
+        body: register
+      }).then(response => response.json()).then(data => {
+        alert(data.msg);
+        if (data.status) {
+          console.log('asdf')
+          this.sesionStore.setUsuario(data.usuario)
+          router.push({ name: this.sesionStore.getRutaAnterior });
+        }
+      })
+    }
   },
 };
 </script>
@@ -23,45 +76,27 @@ export default {
     <!-- CARTA INICIAR SESIÓN / REGISTRO -->
     <div class="container">
       <div class="flip-box">
-        <div
-          class="flip-box-inner d-flex align-items-center"
-          v-bind:class="[this.click_registro ? 'flip' : '']"
-        >
+        <div class="flip-box-inner d-flex align-items-center" v-bind:class="[this.click_registro ? 'flip' : '']">
           <!-- INICIAR SESIÓN -->
           <div class="flip-box-front carta_singup_front shadow col-12">
             <div class="iniciar_sesion">
               <h3>Iniciar Sesión</h3>
               <div class="input-group mb-2 mt-5">
-                <span class="input-group-text material-symbols-outlined"
-                  >alternate_email</span
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Correo"
-                  aria-label="Correo"
-                  aria-describedby="basic-addon1"
-                />
+                <span class="input-group-text material-symbols-outlined">alternate_email</span>
+                <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
+                  :value="this.emailLogin" aria-describedby="basic-addon1"
+                  @input="(event) => { this.emailLogin = event.target.value }" />
               </div>
 
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined"
-                  >lock</span
-                >
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Contraseña"
-                  aria-label="Contraseña"
-                  aria-describedby="basic-addon2"
-                />
+                <span class="input-group-text material-symbols-outlined">lock</span>
+                <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
+                  aria-describedby="basic-addon2" :value="this.passwordLogin"
+                  @input="(event) => { this.passwordLogin = event.target.value }" />
               </div>
 
-              <button class="btn btn-primary mt-4">Iniciar Sesión</button>
-              <div
-                class="login_singup col-12 mt-4 mb-5"
-                @click="cambiar_registro"
-              >
+              <button class="btn btn-primary mt-4" @click="this.iniciarSesion()">Iniciar Sesión</button>
+              <div class="login_singup col-12 mt-4 mb-5" @click="cambiar_registro">
                 <span>No tienes cuenta?</span>
               </div>
             </div>
@@ -73,49 +108,28 @@ export default {
               <h3>Unete a Genki Body</h3>
 
               <div class="input-group mb-2 mt-5">
-                <span class="input-group-text material-symbols-outlined"
-                  >person</span
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Nombre"
-                  aria-label="Nombre"
-                  aria-describedby="basic-addon1"
-                />
+                <span class="input-group-text material-symbols-outlined">person</span>
+                <input type="text" class="form-control" placeholder="Nombre y apellidos" aria-label="Nombre y apellidos"
+                  aria-describedby="basic-addon1" :value="this.nomApeRegister"
+                  @input="(event) => { this.nomApeRegister = event.target.value }" />
               </div>
 
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined"
-                  >alternate_email</span
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Correo"
-                  aria-label="Correo"
-                  aria-describedby="basic-addon1"
-                />
+                <span class="input-group-text material-symbols-outlined">alternate_email</span>
+                <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
+                  aria-describedby="basic-addon1" :value="this.emailRegister"
+                  @input="(event) => { this.emailRegister = event.target.value }" />
               </div>
 
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined"
-                  >lock</span
-                >
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Contraseña"
-                  aria-label="Contraseña"
-                  aria-describedby="basic-addon2"
-                />
+                <span class="input-group-text material-symbols-outlined">lock</span>
+                <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
+                  aria-describedby="basic-addon2" :value="this.passwordRegister"
+                  @input="(event) => { this.passwordRegister = event.target.value }" />
               </div>
 
-              <button class="btn btn-primary mt-4">Registrar</button>
-              <div
-                class="login_singup vcol-12 mt-4 mb-1"
-                @click="cambiar_login"
-              >
+              <button class="btn btn-primary mt-4" @click="this.registrarse()">Registrar</button>
+              <div class="login_singup vcol-12 mt-4 mb-1" @click="cambiar_login">
                 <span>Ya tienes cuenta?</span>
               </div>
             </div>
@@ -125,80 +139,98 @@ export default {
     </div>
 
     <!-- P.2 REGISTRO - DATOS DEL USUARIO -->
-    <div
-      class="container REGISTRO2 align-items-center justify-content-center ocultar"
-    >
-      <div class="div_datos">
-        <h3 class="text-center titulo my-5">Cuentanos un poco más sobre ti</h3>
+    <div class="container justify-content-center d-flex align-items-center">
+      <div class="div_datos REGISTRO2 align-items-start shadow-lg">
+        <div class="div2 p-5">
 
-        <div class="row">
-          <div class="col-md-2">
-            <label for="inputEmail4" class="form-label">Edad</label>
-            <input type="text" class="form-control" id="inputEmail4" />
+          <h3 class="text-center titulo mb-5">Cuentanos un poco más sobre ti</h3>
+
+          <div class="row align-items-center">
+ 
+            <div class="col-md-7 col-12">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <label class="bold" for="edad">Edad</label>
+                </div>
+                <div class="col-5 col-md-7 g-1 ">
+                  <input type="number" class="form-control" id="edad">
+                </div>
+              </div>
+
+              <div class="row align-items-start mt-4">
+                <div class="col-md-auto col-12">
+                  <label class="bold mb-3" for="Ocupación">Ocupación</label>
+                  <div class="ocupacion p-3 pe-4 shadow-sm">
+                    <div class="form-check ">
+                      <input class="form-check-input" type="radio" name="Ocupacion" id="trabajador">
+                      <label class="form-check-label" for="trabajador">Trabajo</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="Ocupacion" id="estudiante">
+                      <label class="form-check-label" for="Ocupacion">Estudio</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="Ocupacion" id="otro">
+                      <label class="form-check-label" for="Ocupacion">Otro</label>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-auto col-12">
+                  <label class="bold mb-3" for="Ocupación">Sexo</label>
+                  <div class="sexo p-3 pe-4 shadow-sm">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="sexo" id="mujer">
+                      <label class="form-check-label" for="trabajador">Mujer</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="sexo" id="hombre">
+                      <label class="form-check-label" for="Ocupacion">Hombre</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-5 col-12">
+
+              <div class="row nivel_row align-items-center mt-2">
+                <div class="col nivel my-3">
+                  <label for="nivel" class="form-label bold">Nivel físico</label>
+                  <input type="range" class="form-range" min="1" max="3" id="nivel">
+                  <br>
+                  <span class="form-label relativeP">Principiante</span>
+                  <span class="form-label relativeI">Intermedio</span>
+                  <span class="form-label relativeA">Avanzado</span>
+                </div>
+              </div>
+
+              <div class="row nivel_row align-items-center mt-2">
+                <div class="col nivel my-3">
+                  <label for="nivel" class="form-label bold">Disponibilidad de tiempo</label>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Selecciona una opción</option>
+                    <option value="1">15 min</option>
+                    <option value="2">30 min</option>
+                    <option value="3">45 min</option>
+                    <option value="3">1 h</option>
+                  </select>
+                </div>    
+              </div>
+            </div>
+
+          </div>
+          <div class="text-center mt-3">
+          <div class="btn btn-primary text-center">Confirmar</div>
           </div>
 
-          <div class="col-2 ocupacion mx-3">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="Ocupacion"
-                id="trabajador"
-              />
-              <label class="form-check-label" for="trabajador">Trabajo</label>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="Ocupacion"
-                id="estudiante"
-              />
-              <label class="form-check-label" for="Ocupacion">Estudio</label>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="Ocupacion"
-                id="otro"
-              />
-              <label class="form-check-label" for="Ocupacion">Otro</label>
-            </div>
-          </div>
-
-          <div class="col-2 sexo mx-3">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sexo"
-                id="mujer"
-              />
-              <label class="form-check-label" for="trabajador">Mujer</label>
-            </div>
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sexo"
-                id="hombre"
-              />
-              <label class="form-check-label" for="Ocupacion">Hombre</label>
-            </div>
-          </div>
         </div>
-
-        <div class="col-6 nivel m-3">
-          <label for="nivel" class="form-label">Nivel físico</label>
-          <input type="range" class="form-range" min="1" max="3" id="nivel" />
-          <span class="form-label m-1">Principiante</span>
-          <span class="form-label m-6">Intermedio</span>
-          <span class="form-label m-4">Avanzado</span>
-        </div>
-      </div>
+      
+      </div>    
     </div>
   </div>
+
 </template>
 
 <style scoped>
@@ -207,9 +239,7 @@ export default {
   width: 100vw;
 }
 
-.input-group-text
-
-/* iconos formulario */ {
+.input-group-text/* iconos formulario */ {
   background-color: #ffffff;
   color: black;
 }
@@ -227,7 +257,7 @@ h3 {
 .carta_singup_back {
   padding: 40px 30px 30px 30px;
   background-image: url(../../public/img/login.png);
-  background-size: 450px;
+  background-size: 120%;
   border-radius: 10px;
 }
 
@@ -237,37 +267,56 @@ h3 {
   height: 450px;
 }
 
-.ocultar {
-  display: none;
+.bold{
+  font-weight: 600;
 }
 
 /***** Parte 2 registro ******/
 
-.titulo {
-}
-
-.sexo {
+.ocupacion, .sexo {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 8px;
-}
-
-.ocupacion {
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 8px;
+  border-radius: 8px;
 }
 
 .REGISTRO2 {
   background-image: url(../../public/img/login.png);
-  background-size: 1000px;
-  margin-top: 50px;
-  height: 700px;
-  width: 800px;
+  border-radius: 10px;
 }
 
-.div_datos {
-  width: 100%;
-  height: 600px;
+.div2 {
+  margin: 20px;
 }
+
+.edad_row {
+  padding-left: 0;
+}
+
+.relativeP {
+  font-size: 14px;
+  position: relative;
+  right: 29px;
+}
+
+.relativeI {
+  font-size: 14px;
+  position: relative;
+  left: 21px;
+}
+
+.relativeA {
+  font-size: 14px;
+  position: relative;
+  left: 75px;
+}
+
+@media only screen and (min-width: 380px) {
+  .div_datos {
+    max-width: 760px;
+    width: 100%
+  }
+}
+
 
 /***** Transformación Flip *****/
 

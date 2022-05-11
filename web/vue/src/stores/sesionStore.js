@@ -2,12 +2,10 @@ import { defineStore } from "pinia";
 
 export const sesionStore = defineStore("sesion", {
     state: () => ({
-        sesion: {
-            a: 0
-        },
-        usuario: {
-            a: 0
-        }
+        sesion: {},
+        usuario: {},
+        rutaAnterior: "",
+        rutaActual: ""
     }),
 
     getters: {
@@ -17,11 +15,20 @@ export const sesionStore = defineStore("sesion", {
         getUsuario() {
             return this.usuario;
         },
+
+        getRutaAnterior(){
+            return this.rutaAnterior;
+        }
     },
 
     actions: {
-        set(s) {
-            this.sesion = s;
+        setUsuario(u) {
+            this.usuario = u;
         },
+
+        setRutaActual(r){
+            this.rutaAnterior = this.rutaActual;
+            this.rutaActual = r;
+        }
     },
 });
