@@ -45,7 +45,7 @@ export default {
     <div class="d-flex justify-content-center pt-2">
       <img
         :src="infoCuest.img"
-        class="card-img-top"
+        class="card-img-top img-pequena"
         alt="emoticono"
         :id="infoCuest.tipo"
       />
@@ -67,12 +67,12 @@ export default {
   color: black;
 }
 
-/* .card {
+.card:hover {
   box-shadow: 5px 10px 60px -12px rgba(0, 0, 0, 0.67);
   background-color: #c4c4c4;
   border: 2px solid #535353;
   border-radius: 0px 8px 8px 8px;
-} */
+}
 
 .card-body {
   padding: 0.2rem;
@@ -136,5 +136,8 @@ export default {
   top: 0px;
   left: 0px;
   z-index: 1;
+}
+.img-pequena {
+  width: 60px;
 }
 </style>

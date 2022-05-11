@@ -3,8 +3,10 @@ export default {
   data() {
     return {
       click_registro: 0,
+      a: 0
     };
   },
+
   methods: {
     cambiar_registro() {
       this.click_registro = 1;
@@ -18,30 +20,48 @@ export default {
 
 <template>
   <div>
-
     <!-- CARTA INICIAR SESIÓN / REGISTRO -->
     <div class="container">
       <div class="flip-box">
-        <div class="flip-box-inner d-flex align-items-center" v-bind:class="[this.click_registro ? 'flip' : '']">
-
+        <div
+          class="flip-box-inner d-flex align-items-center"
+          v-bind:class="[this.click_registro ? 'flip' : '']"
+        >
           <!-- INICIAR SESIÓN -->
           <div class="flip-box-front carta_singup_front shadow col-12">
             <div class="iniciar_sesion">
               <h3>Iniciar Sesión</h3>
               <div class="input-group mb-2 mt-5">
-                <span class="input-group-text material-symbols-outlined">alternate_email</span>
-                <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
-                  aria-describedby="basic-addon1" />
+                <span class="input-group-text material-symbols-outlined"
+                  >alternate_email</span
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Correo"
+                  aria-label="Correo"
+                  aria-describedby="basic-addon1"
+                />
               </div>
 
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined">lock</span>
-                <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
-                  aria-describedby="basic-addon2" />
+                <span class="input-group-text material-symbols-outlined"
+                  >lock</span
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Contraseña"
+                  aria-label="Contraseña"
+                  aria-describedby="basic-addon2"
+                />
               </div>
 
               <button class="btn btn-primary mt-4">Iniciar Sesión</button>
-              <div class="login_singup col-12 mt-4 mb-5" @click="cambiar_registro">
+              <div
+                class="login_singup col-12 mt-4 mb-5"
+                @click="cambiar_registro"
+              >
                 <span>No tienes cuenta?</span>
               </div>
             </div>
@@ -53,25 +73,49 @@ export default {
               <h3>Unete a Genki Body</h3>
 
               <div class="input-group mb-2 mt-5">
-                <span class="input-group-text material-symbols-outlined">person</span>
-                <input type="text" class="form-control" placeholder="Nombre" aria-label="Nombre"
-                  aria-describedby="basic-addon1" />
+                <span class="input-group-text material-symbols-outlined"
+                  >person</span
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Nombre"
+                  aria-label="Nombre"
+                  aria-describedby="basic-addon1"
+                />
               </div>
 
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined">alternate_email</span>
-                <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
-                  aria-describedby="basic-addon1" />
+                <span class="input-group-text material-symbols-outlined"
+                  >alternate_email</span
+                >
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Correo"
+                  aria-label="Correo"
+                  aria-describedby="basic-addon1"
+                />
               </div>
 
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined">lock</span>
-                <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
-                  aria-describedby="basic-addon2" />
+                <span class="input-group-text material-symbols-outlined"
+                  >lock</span
+                >
+                <input
+                  type="password"
+                  class="form-control"
+                  placeholder="Contraseña"
+                  aria-label="Contraseña"
+                  aria-describedby="basic-addon2"
+                />
               </div>
 
               <button class="btn btn-primary mt-4">Registrar</button>
-              <div class="login_singup vcol-12 mt-4 mb-1" @click="cambiar_login">
+              <div
+                class="login_singup vcol-12 mt-4 mb-1"
+                @click="cambiar_login"
+              >
                 <span>Ya tienes cuenta?</span>
               </div>
             </div>
@@ -79,8 +123,6 @@ export default {
         </div>
       </div>
     </div>
-
-
 
     <!-- P.2 REGISTRO - DATOS DEL USUARIO -->
     <div class="container justify-content-center d-flex align-items-center">
@@ -282,7 +324,7 @@ h3 {
 @media only screen and (min-width: 380px) {
   .flip-box-inner {
     max-width: 350px;
-    width: 100%
+    width: 100%;
   }
 }
 

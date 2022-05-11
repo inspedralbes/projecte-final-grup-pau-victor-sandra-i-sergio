@@ -1,14 +1,25 @@
 <script>
 // import { RouterLink, RouterView } from "vue-router";
 import router from "@/router";
+import { sesionStore } from '@/stores/sesionStore'
+
+import { mapStores } from 'pinia'
 
 export default {
-  components: {},
 
   methods: {
     goto(id) {
       router.push({ name: id });
     },
+  },
+
+  mounted() {
+    console.log(this.sesionStore.getSesion);
+    console.log(this.sesionStore.getUser);
+  },
+
+  computed: {
+    ...mapStores(sesionStore),
   },
 };
 </script>
@@ -16,45 +27,24 @@ export default {
 <template>
   <main class="container landingPage">
     <div class="row">
-      <div
-        class="col-12 text-center alimentacion"
-        @click="this.goto('alimentacion')"
-      >
+      <div class="col-12 text-center alimentacion" @click="this.goto('alimentacion')">
         <span @click="this.goto('alimentacion')">
           Alimentación
-          <img
-            class="img-home"
-            @click="this.goto('alimentacion')"
-            src="../../public/img/alimentacion.png"
-            alt=""
-          />
+          <img class="img-home" @click="this.goto('alimentacion')" src="../../public/img/alimentacion.png" alt="" />
         </span>
       </div>
 
       <div class="col-12 text-center ejercicio" @click="this.goto('ejercicio')">
         <span @click="this.goto('ejercicio')">
-          <img
-            class="img-home"
-            @click="this.goto('ejercicio')"
-            src="../../public/img/ejercicio.png"
-            alt=""
-          />
+          <img class="img-home" @click="this.goto('ejercicio')" src="../../public/img/ejercicio.png" alt="" />
           Ejercicio
         </span>
       </div>
 
-      <div
-        class="col-12 text-center saludmental"
-        @click="this.goto('saludmental')"
-      >
+      <div class="col-12 text-center saludmental" @click="this.goto('saludmental')">
         <span @click="this.goto('saludmental')">
           Salud mental y descanso
-          <img
-            class="img-home"
-            @click="this.goto('saludmental')"
-            src="../../public/img/dormir.png"
-            alt=""
-          />
+          <img class="img-home" @click="this.goto('saludmental')" src="../../public/img/dormir.png" alt="" />
         </span>
       </div>
 

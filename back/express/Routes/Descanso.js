@@ -1,8 +1,8 @@
 const express = require('express');
 const app = express();
 const Descanso = express.Router();
-const CuestionarioDescanso = require('../models/descanso/respuestaCuestionario.model');
-const TipoSueno = require('../models/descanso/tipoSuenoCuestionario.model');
+const CuestionarioDescanso = require('../models/Descanso/respuestaCuestionario.model');
+const TipoSueno = require('../models/Descanso/tipoSuenoCuestionario.model');
 
 // Todas las respuestas al cuestionario
 Descanso.route("/").get((req, res) => {
@@ -81,7 +81,8 @@ Descanso.route('/respuesta-cuestionario').post((req, res) => {
                     if (datos.descripcionSueno[j] == resultado[i].tipo) {
                         r.push({
                             "tipo": resultado[i].tipo,
-                            "respuesta": resultado[i].respuesta
+                            "respuesta": resultado[i].respuesta,
+                            "img": resultado[i].img
                         })
                     }
                 }
