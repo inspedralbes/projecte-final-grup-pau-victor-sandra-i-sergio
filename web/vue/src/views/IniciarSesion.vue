@@ -139,53 +139,98 @@ export default {
     </div>
 
     <!-- P.2 REGISTRO - DATOS DEL USUARIO -->
-    <div class="container REGISTRO2 align-items-center justify-content-center ocultar">
-      <div class="div_datos">
-        <h3 class="text-center titulo my-5">Cuentanos un poco más sobre ti</h3>
+    <div class="container justify-content-center d-flex align-items-center">
+      <div class="div_datos REGISTRO2 align-items-start shadow-lg">
+        <div class="div2 p-5">
 
-        <div class="row">
-          <div class="col-md-2">
-            <label for="inputEmail4" class="form-label">Edad</label>
-            <input type="text" class="form-control" id="inputEmail4" />
+          <h3 class="text-center titulo mb-5">Cuentanos un poco más sobre ti</h3>
+
+          <div class="row align-items-center">
+ 
+            <div class="col-md-7 col-12">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <label class="bold" for="edad">Edad</label>
+                </div>
+                <div class="col-5 col-md-7 g-1 ">
+                  <input type="number" class="form-control" id="edad">
+                </div>
+              </div>
+
+              <div class="row align-items-start mt-4">
+                <div class="col-md-auto col-12">
+                  <label class="bold mb-3" for="Ocupación">Ocupación</label>
+                  <div class="ocupacion p-3 pe-4 shadow-sm">
+                    <div class="form-check ">
+                      <input class="form-check-input" type="radio" name="Ocupacion" id="trabajador">
+                      <label class="form-check-label" for="trabajador">Trabajo</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="Ocupacion" id="estudiante">
+                      <label class="form-check-label" for="Ocupacion">Estudio</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="Ocupacion" id="otro">
+                      <label class="form-check-label" for="Ocupacion">Otro</label>
+                    </div>
+                  </div>
+                </div>
+                
+                <div class="col-md-auto col-12">
+                  <label class="bold mb-3" for="Ocupación">Sexo</label>
+                  <div class="sexo p-3 pe-4 shadow-sm">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="sexo" id="mujer">
+                      <label class="form-check-label" for="trabajador">Mujer</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="sexo" id="hombre">
+                      <label class="form-check-label" for="Ocupacion">Hombre</label>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+
+            <div class="col-md-5 col-12">
+
+              <div class="row nivel_row align-items-center mt-2">
+                <div class="col nivel my-3">
+                  <label for="nivel" class="form-label bold">Nivel físico</label>
+                  <input type="range" class="form-range" min="1" max="3" id="nivel">
+                  <br>
+                  <span class="form-label relativeP">Principiante</span>
+                  <span class="form-label relativeI">Intermedio</span>
+                  <span class="form-label relativeA">Avanzado</span>
+                </div>
+              </div>
+
+              <div class="row nivel_row align-items-center mt-2">
+                <div class="col nivel my-3">
+                  <label for="nivel" class="form-label bold">Disponibilidad de tiempo</label>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Selecciona una opción</option>
+                    <option value="1">15 min</option>
+                    <option value="2">30 min</option>
+                    <option value="3">45 min</option>
+                    <option value="3">1 h</option>
+                  </select>
+                </div>    
+              </div>
+            </div>
+
+          </div>
+          <div class="text-center mt-3">
+          <div class="btn btn-primary text-center">Confirmar</div>
           </div>
 
-          <div class="col-2 ocupacion mx-3">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="Ocupacion" id="trabajador" />
-              <label class="form-check-label" for="trabajador">Trabajo</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="Ocupacion" id="estudiante" />
-              <label class="form-check-label" for="Ocupacion">Estudio</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="Ocupacion" id="otro" />
-              <label class="form-check-label" for="Ocupacion">Otro</label>
-            </div>
-          </div>
-
-          <div class="col-2 sexo mx-3">
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="sexo" id="mujer" />
-              <label class="form-check-label" for="trabajador">Mujer</label>
-            </div>
-            <div class="form-check">
-              <input class="form-check-input" type="radio" name="sexo" id="hombre" />
-              <label class="form-check-label" for="Ocupacion">Hombre</label>
-            </div>
-          </div>
         </div>
-
-        <div class="col-6 nivel m-3">
-          <label for="nivel" class="form-label">Nivel físico</label>
-          <input type="range" class="form-range" min="1" max="3" id="nivel" />
-          <span class="form-label m-1">Principiante</span>
-          <span class="form-label m-6">Intermedio</span>
-          <span class="form-label m-4">Avanzado</span>
-        </div>
-      </div>
+      
+      </div>    
     </div>
   </div>
+
 </template>
 
 <style scoped>
@@ -194,10 +239,7 @@ export default {
   width: 100vw;
 }
 
-.input-group-text
-
-/* iconos formulario */
-  {
+.input-group-text/* iconos formulario */ {
   background-color: #ffffff;
   color: black;
 }
@@ -215,7 +257,7 @@ h3 {
 .carta_singup_back {
   padding: 40px 30px 30px 30px;
   background-image: url(../../public/img/login.png);
-  background-size: 450px;
+  background-size: 120%;
   border-radius: 10px;
 }
 
@@ -225,36 +267,56 @@ h3 {
   height: 450px;
 }
 
-.ocultar {
-  display: none;
+.bold{
+  font-weight: 600;
 }
 
 /***** Parte 2 registro ******/
 
-.titulo {}
-
-.sexo {
+.ocupacion, .sexo {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 8px;
-}
-
-.ocupacion {
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 8px;
+  border-radius: 8px;
 }
 
 .REGISTRO2 {
   background-image: url(../../public/img/login.png);
-  background-size: 1000px;
-  margin-top: 50px;
-  height: 700px;
-  width: 800px;
+  border-radius: 10px;
 }
 
-.div_datos {
-  width: 100%;
-  height: 600px;
+.div2 {
+  margin: 20px;
 }
+
+.edad_row {
+  padding-left: 0;
+}
+
+.relativeP {
+  font-size: 14px;
+  position: relative;
+  right: 29px;
+}
+
+.relativeI {
+  font-size: 14px;
+  position: relative;
+  left: 21px;
+}
+
+.relativeA {
+  font-size: 14px;
+  position: relative;
+  left: 75px;
+}
+
+@media only screen and (min-width: 380px) {
+  .div_datos {
+    max-width: 760px;
+    width: 100%
+  }
+}
+
 
 /***** Transformación Flip *****/
 
