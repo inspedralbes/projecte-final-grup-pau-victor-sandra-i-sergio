@@ -1,10 +1,26 @@
 <script>
+import { sesionStore } from '@/stores/sesionStore'
+import { mapStores } from 'pinia'
+import router from "@/router"
+
 export default {
   data() {
     return {
       click_registro: 0,
-      a: 0
+      passwordLogin: "",
+      emailLogin: "",
+      passwordRegister: "",
+      emailRegister: "",
+      nomApeRegister: ""
     };
+  },
+
+  computed: {
+    ...mapStores(sesionStore),
+  },
+
+  mounted(){
+    this.sesionStore.setRutaActual(this.$route.name)
   },
 
   methods: {
@@ -14,6 +30,43 @@ export default {
     cambiar_login() {
       this.click_registro = 0;
     },
+
+    iniciarSesion() {
+      let login = new FormData();
+      login.append('email', this.emailLogin);
+      login.append('password', this.passwordLogin)
+
+      fetch('http://192.168.210.162:9000/usuario/login', {
+        method: "POST",
+        body: login
+      }).then(response => response.json()).then(data => {
+        alert(data.msg);
+        if (data.status) {
+          console.log('asdf')
+          this.sesionStore.setUsuario(data.usuario)
+          router.push({ name: this.sesionStore.getRutaAnterior });
+        }
+      })
+    },
+
+    registrarse() {
+      let register = new FormData();
+      register.append('email', this.emailRegister);
+      register.append('password', this.passwordRegister);
+      register.append('nombreApellidos', this.nomApeRegister)
+
+      fetch('http://192.168.210.162:9000/usuario/register', {
+        method: "POST",
+        body: register
+      }).then(response => response.json()).then(data => {
+        alert(data.msg);
+        if (data.status) {
+          console.log('asdf')
+          this.sesionStore.setUsuario(data.usuario)
+          router.push({ name: this.sesionStore.getRutaAnterior });
+        }
+      })
+    }
   },
 };
 </script>
@@ -23,45 +76,27 @@ export default {
     <!-- CARTA INICIAR SESIÓN / REGISTRO -->
     <div class="container">
       <div class="flip-box">
-        <div
-          class="flip-box-inner d-flex align-items-center"
-          v-bind:class="[this.click_registro ? 'flip' : '']"
-        >
+        <div class="flip-box-inner d-flex align-items-center" v-bind:class="[this.click_registro ? 'flip' : '']">
           <!-- INICIAR SESIÓN -->
           <div class="flip-box-front carta_singup_front shadow col-12">
             <div class="iniciar_sesion">
               <h3>Iniciar Sesión</h3>
               <div class="input-group mb-2 mt-5">
-                <span class="input-group-text material-symbols-outlined"
-                  >alternate_email</span
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Correo"
-                  aria-label="Correo"
-                  aria-describedby="basic-addon1"
-                />
+                <span class="input-group-text material-symbols-outlined">alternate_email</span>
+                <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
+                  :value="this.emailLogin" aria-describedby="basic-addon1"
+                  @input="(event) => { this.emailLogin = event.target.value }" />
               </div>
 
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined"
-                  >lock</span
-                >
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Contraseña"
-                  aria-label="Contraseña"
-                  aria-describedby="basic-addon2"
-                />
+                <span class="input-group-text material-symbols-outlined">lock</span>
+                <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
+                  aria-describedby="basic-addon2" :value="this.passwordLogin"
+                  @input="(event) => { this.passwordLogin = event.target.value }" />
               </div>
 
-              <button class="btn btn-primary mt-4">Iniciar Sesión</button>
-              <div
-                class="login_singup col-12 mt-4 mb-5"
-                @click="cambiar_registro"
-              >
+              <button class="btn btn-primary mt-4" @click="this.iniciarSesion()">Iniciar Sesión</button>
+              <div class="login_singup col-12 mt-4 mb-5" @click="cambiar_registro">
                 <span>No tienes cuenta?</span>
               </div>
             </div>
@@ -73,49 +108,28 @@ export default {
               <h3>Unete a Genki Body</h3>
 
               <div class="input-group mb-2 mt-5">
-                <span class="input-group-text material-symbols-outlined"
-                  >person</span
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Nombre"
-                  aria-label="Nombre"
-                  aria-describedby="basic-addon1"
-                />
+                <span class="input-group-text material-symbols-outlined">person</span>
+                <input type="text" class="form-control" placeholder="Nombre y apellidos" aria-label="Nombre y apellidos"
+                  aria-describedby="basic-addon1" :value="this.nomApeRegister"
+                  @input="(event) => { this.nomApeRegister = event.target.value }" />
               </div>
 
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined"
-                  >alternate_email</span
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Correo"
-                  aria-label="Correo"
-                  aria-describedby="basic-addon1"
-                />
+                <span class="input-group-text material-symbols-outlined">alternate_email</span>
+                <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
+                  aria-describedby="basic-addon1" :value="this.emailRegister"
+                  @input="(event) => { this.emailRegister = event.target.value }" />
               </div>
 
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined"
-                  >lock</span
-                >
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Contraseña"
-                  aria-label="Contraseña"
-                  aria-describedby="basic-addon2"
-                />
+                <span class="input-group-text material-symbols-outlined">lock</span>
+                <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
+                  aria-describedby="basic-addon2" :value="this.passwordRegister"
+                  @input="(event) => { this.passwordRegister = event.target.value }" />
               </div>
 
-              <button class="btn btn-primary mt-4">Registrar</button>
-              <div
-                class="login_singup vcol-12 mt-4 mb-1"
-                @click="cambiar_login"
-              >
+              <button class="btn btn-primary mt-4" @click="this.registrarse()">Registrar</button>
+              <div class="login_singup vcol-12 mt-4 mb-1" @click="cambiar_login">
                 <span>Ya tienes cuenta?</span>
               </div>
             </div>
@@ -125,9 +139,7 @@ export default {
     </div>
 
     <!-- P.2 REGISTRO - DATOS DEL USUARIO -->
-    <div
-      class="container REGISTRO2 align-items-center justify-content-center ocultar"
-    >
+    <div class="container REGISTRO2 align-items-center justify-content-center ocultar">
       <div class="div_datos">
         <h3 class="text-center titulo my-5">Cuentanos un poco más sobre ti</h3>
 
@@ -139,51 +151,26 @@ export default {
 
           <div class="col-2 ocupacion mx-3">
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="Ocupacion"
-                id="trabajador"
-              />
+              <input class="form-check-input" type="radio" name="Ocupacion" id="trabajador" />
               <label class="form-check-label" for="trabajador">Trabajo</label>
             </div>
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="Ocupacion"
-                id="estudiante"
-              />
+              <input class="form-check-input" type="radio" name="Ocupacion" id="estudiante" />
               <label class="form-check-label" for="Ocupacion">Estudio</label>
             </div>
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="Ocupacion"
-                id="otro"
-              />
+              <input class="form-check-input" type="radio" name="Ocupacion" id="otro" />
               <label class="form-check-label" for="Ocupacion">Otro</label>
             </div>
           </div>
 
           <div class="col-2 sexo mx-3">
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sexo"
-                id="mujer"
-              />
+              <input class="form-check-input" type="radio" name="sexo" id="mujer" />
               <label class="form-check-label" for="trabajador">Mujer</label>
             </div>
             <div class="form-check">
-              <input
-                class="form-check-input"
-                type="radio"
-                name="sexo"
-                id="hombre"
-              />
+              <input class="form-check-input" type="radio" name="sexo" id="hombre" />
               <label class="form-check-label" for="Ocupacion">Hombre</label>
             </div>
           </div>
@@ -209,7 +196,8 @@ export default {
 
 .input-group-text
 
-/* iconos formulario */ {
+/* iconos formulario */
+  {
   background-color: #ffffff;
   color: black;
 }
@@ -243,8 +231,7 @@ h3 {
 
 /***** Parte 2 registro ******/
 
-.titulo {
-}
+.titulo {}
 
 .sexo {
   background-color: rgba(255, 255, 255, 0.5);

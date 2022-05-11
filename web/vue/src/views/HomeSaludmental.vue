@@ -1,6 +1,8 @@
 <script>
 import Header from "../components/SubHeader.vue";
 import CardVertical from "../components/CardVertical.vue";
+import { sesionStore } from '@/stores/sesionStore'
+import { mapStores } from 'pinia'
 
 export default {
   components: {
@@ -18,6 +20,14 @@ export default {
       motivo: "",
       estado: null,
     };
+  },
+
+  computed: {
+    ...mapStores(sesionStore),
+  },
+
+  mounted() {
+    this.sesionStore.setRutaActual(this.$route.name)
   },
 
   beforeMount() {

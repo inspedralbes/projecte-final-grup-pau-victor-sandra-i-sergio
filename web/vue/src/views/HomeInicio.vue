@@ -2,7 +2,6 @@
 // import { RouterLink, RouterView } from "vue-router";
 import router from "@/router";
 import { sesionStore } from '@/stores/sesionStore'
-
 import { mapStores } from 'pinia'
 
 export default {
@@ -13,13 +12,12 @@ export default {
     },
   },
 
-  mounted() {
-    console.log(this.sesionStore.getSesion);
-    console.log(this.sesionStore.getUser);
-  },
-
   computed: {
     ...mapStores(sesionStore),
+  },
+
+  mounted() {
+    this.sesionStore.setRutaActual(this.$route.name)
   },
 };
 </script>
