@@ -113,64 +113,60 @@ export default {
 
       <Transition name="bounce2">
         <div class="container card_motivos ">
-          <div id="card-horizontal" v-if="selected && disabled2" class="card mb-3 shadow">
-            <div class="row card_motivos">
-              <div class="container card_motivos" v-if="this.disabled2">
-                <div id="card-horizontal" v-if="selected" class="card mb-3 shadow">
-                  <div class="row">
-                    <div class="col-12 retroceder">
-                      <a @click="retroceder()">
-                        <span class="material-symbols-outlined"> arrow_back </span>
-                      </a>
-                    </div>
+          <div class="container card_motivos" v-if="this.disabled2">
+            <div id="card-horizontal" v-if="selected" class="card mb-3 shadow">
+              <div class="row">
+                <div class="col-12 retroceder">
+                  <a @click="retroceder()">
+                    <span class="material-symbols-outlined"> arrow_back </span>
+                  </a>
+                </div>
 
-                    <div class="row justify-content-md-center">
-                      <div class="col-md-4 gy-3 img-emoji">
-                        <img :src="selected[0].emoji" id="emoji-card" />
-                      </div>
+                <div class="row justify-content-md-center">
+                  <div class="col-md-4 gy-3 img-emoji">
+                    <img :src="selected[0].emoji" id="emoji-card" />
+                  </div>
 
-                      <div class="col-md-6">
-                        <div class="card-body">
-                          <div v-if="
-                            selected[0].value != 'Alegre' &&
-                            selected[0].value != 'Energico'
-                          ">
-                            <h5 class="text-center card-body-tit">
-                              ¿Por qué estás <span style="font-weight:bold">{{ selected[0].value }}</span>?
-                            </h5>
-                            <div :key="index" v-for="(estado, index) in selected[0].motivos">
-                              <div class="form-check my-3">
-                                <input class="form-check-input" type="radio" @click="guardarMotivo($event.target.value)"
-                                  :value="index" name="motivo" :id="index" />
-                                <label class="form-check-label" :for="index">
-                                  {{ estado }}
-                                </label>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div v-if="
-                            selected[0].value == 'Alegre' ||
-                            selected[0].value == 'Energico'
-                          ">
-                            <h5 class="text-center card-body-tit">
-                              Hoy estoy <span style="font-weight:bold">{{ selected[0].value }}</span>
-                            </h5>
-                            <div class="form-check">
-                              <input class="form-check-input" type="radio" name="motivo" checked />
-                              <label class="form-check-label">
-                                Estoy {{ selected[0].value }}
-                              </label>
-                            </div>
+                  <div class="col-md-6">
+                    <div class="card-body">
+                      <div v-if="
+                        selected[0].value != 'Alegre' &&
+                        selected[0].value != 'Energico'
+                      ">
+                        <h5 class="text-center card-body-tit">
+                          ¿Por qué estás <span style="font-weight:bold">{{ selected[0].value }}</span>?
+                        </h5>
+                        <div :key="index" v-for="(estado, index) in selected[0].motivos">
+                          <div class="form-check my-3">
+                            <input class="form-check-input" type="radio" @click="guardarMotivo($event.target.value)"
+                              :value="index" name="motivo" :id="index" />
+                            <label class="form-check-label" :for="index">
+                              {{ estado }}
+                            </label>
                           </div>
                         </div>
                       </div>
 
-                      <div class="col-12 gy-2 text-center">
-                        <input class="btn btn-outline-secondary btn-enviarRespuesta" type="button"
-                          @click="enviarFormulario()" value="Enviar respuesta" />
+                      <div v-if="
+                        selected[0].value == 'Alegre' ||
+                        selected[0].value == 'Energico'
+                      ">
+                        <h5 class="text-center card-body-tit">
+                          Hoy estoy <span style="font-weight:bold">{{ selected[0].value }}</span>
+                        </h5>
+                        <div class="form-check">
+                          <input class="form-check-input" type="radio" name="motivo" checked />
+                          <label class="form-check-label">
+                            Estoy {{ selected[0].value }}
+                          </label>
+                        </div>
                       </div>
                     </div>
+                  </div>
+
+                  <div class="col-12 gy-2 text-center">
+                    <input class="btn btn-outline-secondary btn-enviarRespuesta" type="button"
+                      @click="enviarFormulario()" value="Enviar respuesta" />
                   </div>
                 </div>
               </div>
@@ -196,7 +192,7 @@ export default {
                 Información sobre porque estoy {{ selected[0].value }} y como
                 puedo cambiar este sentimiento
               </p>
-              <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
+              <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" target="_blank" class="link">Click para saber más</a>
             </div>
           </div>
         </div>
