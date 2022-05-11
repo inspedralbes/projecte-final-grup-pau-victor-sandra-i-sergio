@@ -252,7 +252,6 @@ export default {
 }
 
 .fondo {
-  width: 100vw;
   min-height: 100vh;
   height: auto;
   background: linear-gradient(90deg, #162046 0%, #0a0b0e 100%);

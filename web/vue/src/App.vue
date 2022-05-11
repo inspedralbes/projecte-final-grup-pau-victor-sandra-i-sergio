@@ -19,11 +19,6 @@ export default {
 </template>
 
 <style>
-#app {
-  min-height: 100vh;
-  min-width: 100vw;
-}
-
 .material-symbols-outlined {
   font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
