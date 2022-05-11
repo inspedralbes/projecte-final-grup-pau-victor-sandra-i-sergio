@@ -85,4 +85,11 @@
 .barra-vertical {
   border-left: 2px solid black;
 }
+
+@media only screen and (max-width: 385px) {
+  .link_header {
+    padding: 1px 10px;
+  }
+}
+
 </style>

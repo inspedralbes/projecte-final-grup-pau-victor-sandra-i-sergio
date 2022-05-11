@@ -221,12 +221,11 @@ section {
   margin-bottom: 35px;
 }
 
-/* .card-respuesta {
-  display: none;
-  margin-top: 5%;
-  margin-left: 15%;
-  margin-right: 15%;
-} */
+.card-respuesta {
+  max-width: 750px;
+  margin-left: auto;
+  margin-right: auto;
+} 
 
 .retroceder {
   padding: 16px 25px;
@@ -319,6 +318,13 @@ select {
   #emoji-card {
     height: 160px;
   }
+}
+
+@media only screen and (max-width: 1000px) {
+  .card-respuesta {
+    margin-left: 15%;
+    margin-right: 15%;
+  } 
 }
 
 form {
