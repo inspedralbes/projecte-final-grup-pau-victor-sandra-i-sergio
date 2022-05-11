@@ -69,14 +69,18 @@ export default {
               <RouterLink class="nav-link" to="/">
                 <div class="d-flex link_cuenta">
                   <div id="divAvatar">
-                    <span id="avatar_usuario" class="icono_cuenta material-symbols-outlined"
-                      ><img id="img-usuario" src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"/></span
-                    >
+                    <span
+                      id="avatar_usuario"
+                      class="icono_cuenta material-symbols-outlined"
+                      ><img
+                        id="img-usuario"
+                        src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"
+                    /></span>
                   </div>
                   <div class="align-self-center mx-4">
                     <span class="bold">Nombre usuario</span>
                   </div>
-                </div>         
+                </div>
               </RouterLink>
             </li>
 
@@ -159,9 +163,7 @@ export default {
               <RouterLink class="nav-link" to="/">
                 <div class="d-flex align-items-center link_cerrarSession">
                   <div class="align-self-center d-flex align-content-center">
-                    <span  class="material-symbols-outlined"
-                      >logout</span
-                    >
+                    <span class="material-symbols-outlined">logout</span>
                   </div>
                   <div class="align-self-center mx-2">
                     <span class="bold">Cerrar Session</span>
@@ -169,7 +171,6 @@ export default {
                 </div>
               </RouterLink>
             </li>
-
           </ul>
         </div>
       </div>
