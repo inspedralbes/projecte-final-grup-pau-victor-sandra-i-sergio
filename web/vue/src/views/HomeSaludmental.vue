@@ -14,6 +14,8 @@ export default {
       disabled2: false,
       disabled3: false,
       disabled4: false,
+      porcentaje: 33,
+      parte: "1/3",
       selected: 0,
       motivo: "",
       estado: null,
@@ -61,10 +63,12 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          this.porcentaje = 100;
+          this.parte = "3/3";
           this.disabled2 = false;
           setTimeout(() => {
             this.disabled3 = true;
-          }, 1500);
+          }, 500);
         });
     },
     guardarEstado(valor) {
@@ -75,6 +79,8 @@ export default {
       }, 1500);
       this.disabled = true;
       this.disabled2 = true;
+      this.porcentaje = 66;
+      this.parte = "2/3";
       console.log(this.selected);
     },
 
@@ -92,6 +98,15 @@ export default {
       <Header />
     </div>
     <section>
+      <div class="container">
+        <div class="row">
+          <div class="col-12 d-flex align-items-center justify-content-center">
+            <div class="progress">
+              <div class="progress-value"></div>
+            </div>
+          </div>
+        </div>
+      </div>
       <Transition name="bounce">
         <div class="cuestionario_estado container px-4" v-if="!this.disabled">
           <div class="row">
@@ -446,5 +461,73 @@ form {
 
 .pos_fixed {
   position: fixed;
+}
+
+.progress {
+  margin-top: 6%;
+}
+
+.progress {
+  background: #050929;
+  justify-content: flex-start;
+  border-radius: 100px;
+  align-items: center;
+  position: relative;
+  padding: 0 5px;
+  display: flex;
+  height: 40px;
+  width: 500px;
+}
+
+.progress-value {
+  animation: load50 3s normal forwards;
+  box-shadow: 0 10px 40px -10px #fff;
+  border-radius: 100px;
+  background: #5cb8e6;
+  height: 30px;
+  width: auto;
+}
+
+.load50 {
+  animation: load50 3s normal forwards;
+}
+
+.load100 {
+  animation: load100 3s normal forwards;
+}
+
+.load-50 {
+  animation: load50 3s normal backwards;
+}
+
+.load-100 {
+  animation: load100 3s normal backwards;
+}
+
+@keyframes load {
+  0% {
+    width: 0%;
+  }
+  100% {
+    width: 10%;
+  }
+}
+
+@keyframes load50 {
+  0% {
+    width: 10%;
+  }
+  100% {
+    width: 50%;
+  }
+}
+
+@keyframes load100 {
+  0% {
+    width: 50%;
+  }
+  100% {
+    width: 100%;
+  }
 }
 </style>

@@ -144,14 +144,7 @@ export default {
                 v-bind:value="check"
               >
                 <CardSuenos
-                  class="
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    flex-direction-row
-                    btn btn-outline-light
-                    p-2
-                  "
+                  class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light p-2"
                   @id="this.guardarseleccionada"
                   :infoCuest="check"
                   :contador="this.selected.length"
