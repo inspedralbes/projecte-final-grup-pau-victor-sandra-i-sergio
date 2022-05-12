@@ -95,9 +95,9 @@ export default {
 
 .ejercicio img {
   position: absolute;
-  top: -2em;
-  left: -2.75em;
-  max-width: 100%;
+  top: -2.5em;
+  left: -1.5em;
+  max-width: 60%;
   width: auto;
 }
 
@@ -111,8 +111,8 @@ export default {
 
 .saludmental img {
   position: absolute;
-  top: -3.75em;
-  left: 6.5em;
+  top: -2.6em;
+  left: 6.25em;
   max-width: 60%;
   width: auto;
 }
@@ -141,14 +141,14 @@ export default {
   }
 
   .ejercicio img {
-    top: -1.35em;
-    left: -2.5em;
-    max-width: 90%;
+    top: -2.2em;
+    left: -2em;
+    max-width: 60%;
   }
 
   .saludmental img {
-    top: -3em;
-    left: 7.25em;
+    top: -2.2em;
+    left: 7.4em;
     max-width: 50%;
   }
 }
@@ -165,14 +165,14 @@ export default {
   }
 
   .ejercicio img {
-    top: -1.35em;
-    left: -2.5em;
-    max-width: 90%;
+    top: -2em;
+    left: -2em;
+    max-width: 60%;
   }
 
   .saludmental img {
-    top: -3.75em;
-    left: 6em;
+    top: -2.65em;
+    left: 6.05em;
     max-width: 60%;
   }
 }
@@ -189,25 +189,21 @@ export default {
   }
 
   .ejercicio img {
-    top: -1.35em;
-    left: -2.5em;
-    max-width: 90%;
+    top: -2.5em;
+    left: -2.4em;
+    max-width: 70%;
   }
 
   .saludmental img {
-    top: -3.75em;
-    left: 6em;
+    top: -2.6em;
+    left: 6.05em;
     max-width: 60%;
   }
 }
 
-@media only screen and (min-width: 1600px) {
+@media only screen and (min-width: 1300px) {
   .landingPage .col-12 span {
     font-size: 3.5vw;
-  }
-
-  .landingPage .col-12 {
-    margin-top: 130px;
   }
 
   .alimentacion img {
@@ -217,14 +213,42 @@ export default {
   }
 
   .ejercicio img {
-    top: -1.35em;
-    left: -2.5em;
-    max-width: 90%;
+    top: -1.9em;
+    left: -2em;
+    max-width: 60%;
   }
 
   .saludmental img {
-    top: -3em;
+    top: -2.18em;
     left: 7.25em;
+    max-width: 50%;
+  }
+}
+
+@media only screen and (min-width: 1600px) {
+  .landingPage .col-12 span {
+    font-size: 2.75vw;
+  }
+
+  .landingPage .col-12 {
+    margin-top: 150px;
+  }
+
+  .alimentacion img {
+    top: -2em;
+    left: 4.5em;
+    max-width: 80%;
+  }
+
+  .ejercicio img {
+    top: -2em;
+    left: -2em;
+    max-width: 60%;
+  }
+
+  .saludmental img {
+    top: -2.1em;
+    left: 7.3em;
     max-width: 50%;
   }
 }
