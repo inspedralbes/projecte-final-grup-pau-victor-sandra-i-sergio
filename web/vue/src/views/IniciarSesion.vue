@@ -11,7 +11,8 @@ export default {
       emailLogin: "",
       passwordRegister: "",
       emailRegister: "",
-      nomApeRegister: ""
+      nomApeRegister: "",
+      error: 0
     };
   },
 
@@ -19,7 +20,7 @@ export default {
     ...mapStores(sesionStore),
   },
 
-  mounted(){
+  mounted() {
     this.sesionStore.setRutaActual(this.$route.name)
   },
 
@@ -32,21 +33,27 @@ export default {
     },
 
     iniciarSesion() {
-      let login = new FormData();
-      login.append('email', this.emailLogin);
-      login.append('password', this.passwordLogin)
+      this.error = comprovarDatos(this.emailLogin, this.passwordLogin, 'login');
 
-      fetch('http://192.168.210.162:9000/usuario/login', {
-        method: "POST",
-        body: login
-      }).then(response => response.json()).then(data => {
-        alert(data.msg);
-        if (data.status) {
-          console.log('asdf')
-          this.sesionStore.setUsuario(data.usuario)
-          router.push({ name: this.sesionStore.getRutaAnterior });
-        }
-      })
+      if (!this.error.length) {
+        let login = new FormData();
+        login.append('email', this.emailLogin);
+        login.append('password', this.passwordLogin)
+
+        fetch('http://192.168.210.162:9000/usuario/login', {
+          method: "POST",
+          body: login
+        }).then(response => response.json()).then(data => {
+          alert(data.msg);
+          if (data.status) {
+            console.log('asdf')
+            this.sesionStore.setUsuario(data.usuario)
+            router.push({ name: this.sesionStore.getRutaAnterior });
+          }
+        })
+      } else {
+        console.log(this.error);
+      }
     },
 
     registrarse() {
@@ -66,6 +73,27 @@ export default {
           router.push({ name: this.sesionStore.getRutaAnterior });
         }
       })
+    },
+
+    comprovarDatos(email, password, tipo, nomApe) {
+      let errores = [], cont = 0;
+
+      if (tipo == "register") {
+        //Regex nombres
+        nomApe.split(' ').forEach((e) => {
+          /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(e) ? null : cont++;
+        })
+        cont ? errores.push('Nombre o apellidos mal') : null;
+      }
+
+      // Regex email
+      /^[\w\.]+@([\w]+\.)+[\w]{2,4}$/.test(e) ? null : errores.push('Email mal');
+
+      // Regex password de 8-16 caracteres, con al menos una letra, un numero y un caracter especial.
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/.test(p) ? null : errores.push('Password mal');
+
+
+      return errores;
     }
   },
 };
@@ -146,7 +174,7 @@ export default {
           <h3 class="text-center titulo mb-5">Cuentanos un poco más sobre ti</h3>
 
           <div class="row align-items-center">
- 
+
             <div class="col-md-7 col-12">
               <div class="row align-items-center">
                 <div class="col-auto">
@@ -175,7 +203,7 @@ export default {
                     </div>
                   </div>
                 </div>
-                
+
                 <div class="col-md-auto col-12">
                   <label class="bold mb-3" for="Ocupación">Sexo</label>
                   <div class="sexo p-3 pe-4 shadow-sm">
@@ -216,18 +244,18 @@ export default {
                     <option value="3">45 min</option>
                     <option value="3">1 h</option>
                   </select>
-                </div>    
+                </div>
               </div>
             </div>
 
           </div>
           <div class="text-center mt-3">
-          <div class="btn btn-primary text-center">Confirmar</div>
+            <div class="btn btn-primary text-center">Confirmar</div>
           </div>
 
         </div>
-      
-      </div>    
+
+      </div>
     </div>
   </div>
 
@@ -239,7 +267,10 @@ export default {
   width: 100vw;
 }
 
-.input-group-text/* iconos formulario */ {
+.input-group-text
+
+/* iconos formulario */
+  {
   background-color: #ffffff;
   color: black;
 }
@@ -267,13 +298,14 @@ h3 {
   height: 450px;
 }
 
-.bold{
+.bold {
   font-weight: 600;
 }
 
 /***** Parte 2 registro ******/
 
-.ocupacion, .sexo {
+.ocupacion,
+.sexo {
   background-color: rgba(255, 255, 255, 0.5);
   padding: 8px;
   border-radius: 8px;
