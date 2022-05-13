@@ -36,7 +36,13 @@ export default {
 
 <style scoped>
 .imgg {
-  margin: 50px;
-  width: 700px;
+  margin: auto;
+  width: 90%;
+}
+
+@media only screen and (min-width:500px) {
+  .imgg{
+    max-width: 40%;
+  }
 }
 </style>
