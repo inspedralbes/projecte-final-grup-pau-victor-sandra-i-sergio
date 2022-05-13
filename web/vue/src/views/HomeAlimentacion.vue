@@ -45,8 +45,8 @@ export default {
   width: 90%;
 }
 
-@media only screen and (min-width:500px) {
-  .imgg{
+@media only screen and (min-width: 500px) {
+  .imgg {
     max-width: 40%;
   }
 }

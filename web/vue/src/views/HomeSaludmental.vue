@@ -16,8 +16,7 @@ export default {
       disabled2: false,
       disabled3: false,
       disabled4: false,
-      progressbar1: false,
-      progressbar2: false,
+      progressbar1: 0,
       selected: 0,
       motivo: "",
       estado: null,
@@ -51,6 +50,7 @@ export default {
     retroceder() {
       this.disabled2 = false;
       this.disabled = false;
+      this.progressbar1 = 3;
     },
 
     enviarFormulario() {
@@ -73,7 +73,7 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          this.progressbar2 = true;
+          this.progressbar1 = 2;
           this.disabled2 = false;
           setTimeout(() => {
             this.disabled3 = true;
@@ -81,6 +81,7 @@ export default {
         });
     },
     guardarEstado(valor) {
+      this.progressbar1 = 1;
       setTimeout(() => {
         this.selected = this.estado.filter((v) => {
           return v.value == valor;
@@ -88,7 +89,6 @@ export default {
       }, 1500);
       this.disabled = true;
       this.disabled2 = true;
-      this.progressbar1 = true;
       console.log(this.selected);
     },
 
@@ -113,7 +113,18 @@ export default {
           </div>
           <div class="col-12 d-flex align-items-center justify-content-center">
             <div class="progress">
-              <div class="progress-value"></div>
+              <div
+                :class="[
+                  this.progressbar1 == 1
+                    ? 'load50'
+                    : this.progressbar1 == 2
+                    ? 'load100'
+                    : this.progressbar1 == 3
+                    ? 'reverse'
+                    : '',
+                ]"
+                class="progress-value"
+              ></div>
             </div>
           </div>
         </div>
@@ -130,7 +141,7 @@ export default {
 
           <div class="row justify-content-center cartas">
             <div
-              class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center"
+              class="col-6 col-md-3 g-4 d-flex justify-content-center"
               v-for="(opcion, index) in estado"
               :key="index"
               v-bind:value="opcion.value"
@@ -504,12 +515,8 @@ form {
   animation: load100 3s normal forwards;
 }
 
-.load-50 {
-  animation: load50 3s normal backwards;
-}
-
-.load-100 {
-  animation: load100 3s normal backwards;
+.reverse {
+  animation: back-load 3s normal forwards;
 }
 
 @keyframes load {
@@ -536,6 +543,15 @@ form {
   }
   100% {
     width: 100%;
+  }
+}
+
+@keyframes back-load {
+  0% {
+    width: 50%;
+  }
+  100% {
+    width: 10%;
   }
 }
 
