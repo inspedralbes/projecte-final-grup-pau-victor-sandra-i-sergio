@@ -88,8 +88,6 @@ export default {
         }
       }
 
-      //console.log(this.selected);
-
       console.log(this.selected);
       console.log(this.selected.length);
     },
@@ -154,6 +152,7 @@ export default {
                 :key="index"
                 v-bind:value="check"
               >
+                <!--  CARTAS MOTIVOS SUEÑO  -->
                 <CardSuenos
                   class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light p-2"
                   @id="this.guardarseleccionada"
@@ -175,6 +174,8 @@ export default {
         </Transition>
 
         <Transition name="bounce2">
+
+          <!--  RESPUESTA CUESTIONARIO SUEÑO  -->
           <div
             v-if="this.animacion2"
             class="container accordion acordion-margin-top"
@@ -201,40 +202,11 @@ export default {
   </div>
 </template>
 
+
+
 <style scoped>
-.cuestionario_sueño {
-  color: rgb(255, 255, 255);
-  margin-top: 50px;
-  padding: 30px;
-}
 
-.subtitulo {
-  padding: 15px;
-}
-
-.titulo_cuestionario {
-  font-weight: 600;
-}
-
-.emoji_sueño {
-  width: 35px;
-}
-
-.card-group {
-  display: flex;
-  justify-content: center;
-}
-
-/* #card-respuesta {
-  display: none;
-  margin-bottom: 10%;
-} */
-
-.card {
-  max-width: 15%;
-  min-width: 150px;
-  margin: 1%;
-}
+/****  FONDO DE PANTALLA  ***/
 
 .fondo {
   min-height: 100vh;
@@ -254,6 +226,48 @@ export default {
 .submain .col-8 p {
   margin: 0 0 0 7px;
 }
+
+/****  CUESTIONARIO  *****/
+
+.cuestionario_sueño {
+  color: rgb(255, 255, 255);
+  margin-top: 50px;
+  padding: 30px;
+}
+
+.titulo_cuestionario {
+  font-weight: 600;
+}
+
+.subtitulo {
+  padding: 15px;
+}
+
+.emoji_sueño {
+  width: 35px;
+}
+
+.card-group {
+  display: flex;
+  justify-content: center;
+}
+
+.card {
+  max-width: 15%;
+  min-width: 150px;
+  margin: 1%;
+}
+
+
+/****  RESPUESTA ACORDEON  ****/
+
+.acordion-margin-top {
+  margin-top: 5%;
+}
+
+
+
+/*******  ANIMACIONES  *******/
 
 .bounce-enter-active {
   animation: bounce-in 1s ease-in-out 0s 1 normal reverse;
@@ -294,9 +308,5 @@ export default {
   to {
     opacity: 1;
   }
-}
-
-.acordion-margin-top {
-  margin-top: 5%;
 }
 </style>

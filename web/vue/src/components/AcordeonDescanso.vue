@@ -49,10 +49,13 @@ export default {
     </div>
   </div>
 </template>
+
+
 <style scoped>
 .acordio-resultado {
   padding: 20px;
 }
+
 .img-little {
   width: 40px;
   margin-right: 15px;
@@ -73,7 +76,6 @@ export default {
 
 span {
   font-weight: 550;
-  color: ;
   margin-left: 5px;
 }
 </style>

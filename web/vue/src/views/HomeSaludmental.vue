@@ -494,6 +494,12 @@ form {
   position: fixed;
 }
 
+/****  BARRA PROGRESO FORMULARIO  ****/
+
+.titulo-barra {
+  margin-top: 5%;
+}
+
 .progress {
   background: #050929;
   justify-content: flex-start;
@@ -561,9 +567,5 @@ form {
   100% {
     width: 10%;
   }
-}
-
-.titulo-barra {
-  margin-top: 5%;
 }
 </style>
