@@ -36,7 +36,12 @@ export default {
     },
 
     iniciarSesion() {
-      this.error = this.comprovarDatos(this.emailLogin, this.passwordLogin, "login", "n");
+      this.error = this.comprovarDatos(
+        this.emailLogin,
+        this.passwordLogin,
+        "login",
+        "n"
+      );
 
       if (!this.error.length) {
         let login = new FormData();
@@ -53,29 +58,34 @@ export default {
               this.sesionStore.setUsuario(data.usuario);
               setTimeout(() => {
                 router.push({ name: this.sesionStore.getRutaAnterior });
-              }, 1700)
+              }, 1700);
             }
             Swal.fire({
-              position: 'center',
-              icon: (data.status) ? 'success' : 'error',
+              position: "center",
+              icon: data.status ? "success" : "error",
               title: data.msg,
               showConfirmButton: false,
-              timer: 1500
-            })
+              timer: 1500,
+            });
           });
       } else {
         Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          title: this.error.join(' y '),
+          position: "top-end",
+          icon: "error",
+          title: this.error.join(" y "),
           showConfirmButton: false,
-          timer: 1500
-        })
+          timer: 1500,
+        });
       }
     },
 
     registrarse() {
-      this.error = this.comprovarDatos(this.emailRegister, this.passwordRegister, "register", this.nomApeRegister);
+      this.error = this.comprovarDatos(
+        this.emailRegister,
+        this.passwordRegister,
+        "register",
+        this.nomApeRegister
+      );
 
       if (!this.error.length) {
         let register = new FormData();
@@ -86,57 +96,65 @@ export default {
         fetch("http://192.168.210.162:9000/usuario/register", {
           method: "POST",
           body: register,
-        }).then((response) => response.json())
+        })
+          .then((response) => response.json())
           .then((data) => {
             if (data.status) {
               this.sesionStore.setUsuario(data.usuario);
               setTimeout(() => {
                 router.push({ name: this.sesionStore.getRutaAnterior });
-              }, 1700)
+              }, 1700);
             }
             Swal.fire({
-              position: 'center',
-              icon: (data.status) ? 'success' : 'error',
+              position: "center",
+              icon: data.status ? "success" : "error",
               title: data.msg,
               showConfirmButton: false,
-              timer: 2000
-            })
+              timer: 2000,
+            });
           });
       } else {
         Swal.fire({
-          position: 'top-end',
-          icon: 'error',
-          title: this.error.join(' y '),
+          position: "top-end",
+          icon: "error",
+          title: this.error.join(" y "),
           showConfirmButton: false,
-          timer: 2000
-        })
+          timer: 2000,
+        });
       }
-
-
     },
 
     comprovarDatos(email, password, tipo, nomApe) {
-      let errores = [], cont = 0;
+      let errores = [],
+        cont = 0;
 
       if (email != "" && password != "" && nomApe != "") {
         if (tipo == "register") {
-          console.log('reg')
+          console.log("reg");
           //Regex nombres
           nomApe.split(" ").forEach((e) => {
-            /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(e) ? null : cont++;
+            /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(
+              e
+            )
+              ? null
+              : cont++;
           });
           cont ? errores.push("Nombre o apellidos mal formatados") : null;
         }
 
-
         // Regex email
-        /^[\w\.]+@([\w]+\.)+[\w]{2,4}$/.test(email) ? null : errores.push("Email mal formatado");
+        /^[\w\.]+@([\w]+\.)+[\w]{2,4}$/.test(email)
+          ? null
+          : errores.push("Email mal formatado");
 
         // Regex password de 8-16 caracteres, con al menos una letra, un numero y un caracter especial.
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/.test(password) ? null : errores.push("Password mal formatado");
-
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/.test(
+          password
+        )
+          ? null
+          : errores.push("Password mal formatado");
       } else {
-        errores.push('Falta por rellenar algún campo');
+        errores.push("Falta por rellenar algún campo");
       }
 
       return errores;
@@ -317,10 +335,6 @@ export default {
                     <input type="number" class="form-control" id="edad" />
                   </div>
                 </div>
-                <div class="col-5 col-md-7 g-1">
-                  <input type="number" class="form-control" id="edad" />
-                </div>
-              </div>
 
                 <div class="row align-items-start mt-4">
                   <div class="col-md-auto col-12">
@@ -361,7 +375,6 @@ export default {
                       </div>
                     </div>
                   </div>
-                </div>
 
                   <div class="col-md-auto col-12">
                     <label class="bold mb-3" for="Ocupación">Sexo</label>
@@ -392,7 +405,6 @@ export default {
                   </div>
                 </div>
               </div>
-            </div>
 
               <div class="col-md-5 col-12">
                 <div class="row nivel_row align-items-center mt-2">
@@ -413,7 +425,6 @@ export default {
                     <span class="form-label relativeA">Avanzado</span>
                   </div>
                 </div>
-              </div>
 
                 <div class="row nivel_row align-items-center mt-2">
                   <div class="col nivel my-3">
