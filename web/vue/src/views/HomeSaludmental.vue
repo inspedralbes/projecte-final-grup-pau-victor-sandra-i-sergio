@@ -16,8 +16,7 @@ export default {
       disabled2: false,
       disabled3: false,
       disabled4: false,
-      progressbar1: false,
-      progressbar2: false,
+      progressbar1: 0,
       selected: 0,
       motivo: "",
       estado: null,
@@ -51,6 +50,7 @@ export default {
     retroceder() {
       this.disabled2 = false;
       this.disabled = false;
+      this.progressbar1 = 3;
     },
 
     enviarFormulario() {
@@ -73,7 +73,7 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
-          this.progressbar2 = true;
+          this.progressbar1 = 2;
           this.disabled2 = false;
           setTimeout(() => {
             this.disabled3 = true;
@@ -81,6 +81,7 @@ export default {
         });
     },
     guardarEstado(valor) {
+      this.progressbar1 = 1;
       setTimeout(() => {
         this.selected = this.estado.filter((v) => {
           return v.value == valor;
@@ -88,7 +89,6 @@ export default {
       }, 1500);
       this.disabled = true;
       this.disabled2 = true;
-      this.progressbar1 = true;
       console.log(this.selected);
     },
 
@@ -103,23 +103,34 @@ export default {
 <template>
   <div>
     <div>
-      <Header />
+      <Header/>
     </div>
-    <section>
+    <section class="saludmental">
       <div class="container">
         <div class="row">
           <div class="col-12 d-flex align-items-center justify-content-center">
-            <h4 class="titulo-barra">Progresión del formulario</h4>
+            <h5 class="titulo-barra">Progresión del formulario</h5>
           </div>
           <div class="col-12 d-flex align-items-center justify-content-center">
             <div class="progress">
-              <div class="progress-value"></div>
+              <div
+                :class="[
+                  this.progressbar1 == 1
+                    ? 'load50'
+                    : this.progressbar1 == 2
+                    ? 'load100'
+                    : this.progressbar1 == 3
+                    ? 'reverse'
+                    : '',
+                ]"
+                class="progress-value"
+              ></div>
             </div>
           </div>
         </div>
       </div>
       <Transition name="bounce">
-        <div class="cuestionario_estado container px-4" v-if="!this.disabled">
+        <div class="cuestionario_estado container px-4 shadow-lg" v-if="!this.disabled">
           <div class="row">
             <div class="col-12 text-center">
               <h2 class="titulo_cuestionario text-center">
@@ -130,7 +141,7 @@ export default {
 
           <div class="row justify-content-center cartas">
             <div
-              class="col-6 col-md-3 col-xl-2 g-4 d-flex justify-content-center"
+              class="col-6 col-md-3 g-4 d-flex justify-content-center"
               v-for="(opcion, index) in estado"
               :key="index"
               v-bind:value="opcion.value"
@@ -244,19 +255,16 @@ export default {
               selected[0].value != 'Alegre' && selected[0].value != 'Energico'
             "
             id="divResultado"
-            class="card-respuesta card text-center"
+            class="card-respuesta card text-center shadow"
           >
-            <div class="card-header">
-              Información sobre mi estado de ánimo actual
-            </div>
             <div class="card-body">
-              <h5 class="card-title">
+              <h4 class="card-title titlo_estado">
                 Hoy estoy {{ selected[0].value }}
                 <img id="emojiTexto" :src="selected[0].emoji" />
-              </h5>
+              </h4>
               <p class="card-text">
-                Información sobre porque estoy {{ selected[0].value }} y como
-                puedo cambiar este sentimiento
+                Para descubrir porqué te sientes {{ selected[0].value }} y como
+                mejorar tu estado de ánimo visita la siguiente página ...
               </p>
               <a
                 href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
@@ -274,12 +282,14 @@ export default {
 
 <style scoped>
 section {
-  min-height: 74vh;
+  min-height: 82.7vh;
+  background-image: url("../../../public/img/fondo_saludmental.png");
 }
 
 #card-horizontal {
   padding: 15px;
   margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.651);
 }
 
 #card-horizontal .card-body-tit {
@@ -288,9 +298,11 @@ section {
 }
 
 .card-respuesta {
+  background-color: rgba(255, 255, 255, 0.651);
   max-width: 750px;
   margin-left: auto;
   margin-right: auto;
+  padding: 25px;
 }
 
 .retroceder {
@@ -298,6 +310,10 @@ section {
   position: absolute;
   top: 0;
   left: -10px;
+}
+
+.titlo_estado {
+  margin-bottom: 25px !important;
 }
 
 .retroceder span {
@@ -313,14 +329,15 @@ section {
 }
 
 select {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.575);
   color: rgb(168, 225, 248);
 }
 
 .cuestionario_estado {
-  background-color: rgb(233, 247, 255);
+  background-color: rgba(255, 255, 255, 0.651);
   margin-top: 60px;
   padding: 30px;
+  border-radius: 8px;
 }
 
 .img-emoji {
@@ -404,6 +421,10 @@ form {
   width: 250px;
 }
 
+.titulo_cuestionario {
+  font-weight: 600;
+}
+
 /*****  ANIMACIONES  *****/
 
 .bounce-enter-active {
@@ -473,6 +494,12 @@ form {
   position: fixed;
 }
 
+/****  BARRA PROGRESO FORMULARIO  ****/
+
+.titulo-barra {
+  margin-top: 5%;
+}
+
 .progress {
   background: #050929;
   justify-content: flex-start;
@@ -502,12 +529,8 @@ form {
   animation: load100 3s normal forwards;
 }
 
-.load-50 {
-  animation: load50 3s normal backwards;
-}
-
-.load-100 {
-  animation: load100 3s normal backwards;
+.reverse {
+  animation: back-load 3s normal forwards;
 }
 
 @keyframes load {
@@ -537,7 +560,12 @@ form {
   }
 }
 
-.titulo-barra {
-  margin-top: 5%;
+@keyframes back-load {
+  0% {
+    width: 50%;
+  }
+  100% {
+    width: 10%;
+  }
 }
 </style>

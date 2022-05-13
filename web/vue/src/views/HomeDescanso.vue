@@ -88,8 +88,6 @@ export default {
         }
       }
 
-      //console.log(this.selected);
-
       console.log(this.selected);
       console.log(this.selected.length);
     },
@@ -154,6 +152,7 @@ export default {
                 :key="index"
                 v-bind:value="check"
               >
+                <!--  CARTAS MOTIVOS SUEÑO  -->
                 <CardSuenos
                   class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light p-2"
                   @id="this.guardarseleccionada"
@@ -174,30 +173,9 @@ export default {
           </div>
         </Transition>
 
-        <!-- Card Respuesta -->
-
-        <!-- ESTE ES EL METODO ACCORDION -->
-        <!--<div class="accordion" id="card-respuesta">
-          <div class="accordion-item">
-            <div v-for="n in this.selected.length" class="col-6 card">
-
-              
-              <h2 class="accordion-header" @id="accordionID[n-1]">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="accordionClass[n-1]" aria-expanded="true" :aria-controls="accordionClass[n-1]">
-                  {{this.selected[n-1]}}
-                </button>
-              </h2>
-              <div @id="accordionClass[n-1]" class="accordion-collapse collapse show" :aria-labelledby="accordionID[n-1]">
-                <div class="accordion-body">
-                  <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
-                  <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
-                </div>
-              </div>
-            </div>  
-          </div>
-        </div>-->
-
         <Transition name="bounce2">
+
+          <!--  RESPUESTA CUESTIONARIO SUEÑO  -->
           <div
             v-if="this.animacion2"
             class="container accordion acordion-margin-top"
@@ -224,11 +202,41 @@ export default {
   </div>
 </template>
 
+
+
 <style scoped>
+
+/****  FONDO DE PANTALLA  ***/
+
+.fondo {
+  min-height: 100vh;
+  height: auto;
+  background: linear-gradient(90deg, #162046 0%, #0a0b0e 100%);
+}
+
+.submain {
+  width: 100%;
+  min-height: 80vh;
+  background-image: url("../../../public/img/stars-back.png");
+  background-size: 800px;
+  background-repeat: repeat;
+  position: absolute;
+}
+
+.submain .col-8 p {
+  margin: 0 0 0 7px;
+}
+
+/****  CUESTIONARIO  *****/
+
 .cuestionario_sueño {
   color: rgb(255, 255, 255);
   margin-top: 50px;
   padding: 30px;
+}
+
+.titulo_cuestionario {
+  font-weight: 600;
 }
 
 .subtitulo {
@@ -244,35 +252,22 @@ export default {
   justify-content: center;
 }
 
-/* #card-respuesta {
-  display: none;
-  margin-bottom: 10%;
-} */
-
 .card {
   max-width: 15%;
   min-width: 150px;
   margin: 1%;
 }
 
-.fondo {
-  min-height: 100vh;
-  height: auto;
-  background: linear-gradient(90deg, #162046 0%, #0a0b0e 100%);
+
+/****  RESPUESTA ACORDEON  ****/
+
+.acordion-margin-top {
+  margin-top: 5%;
 }
 
-.submain {
-  width: 100%;
-  min-height: 80vh;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/stars-back.png");
-  background-size: 400px;
-  background-repeat: repeat;
-  position: absolute;
-}
 
-.submain .col-8 p {
-  margin: 0 0 0 7px;
-}
+
+/*******  ANIMACIONES  *******/
 
 .bounce-enter-active {
   animation: bounce-in 1s ease-in-out 0s 1 normal reverse;
@@ -313,9 +308,5 @@ export default {
   to {
     opacity: 1;
   }
-}
-
-.acordion-margin-top {
-  margin-top: 5%;
 }
 </style>
