@@ -12,6 +12,7 @@ export default {
       passwordRegister: "",
       emailRegister: "",
       nomApeRegister: "",
+      error: 0,
     };
   },
 
@@ -32,23 +33,29 @@ export default {
     },
 
     iniciarSesion() {
-      let login = new FormData();
-      login.append("email", this.emailLogin);
-      login.append("password", this.passwordLogin);
+      this.error = comprovarDatos(this.emailLogin, this.passwordLogin, "login");
 
-      fetch("http://192.168.210.162:9000/usuario/login", {
-        method: "POST",
-        body: login,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          alert(data.msg);
-          if (data.status) {
-            console.log("asdf");
-            this.sesionStore.setUsuario(data.usuario);
-            router.push({ name: this.sesionStore.getRutaAnterior });
-          }
-        });
+      if (!this.error.length) {
+        let login = new FormData();
+        login.append("email", this.emailLogin);
+        login.append("password", this.passwordLogin);
+
+        fetch("http://192.168.210.162:9000/usuario/login", {
+          method: "POST",
+          body: login,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            alert(data.msg);
+            if (data.status) {
+              console.log("asdf");
+              this.sesionStore.setUsuario(data.usuario);
+              router.push({ name: this.sesionStore.getRutaAnterior });
+            }
+          });
+      } else {
+        console.log(this.error);
+      }
     },
 
     registrarse() {
@@ -60,16 +67,36 @@ export default {
       fetch("http://192.168.210.162:9000/usuario/register", {
         method: "POST",
         body: register,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          alert(data.msg);
-          if (data.status) {
-            console.log("asdf");
-            this.sesionStore.setUsuario(data.usuario);
-            router.push({ name: this.sesionStore.getRutaAnterior });
-          }
+      });
+    },
+
+    comprovarDatos(email, password, tipo, nomApe) {
+      let errores = [],
+        cont = 0;
+
+      if (tipo == "register") {
+        //Regex nombres
+        nomApe.split(" ").forEach((e) => {
+          /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(
+            e
+          )
+            ? null
+            : cont++;
         });
+        cont ? errores.push("Nombre o apellidos mal") : null;
+      }
+
+      // Regex email
+      /^[\w\.]+@([\w]+\.)+[\w]{2,4}$/.test(e)
+        ? null
+        : errores.push("Email mal");
+
+      // Regex password de 8-16 caracteres, con al menos una letra, un numero y un caracter especial.
+      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/.test(p)
+        ? null
+        : errores.push("Password mal");
+
+      return errores;
     },
   },
 };
@@ -227,6 +254,8 @@ export default {
           </h3>
 
           <div class="row align-items-center">
+            <<<<<<< HEAD ======= >>>>>>>
+            6fdf3d7cc199448228dcfb0005511ab236d1051a
             <div class="col-md-7 col-12">
               <div class="row align-items-center">
                 <div class="col-auto">
@@ -350,6 +379,7 @@ export default {
             <div class="btn btn-primary text-center">Confirmar</div>
           </div>
         </div>
+        <<<<<<< HEAD ======= >>>>>>> 6fdf3d7cc199448228dcfb0005511ab236d1051a
       </div>
     </div>
   </div>
@@ -361,7 +391,9 @@ export default {
   width: 100vw;
 }
 
-.input-group-text/* iconos formulario */ {
+.input-group-text
+
+/* iconos formulario */ {
   background-color: #ffffff;
   color: black;
 }
