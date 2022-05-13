@@ -130,7 +130,7 @@ export default {
         </div>
       </div>
       <Transition name="bounce">
-        <div class="cuestionario_estado container px-4" v-if="!this.disabled">
+        <div class="cuestionario_estado container px-4 shadow-lg" v-if="!this.disabled">
           <div class="row">
             <div class="col-12 text-center">
               <h2 class="titulo_cuestionario text-center">
@@ -255,19 +255,16 @@ export default {
               selected[0].value != 'Alegre' && selected[0].value != 'Energico'
             "
             id="divResultado"
-            class="card-respuesta card text-center"
+            class="card-respuesta card text-center shadow"
           >
-            <div class="card-header">
-              Información sobre mi estado de ánimo actual
-            </div>
             <div class="card-body">
-              <h5 class="card-title">
+              <h4 class="card-title titlo_estado">
                 Hoy estoy {{ selected[0].value }}
                 <img id="emojiTexto" :src="selected[0].emoji" />
-              </h5>
+              </h4>
               <p class="card-text">
-                Información sobre porque estoy {{ selected[0].value }} y como
-                puedo cambiar este sentimiento
+                Para descubrir porqué te sientes {{ selected[0].value }} y como
+                mejorar tu estado de ánimo visita la siguiente página ...
               </p>
               <a
                 href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
@@ -292,6 +289,7 @@ section {
 #card-horizontal {
   padding: 15px;
   margin-top: 20px;
+  background-color: rgba(255, 255, 255, 0.651);
 }
 
 #card-horizontal .card-body-tit {
@@ -300,9 +298,11 @@ section {
 }
 
 .card-respuesta {
+  background-color: rgba(255, 255, 255, 0.651);
   max-width: 750px;
   margin-left: auto;
   margin-right: auto;
+  padding: 25px;
 }
 
 .retroceder {
@@ -310,6 +310,10 @@ section {
   position: absolute;
   top: 0;
   left: -10px;
+}
+
+.titlo_estado {
+  margin-bottom: 25px !important;
 }
 
 .retroceder span {
@@ -330,7 +334,7 @@ select {
 }
 
 .cuestionario_estado {
-  background-color: rgba(255, 255, 255, 0.575);
+  background-color: rgba(255, 255, 255, 0.651);
   margin-top: 60px;
   padding: 30px;
   border-radius: 8px;
