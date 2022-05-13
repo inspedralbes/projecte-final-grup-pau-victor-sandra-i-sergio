@@ -1,8 +1,25 @@
 <script>
 import { RouterLink } from "vue-router";
+import { sesionStore } from "@/stores/sesionStore";
+import { mapStores } from "pinia";
 export default {
   components: {
     RouterLink,
+  },
+  computed: {
+    ...mapStores(sesionStore),
+  },
+
+  data() {
+    return {
+      usuario: "a",
+    };
+  },
+
+  mounted() {
+    setInterval(() => {
+      this.usuario = this.sesionStore.getUsuario;
+    }, 1);
   },
 
   methods: {
@@ -23,6 +40,9 @@ export default {
           keyCode: 27,
         })
       );
+    },
+    cerrarSesion() {
+      location.reload();
     },
   },
 };
@@ -71,7 +91,7 @@ export default {
         </div>
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-            <li class="nav-item my-1">
+            <li v-if="!Object.keys(this.usuario).length" class="nav-item my-1">
               <RouterLink
                 class="nav-link"
                 to="/iniciarSesion"
@@ -90,7 +110,7 @@ export default {
               </RouterLink>
             </li>
 
-            <li class="nav-item my-1">
+            <li v-if="Object.keys(this.usuario).length" class="nav-item my-1">
               <RouterLink class="nav-link" to="/" @click="this.cerrarNav()">
                 <div class="d-flex link_cuenta">
                   <div id="divAvatar">
@@ -196,14 +216,16 @@ export default {
               </RouterLink>
             </li>
 
-            <li class="nav-item my-1">
+            <li v-if="Object.keys(this.usuario).length" class="nav-item my-1">
               <RouterLink class="nav-link" to="/" @click="this.cerrarNav()">
                 <div class="d-flex align-items-center link_cerrarSession">
                   <div class="align-self-center d-flex align-content-center">
                     <span class="material-symbols-outlined">logout</span>
                   </div>
                   <div class="align-self-center mx-2">
-                    <span class="bold">Cerrar Session</span>
+                    <span @click="this.cerrarSesion()" class="bold"
+                      >Cerrar Session</span
+                    >
                   </div>
                 </div>
               </RouterLink>
