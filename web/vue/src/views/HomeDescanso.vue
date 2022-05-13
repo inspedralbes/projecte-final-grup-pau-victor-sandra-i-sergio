@@ -264,8 +264,8 @@ export default {
 .submain {
   width: 100%;
   min-height: 80vh;
-  background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/217233/stars-back.png");
-  background-size: 400px;
+  background-image: url("../../../public/img/stars-back.png");
+  background-size: 800px;
   background-repeat: repeat;
   position: absolute;
 }

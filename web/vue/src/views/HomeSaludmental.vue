@@ -103,9 +103,9 @@ export default {
 <template>
   <div>
     <div>
-      <Header />
+      <Header/>
     </div>
-    <section>
+    <section class="saludmental">
       <div class="container">
         <div class="row">
           <div class="col-12 d-flex align-items-center justify-content-center">
@@ -274,7 +274,8 @@ export default {
 
 <style scoped>
 section {
-  min-height: 74vh;
+  min-height: 82.7vh;
+  background-image: url("../../../public/img/fondo_saludmental.png");
 }
 
 #card-horizontal {
@@ -313,14 +314,15 @@ section {
 }
 
 select {
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.575);
   color: rgb(168, 225, 248);
 }
 
 .cuestionario_estado {
-  background-color: rgb(233, 247, 255);
+  background-color: rgba(255, 255, 255, 0.575);
   margin-top: 60px;
   padding: 30px;
+  border-radius: 8px;
 }
 
 .img-emoji {
