@@ -174,29 +174,6 @@ export default {
           </div>
         </Transition>
 
-        <!-- Card Respuesta -->
-
-        <!-- ESTE ES EL METODO ACCORDION -->
-        <!--<div class="accordion" id="card-respuesta">
-          <div class="accordion-item">
-            <div v-for="n in this.selected.length" class="col-6 card">
-
-              
-              <h2 class="accordion-header" @id="accordionID[n-1]">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" :data-bs-target="accordionClass[n-1]" aria-expanded="true" :aria-controls="accordionClass[n-1]">
-                  {{this.selected[n-1]}}
-                </button>
-              </h2>
-              <div @id="accordionClass[n-1]" class="accordion-collapse collapse show" :aria-labelledby="accordionID[n-1]">
-                <div class="accordion-body">
-                  <p class="card-text">Para saber mas sobre el sueño visite la siguiente página</p>
-                  <a href="https://lamenteesmaravillosa.com/tengo-miedo-cambio" class="link">Click para saber más</a>
-                </div>
-              </div>
-            </div>  
-          </div>
-        </div>-->
-
         <Transition name="bounce2">
           <div
             v-if="this.animacion2"
@@ -233,6 +210,10 @@ export default {
 
 .subtitulo {
   padding: 15px;
+}
+
+.titulo_cuestionario {
+  font-weight: 600;
 }
 
 .emoji_sueño {

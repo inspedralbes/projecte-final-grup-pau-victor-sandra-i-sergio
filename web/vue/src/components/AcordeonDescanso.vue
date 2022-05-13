@@ -68,7 +68,7 @@ export default {
 }
 
 .shadow-sm {
-  box-shadow: 0 1rem 3rem rgba(214, 208, 208, 0.67) !important;
+  box-shadow: 0 1rem 3rem rgba(214, 208, 208, 0.384) !important;
 }
 
 span {

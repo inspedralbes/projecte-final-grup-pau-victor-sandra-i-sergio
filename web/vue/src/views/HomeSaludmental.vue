@@ -109,7 +109,7 @@ export default {
       <div class="container">
         <div class="row">
           <div class="col-12 d-flex align-items-center justify-content-center">
-            <h4 class="titulo-barra">Progresión del formulario</h4>
+            <h5 class="titulo-barra">Progresión del formulario</h5>
           </div>
           <div class="col-12 d-flex align-items-center justify-content-center">
             <div class="progress">
@@ -419,6 +419,10 @@ form {
 
 .form-input-email {
   width: 250px;
+}
+
+.titulo_cuestionario {
+  font-weight: 600;
 }
 
 /*****  ANIMACIONES  *****/
