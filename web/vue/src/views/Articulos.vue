@@ -1,7 +1,7 @@
 <script>
 import Header from "../components/SubHeader.vue";
-import { sesionStore } from '@/stores/sesionStore'
-import { mapStores } from 'pinia'
+import { sesionStore } from "@/stores/sesionStore";
+import { mapStores } from "pinia";
 
 export default {
   components: {
@@ -12,8 +12,8 @@ export default {
     ...mapStores(sesionStore),
   },
 
-  mounted(){
-    this.sesionStore.setRutaActual(this.$route.name)
+  mounted() {
+    this.sesionStore.setRutaActual(this.$route.name);
   },
 };
 </script>

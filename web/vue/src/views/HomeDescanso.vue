@@ -2,8 +2,8 @@
 import Header from "../components/SubHeader.vue";
 import CardSuenos from "../components/CardSuenos.vue";
 import Acordeon from "../components/AcordeonDescanso.vue";
-import { sesionStore } from '@/stores/sesionStore'
-import { mapStores } from 'pinia'
+import { sesionStore } from "@/stores/sesionStore";
+import { mapStores } from "pinia";
 
 export default {
   components: {
@@ -17,7 +17,7 @@ export default {
   },
 
   mounted() {
-    this.sesionStore.setRutaActual(this.$route.name)
+    this.sesionStore.setRutaActual(this.$route.name);
   },
 
   data() {
@@ -148,21 +148,27 @@ export default {
             </div>
 
             <div class="row justify-content-center mt-3">
-              <div class="col-6 col-sm-4 col-md-3 col-lg-2 gy-3" v-for="(check, index) in elemento" :key="index"
-                v-bind:value="check">
-                <CardSuenos class="
-                    d-flex
-                    align-items-center
-                    justify-content-center
-                    flex-direction-row
-                    btn btn-outline-light
-                    p-2
-                  " @id="this.guardarseleccionada" :infoCuest="check" :contador="this.selected.length" />
+              <div
+                class="col-6 col-sm-4 col-md-3 col-lg-2 gy-3"
+                v-for="(check, index) in elemento"
+                :key="index"
+                v-bind:value="check"
+              >
+                <CardSuenos
+                  class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light p-2"
+                  @id="this.guardarseleccionada"
+                  :infoCuest="check"
+                  :contador="this.selected.length"
+                />
               </div>
 
               <div class="col-12 gy-4 text-center">
-                <input class="btn btn-outline-light form-submit" type="button" @click="enviarFormulario(), activar()"
-                  value="Analizar sueño" />
+                <input
+                  class="btn btn-outline-light form-submit"
+                  type="button"
+                  @click="enviarFormulario(), activar()"
+                  value="Analizar sueño"
+                />
               </div>
             </div>
           </div>
@@ -192,11 +198,22 @@ export default {
         </div>-->
 
         <Transition name="bounce2">
-          <div v-if="this.animacion2" class="container accordion acordion-margin-top">
+          <div
+            v-if="this.animacion2"
+            class="container accordion acordion-margin-top"
+          >
             <div class="row">
-              <div v-for="(sueno, index) in selected" :key="index" v-bind:value="sueno.value" class="col-12">
+              <div
+                v-for="(sueno, index) in selected"
+                :key="index"
+                v-bind:value="sueno.value"
+                class="col-12"
+              >
                 <div class="align-items-center justify-content-center">
-                  <Acordeon :infoAcordeon="this.resultado[index]" :index="index" />
+                  <Acordeon
+                    :infoAcordeon="this.resultado[index]"
+                    :index="index"
+                  />
                 </div>
               </div>
             </div>
@@ -266,7 +283,8 @@ export default {
 }
 
 @keyframes bounce-in {
-  from {}
+  from {
+  }
 
   40% {
     transform: translate(0, 100px);

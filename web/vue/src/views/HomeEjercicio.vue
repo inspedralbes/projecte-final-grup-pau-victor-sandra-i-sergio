@@ -1,7 +1,7 @@
 <script>
 import Header from "../components/SubHeader.vue";
-import { sesionStore } from '@/stores/sesionStore'
-import { mapStores } from 'pinia'
+import { sesionStore } from "@/stores/sesionStore";
+import { mapStores } from "pinia";
 
 export default {
   components: {
@@ -16,7 +16,7 @@ export default {
   },
 
   mounted() {
-    this.sesionStore.setRutaActual(this.$route.name)
+    this.sesionStore.setRutaActual(this.$route.name);
   },
 };
 </script>
@@ -27,8 +27,14 @@ export default {
       <Header />
     </div>
 
-    <div class="alimentacion aling-items-center align-items-center justify-content-center text-center">
-      <img class="imgg" src="../../public/img/working_out.png" alt="ilustración de personas cocinando" />
+    <div
+      class="alimentacion aling-items-center align-items-center justify-content-center text-center"
+    >
+      <img
+        class="imgg"
+        src="../../public/img/working_out.png"
+        alt="ilustración de personas cocinando"
+      />
       <h2>Cooming soon ...</h2>
     </div>
   </div>
