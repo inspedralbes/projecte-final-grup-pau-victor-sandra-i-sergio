@@ -1,6 +1,4 @@
 {
-    "nombre": "sdfadsfadf",
-    "apellidos": "adsfadfa",
-    "email": "sdfad",
-    "password": "sdfadfadsf"
+    "status": true,
+    "msg": "Caracteristicas añadidas"
 }
