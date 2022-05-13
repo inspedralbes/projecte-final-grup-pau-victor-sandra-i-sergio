@@ -4,6 +4,7 @@ const app = express();
 const Usuario = express.Router();
 const UsuarioModel = require('../models/Usuario/usuario.model');
 const bcrypt = require("bcrypt");
+const usuarioModel = require('../models/Usuario/usuario.model');
 
 Usuario.route('/register').post((req, res) => {
     const datos = req.body;
@@ -33,6 +34,8 @@ Usuario.route('/register').post((req, res) => {
                             // Hashear password
                             const salt = await bcrypt.genSalt(10);
                             datos.password = await bcrypt.hash(datos.password, salt);
+                            datos.rol = 'usuario';
+                            console.log(datos)
 
                             //Guardar usuario
                             const usuarioModel = new UsuarioModel(datos);
@@ -45,6 +48,39 @@ Usuario.route('/register').post((req, res) => {
             }
         }
     }
+});
+
+Usuario.route('/register-pt2').put((req, res) => {
+    const datos = req.body;
+    datos.datosPersonales = JSON.parse(datos.datosPersonales);
+    console.log(datos);
+
+    if (Object.keys(datos).length != 2 && Object.keys(datos.datosPersonales).length != 5) {
+        res.status(500);
+        res.json({ 'status': false, 'msg': 'Falta / Sobra algun campo' });
+    } else {
+        if (datos.nombreApellidos == "" || datos.email == "" || datos.password == "") {
+            res.status(500);
+            res.json({ 'status': false, 'msg': 'Error en los campos' });
+        } else {
+            usuarioModel.findById(datos.idUsuario, (err, response) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    console.log(response)
+                }
+            })
+            usuarioModel.updateOne({ _id: datos.idUsuario }, { $set: { datosPersonales: datos.datosPersonales } }, (err, response) => {
+                if (err) {
+                    console.log(err);
+                } else {
+                    res.status(202);
+                    res.json({ 'status': true, "msg": "Caracteristicas añadidas" });
+                }
+            });
+        }
+    }
+
 });
 
 Usuario.route('/login').post((req, res) => {

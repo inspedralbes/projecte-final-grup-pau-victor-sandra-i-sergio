@@ -20,7 +20,11 @@ const usuario = new Schema({
         type: String
     },
 
-    datosPersonales:{
+    rol: {
+        type: String
+    },
+
+    datosPersonales: {
         type: Object
     }
 }, {
