@@ -2,6 +2,7 @@
 import { sesionStore } from "@/stores/sesionStore";
 import { mapStores } from "pinia";
 import router from "@/router";
+import { TO_HANDLERS } from "@vue/compiler-core";
 
 export default {
   data() {
@@ -33,68 +34,108 @@ export default {
     },
 
     iniciarSesion() {
-      // this.error = comprovarDatos(this.emailLogin, this.passwordLogin, "login");
+      this.error = this.comprovarDatos(this.emailLogin, this.passwordLogin, "login", "n");
 
-      // if (!this.error.length) {
-      let login = new FormData();
-      login.append("email", this.emailLogin);
-      login.append("password", this.passwordLogin);
+      if (!this.error.length) {
+        let login = new FormData();
+        login.append("email", this.emailLogin);
+        login.append("password", this.passwordLogin);
 
-      fetch("http://192.168.210.162:9000/usuario/login", {
-        method: "POST",
-        body: login,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          alert(data.msg);
-          if (data.status) {
-            console.log("asdf");
-            this.sesionStore.setUsuario(data.usuario);
-            router.push({ name: this.sesionStore.getRutaAnterior });
-          }
-        });
-      // } else {
-      //   console.log(this.error);
-      // }
+        fetch("http://192.168.210.162:9000/usuario/login", {
+          method: "POST",
+          body: login,
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status) {
+              this.sesionStore.setUsuario(data.usuario);
+              setTimeout(() => {
+                router.push({ name: this.sesionStore.getRutaAnterior });
+              }, 1700)
+            }
+            Swal.fire({
+              position: 'center',
+              icon: (data.status) ? 'success' : 'error',
+              title: data.msg,
+              showConfirmButton: false,
+              timer: 1500
+            })
+          });
+      } else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: this.error.join(' y '),
+          showConfirmButton: false,
+          timer: 1500
+        })
+      }
     },
 
     registrarse() {
-      let register = new FormData();
-      register.append("email", this.emailRegister);
-      register.append("password", this.passwordRegister);
-      register.append("nombreApellidos", this.nomApeRegister);
+      this.error = this.comprovarDatos(this.emailRegister, this.passwordRegister, "register", this.nomApeRegister);
 
-      fetch("http://192.168.210.162:9000/usuario/register", {
-        method: "POST",
-        body: register,
-      });
+      if (!this.error.length) {
+        let register = new FormData();
+        register.append("email", this.emailRegister);
+        register.append("password", this.passwordRegister);
+        register.append("nombreApellidos", this.nomApeRegister);
+
+        fetch("http://192.168.210.162:9000/usuario/register", {
+          method: "POST",
+          body: register,
+        }).then((response) => response.json())
+          .then((data) => {
+            if (data.status) {
+              this.sesionStore.setUsuario(data.usuario);
+              setTimeout(() => {
+                router.push({ name: this.sesionStore.getRutaAnterior });
+              }, 1700)
+            }
+            Swal.fire({
+              position: 'center',
+              icon: (data.status) ? 'success' : 'error',
+              title: data.msg,
+              showConfirmButton: false,
+              timer: 2000
+            })
+          });
+      } else {
+        Swal.fire({
+          position: 'top-end',
+          icon: 'error',
+          title: this.error.join(' y '),
+          showConfirmButton: false,
+          timer: 2000
+        })
+      }
+
+
     },
 
     comprovarDatos(email, password, tipo, nomApe) {
-      let errores = [],
-        cont = 0;
+      let errores = [], cont = 0;
 
-      if (tipo == "register") {
-        //Regex nombres
-        nomApe.split(" ").forEach((e) => {
-          /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(
-            e
-          )
-            ? null
-            : cont++;
-        });
-        cont ? errores.push("Nombre o apellidos mal") : null;
+      if (email != "" && password != "" && nomApe != "") {
+        if (tipo == "register") {
+          console.log('reg')
+          //Regex nombres
+          nomApe.split(" ").forEach((e) => {
+            /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(e) ? null : cont++;
+          });
+          cont ? errores.push("Nombre o apellidos mal formatados") : null;
+        }
+
+
+        // Regex email
+        /^[\w\.]+@([\w]+\.)+[\w]{2,4}$/.test(email) ? null : errores.push("Email mal formatado");
+
+        // Regex password de 8-16 caracteres, con al menos una letra, un numero y un caracter especial.
+        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/.test(password) ? null : errores.push("Password mal formatado");
+
+      } else {
+        errores.push('Falta por rellenar algún campo');
       }
-
-      // Regex email
-      /^[\w\.]+@([\w]+\.)+[\w]{2,4}$/.test(e)
-        ? null
-        : errores.push("Email mal");
-
-      // Regex password de 8-16 caracteres, con al menos una letra, un numero y un caracter especial.
-      /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/.test(p)
-        ? null
-        : errores.push("Password mal");
 
       return errores;
     },
@@ -167,7 +208,7 @@ export default {
               </div>
 
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined">lock</span>
+                <span class="input-group-text materialx-symbols-outlined">lock</span>
                 <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
                   aria-describedby="basic-addon2" :value="this.passwordRegister" @input="
                     (event) => {
@@ -197,84 +238,81 @@ export default {
           </h3>
 
           <div class="row align-items-center">
-            <<<<<<< HEAD=======>>>>>>>
-              6fdf3d7cc199448228dcfb0005511ab236d1051a
-              <div class="col-md-7 col-12">
-                <div class="row align-items-center">
-                  <div class="col-auto">
-                    <label class="bold" for="edad">Edad</label>
-                  </div>
-                  <div class="col-5 col-md-7 g-1">
-                    <input type="number" class="form-control" id="edad" />
+            <div class="col-md-7 col-12">
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <label class="bold" for="edad">Edad</label>
+                </div>
+                <div class="col-5 col-md-7 g-1">
+                  <input type="number" class="form-control" id="edad" />
+                </div>
+              </div>
+
+              <div class="row align-items-start mt-4">
+                <div class="col-md-auto col-12">
+                  <label class="bold mb-3" for="Ocupación">Ocupación</label>
+                  <div class="ocupacion p-3 pe-4 shadow-sm">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="Ocupacion" id="trabajador" />
+                      <label class="form-check-label" for="trabajador">Trabajo</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="Ocupacion" id="estudiante" />
+                      <label class="form-check-label" for="Ocupacion">Estudio</label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="Ocupacion" id="otro" />
+                      <label class="form-check-label" for="Ocupacion">Otro</label>
+                    </div>
                   </div>
                 </div>
 
-                <div class="row align-items-start mt-4">
-                  <div class="col-md-auto col-12">
-                    <label class="bold mb-3" for="Ocupación">Ocupación</label>
-                    <div class="ocupacion p-3 pe-4 shadow-sm">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="Ocupacion" id="trabajador" />
-                        <label class="form-check-label" for="trabajador">Trabajo</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="Ocupacion" id="estudiante" />
-                        <label class="form-check-label" for="Ocupacion">Estudio</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="Ocupacion" id="otro" />
-                        <label class="form-check-label" for="Ocupacion">Otro</label>
-                      </div>
+                <div class="col-md-auto col-12">
+                  <label class="bold mb-3" for="Ocupación">Sexo</label>
+                  <div class="sexo p-3 pe-4 shadow-sm">
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="sexo" id="mujer" />
+                      <label class="form-check-label" for="trabajador">Mujer</label>
                     </div>
-                  </div>
-
-                  <div class="col-md-auto col-12">
-                    <label class="bold mb-3" for="Ocupación">Sexo</label>
-                    <div class="sexo p-3 pe-4 shadow-sm">
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sexo" id="mujer" />
-                        <label class="form-check-label" for="trabajador">Mujer</label>
-                      </div>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="sexo" id="hombre" />
-                        <label class="form-check-label" for="Ocupacion">Hombre</label>
-                      </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="radio" name="sexo" id="hombre" />
+                      <label class="form-check-label" for="Ocupacion">Hombre</label>
                     </div>
                   </div>
                 </div>
               </div>
+            </div>
 
-              <div class="col-md-5 col-12">
-                <div class="row nivel_row align-items-center mt-2">
-                  <div class="col nivel my-3">
-                    <label for="nivel" class="form-label bold">Nivel físico</label>
-                    <input type="range" class="form-range" min="1" max="3" id="nivel" />
-                    <br />
-                    <span class="form-label relativeP">Principiante</span>
-                    <span class="form-label relativeI">Intermedio</span>
-                    <span class="form-label relativeA">Avanzado</span>
-                  </div>
-                </div>
-
-                <div class="row nivel_row align-items-center mt-2">
-                  <div class="col nivel my-3">
-                    <label for="nivel" class="form-label bold">Disponibilidad de tiempo</label>
-                    <select class="form-select" aria-label="Default select example">
-                      <option selected>Selecciona una opción</option>
-                      <option value="1">15 min</option>
-                      <option value="2">30 min</option>
-                      <option value="3">45 min</option>
-                      <option value="3">1 h</option>
-                    </select>
-                  </div>
+            <div class="col-md-5 col-12">
+              <div class="row nivel_row align-items-center mt-2">
+                <div class="col nivel my-3">
+                  <label for="nivel" class="form-label bold">Nivel físico</label>
+                  <input type="range" class="form-range" min="1" max="3" id="nivel" />
+                  <br />
+                  <span class="form-label relativeP">Principiante</span>
+                  <span class="form-label relativeI">Intermedio</span>
+                  <span class="form-label relativeA">Avanzado</span>
                 </div>
               </div>
+
+              <div class="row nivel_row align-items-center mt-2">
+                <div class="col nivel my-3">
+                  <label for="nivel" class="form-label bold">Disponibilidad de tiempo</label>
+                  <select class="form-select" aria-label="Default select example">
+                    <option selected>Selecciona una opción</option>
+                    <option value="1">15 min</option>
+                    <option value="2">30 min</option>
+                    <option value="3">45 min</option>
+                    <option value="3">1 h</option>
+                  </select>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="text-center mt-3">
             <div class="btn btn-primary text-center">Confirmar</div>
           </div>
         </div>
-        <<<<<<< HEAD=======>>>>>>> 6fdf3d7cc199448228dcfb0005511ab236d1051a
       </div>
     </div>
   </div>
