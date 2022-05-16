@@ -20,6 +20,8 @@ export default {
       selected: 0,
       motivo: "",
       estado: null,
+      usuario: null,
+      respuesta: "",
     };
   },
 
@@ -29,6 +31,8 @@ export default {
 
   mounted() {
     this.sesionStore.setRutaActual(this.$route.name);
+    this.usuario = this.sesionStore.getUsuario._id;
+    console.log(this.usuario);
   },
 
   beforeMount() {
@@ -54,31 +58,55 @@ export default {
     },
 
     enviarFormulario() {
-      // let divresultado = document.getElementById("divResultado");
-      // divresultado.style.display = "block";
-      var cuestSalud = new URLSearchParams({
-        usuario: "ermengol",
-        estado: this.selected[0].value,
-        motivo: this.motivo,
-      });
-      console.log(cuestSalud);
-      fetch(
-        "http://192.168.210.162:9000/salud-mental/guardar-datos-cuestionario",
-        {
-          // fetch("http://localhost:wd/salud-mental/guardar-datos-cuestionario", {
-          method: "POST",
-          body: cuestSalud,
-        }
-      )
-        .then((response) => response.json())
-        .then((data) => {
-          console.log(data);
-          this.progressbar1 = 2;
-          this.disabled2 = false;
-          setTimeout(() => {
-            this.disabled3 = true;
-          }, 500);
+      if (Object.keys(this.sesionStore.getUsuario).length != 0) {
+        var cuestSalud = new URLSearchParams({
+          usuario: this.usuario,
+          estado: this.selected[0].value,
+          motivo: this.motivo,
         });
+        console.log(cuestSalud);
+        fetch(
+          "http://192.168.210.162:9000/salud-mental/guardar-datos-cuestionario",
+          {
+            // fetch("http://localhost:wd/salud-mental/guardar-datos-cuestionario", {
+            method: "POST",
+            body: cuestSalud,
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            this.progressbar1 = 2;
+            this.disabled2 = false;
+            setTimeout(() => {
+              this.disabled3 = true;
+            }, 500);
+          });
+      } else {
+        var noRegCuestSalud = new URLSearchParams({
+          estado: this.selected[0].value,
+          motivo: this.motivo,
+        });
+        console.log(noRegCuestSalud);
+        fetch(
+          "http://192.168.210.162:9000/salud-mental/respuesta-cuestionario",
+          {
+            // fetch("http://localhost:wd/salud-mental/respuesta-cuestionario", {
+            method: "POST",
+            body: noRegCuestSalud,
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            this.respuesta = data.resultado;
+            console.log(this.respuesta);
+            this.progressbar1 = 2;
+            this.disabled2 = false;
+            setTimeout(() => {
+              this.disabled3 = true;
+            }, 500);
+          });
+      }
     },
     guardarEstado(valor) {
       this.progressbar1 = 1;
@@ -103,7 +131,7 @@ export default {
 <template>
   <div>
     <div>
-      <Header/>
+      <Header />
     </div>
     <section class="saludmental">
       <div class="container">
@@ -130,7 +158,10 @@ export default {
         </div>
       </div>
       <Transition name="bounce">
-        <div class="cuestionario_estado container px-4 shadow-lg" v-if="!this.disabled">
+        <div
+          class="cuestionario_estado container px-4 shadow-lg"
+          v-if="!this.disabled"
+        >
           <div class="row">
             <div class="col-12 text-center">
               <h2 class="titulo_cuestionario text-center">
@@ -195,7 +226,7 @@ export default {
                               class="form-check-input"
                               type="radio"
                               @click="guardarMotivo($event.target.value)"
-                              :value="index"
+                              :value="estado"
                               name="motivo"
                               :id="index"
                             />
@@ -250,26 +281,17 @@ export default {
 
       <Transition name="bounce3">
         <div v-if="selected && disabled3">
-          <div
-            v-if="
-              selected[0].value != 'Alegre' && selected[0].value != 'Energico'
-            "
-            id="divResultado"
-            class="card-respuesta card text-center shadow"
-          >
+          <div id="divResultado" class="card-respuesta card text-center shadow">
             <div class="card-body">
               <h4 class="card-title titlo_estado">
-                Hoy estoy {{ selected[0].value }}
+                Hoy estoy {{ this.respuesta.estado }}
                 <img id="emojiTexto" :src="selected[0].emoji" />
               </h4>
               <p class="card-text">
-                Para descubrir porqué te sientes {{ selected[0].value }} y como
-                mejorar tu estado de ánimo visita la siguiente página ...
+                Para descubrir porqué te sientes {{ this.respuesta.estado }} y
+                como mejorar tu estado de ánimo visita la siguiente página ...
               </p>
-              <a
-                href="https://lamenteesmaravillosa.com/tengo-miedo-cambio"
-                target="_blank"
-                class="link"
+              <a :href="this.respuesta.respuesta" target="_blank" class="link"
                 >Click para saber más</a
               >
             </div>

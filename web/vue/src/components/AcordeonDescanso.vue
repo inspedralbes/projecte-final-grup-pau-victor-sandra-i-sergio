@@ -26,9 +26,8 @@ export default {
         aria-expanded="true"
         :aria-controls="'panelsStayOpen-collapse' + index"
       >
-        <img class="img-little" :src="this.infoAcordeon.img" />Has soñado con<span>{{
-          this.infoAcordeon.tipo
-        }}</span>
+        <img class="img-little" :src="this.infoAcordeon.img" />Has soñado
+        con<span>{{ this.infoAcordeon.tipo }}</span>
       </button>
     </h2>
     <div
@@ -49,7 +48,6 @@ export default {
     </div>
   </div>
 </template>
-
 
 <style scoped>
 .acordio-resultado {

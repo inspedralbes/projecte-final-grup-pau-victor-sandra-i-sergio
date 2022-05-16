@@ -111,7 +111,11 @@ export default {
             </li>
 
             <li v-if="Object.keys(this.usuario).length" class="nav-item my-1">
-              <RouterLink class="nav-link" to="/" @click="this.cerrarNav()">
+              <RouterLink
+                class="nav-link"
+                to="/editarUsuario"
+                @click="this.cerrarNav()"
+              >
                 <div class="d-flex link_cuenta">
                   <div id="divAvatar">
                     <span
@@ -123,7 +127,7 @@ export default {
                     /></span>
                   </div>
                   <div class="align-self-center mx-4">
-                    <span class="bold">Nombre usuario</span>
+                    <span class="bold">{{ this.usuario.nombreApellidos }}</span>
                   </div>
                 </div>
               </RouterLink>
