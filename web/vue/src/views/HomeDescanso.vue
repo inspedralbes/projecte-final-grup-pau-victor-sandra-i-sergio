@@ -174,7 +174,6 @@ export default {
         </Transition>
 
         <Transition name="bounce2">
-
           <!--  RESPUESTA CUESTIONARIO SUEÑO  -->
           <div
             v-if="this.animacion2"
@@ -202,10 +201,7 @@ export default {
   </div>
 </template>
 
-
-
 <style scoped>
-
 /****  FONDO DE PANTALLA  ***/
 
 .fondo {
@@ -258,14 +254,11 @@ export default {
   margin: 1%;
 }
 
-
 /****  RESPUESTA ACORDEON  ****/
 
 .acordion-margin-top {
   margin-top: 5%;
 }
-
-
 
 /*******  ANIMACIONES  *******/
 

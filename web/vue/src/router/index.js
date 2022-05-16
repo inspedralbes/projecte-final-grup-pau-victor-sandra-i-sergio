@@ -7,6 +7,7 @@ import HomeInicio from "../views/HomeInicio.vue";
 import HomeDescanso from "../views/HomeDescanso.vue";
 import IniciarSesion from "../views/IniciarSesion.vue";
 import Articulos from "../views/Articulos.vue";
+import EditarUsuario from "../views/EditarUsuario.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -45,6 +46,11 @@ const router = createRouter({
       path: "/articulos",
       name: "articulos",
       component: Articulos,
+    },
+    {
+      path: "/editarUsuario",
+      name: "editarUsuario",
+      component: EditarUsuario,
     },
   ],
 });
