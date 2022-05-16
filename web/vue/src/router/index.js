@@ -7,7 +7,11 @@ import HomeInicio from "../views/HomeInicio.vue";
 import HomeDescanso from "../views/HomeDescanso.vue";
 import IniciarSesion from "../views/IniciarSesion.vue";
 import Articulos from "../views/Articulos.vue";
+<<<<<<< Updated upstream
 import EditarUsuario from "../views/EditarUsuario.vue";
+=======
+import RegistroDatos from "../views/RegistroDatos.vue";
+>>>>>>> Stashed changes
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -48,9 +52,15 @@ const router = createRouter({
       component: Articulos,
     },
     {
+<<<<<<< Updated upstream
       path: "/editarUsuario",
       name: "editarUsuario",
       component: EditarUsuario,
+=======
+      path: "/registroDatos",
+      name: "registroDatos",
+      component: RegistroDatos,
+>>>>>>> Stashed changes
     },
   ],
 });

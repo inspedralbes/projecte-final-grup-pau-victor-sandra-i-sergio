@@ -73,6 +73,8 @@ SaludMental.route('/respuesta-cuestionario').post((req, res) => {
     let datos = req.body;
     let motivo, r;
 
+    console.log(datos);
+
 
     EstadoEmocional.find({ value: datos.estado }, function(err, resultado) {
         if (err) {
