@@ -1,6 +1,6 @@
 {
     "status": true,
-    "msg": "Datos modificados",
+    "msg": "Usuario creado completamente",
     "usuario": {
         "_id": "",
         "nombreApellidos": "",
