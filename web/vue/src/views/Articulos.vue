@@ -163,7 +163,7 @@ export default {
                 <img
                   id="img-article"
                   class=""
-                  src="https://dormalit.com/img/cms/Some%20of%20our%20favorit%20moments%20this%20year%20(65).jpg"
+                  src="https://cope-cdnmed.agilecontent.com/resources/jpg/8/1/1568796999118.jpg"
                   alt="Porque soñamos"
                 />
               </section>
