@@ -24,3 +24,6 @@ Aplicació web que engloba tots els aspectes de la salut (activitat fisica, alim
 
 # Backlog & Sprints
  * https://institutpedralbes.teamwork.com/#/projects/14122/tasks/board
+
+
+mongodb+srv://a20paumunoli:a20paumunoli@cluster.qpuxh.mongodb.net/test?authSource=admin&replicaSet=atlas-hri9mv-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true

@@ -1,8 +1,13 @@
 {
     "idUsuario": "",
-    "edad": "20",
+    "nombreApellidos": "",
+    "email": "",
+    "password": "",
+    "img": "",
+    "edad": "",
     "sexo": "",
     "ocupacion": "",
     "tiempo": "",
     "nivelFisico": ""
 }
+

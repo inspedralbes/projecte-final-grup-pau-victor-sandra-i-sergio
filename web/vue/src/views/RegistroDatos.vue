@@ -23,8 +23,6 @@ export default {
     methods: {
         enviarDatos() {
             this.nivelFisico = (this.nivelFisico == 1) ? 'Principiante' : (this.nivelFisico == 3) ? 'Avanzado' : 'Intermedio'
-
-console.log('1')
             if (this.edad == 0 || this.nivelFisico == "" || this.tiempo == "" || this.ocupacion == "" || this.sexo == "") {
                 Swal.fire({
                     position: "top-end",
@@ -37,10 +35,7 @@ console.log('1')
                 setTimeout(() => {
                     this.error = 1
                 }, 2000)
-                console.log('2')
             } else {
-
-console.log('3')
                 let datos = new FormData();
                 datos.append('idUsuario', this.sesionStore.getUsuario._id);
                 datos.append('datosPersonales', JSON.stringify({
@@ -56,6 +51,7 @@ console.log('3')
                     body: datos
                 }).then(response => response.json()).then(data => {
                     if (data.status) {
+                        this.sesionStore.setUsuario(data.usuario);
                         setTimeout(() => {
                             router.push({ name: this.sesionStore.getRutaAnterior });
                         }, 2100)
@@ -145,8 +141,8 @@ console.log('3')
                         <div class="row nivel_row align-items-center mt-2">
                             <div class="col nivel my-3">
                                 <label for="nivel" class="form-label bold">Nivel físico</label>
-                                <input type="range" class="form-range" :class="[this.error ? 'errorSlider' : '']" min="1" max="3" id="nivel"
-                                    v-model="this.nivelFisico" />
+                                <input type="range" class="form-range" :class="[this.error ? 'errorSlider' : '']"
+                                    min="1" max="3" id="nivel" v-model="this.nivelFisico" />
                                 <br />
                                 <span class="form-label relativeP">Principiante</span>
                                 <span class="form-label relativeI">Intermedio</span>
@@ -211,13 +207,16 @@ main {
     background-color: rgba(223, 0, 0, 0.883);
     border: 1px solid rgba(255, 0, 0, 0.446);
 }
-.errorSlider::-webkit-slider-thumb:focus, .errorSlider::-webkit-slider-thumb:active{
+
+.errorSlider::-webkit-slider-thumb:focus,
+.errorSlider::-webkit-slider-thumb:active {
     border-color: rgba(223, 0, 0, 0.335) !important;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.335) !important;
 }
 
-.error:focus, .error:active{
+.error:focus,
+.error:active {
     border-color: rgba(223, 0, 0, 0.533) !important;
     outline: 0;
     box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.103) !important;

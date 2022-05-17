@@ -27,7 +27,6 @@ export const sesionStore = defineStore("sesion", {
         },
 
         setRutaActual(r) {
-
             this.rutaAnterior = this.rutaActual;
             if (r != "registroDatos" && r != "iniciarSesion") {
                 this.rutaActual = r;
