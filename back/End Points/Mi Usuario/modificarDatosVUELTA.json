@@ -1,13 +1,17 @@
 {
-    "_id": "",
-    "nombreApellidos": "",
-    "email": "",
-    "password": "",
-    "datosPersonales": {
-        "edad": 3,
-        "ocupacion": "",
-        "sexo": "",
-        "nivelFisico": "",
-        "disponibilidadTiempo": ""
+    "status": true,
+    "msg": "Datos modificados",
+    "usuario": {
+        "_id": "",
+        "nombreApellidos": "",
+        "email": "",
+        "password": "",
+        "datosPersonales": {
+            "edad": 3,
+            "ocupacion": "",
+            "sexo": "",
+            "nivelFisico": "",
+            "disponibilidadTiempo": ""
+        }
     }
 }
