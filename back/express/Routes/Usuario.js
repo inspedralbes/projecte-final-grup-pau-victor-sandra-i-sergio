@@ -40,14 +40,14 @@ Usuario.route('/register').post((req, res) => {
                             //Guardar usuario
                             const usuarioModel = new UsuarioModel(datos);
                             usuarioModel.save((err, savedUser) => {
-                                if(err){
+                                if (err) {
                                     console.log(err);
-                                }else{
+                                } else {
                                     res.status(202);
                                     res.json({ 'status': true, 'msg': 'Usuario registrado!', 'usuario': savedUser });
                                 }
                             });
-                           
+
                         }
                     }
                 })
@@ -69,14 +69,7 @@ Usuario.route('/register-pt2').put((req, res) => {
             res.status(500);
             res.json({ 'status': false, 'msg': 'Error en los campos' });
         } else {
-            usuarioModel.findById(datos.idUsuario, (err, response) => {
-                if (err) {
-                    console.log(err);
-                } else {
-                    console.log(response)
-                }
-            })
-            usuarioModel.updateOne({ _id: datos.idUsuario }, { $set: { datosPersonales: datos.datosPersonales } }, (err, response) => {
+            UsuarioModel.updateOne({ _id: datos.idUsuario }, { $set: { datosPersonales: datos.datosPersonales } }, (err, response) => {
                 if (err) {
                     console.log(err);
                 } else {
@@ -86,7 +79,6 @@ Usuario.route('/register-pt2').put((req, res) => {
             });
         }
     }
-
 });
 
 Usuario.route('/login').post((req, res) => {
@@ -125,6 +117,56 @@ Usuario.route('/login').post((req, res) => {
         }
     }
 });
+
+Usuario.route('/modificarDatos').put(async(req, res) => {
+    const datos = req.body;
+    console.log(datos);
+
+    if (Object.keys(datos).length != 10) {
+        res.status(500).json({ 'status': false, 'msg': 'Falta / Sobra algun campo' });
+    } else {
+        let cont = 0;
+        Object.values(datos).forEach(e => {
+            e == "" ? cont++ : null
+        })
+
+        if (cont) {
+            res.status(500).json({ 'status': false, 'msg': 'Error en los campos' });
+        } else {
+            let errores = comprovacionDatos(datos.nombreApellidos, datos.email, datos.password, 'register')
+            if (errores.length) {
+                res.status(500).json({ 'status': false, 'msg': errores, 'chk': true });
+            } else {
+                const salt = await bcrypt.genSalt(10);
+                datos.password = await bcrypt.hash(datos.password, salt);
+
+                UsuarioModel.findOneAndUpdate({ _id: datos.idUsuario }, {
+                    $set: {
+                        datosPersonales: {
+                            "edad": datos.edad,
+                            "sexo": datos.sexo,
+                            "ocupacion": datos.ocupacion,
+                            "tiempo": datos.tiempo,
+                            "nivelFisico": datos.nivelFisico
+                        },
+                        nombreApellidos: datos.nombreApellidos,
+                        email: datos.email,
+                        password: datos.password,
+                        img: datos.img
+                    }
+                }, { returnOriginal: false }, (err, response) => {
+                    if (err) {
+                        console.log(err);
+                    } else {
+                        res.status(202);
+                        res.json({ 'status': true, "msg": "Datos modificados", "usuario": response });
+                    }
+                });
+            }
+        }
+    }
+});
+
 
 function comprovacionDatos(nA = "", e, p, tipo = "") {
     let errores = [],
