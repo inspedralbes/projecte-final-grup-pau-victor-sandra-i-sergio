@@ -18,12 +18,12 @@ Usuario.route('/register').post((req, res) => {
             res.status(500);
             res.json({ 'status': false, 'msg': 'Error en los campos' });
         } else {
-            let errores = comprovacionDatos(datos.nombreApellidos, datos.email, datos.password, 'register')
+            let errores = comprovacionDatosPrincipales(datos.nombreApellidos, datos.email, datos.password, 'register')
             if (errores.length > 0) {
                 res.status(500);
                 res.json({ 'status': false, 'msg': errores, 'chk': true });
             } else {
-                UsuarioModel.find({ 'email': datos.email }, async(err, response) => {
+                UsuarioModel.find({ 'email': datos.email }, async (err, response) => {
                     if (err) {
                         console.log(err);
                     } else {
@@ -56,16 +56,21 @@ Usuario.route('/register').post((req, res) => {
     }
 });
 
+// 
 Usuario.route('/register-pt2').put((req, res) => {
     const datos = req.body;
     datos.datosPersonales = JSON.parse(datos.datosPersonales);
     console.log(datos);
+    console.log("asdfasdf");
 
     if (Object.keys(datos).length != 2 && Object.keys(datos.datosPersonales).length != 5) {
         res.status(500);
         res.json({ 'status': false, 'msg': 'Falta / Sobra algun campo' });
     } else {
-        if (datos.nombreApellidos == "" || datos.email == "" || datos.password == "") {
+        console.log('asdf');
+        let errores = comprovacionDatosSecundarios(datos.datosPersonales.sexo, datos.datosPersonales.disponibilidadTiempo, datos.datosPersonales.nivelFisico, datos.datosPersonales.ocupacion, datos.datosPersonales.edad)
+
+        if (errores) {
             res.status(500);
             res.json({ 'status': false, 'msg': 'Error en los campos' });
         } else {
@@ -91,11 +96,11 @@ Usuario.route('/login').post((req, res) => {
         if (datos.email == "" || datos.password == "") {
             res.status(500).json({ 'status': false, 'msg': 'Error en los campos' });
         } else {
-            let errores = comprovacionDatos(datos.nombreApellidos, datos.email, datos.password, 'login')
+            let errores = comprovacionDatosPrincipales(datos.nombreApellidos, datos.email, datos.password, 'login')
             if (errores.length > 0) {
                 res.status(500).json({ 'status': false, 'msg': errores, 'chk': true });
             } else {
-                UsuarioModel.find({ 'email': datos.email }, async(err, response) => {
+                UsuarioModel.find({ 'email': datos.email }, async (err, response) => {
                     if (err) {
                         console.log(err);
                     } else {
@@ -133,7 +138,7 @@ Usuario.route('/modificar-datos').put((req, res) => {
         if (cont) {
             res.status(500).json({ 'status': false, 'msg': 'Error en los campos' });
         } else {
-            let errores = comprovacionDatos(datos.nombreApellidos, datos.email, datos.password, 'register')
+            let errores = comprovacionDatosPrincipales(datos.nombreApellidos, datos.email, datos.password, 'register')
             if (errores.length) {
                 res.status(500).json({ 'status': false, 'msg': errores, 'chk': true });
             } else {
@@ -166,15 +171,13 @@ Usuario.route('/modificar-datos').put((req, res) => {
 });
 
 
-function comprovacionDatos(nA = "", e, p, tipo = "") {
+function comprovacionDatosPrincipales(nA = "", e, p, tipo = "") {
     let errores = [],
         cont = 0;
 
     if (tipo == "register") {
         //Regex nombres
-        nA.split(' ').forEach((e) => {
-            /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(e) ? null : cont++;
-        })
+        nA.split(' ').forEach((e) => { /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(e) ? null : cont++; })
         cont ? errores.push('Nombre o apellidos mal') : null;
     }
 
@@ -188,6 +191,17 @@ function comprovacionDatos(nA = "", e, p, tipo = "") {
     return errores;
 }
 
+function comprovacionDatosSecundarios(sexo, tiempo, nivelFisico, ocupacion, edad) {
+    let cont = 0, a = [];
+
+    (sexo != 'Hombre' && sexo != 'Mujer') ? ++cont : null;
+    (nivelFisico != 'Principiante' && nivelFisico != 'Avanzado' && nivelFisico != 'Intermedio') ? ++cont  : null;
+    (ocupacion != 'Trabajo' && ocupacion != 'Estudio' && ocupacion != 'Otros') ? ++cont : null;
+    (!Number.isInteger(edad)) ? ++cont  : null;
+    (tiempo != '15 min' && tiempo != '30 min' && tiempo != '45 min' && tiempo != '1 h') ? ++cont  : null;
+    console.log(a)
+    return cont;
+}
 
 
 module.exports = Usuario;

@@ -46,7 +46,8 @@ export default {
                     "disponibilidadTiempo": this.tiempo
                 }));
 
-                fetch('http://192.168.210.162:9000/usuario/register-pt2', {
+                // fetch('http://192.168.210.162:9000/usuario/register-pt2', {
+                fetch('http://localhost:9000/usuario/register-pt2', {
                     method: "PUT",
                     body: datos
                 }).then(response => response.json()).then(data => {
@@ -156,10 +157,10 @@ export default {
                                 <select class="form-select" aria-label="Default select example" v-model="this.tiempo"
                                     :class="[this.error ? 'error' : '']">
                                     <option selected disabled>Selecciona una opción</option>
-                                    <option>~ 15 min</option>
+                                    <option>15 min</option>
                                     <option>30 min</option>
                                     <option>45 min</option>
-                                    <option>+1 h</option>
+                                    <option>1 h</option>
                                 </select>
                             </div>
                         </div>

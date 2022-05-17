@@ -48,7 +48,10 @@ export default {
         login.append("email", this.emailLogin);
         login.append("password", this.passwordLogin);
 
-        fetch("http://192.168.210.162:9000/usuario/login", {
+        // fetch("http://192.168.210.162:9000/usuario/login", {
+
+        fetch("http://localhost:9000/usuario/login", {
+
           method: "POST",
           body: login,
         })
@@ -93,7 +96,9 @@ export default {
         register.append("password", this.passwordRegister);
         register.append("nombreApellidos", this.nomApeRegister);
 
-        fetch("http://192.168.210.162:9000/usuario/register", {
+        // fetch("http://192.168.210.162:9000/usuario/register", {
+        fetch("http://localhost:9000/usuario/register", {
+
           method: "POST",
           body: register,
         })
@@ -340,8 +345,4 @@ h3 {
 .flip-box-back {
   transform: rotateY(180deg);
 }
-
-
-
-
 </style>
