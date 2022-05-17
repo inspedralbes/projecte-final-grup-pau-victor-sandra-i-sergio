@@ -33,6 +33,10 @@ export default {
   animation: register 1s ease-in-out reverse;
 }
 
+.bold {
+  font-weight: 600;
+}
+
 @keyframes register {
   from {
     transform: scale(1);
