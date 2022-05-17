@@ -118,7 +118,7 @@ Usuario.route('/login').post((req, res) => {
     }
 });
 
-Usuario.route('/modificarDatos').put(async(req, res) => {
+Usuario.route('/modificar-datos').put((req, res) => {
     const datos = req.body;
     console.log(datos);
 
@@ -137,8 +137,6 @@ Usuario.route('/modificarDatos').put(async(req, res) => {
             if (errores.length) {
                 res.status(500).json({ 'status': false, 'msg': errores, 'chk': true });
             } else {
-                const salt = await bcrypt.genSalt(10);
-                datos.password = await bcrypt.hash(datos.password, salt);
 
                 UsuarioModel.findOneAndUpdate({ _id: datos.idUsuario }, {
                     $set: {

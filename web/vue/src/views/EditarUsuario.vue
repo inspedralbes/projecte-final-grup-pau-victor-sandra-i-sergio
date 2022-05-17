@@ -73,33 +73,20 @@ export default {
 </script>
 
 <template>
-  <div class="container">
+  <main class="container">
     <div class="row">
       <div class="col-12 col-md-4 d-flex justify-content-center flex-column">
         <h1 class="fontsize text-center">Mi cuenta</h1>
-        <img
-          class="img-perfil text-center"
-          src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"
-        />
+        <img class="img-perfil text-center"
+          src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg" />
         <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingnombre"
-            :value="this.nombreUsuario"
-            placeholder="nombre"
-          />
+          <input type="text" class="form-control" id="floatingnombre" :value="this.nombreUsuario"
+            placeholder="nombre" />
           <label for="floatingInput">Nombre</label>
         </div>
         <div class="form-floating mb-3">
-          <input
-            type="email"
-            class="form-control"
-            id="floatingemail"
-            :value="this.emailUsuario"
-            placeholder="name@example.com"
-            disabled
-          />
+          <input type="email" class="form-control" id="floatingemail" :value="this.emailUsuario"
+            placeholder="name@example.com" disabled />
           <label for="floatingInput">Email address</label>
         </div>
       </div>
@@ -107,33 +94,17 @@ export default {
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="form-floating mb-3">
-              <input
-                type="number"
-                class="form-control"
-                id="floatingEdad"
-                :value="this.datosUsuario.edad"
-                placeholder="Edad"
-              />
+              <input type="number" class="form-control" id="floatingEdad" :value="this.datosUsuario.edad"
+                placeholder="Edad" />
               <label for="floatingEdad">Edad</label>
             </div>
             <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="floatingSexo"
-                :value="this.datosUsuario.sexo"
-                placeholder="Sexo"
-                disabled
-              />
+              <input type="text" class="form-control" id="floatingSexo" :value="this.datosUsuario.sexo"
+                placeholder="Sexo" disabled />
               <label for="floatingSexo">Sexo</label>
             </div>
             <div class="form-floating mb-3">
-              <select
-                id="ocupacion"
-                class="form-select"
-                aria-label="Default select example"
-                v-model="this.ocupacion"
-              >
+              <select id="ocupacion" class="form-select" aria-label="Default select example" v-model="this.ocupacion">
                 <option value="Trabajo">Trabajo</option>
                 <option value="Estudio">Estudio</option>
                 <option value="Otro">Otro</option>
@@ -143,12 +114,7 @@ export default {
           </div>
           <div class="col-12 col-md-6">
             <div class="form-floating mb-3">
-              <select
-                id="tiempo"
-                class="form-select"
-                aria-label="Default select example"
-                v-model="this.tiempo"
-              >
+              <select id="tiempo" class="form-select" aria-label="Default select example" v-model="this.tiempo">
                 <option value="~ 15 min">~ 15 min</option>
                 <option value="30 min">30 min</option>
                 <option value="45 min">45 min</option>
@@ -157,12 +123,7 @@ export default {
               <label for="floatingEdad">Tiempo</label>
             </div>
             <div class="form-floating mb-3">
-              <select
-                id="nivel"
-                class="form-select"
-                aria-label="Default select example"
-                v-model="this.nivel"
-              >
+              <select id="nivel" class="form-select" aria-label="Default select example" v-model="this.nivel">
                 <option value="Principiante">Principiante</option>
                 <option value="Intermedio">Intermedio</option>
                 <option value="Avanzado">Avanzado</option>
@@ -200,14 +161,17 @@ main {
   min-height: 100vh;
   background-repeat: no-repeat;
 }
+
 @media only screen and (min-width: 300px) {
   .container {
     padding-top: 5%;
   }
+
   .img-perfil {
     width: 100px;
     margin: auto;
   }
+
   .fontsize {
     font-size: 20px;
   }
@@ -218,6 +182,7 @@ main {
   background-color: rgb(233, 233, 233);
   border-radius: 10px;
 }
+
 .margin-top {
   margin-top: 30px;
 }
