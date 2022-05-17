@@ -4,6 +4,7 @@ import CardSuenos from "../components/CardSuenos.vue";
 import Acordeon from "../components/AcordeonDescanso.vue";
 import { sesionStore } from "@/stores/sesionStore";
 import { mapStores } from "pinia";
+import router from "../router";
 
 export default {
   components: {
@@ -59,15 +60,36 @@ export default {
       });
   },
 
+  created() {
+    if (!Object.keys(this.sesionStore.getUsuario).length) {
+      Swal.fire({
+        title: '¡Inicia tu sesión o registrate!',
+        text: "De lo contrario, tu respuesta no se guardará y no podrás ver tu seguimiento",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Iniciar sesion',
+        cancelButtonText: 'Continuar sin cuenta'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          router.push({ name: "iniciarSesion" })
+        }
+      })
+    }
+  },
+
   methods: {
     onReset(event) {
       event.preventDefault();
       // Reset our form values
       (this.selected = ""), (this.elemento = null);
     },
+
     retroceder() {
       window.history.back();
     },
+
     guardarseleccionada(id) {
       if (this.selected.length < 5) {
         if (this.selected.includes(id)) {
@@ -91,29 +113,40 @@ export default {
       console.log(this.selected);
       console.log(this.selected.length);
     },
-    enviarFormulario() {
-      // let divResultado = document.getElementById("card-respuesta");
-      // divResultado.style.display = "block";
 
+    enviarFormulario() {
+
+      // Si está registrado, guardar la respuesta en la BD
+      if (Object.keys(this.sesionStore.getUsuario).length) {
+        var guardarDatosDescanso = new FormData();
+        guardarDatosDescanso.append("descripcionSueno", JSON.stringify(this.selected));
+        guardarDatosDescanso.append("usuario", this.sesionStore.getUsuario._id);
+
+        // fetch("http://localhost:9000/descanso/guardar-datos-cuestionario", {
+        fetch("http://192.168.210.162:9000/descanso/guardar-datos-cuestionario", {
+          method: "POST",
+          body: guardarDatosDescanso,
+        }).then((response) => response.json()).then((data) => {
+          console.log(data)
+        });
+      }
+
+      // Devolver la respuesta a lo respondido en el cuestionario
       var cuestDescanso = new FormData();
       cuestDescanso.append("descripcionSueno", JSON.stringify(this.selected));
       cuestDescanso.append("usuario", "alvaro");
 
+      // fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
       fetch("http://192.168.210.162:9000/descanso/respuesta-cuestionario", {
-        // fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
         method: "POST",
         body: cuestDescanso,
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          for (let i = 0; i < this.selected.length; i++) {
-            console.log(i);
-            console.log(data.resultado[i].tipo);
-            console.log(data.resultado[i].respuesta);
-            this.resultado = data.resultado;
-          }
-        });
+      }).then((response) => response.json()).then((data) => {
+        console.log(data);
+        this.resultado = data.resultado;
+      });
     },
+
+
     activar() {
       this.animacion1 = true;
       setTimeout(() => {
@@ -146,28 +179,17 @@ export default {
             </div>
 
             <div class="row justify-content-center mt-3">
-              <div
-                class="col-6 col-sm-4 col-md-3 col-lg-2 gy-3"
-                v-for="(check, index) in elemento"
-                :key="index"
-                v-bind:value="check"
-              >
+              <div class="col-6 col-sm-4 col-md-3 col-lg-2 gy-3" v-for="(check, index) in elemento" :key="index"
+                v-bind:value="check">
                 <!--  CARTAS MOTIVOS SUEÑO  -->
                 <CardSuenos
                   class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light p-2"
-                  @id="this.guardarseleccionada"
-                  :infoCuest="check"
-                  :contador="this.selected.length"
-                />
+                  @id="this.guardarseleccionada" :infoCuest="check" :contador="this.selected.length" />
               </div>
 
               <div class="col-12 gy-4 text-center">
-                <input
-                  class="btn btn-outline-light form-submit"
-                  type="button"
-                  @click="enviarFormulario(), activar()"
-                  value="Analizar sueño"
-                />
+                <input class="btn btn-outline-light form-submit" type="button" @click="enviarFormulario(), activar()"
+                  value="Analizar sueño" />
               </div>
             </div>
           </div>
@@ -175,22 +197,11 @@ export default {
 
         <Transition name="bounce2">
           <!--  RESPUESTA CUESTIONARIO SUEÑO  -->
-          <div
-            v-if="this.animacion2"
-            class="container accordion acordion-margin-top"
-          >
+          <div v-if="this.animacion2" class="container accordion acordion-margin-top">
             <div class="row">
-              <div
-                v-for="(sueno, index) in selected"
-                :key="index"
-                v-bind:value="sueno.value"
-                class="col-12"
-              >
+              <div v-for="(sueno, index) in selected" :key="index" v-bind:value="sueno.value" class="col-12">
                 <div class="align-items-center justify-content-center">
-                  <Acordeon
-                    :infoAcordeon="this.resultado[index]"
-                    :index="index"
-                  />
+                  <Acordeon :infoAcordeon="this.resultado[index]" :index="index" />
                 </div>
               </div>
             </div>
@@ -212,11 +223,10 @@ export default {
 
 .submain {
   width: 100%;
-  min-height: 80vh;
+  min-height: 100vh;
   background-image: url("../../../public/img/stars-back.png");
   background-size: 800px;
   background-repeat: repeat;
-  position: absolute;
 }
 
 .submain .col-8 p {
@@ -227,8 +237,7 @@ export default {
 
 .cuestionario_sueño {
   color: rgb(255, 255, 255);
-  margin-top: 50px;
-  padding: 30px;
+  padding: 80px 30px 30px 30px;
 }
 
 .titulo_cuestionario {
@@ -257,7 +266,7 @@ export default {
 /****  RESPUESTA ACORDEON  ****/
 
 .acordion-margin-top {
-  margin-top: 5%;
+  padding-top: 10%;
 }
 
 /*******  ANIMACIONES  *******/
@@ -271,8 +280,7 @@ export default {
 }
 
 @keyframes bounce-in {
-  from {
-  }
+  from {}
 
   40% {
     transform: translate(0, 100px);
