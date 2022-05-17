@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="wrapper sticky-top">
     <nav>
       <Header />
     </nav>

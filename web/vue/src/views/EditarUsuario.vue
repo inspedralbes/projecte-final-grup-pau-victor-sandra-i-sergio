@@ -53,7 +53,7 @@ export default {
               :value="this.emailUsuario"
               placeholder="name@example.com"
             />
-            <label for="floatingInput">Cooreo</label>
+            <label for="floatingInput">Correo</label>
           </div>
           <div class="row">
             <div class="col-12 col-md-6">
@@ -85,7 +85,7 @@ export default {
                   value="Estudiando"
                   placeholder="Ocupacion"
                 />
-                <label for="floatingOcupacion">OcupaciÓn</label>
+                <label for="floatingOcupacion">Ocupación</label>
               </div>
             </div>
             <div class="col-12 col-md-6">
@@ -127,14 +127,19 @@ export default {
     </div>
   </main>
 </template>
+
+
 <style scoped>
-.main {
-  background-image: url(../../public/img/login.png);
-  background-size: 120%;
+main {
+  background-image: url(../../public/img/fondoEditar.png);
+  background-size: cover;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+
 }
 @media only screen and (min-width: 300px) {
   .container {
-    margin-top: 5%;
+    padding-top: 5%;
   }
   .img-perfil {
     width: 100px;
@@ -146,8 +151,9 @@ export default {
 }
 
 .row {
-  padding: 8px;
-  background-color: lightgray;
+  padding: 25px;
+  background-color: rgb(233, 233, 233);
+  border-radius: 10px;
 }
 .margin-top {
   margin-top: 30px;
