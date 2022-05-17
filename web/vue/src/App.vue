@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <div class="wrapper">
+  <div class="wrapper sticky-top">
     <nav>
       <Header />
     </nav>
@@ -31,6 +31,10 @@ export default {
 .scale1 {
   transform: scale(1);
   animation: register 1s ease-in-out reverse;
+}
+
+.bold {
+  font-weight: 600;
 }
 
 @keyframes register {

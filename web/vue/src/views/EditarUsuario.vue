@@ -177,24 +177,32 @@ export default {
           </div>
         </div>
       </div>
+      <div class="row margin-top">
+        <ul class="nav nav-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" aria-current="page">Active</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link">Link</a>
+          </li>
+        </ul>
+        <canvas id="myChart" width="400" height="400"></canvas>
+      </div>
     </div>
-    <div class="row margin-top">
-      <ul class="nav nav-tabs">
-        <li class="nav-item">
-          <a class="nav-link active" aria-current="page">Active</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link">Link</a>
-        </li>
-      </ul>
-      <canvas id="myChart" width="400" height="400"></canvas>
-    </div>
-  </div>
+  </main>
 </template>
+
+
 <style scoped>
+main {
+  background-image: url(../../public/img/fondoEditar.png);
+  background-size: cover;
+  min-height: 100vh;
+  background-repeat: no-repeat;
+}
 @media only screen and (min-width: 300px) {
   .container {
-    margin-top: 5%;
+    padding-top: 5%;
   }
   .img-perfil {
     width: 100px;
@@ -206,8 +214,9 @@ export default {
 }
 
 .row {
-  padding: 8px;
-  background-color: lightgray;
+  padding: 25px;
+  background-color: rgb(233, 233, 233);
+  border-radius: 10px;
 }
 .margin-top {
   margin-top: 30px;

@@ -286,6 +286,11 @@ a {
   font-weight: 550;
 }
 
+.offcanvas-title {
+  color: #28844b;
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+
 @media only screen and (max-width: 400px) {
   .offcanvas-end {
     width: 350px;
