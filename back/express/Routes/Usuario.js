@@ -69,12 +69,12 @@ Usuario.route('/register-pt2').put((req, res) => {
             res.status(500);
             res.json({ 'status': false, 'msg': 'Error en los campos' });
         } else {
-            UsuarioModel.updateOne({ _id: datos.idUsuario }, { $set: { datosPersonales: datos.datosPersonales } }, (err, response) => {
+            UsuarioModel.findOneAndUpdate({ _id: datos.idUsuario }, { $set: { datosPersonales: datos.datosPersonales } }, { returnOriginal: false }, (err, response) => {
                 if (err) {
                     console.log(err);
                 } else {
                     res.status(202);
-                    res.json({ 'status': true, "msg": "Datos añadidos" });
+                    res.json({ 'status': true, "msg": "Usuario creado completamente", "usuario": response });
                 }
             });
         }
