@@ -206,7 +206,7 @@ export default {
             </li>
 
             <li class="nav-item my-1">
-              <RouterLink class="nav-link" to="/" @click="this.cerrarNav()">
+              <RouterLink class="nav-link" to="/aboutUs" @click="this.cerrarNav()">
                 <div class="d-flex align-items-center link_about_us">
                   <div class="align-self-center d-flex align-content-center">
                     <span class="icono_about material-symbols-outlined"

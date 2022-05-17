@@ -8,7 +8,8 @@ import HomeDescanso from "../views/HomeDescanso.vue";
 import IniciarSesion from "../views/IniciarSesion.vue";
 import Articulos from "../views/Articulos.vue"; 
 import EditarUsuario from "../views/EditarUsuario.vue";
-import RegistroDatos from "../views/RegistroDatos.vue"; 
+import RegistroDatos from "../views/RegistroDatos.vue";
+import AboutUs from "../views/AboutUs.vue";  
 
 const router = createRouter({
     history: createWebHistory(
@@ -52,10 +53,16 @@ const router = createRouter({
             path: "/editarUsuario",
             name: "editarUsuario",
             component: EditarUsuario,
-        }, {
+        }, 
+        {
             path: "/registroDatos",
             name: "registroDatos",
             component: RegistroDatos,
+        }, 
+        {
+            path: "/aboutUs",
+            name: "aboutUs",
+            component: AboutUs,
         },
     ],
 });

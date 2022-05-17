@@ -5,10 +5,21 @@ import { sesionStore } from "@/stores/sesionStore";
 import { mapStores } from "pinia";
 
 export default {
+  data() {
+    return{
+      disabled: false,
+    };
+  },
   methods: {
     goto(id) {
       router.push({ name: id });
     },
+    hoverAlimentación() {
+      this.disabled = true
+      setTimeout(() => {
+        this.disabled = false
+      }, 1500)
+    }
   },
 
   computed: {
@@ -25,7 +36,9 @@ export default {
   <main class="container landingPage">
     <div class="row">
       <div
-        class="col-12 text-center alimentacion"
+        :class="{ hoverA: this.disabled }"
+        class="col-12 text-center alimentacion " 
+        @mouseover="hoverAlimentación"
         @click="this.goto('alimentacion')"
       >
         <span @click="this.goto('alimentacion')">
@@ -65,30 +78,43 @@ export default {
           />
         </span>
       </div>
-
-      <!-- <div class="col-12 gy-4">
-        <span @click="this.goto($event.target.id)" id="ejercicio">Ejercicio </span>
-      </div>
-
-      <div class="col-12 gy-4">
-        <div class="row align-items-center">
-          <div class="col-6 titulo-saludDescanso">
-            <span @click="this.goto($event.target.id)" id="saludmental">Salud Mental y Descanso</span>
-          </div>
-          <div class="col-6">
-
-            <img class="img-fluid" src="../../public/img/alimentacion.png" alt="">
-
-          </div>
-
-        </div>
-
-      </div> -->
     </div>
   </main>
 </template>
 
 <style scoped>
+
+.hoverA {
+  animation: hoverA 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+  transform: translate3d(0, 0, 0);
+}
+
+@keyframes hoverA {
+  10%,
+  90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  20%,
+  80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%,
+  50%,
+  70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%,
+  60% {
+    transform: translate3d(4px, 0, 0);
+  }
+}
+
+
+
+
 .landingPage .col-12 span {
   font-size: 6vw;
 }
@@ -271,5 +297,6 @@ export default {
     left: 7.3em;
     max-width: 50%;
   }
+
 }
 </style>
