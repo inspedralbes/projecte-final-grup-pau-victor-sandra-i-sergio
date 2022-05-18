@@ -73,6 +73,8 @@ Usuario.route('/register-pt2').put((req, res) => {
             datos.datosPersonales.edad = parseInt(datos.datosPersonales.edad.replace(/[^0-9]/g, ''));
         }
 
+
+
         let errores = comprovacionDatosSecundarios(datos.datosPersonales.sexo, datos.datosPersonales.disponibilidadTiempo, datos.datosPersonales.nivelFisico, datos.datosPersonales.ocupacion, datos.datosPersonales.edad)
         console.log(errores.length)
 
@@ -80,6 +82,8 @@ Usuario.route('/register-pt2').put((req, res) => {
             res.status(500);
             res.json({ 'status': false, 'msg': errores, 'chk': true });
         } else {
+            datos.img = (datos.datosPersonales.sexo == 'Hombre') ? 'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg' : 'https://www.sanboni.edu.co/onu/wp-content/uploads/avatar-mujer.png';
+
             UsuarioModel.findOneAndUpdate({ _id: datos.idUsuario }, { $set: { datosPersonales: datos.datosPersonales } }, { returnOriginal: false }, (err, response) => {
                 if (err) {
                     console.log(err);
@@ -210,7 +214,7 @@ function comprovacionDatosSecundarios(sexo, tiempo, nivelFisico, ocupacion, edad
     (nivelFisico != 'Principiante' && nivelFisico != 'Avanzado' && nivelFisico != 'Intermedio') ? cont.push('Nivel fisico mal'): null;
     (ocupacion != 'Trabajo' && ocupacion != 'Estudio' && ocupacion != 'Otros') ? cont.push('Ocupacion mal'): null;
     (!Number.isInteger(edad) || edad > 100 || edad < 0) ? cont.push('Edad mal'): null;
-    (tiempo != '15 min' && tiempo != '30 min' && tiempo != '45 min' && tiempo != '1 h') ? cont.push('Tiempo disponible mal'): null;
+    (tiempo != '~ 15 min' && tiempo != '30 min' && tiempo != '45 min' && tiempo != '+1 h') ? cont.push('Tiempo disponible mal'): null;
 
     return cont;
 }
