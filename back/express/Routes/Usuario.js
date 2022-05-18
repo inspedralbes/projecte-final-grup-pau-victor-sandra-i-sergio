@@ -133,7 +133,7 @@ Usuario.route('/modificar-datos').put((req, res) => {
     const datos = req.body;
     console.log(datos);
 
-    if (Object.keys(datos).length != 10) {
+    if (Object.keys(datos).length != 9) {
         res.status(500).json({ 'status': false, 'msg': 'Falta / Sobra algun campo' });
     } else {
         let cont = 0;
@@ -151,7 +151,7 @@ Usuario.route('/modificar-datos').put((req, res) => {
                 datos.edad = parseInt(datos.edad.replace(/[^0-9]/g, ''));
             }
 
-            let errores = comprovacionDatosPrincipales(datos.nombreApellidos, datos.email, datos.password, 'register')
+            let errores = comprovacionDatosPrincipales(datos.nombreApellidos, datos.email, '!r123sdf26', 'register')
             let errores2 = comprovacionDatosSecundarios(datos.sexo, datos.tiempo, datos.nivelFisico, datos.ocupacion, datos.edad)
             if (errores.length || errores2.length) {
                 res.status(500).json({ 'status': false, 'msg': errores, 'msg2': errores2, 'chk': true });
@@ -168,7 +168,6 @@ Usuario.route('/modificar-datos').put((req, res) => {
                         },
                         nombreApellidos: datos.nombreApellidos,
                         email: datos.email,
-                        password: datos.password,
                         img: datos.img
                     }
                 }, { returnOriginal: false }, (err, response) => {
