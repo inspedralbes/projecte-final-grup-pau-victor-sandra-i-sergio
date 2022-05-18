@@ -2,7 +2,6 @@
     "idUsuario": "",
     "nombreApellidos": "",
     "email": "",
-    "password": "",
     "img": "",
     "edad": "",
     "sexo": "",
@@ -10,4 +9,3 @@
     "tiempo": "",
     "nivelFisico": ""
 }
-
