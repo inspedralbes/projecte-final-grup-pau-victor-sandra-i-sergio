@@ -23,7 +23,7 @@ Usuario.route('/register').post((req, res) => {
                 res.status(500);
                 res.json({ 'status': false, 'msg': errores, 'chk': true });
             } else {
-                UsuarioModel.find({ 'email': datos.email }, async (err, response) => {
+                UsuarioModel.find({ 'email': datos.email }, async(err, response) => {
                     if (err) {
                         console.log(err);
                     } else {
@@ -56,24 +56,34 @@ Usuario.route('/register').post((req, res) => {
     }
 });
 
-// 
+// Registrar 2a parte del registro
 Usuario.route('/register-pt2').put((req, res) => {
     const datos = req.body;
     datos.datosPersonales = JSON.parse(datos.datosPersonales);
     console.log(datos);
-    console.log("asdfasdf");
 
     if (Object.keys(datos).length != 2 && Object.keys(datos.datosPersonales).length != 5) {
         res.status(500);
         res.json({ 'status': false, 'msg': 'Falta / Sobra algun campo' });
     } else {
-        console.log('asdf');
-        let errores = comprovacionDatosSecundarios(datos.datosPersonales.sexo, datos.datosPersonales.disponibilidadTiempo, datos.datosPersonales.nivelFisico, datos.datosPersonales.ocupacion, datos.datosPersonales.edad)
 
-        if (errores) {
+        // Si la edad viene como string + numeros, le quito todas los caracteres 
+        // y junto los numeros y los transformo a integer
+        if (typeof datos.datosPersonales.edad === 'string') {
+            datos.datosPersonales.edad = parseInt(datos.datosPersonales.edad.replace(/[^0-9]/g, ''));
+        }
+
+
+
+        let errores = comprovacionDatosSecundarios(datos.datosPersonales.sexo, datos.datosPersonales.disponibilidadTiempo, datos.datosPersonales.nivelFisico, datos.datosPersonales.ocupacion, datos.datosPersonales.edad)
+        console.log(errores.length)
+
+        if (errores.length) {
             res.status(500);
-            res.json({ 'status': false, 'msg': 'Error en los campos' });
+            res.json({ 'status': false, 'msg': errores, 'chk': true });
         } else {
+            datos.img = (datos.datosPersonales.sexo == 'Hombre') ? 'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg' : 'https://www.sanboni.edu.co/onu/wp-content/uploads/avatar-mujer.png';
+
             UsuarioModel.findOneAndUpdate({ _id: datos.idUsuario }, { $set: { datosPersonales: datos.datosPersonales } }, { returnOriginal: false }, (err, response) => {
                 if (err) {
                     console.log(err);
@@ -100,7 +110,7 @@ Usuario.route('/login').post((req, res) => {
             if (errores.length > 0) {
                 res.status(500).json({ 'status': false, 'msg': errores, 'chk': true });
             } else {
-                UsuarioModel.find({ 'email': datos.email }, async (err, response) => {
+                UsuarioModel.find({ 'email': datos.email }, async(err, response) => {
                     if (err) {
                         console.log(err);
                     } else {
@@ -127,7 +137,7 @@ Usuario.route('/modificar-datos').put((req, res) => {
     const datos = req.body;
     console.log(datos);
 
-    if (Object.keys(datos).length != 10) {
+    if (Object.keys(datos).length != 9) {
         res.status(500).json({ 'status': false, 'msg': 'Falta / Sobra algun campo' });
     } else {
         let cont = 0;
@@ -138,9 +148,17 @@ Usuario.route('/modificar-datos').put((req, res) => {
         if (cont) {
             res.status(500).json({ 'status': false, 'msg': 'Error en los campos' });
         } else {
-            let errores = comprovacionDatosPrincipales(datos.nombreApellidos, datos.email, datos.password, 'register')
-            if (errores.length) {
-                res.status(500).json({ 'status': false, 'msg': errores, 'chk': true });
+
+            // Si la edad viene como string + numeros, le quito todas los caracteres 
+            // y transformo los numeros a integer
+            if (typeof datos.edad === 'string') {
+                datos.edad = parseInt(datos.edad.replace(/[^0-9]/g, ''));
+            }
+
+            let errores = comprovacionDatosPrincipales(datos.nombreApellidos, datos.email, '!r123sdf26', 'register')
+            let errores2 = comprovacionDatosSecundarios(datos.sexo, datos.tiempo, datos.nivelFisico, datos.ocupacion, datos.edad)
+            if (errores.length || errores2.length) {
+                res.status(500).json({ 'status': false, 'msg': errores, 'msg2': errores2, 'chk': true });
             } else {
 
                 UsuarioModel.findOneAndUpdate({ _id: datos.idUsuario }, {
@@ -154,7 +172,6 @@ Usuario.route('/modificar-datos').put((req, res) => {
                         },
                         nombreApellidos: datos.nombreApellidos,
                         email: datos.email,
-                        password: datos.password,
                         img: datos.img
                     }
                 }, { returnOriginal: false }, (err, response) => {
@@ -187,19 +204,18 @@ function comprovacionDatosPrincipales(nA = "", e, p, tipo = "") {
     // Regex password de 8-16 caracteres, con al menos una letra, un numero y un caracter especial.
     /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/.test(p) ? null : errores.push('Password mal');
 
-
     return errores;
 }
 
 function comprovacionDatosSecundarios(sexo, tiempo, nivelFisico, ocupacion, edad) {
-    let cont = 0, a = [];
+    let cont = [];
 
-    (sexo != 'Hombre' && sexo != 'Mujer') ? ++cont : null;
-    (nivelFisico != 'Principiante' && nivelFisico != 'Avanzado' && nivelFisico != 'Intermedio') ? ++cont  : null;
-    (ocupacion != 'Trabajo' && ocupacion != 'Estudio' && ocupacion != 'Otros') ? ++cont : null;
-    (!Number.isInteger(edad)) ? ++cont  : null;
-    (tiempo != '15 min' && tiempo != '30 min' && tiempo != '45 min' && tiempo != '1 h') ? ++cont  : null;
-    console.log(a)
+    (sexo != 'Hombre' && sexo != 'Mujer') ? cont.push('Sexo mal'): null;
+    (nivelFisico != 'Principiante' && nivelFisico != 'Avanzado' && nivelFisico != 'Intermedio') ? cont.push('Nivel fisico mal'): null;
+    (ocupacion != 'Trabajo' && ocupacion != 'Estudio' && ocupacion != 'Otros') ? cont.push('Ocupacion mal'): null;
+    (!Number.isInteger(edad) || edad > 100 || edad < 0) ? cont.push('Edad mal'): null;
+    (tiempo != '~ 15 min' && tiempo != '30 min' && tiempo != '45 min' && tiempo != '+1 h') ? cont.push('Tiempo disponible mal'): null;
+
     return cont;
 }
 

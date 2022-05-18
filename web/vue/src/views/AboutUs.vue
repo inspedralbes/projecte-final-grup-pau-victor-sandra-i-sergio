@@ -26,10 +26,10 @@ export default {
     <div class="aboutUs d-flex justify-content-center">
       <div class="container m-4">
         <div class="row justify-content-center align-items-center">
-          <div class="col-4">
+          <div class="col-12 col-lg-4">
             <img class="logo" src="../../img/GenkiCorpusLogo.png" alt="" />
           </div>
-          <div class="col-8">
+          <div class=" col-12 col-lg-8">
             <h4>Nuestra razón de ser</h4>
             <p class="mt-3 justificado">
               La misión principal de Genki Corpus es ofrecer un sitio web
@@ -43,15 +43,14 @@ export default {
         </div>
         
         <div class="row mt-5 align-items-center">
+          <div class="col-12 col-lg-7 mb-4 videoCol">
+            <h4 class="mb-4">Conoce un poco más Genki Corpus</h4>
+            <div class="video">
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/KcgByvCuiJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+            </div>
+          </div> 
 
-           <div class="col-6 mb-4 ">
-               <h4 class="mb-4">Conoce un poco más Genki Corpus</h4>
-               <div class="video">
-                  <iframe width="560" height="315" src="https://www.youtube.com/embed/KcgByvCuiJg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-               </div>
-            </div> 
-
-          <div id="container" class="col-6 text-center">
+          <div id="container" class="col-12 col-lg-5 text-center textoCol">
             Mejora tu
             <div id="flip">
               <div><div class="saludMental">Salud Mental</div></div>
@@ -59,8 +58,26 @@ export default {
               <div><div class="ejercicio">Condición física</div></div>
             </div>
           </div>
+        </div>
+
+        <div class="row  align-items-center" >
+          <div class="col-7 equipo">
+            <h4>Nuestro equipo</h4>
+            <p class="mt-3 justificado">
+              Somos 4 estudiantes de DAW (Desarollo de Aplicaciones Web) que hemos decidido desarrollar nuestro proyecto de fin de ciclo 
+              sobre una de las cuestiones que más ha preocupado a la sociedad los últimos 3 años, la salud. Al comenzar este proyecto se 
+              nos ofreció la posibilidad de participar con nuestro proyecto en dos concursos que impulsan el emprendimiento y la innovación 
+              en centros educativos de FP. No dudamos en acceptar y adentrarnos en esta aventura y por ello ahora nos encontramos concursando tanto en 
+              el programa emprènFP como en el programa e-FP presentando nuestro proyecto.
+            </p>
+          </div>
+          <div class="col-5 equipo">
+            <img class="equipo_foto" src="../../img/equipo.png" alt="" />
           </div>
         </div>
+
+
+      </div>
     </div>
   </div>
 </template>
@@ -82,6 +99,28 @@ h4 {
   text-align: justify;
   text-justify: inter-word;
 }
+
+.textoCol, .videoCo{
+  margin-bottom: 20px;
+  margin-top: 15px
+}
+
+.equipo {
+  margin-bottom: 20px;
+  margin-top: 50px
+}
+
+.logo {
+  display:block;
+  margin:auto;
+  margin-bottom: 40px;
+}
+.equipo_foto {
+  width: 300px;
+  display:block;
+  margin:auto;
+}
+
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:700");
 
@@ -133,20 +172,26 @@ body {
   10% {
     margin-top: -220px;
   }
-  20% {
+  25% {
     margin-top: -220px;
   }
   40% {
-    margin-top: -150px;
+    margin-top: -110px;
   }
-  80% {
-    margin-top: -150px;
+  55% {
+    margin-top: -110px;
+  }
+  70% {
+    margin-top: -4px;
   }
   90% {
-    margin-top: -90px;
+    margin-top: -4px;
+  }
+  99%{
+    margin-top: 33px;
   }
   100% {
-    margin-top: 0px;
+    margin-top: 33px;
   }
 }
 </style>
