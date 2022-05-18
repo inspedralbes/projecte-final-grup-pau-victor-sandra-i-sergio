@@ -345,7 +345,7 @@ export default {
                   id="img-article"
                   class=""
                   src="https://i.ytimg.com/vi/wO6laYdutZQ/maxresdefault.jpg"
-                  alt="Porque soñamos"
+                  alt="Los beneficios de dormir"
                 />
               </section>
               <div>
@@ -532,12 +532,12 @@ export default {
             </div>
             <div class="col-xs-12">
               <h1 class="text-center">Las etapas del sueño</h1>
-              <section class="thumbnail text-center">
+              <section class="thumbnail">
                 <img
                   id="img-article"
                   class=""
                   src="https://liroon.com/wp-content/uploads/2020/05/fases-del-sue%C3%B1o.jpg"
-                  alt="Porque soñamos"
+                  alt="Las etapas del sueño"
                 />
               </section>
               <div>
@@ -871,14 +871,38 @@ h4 {
   color: lightblue;
 }
 
-.thumbnail a > img,
-.thumbnail > img {
-  margin-right: auto;
-  margin-left: auto;
+@media only screen and (max-width: 950px) {
+  #img-article {
+    width: 700px;
+    height: 400px;
+  }
 }
-.thumbnail > img {
-  display: block;
-  max-width: 100%;
-  height: auto;
+
+@media only screen and (max-width: 775px) {
+  #img-article {
+    width: 550px;
+    height: 290px;
+  }
+}
+
+@media only screen and (max-width: 600px) {
+  #img-article {
+    width: 420px;
+    height: 200px;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+  #img-article {
+    width: 320px;
+    height: 140px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  #img-article {
+    width: 250px;
+    height: 100px;
+  }
 }
 </style>
