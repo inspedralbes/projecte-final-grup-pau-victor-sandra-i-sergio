@@ -130,12 +130,18 @@ export default {
     opacity: 1;
   }
 }
+
 .seleccionado {
   background-color: #a4ffb8;
+  transition: all 0.5s ease-in-out;
+}
+
+.seleccionado .checked {
   transition: all 0.5s ease-in-out;
   top: 0px;
   left: 0px;
   z-index: 1;
+  opacity: 1;
 }
 .img-pequena {
   width: 60px;
