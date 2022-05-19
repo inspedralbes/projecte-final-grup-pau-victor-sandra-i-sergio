@@ -4,6 +4,7 @@ const SaludMental = express.Router();
 const CuestionarioSaludMental = require('../models/SaludMental/respuestaCuestionario.model');
 const EstadoEmocional = require('../models/SaludMental/estadoEmocionalCuestionario.model');
 const Usuario = require('../models/Usuario/usuario.model');
+const filtrosCuestionarios = require("../commonFunctions/filtrosCuestionarios.js");
 
 
 // GET - OBTENER TODAS RESPUESTAS AL CUESTIONARIO
@@ -75,7 +76,6 @@ SaludMental.route('/respuesta-cuestionario').post((req, res) => {
 
     console.log(datos);
 
-
     EstadoEmocional.find({ value: datos.estado }, function(err, resultado) {
         if (err) {
             console.log(err);
@@ -96,6 +96,39 @@ SaludMental.route('/respuesta-cuestionario').post((req, res) => {
         }
     });
 });
+
+
+// GET - OBTENER TODAS RESPUESTAS AL CUESTIONARIO de un usuario
+SaludMental.route('/respuestas').post(function(req, res) {
+    let datos = req.body;
+    let dias;
+
+    if (datos.filtro == "Semana") {
+        dias = filtrosCuestionarios.getMondayandSundayOfCurrentWeek();
+    }
+
+    if (datos.filtro == "Mes") {
+        dias = filtrosCuestionarios.getFirstandLastDayOfCurrentMonth();
+    }
+
+    CuestionarioSaludMental.find({ "usuario": datos.idUsuario, "diaHora": { $gte: dias[0], $lte: dias[1] } }, (err, resultado) => {
+        if (err) {
+            console.log(err);
+        } else {
+            let a = resultado.reduce((cont, v) => {
+                cont[v.estado] = (cont[v.estado] || 0) + 1;
+                console.log(v);
+                return cont;
+            }, {});
+
+
+            res.json({ "datosProcesados": a });
+        }
+    });
+});
+
+
+
 
 
 module.exports = SaludMental;

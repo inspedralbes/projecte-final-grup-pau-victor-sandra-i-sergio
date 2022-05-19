@@ -84,7 +84,7 @@ Usuario.route('/register-pt2').put((req, res) => {
         } else {
             datos.img = (datos.datosPersonales.sexo == 'Hombre') ? 'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg' : 'https://www.sanboni.edu.co/onu/wp-content/uploads/avatar-mujer.png';
 
-            UsuarioModel.findOneAndUpdate({ _id: datos.idUsuario }, { $set: { datosPersonales: datos.datosPersonales } }, { returnOriginal: false }, (err, response) => {
+            UsuarioModel.findOneAndUpdate({ _id: datos.idUsuario }, { $set: { datosPersonales: datos.datosPersonales, fotoPerfil: datos.img } }, { returnOriginal: false }, (err, response) => {
                 if (err) {
                     console.log(err);
                 } else {
@@ -212,7 +212,7 @@ function comprovacionDatosSecundarios(sexo, tiempo, nivelFisico, ocupacion, edad
 
     (sexo != 'Hombre' && sexo != 'Mujer') ? cont.push('Sexo mal'): null;
     (nivelFisico != 'Principiante' && nivelFisico != 'Avanzado' && nivelFisico != 'Intermedio') ? cont.push('Nivel fisico mal'): null;
-    (ocupacion != 'Trabajo' && ocupacion != 'Estudio' && ocupacion != 'Otros') ? cont.push('Ocupacion mal'): null;
+    (ocupacion != 'Trabajo' && ocupacion != 'Estudio' && ocupacion != 'Otro') ? cont.push('Ocupacion mal'): null;
     (!Number.isInteger(edad) || edad > 100 || edad < 0) ? cont.push('Edad mal'): null;
     (tiempo != '~ 15 min' && tiempo != '30 min' && tiempo != '45 min' && tiempo != '+1 h') ? cont.push('Tiempo disponible mal'): null;
 
