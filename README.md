@@ -20,7 +20,6 @@ Aplicació web que engloba tots els aspectes de la salut (activitat fisica, alim
  * Estat: (explicació de en quin punt està)
 
 
-// obtenir dades de mibands per dormir (consumir les dades).
 
 # Backlog & Sprints
  * https://institutpedralbes.teamwork.com/#/projects/14122/tasks/board
