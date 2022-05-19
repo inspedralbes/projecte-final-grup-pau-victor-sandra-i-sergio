@@ -29,15 +29,7 @@ export default {
       sueno: null,
       animacion1: false,
       animacion2: false,
-      accordionID: [
-        {
-          valor1: "panelsStayOpen-headingOne",
-          valor2: "panelsStayOpen-headingTwo",
-          valor3: "panelsStayOpen-headingThree",
-          valor4: "panelsStayOpen-headingFour",
-          valor5: "panelsStayOpen-headingFive",
-        },
-      ],
+      sinsueno: "No he soñado nada",
       accordionClass: [
         {
           valor1: "panelsStayOpen-collapseOne",
@@ -63,19 +55,19 @@ export default {
   created() {
     if (!Object.keys(this.sesionStore.getUsuario).length) {
       Swal.fire({
-        title: '¡Inicia tu sesión o registrate!',
+        title: "¡Inicia tu sesión o registrate!",
         text: "De lo contrario, tu respuesta no se guardará y no podrás ver tu seguimiento",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Iniciar sesion',
-        cancelButtonText: 'Continuar sin cuenta'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Iniciar sesion",
+        cancelButtonText: "Continuar sin cuenta",
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push({ name: "iniciarSesion" })
+          router.push({ name: "iniciarSesion" });
         }
-      })
+      });
     }
   },
 
@@ -115,37 +107,85 @@ export default {
     },
 
     enviarFormulario() {
-
       // Si está registrado, guardar la respuesta en la BD
       if (Object.keys(this.sesionStore.getUsuario).length) {
         var guardarDatosDescanso = new FormData();
-        guardarDatosDescanso.append("descripcionSueno", JSON.stringify(this.selected));
+        guardarDatosDescanso.append(
+          "descripcionSueno",
+          JSON.stringify(this.selected)
+        );
         guardarDatosDescanso.append("usuario", this.sesionStore.getUsuario._id);
 
         // fetch("http://localhost:9000/descanso/guardar-datos-cuestionario", {
-        fetch("http://192.168.210.162:9000/descanso/guardar-datos-cuestionario", {
-          method: "POST",
-          body: guardarDatosDescanso,
-        }).then((response) => response.json()).then((data) => {
-          console.log(data)
-        });
+        fetch(
+          "http://192.168.210.162:9000/descanso/guardar-datos-cuestionario",
+          {
+            method: "POST",
+            body: guardarDatosDescanso,
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            this.resultado = data.resultado;
+          });
       }
 
       // Devolver la respuesta a lo respondido en el cuestionario
       var cuestDescanso = new FormData();
       cuestDescanso.append("descripcionSueno", JSON.stringify(this.selected));
-      cuestDescanso.append("usuario", "alvaro");
 
       // fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
       fetch("http://192.168.210.162:9000/descanso/respuesta-cuestionario", {
         method: "POST",
         body: cuestDescanso,
-      }).then((response) => response.json()).then((data) => {
-        console.log(data);
-        this.resultado = data.resultado;
-      });
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          this.resultado = data.resultado;
+        });
     },
 
+    enviarSinSueno() {
+      // Si está registrado, guardar la respuesta en la BD
+      if (Object.keys(this.sesionStore.getUsuario).length) {
+        var guardarDatosSinSueno = new FormData();
+        guardarDatosSinSueno.append(
+          "descripcionSueno",
+          JSON.stringify(this.sinsueno)
+        );
+        guardarDatosSinSueno.append("usuario", this.sesionStore.getUsuario._id);
+
+        // fetch("http://localhost:9000/descanso/guardar-datos-cuestionario", {
+        fetch(
+          "http://192.168.210.162:9000/descanso/guardar-datos-cuestionario",
+          {
+            method: "POST",
+            body: guardarDatosSinSueno,
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            this.resultado = data.resultado;
+          });
+      }
+      // Devolver la respuesta a lo respondido en el cuestionario
+      var cuestSinSueno = new FormData();
+      cuestSinSueno.append("descripcionSueno", JSON.stringify(this.sinsueno));
+
+      // fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
+      fetch("http://192.168.210.162:9000/descanso/respuesta-cuestionario", {
+        method: "POST",
+        body: cuestSinSueno,
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          console.log(data);
+          this.resultado = data.resultado;
+        });
+    },
 
     activar() {
       this.animacion1 = true;
@@ -179,17 +219,41 @@ export default {
             </div>
 
             <div class="row justify-content-center mt-3">
-              <div class="col-6 col-sm-4 col-md-3 col-lg-2 gy-3" v-for="(check, index) in elemento" :key="index"
-                v-bind:value="check">
+              <div
+                class="col-6 col-sm-4 col-md-3 col-lg-2 gy-3"
+                v-for="(check, index) in elemento"
+                :key="index"
+                v-bind:value="check"
+              >
                 <!--  CARTAS MOTIVOS SUEÑO  -->
                 <CardSuenos
-                  class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light p-2"
-                  @id="this.guardarseleccionada" :infoCuest="check" :contador="this.selected.length" />
+                  class="
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                    flex-direction-row
+                    btn btn-outline-light
+                    p-2
+                  "
+                  @id="this.guardarseleccionada"
+                  :infoCuest="check"
+                  :contador="this.selected.length"
+                />
               </div>
 
               <div class="col-12 gy-4 text-center">
-                <input class="btn btn-outline-light form-submit" type="button" @click="enviarFormulario(), activar()"
-                  value="Analizar sueño" />
+                <input
+                  class="btn btn-outline-light form-submit"
+                  type="button"
+                  @click="enviarFormulario(), activar()"
+                  value="Analizar sueño"
+                />
+                <input
+                  class="btn btn-outline-danger form-submit m-left"
+                  type="button"
+                  @click="enviarSinSueno(), activar()"
+                  value="No he soñado nada"
+                />
               </div>
             </div>
           </div>
@@ -197,11 +261,22 @@ export default {
 
         <Transition name="bounce2">
           <!--  RESPUESTA CUESTIONARIO SUEÑO  -->
-          <div v-if="this.animacion2" class="container accordion acordion-margin-top">
+          <div
+            v-if="this.animacion2"
+            class="container accordion acordion-margin-top"
+          >
             <div class="row">
-              <div v-for="(sueno, index) in selected" :key="index" v-bind:value="sueno.value" class="col-12">
+              <div
+                v-for="(sueno, index) in selected"
+                :key="index"
+                v-bind:value="sueno.value"
+                class="col-12"
+              >
                 <div class="align-items-center justify-content-center">
-                  <Acordeon :infoAcordeon="this.resultado[index]" :index="index" />
+                  <Acordeon
+                    :infoAcordeon="this.resultado[index]"
+                    :index="index"
+                  />
                 </div>
               </div>
             </div>
@@ -280,7 +355,8 @@ export default {
 }
 
 @keyframes bounce-in {
-  from {}
+  from {
+  }
 
   40% {
     transform: translate(0, 100px);
@@ -309,5 +385,9 @@ export default {
   to {
     opacity: 1;
   }
+}
+
+.m-left {
+  margin-left: 5px;
 }
 </style>

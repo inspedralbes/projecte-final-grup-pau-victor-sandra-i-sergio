@@ -14,6 +14,8 @@ export default {
       tiempo: null,
       nivel: null,
       id: null,
+      img: null,
+      grafico: false,
     };
   },
   computed: {
@@ -25,6 +27,7 @@ export default {
     this.nombreUsuario = this.sesionStore.getUsuario.nombreApellidos;
     this.emailUsuario = this.sesionStore.getUsuario.email;
     this.datosUsuario = this.sesionStore.getUsuario.datosPersonales;
+    this.img = this.sesionStore.getUsuario.img;
   },
 
   mounted() {
@@ -57,20 +60,33 @@ export default {
       );
       datos.append("email", this.emailUsuario);
       datos.append("edad", document.getElementById("floatingEdad").value);
+      datos.append("img", this.img);
+      datos.append("sexo", this.datosUsuario.sexo);
       datos.append("ocupacion", this.ocupacion);
       datos.append("tiempo", this.tiempo);
-      datos.append("nivel", this.nivel);
+      datos.append("nivelFisico", this.nivel);
       for (var pair of datos.entries()) {
         console.log(pair[0] + ", " + pair[1]);
       }
       fetch("http://192.168.210.162:9000/usuario/modificar-datos", {
-        method: "POST",
+        method: "PUT",
         body: datos,
       })
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
+          if (data.status) {
+            this.sesionStore.setUsuario(data.usuario);
+          }
         });
+    },
+    graficoSaludMental() {
+      this.grafico = false;
+      console.log(this.grafico);
+    },
+    graficoDescanso() {
+      this.grafico = true;
+      console.log(this.grafico);
     },
   },
 };
@@ -81,10 +97,7 @@ export default {
     <div class="row">
       <div class="col-12 col-md-4 d-flex justify-content-center flex-column">
         <h1 class="fontsize text-center">Mi cuenta</h1>
-        <img
-          class="img-perfil text-center"
-          src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"
-        />
+        <img class="img-perfil text-center" :src="this.img" />
         <div class="form-floating mb-3">
           <input
             type="text"
@@ -180,16 +193,28 @@ export default {
             </div>
           </div>
         </div>
-        <div class="row margin-top">
-          <nav class="nav nav-pills nav-fill">
-            <button class="nav-link btn btn-danger" aria-current="page">
-              Salud Mental
-            </button>
-            <button class="nav-link btn btn-danger">Descanso</button>
-          </nav>
-          <canvas id="myChart" width="400" height="400"></canvas>
-        </div>
       </div>
+    </div>
+    <div class="row margin-top">
+      <nav class="nav nav-pills nav-fill">
+        <button
+          @click="graficoSaludMental()"
+          class="btn btn-danger"
+          aria-current="page"
+        >
+          Salud Mental
+        </button>
+        <button @click="graficoDescanso()" class="btn btn-danger">
+          Descanso
+        </button>
+      </nav>
+      <div :class="[this.grafico ? 'ocultar' : '']" class="color">
+        <h3>Aqui va salud Mental</h3>
+      </div>
+      <div :class="[!this.grafico ? 'ocultar' : '']" class="color">
+        <h3>Aqui va descanso</h3>
+      </div>
+      <canvas id="myChart" width="400" height="400"></canvas>
     </div>
   </main>
 </template>
@@ -201,6 +226,10 @@ main {
   background-size: cover;
   min-height: 100vh;
   background-repeat: no-repeat;
+}
+
+.btn-danger {
+  margin: 5px;
 }
 
 @media only screen and (min-width: 300px) {
@@ -226,5 +255,11 @@ main {
 
 .margin-top {
   margin-top: 30px;
+}
+.color {
+  background-color: blue;
+}
+.ocultar {
+  display: none;
 }
 </style>
