@@ -69,8 +69,8 @@ export default {
 
 .card:hover {
   box-shadow: 5px 10px 60px -12px rgba(0, 0, 0, 0.67);
-  background-color: #c4c4c4;
-  border: 2px solid #535353;
+  background-color: #bdc2c7;
+  border: 2px solid #535355;
   border-radius: 0px 8px 8px 8px;
 }
 
@@ -132,7 +132,7 @@ export default {
 }
 
 .seleccionado {
-  background-color: #a4ffb8;
+  background-color: #bdc2c7;
   transition: all 0.5s ease-in-out;
 }
 

@@ -38,15 +38,24 @@ export default {
       articulo.style.display = "block";
     },
 
+    articulo4() {
+      let articulos = document.getElementById("lista-articulos");
+      let articulo = document.getElementById("articulo4");
+      articulos.style.display = "none";
+      articulo.style.display = "block";
+    },
+
     retroceder() {
       let articulos = document.getElementById("lista-articulos");
       let articulo1 = document.getElementById("articulo1");
       let articulo2 = document.getElementById("articulo2");
       let articulo3 = document.getElementById("articulo3");
+      let articulo4 = document.getElementById("articulo4");
       articulos.style.display = "block";
       articulo1.style.display = "none";
       articulo2.style.display = "none";
       articulo3.style.display = "none";
+      articulo4.style.display = "none";
     },
   },
 };
@@ -113,6 +122,7 @@ export default {
                     </div>
                   </div>
                 </li>
+
                 <li>
                   <div class="card card-html">
                     <div class="card-header">
@@ -131,6 +141,34 @@ export default {
                       <div class="clearfix">
                         <div id="enlace" class="float-right">
                           <button @click="articulo3()" class="btn btn-success">
+                            <span>Click per saber més</span>
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="card card-html">
+                    <div class="card-header">
+                      <i class="fab fa-html5"
+                        >¿Qué es y cómo reconocer si hay un problema de salud
+                        mental?</i
+                      >
+                    </div>
+                    <div class="card-body">
+                      Las personas que tienen problemas de salud mental, a
+                      menudo, se sienten aisladas, frustradas y abrumadas. Todas
+                      las áreas de su vida se ven afectadas por ese problema, la
+                      forma de pensar, sentir y actuar también. Tener un
+                      problema de salud mental y tener una enfermedad de salud
+                      mental no son lo mismo, aunque se tiende a utilizar como
+                      si fueran sinónimos.
+                    </div>
+                    <div class="card-footer">
+                      <div class="clearfix">
+                        <div id="enlace" class="float-right">
+                          <button @click="articulo4()" class="btn btn-success">
                             <span>Click per saber més</span>
                           </button>
                         </div>
@@ -532,7 +570,7 @@ export default {
             </div>
             <div class="col-xs-12">
               <h1 class="text-center">Las etapas del sueño</h1>
-              <section class="thumbnail">
+              <section class="thumbnail text-center">
                 <img
                   id="img-article"
                   class=""
@@ -748,6 +786,181 @@ export default {
         <br /><br />
       </section>
     </section>
+
+    <section id="articulo4" class="articulos">
+      <section class="container">
+        <br /><br />
+        <article class="jumbotron">
+          <div class="row">
+            <div class="col-12 retroceder">
+              <a @click="retroceder()">
+                <span id="btn-articulo" class="material-symbols-outlined">
+                  arrow_back
+                </span>
+              </a>
+            </div>
+            <div class="col-xs-12">
+              <h1 class="text-center">
+                Salud Mental: Qué es y cómo reconocer si hay un problema
+              </h1>
+              <section class="thumbnail text-center">
+                <img
+                  id="img-article"
+                  class=""
+                  src="https://manuelcassinello.com/wp-content/uploads/2021/10/salud-mental-1024x576.jpg"
+                  alt="Las etapas del sueño"
+                />
+              </section>
+              <div>
+                <h3 class="text-center">
+                  ¿Qué es la Salud Mental y qué son las enfermedades o
+                  trastornos mentales?
+                </h3>
+                <hr />
+                <ul>
+                  <li>
+                    Las enfermedades o trastornos mentales son afecciones graves
+                    que afectan y alteran la forma de pensar de una persona, su
+                    comportamiento y estado de ánimo. Pueden ser ocasionales o
+                    permanentes, llegando a afectar de forma considerable a su
+                    capacidad para relacionarse con los demás y la habilidad de
+                    funcionar día a día. Las personas que sufren algún trastorno
+                    de salud mental pueden mejorar, incluso recuperarse por
+                    completo gracias a tratamientos y la atención de un
+                    especialista en psiquiatría. Quienes tienen una enfermedad
+                    mental pueden experimentar periodos de estabilidad emocional
+                    y bienestar social. Las más conocidas son la depresión, la
+                    esquizofrenia y el trastorno bipolar.
+                  </li>
+                  <br />
+                  <li>
+                    La salud mental, por el contrario, incluye el bienestar
+                    emocional, psicológico y social de una persona. Afecta a la
+                    forma de pensar, los sentimientos, cómo manejamos el estrés,
+                    las relaciones con los demás, toma de decisiones y cómo
+                    enfrentamos la vida en general. La salud mental es
+                    importante en cada una de las etapas de nuestra vida, desde
+                    la niñez y adolescencia, hasta la adultez y vejez. Y ésta
+                    puede estar seriamente afectada en algún periodo o momento
+                    de nuestra vida, pero no significa que se tenga o vaya a
+                    desarrollar una enfermedad o trastorno mental.
+                  </li>
+                  <br />
+                  <li>
+                    Nuestra salud mental puede verse afectada y cambiar con el
+                    tiempo, determinadas situaciones pueden llevar a agotar o
+                    abrumar nuestra capacidad de lidiar con ellas. Esto puede
+                    provocar que nuestra salud mental empeore, pero, con la
+                    ayuda de un psiquiatra y sesiones de terapia podemos
+                    conseguir mejorarla.
+                  </li>
+                  <br />
+                  <h5>
+                    <strong
+                      >Existen varios factores que pueden afectar a nuestra
+                      salud mental:</strong
+                    >
+                  </h5>
+                  <br />
+                  <ul class="lista-normal">
+                    <li>
+                      <strong>Factores biológicos como:</strong> la genética,
+                      antecedentes familiares o la química del cerebro.
+                    </li>
+                    <br />
+                    <li>
+                      <strong>Experiencias traumáticas o abusos.</strong>
+                    </li>
+                    <br />
+                    <li>
+                      <strong
+                        >Estilo de vida, alimentación, actividades, consumo de
+                        sustancias, etc.</strong
+                      >
+                    </li>
+                    <br />
+                  </ul>
+                  <br />
+                  <li>
+                    En ocasiones, al no tratarse de una enfermedad o trastorno
+                    como tal, no se le da la importancia necesaria. Esto es un
+                    error importante, ya que si nuestra salud mental se ve
+                    afectada en algún momento de nuestra vida debemos buscar la
+                    forma de mejorarla ya sea a través de la meditación o
+                    técnicas de relajación, como con la ayuda de un profesional.
+                    La salud mental es importante porque nos ayuda a enfrentar
+                    adecuadamente determinadas situaciones. Nos ayuda a
+                    enfrentar el estrés diario, estar físicamente saludable,
+                    tener relaciones sanas, ser más productivos y alcanzar
+                    nuestras metas y sueños. Y es que si nuestra salud mental
+                    está afectada de alguna forma, esto afecta directamente a la
+                    salud física.
+                  </li>
+                  <br />
+                  <h4>
+                    <strong
+                      >Cómo reconocer si hay un problema de salud mental</strong
+                    >
+                  </h4>
+                  <li>
+                    Existen advertencias o señales que nos indican que podríamos
+                    tener un problema de salud mental. Debemos ser capaces de
+                    identificar estas señales para poder actuar con antelación y
+                    buscar la ayuda necesaria. Estas señales son:
+                  </li>
+                  <br />
+                  <ul class="lista-normal">
+                    <li>Cambios en los hábitos de alimentación y sueño.</li>
+                    <br />
+                    <li>Niveles de energía muy bajos.</li>
+                    <br />
+                    <li>
+                      Aislarse de personas o situaciones que antes disfrutabas.
+                    </li>
+                    <br />
+                    <li>Sentirse vacío.</li>
+                    <br />
+                    <li>Tener dolores y molestias inexplicables.</li>
+                    <br />
+                    <li>Fumar, beber o tomar drogas de forma recurrente.</li>
+                    <br />
+                    <li>Impotencia y falta de esperanza.</li>
+                    <br />
+                    <li>
+                      Sentirse confundido, olvidadizo, enojado, molesto,
+                      preocupado o asustado.
+                    </li>
+                    <br />
+                    <li>
+                      ACambios de humor severos que causan problemas en las
+                      relaciones.
+                    </li>
+                    <br />
+                    <li>Pensamiento de autolesionarse o lesionar a otros.</li>
+                    <br />
+                    <li>
+                      Imposibilidad a la hora de realizar tareas diarias como
+                      cuidar a los hijos, ir al trabajo, etc.
+                    </li>
+                    <br />
+                    <li>Sentirse como si nada importara.</li>
+                  </ul>
+                  <br />
+                  <li>
+                    Si crees que puedes tener un problema de salud mental, lo
+                    más recomendable es buscar ayuda en un profesional. La
+                    terapia de conversación y/o los medicamentos prescritos por
+                    un profesional pueden ayudar a mejorar nuestra salud mental
+                    y trastornos mentales.
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </article>
+        <br /><br />
+      </section>
+    </section>
   </div>
 </template>
 
@@ -755,6 +968,8 @@ export default {
 .articulos {
   min-height: 82.7vh;
   background-image: url("../../../public/img/fondo_saludmental.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .container {
   max-width: 1000px;
@@ -854,6 +1069,9 @@ button:hover span {
 ul {
   list-style: none;
 }
+.lista-normal {
+  list-style: initial;
+}
 .blockquote {
   max-width: 75%;
   margin-left: auto;
@@ -871,38 +1089,38 @@ h4 {
   color: lightblue;
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 1000px) {
   #img-article {
     width: 700px;
     height: 400px;
   }
 }
 
-@media only screen and (max-width: 775px) {
+@media only screen and (max-width: 800px) {
   #img-article {
     width: 550px;
     height: 290px;
   }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
   #img-article {
     width: 420px;
     height: 200px;
   }
 }
 
-@media only screen and (max-width: 450px) {
+@media only screen and (max-width: 480px) {
   #img-article {
     width: 320px;
     height: 140px;
   }
 }
 
-@media only screen and (max-width: 360px) {
+@media only screen and (max-width: 390px) {
   #img-article {
     width: 250px;
-    height: 100px;
+    height: 130px;
   }
 }
 </style>
