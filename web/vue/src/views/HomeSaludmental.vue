@@ -5,7 +5,6 @@ import { sesionStore } from "@/stores/sesionStore";
 import { mapStores } from "pinia";
 import router from "../router";
 
-
 export default {
   components: {
     Header,
@@ -40,19 +39,19 @@ export default {
   created() {
     if (!Object.keys(this.sesionStore.getUsuario).length) {
       Swal.fire({
-        title: '¡Inicia tu sesión o registrate!',
+        title: "¡Inicia tu sesión o registrate!",
         text: "De lo contrario, tu respuesta no se guardará y no podrás ver tu seguimiento",
-        icon: 'warning',
+        icon: "warning",
         showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Iniciar sesion',
-        cancelButtonText: 'Continuar sin cuenta'
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Iniciar sesion",
+        cancelButtonText: "Continuar sin cuenta",
       }).then((result) => {
         if (result.isConfirmed) {
-          router.push({ name: "iniciarSesion" })
+          router.push({ name: "iniciarSesion" });
         }
-      })
+      });
     }
   },
 
@@ -87,16 +86,22 @@ export default {
         });
         console.log(cuestSalud);
         // fetch("http://localhost:wd/salud-mental/guardar-datos-cuestionario", {
-        fetch("http://192.168.210.162:9000/salud-mental/guardar-datos-cuestionario", {
-          method: "POST",
-          body: cuestSalud,
-        }).then((response) => response.json()).then((data) => {
-          console.log(data);
-          this.progressbar1 = 2;
-          this.disabled2 = false;
-          setTimeout(() => { this.disabled3 = true; }, 500);
-        });
-
+        fetch(
+          "http://192.168.210.162:9000/salud-mental/guardar-datos-cuestionario",
+          {
+            method: "POST",
+            body: cuestSalud,
+          }
+        )
+          .then((response) => response.json())
+          .then((data) => {
+            console.log(data);
+            this.progressbar1 = 2;
+            this.disabled2 = false;
+            setTimeout(() => {
+              this.disabled3 = true;
+            }, 500);
+          });
       }
 
       var noRegCuestSalud = new URLSearchParams({
@@ -107,12 +112,10 @@ export default {
       console.log(noRegCuestSalud);
 
       // fetch("http://localhost:wd/salud-mental/respuesta-cuestionario", {
-      fetch("http://192.168.210.162:9000/salud-mental/respuesta-cuestionario",
-        {
-          method: "POST",
-          body: noRegCuestSalud,
-        }
-      )
+      fetch("http://192.168.210.162:9000/salud-mental/respuesta-cuestionario", {
+        method: "POST",
+        body: noRegCuestSalud,
+      })
         .then((response) => response.json())
         .then((data) => {
           this.respuesta = data.resultado;
@@ -123,10 +126,7 @@ export default {
             this.disabled3 = true;
           }, 500);
         });
-
     },
-
-
 
     guardarEstado(valor) {
       this.progressbar1 = 1;
@@ -161,21 +161,27 @@ export default {
           </div>
           <div class="col-12 d-flex align-items-center justify-content-center">
             <div class="progress">
-              <div :class="[
-                this.progressbar1 == 1
-                  ? 'load50'
-                  : this.progressbar1 == 2
+              <div
+                :class="[
+                  this.progressbar1 == 1
+                    ? 'load50'
+                    : this.progressbar1 == 2
                     ? 'load100'
                     : this.progressbar1 == 3
-                      ? 'reverse'
-                      : '',
-              ]" class="progress-value"></div>
+                    ? 'reverse'
+                    : '',
+                ]"
+                class="progress-value"
+              ></div>
             </div>
           </div>
         </div>
       </div>
       <Transition name="bounce">
-        <div class="cuestionario_estado container px-4 shadow-lg" v-if="!this.disabled">
+        <div
+          class="cuestionario_estado container px-4 shadow-lg"
+          v-if="!this.disabled"
+        >
           <div class="row">
             <div class="col-12 text-center">
               <h2 class="titulo_cuestionario text-center">
@@ -185,9 +191,16 @@ export default {
           </div>
 
           <div class="row justify-content-center cartas">
-            <div class="col-6 col-md-3 g-4 d-flex justify-content-center" v-for="(opcion, index) in estado" :key="index"
-              v-bind:value="opcion.value">
-              <CardVertical @id="this.guardarEstado" :infoCuest="this.estado[index]" />
+            <div
+              class="col-6 col-md-3 g-4 d-flex justify-content-center"
+              v-for="(opcion, index) in estado"
+              :key="index"
+              v-bind:value="opcion.value"
+            >
+              <CardVertical
+                @id="this.guardarEstado"
+                :infoCuest="this.estado[index]"
+              />
             </div>
           </div>
         </div>
@@ -211,20 +224,32 @@ export default {
 
                   <div class="col-md-6">
                     <div class="card-body">
-                      <div v-if="
-                        selected[0].value != 'Alegre' &&
-                        selected[0].value != 'Energico'
-                      ">
+                      <div
+                        v-if="
+                          selected[0].value != 'Alegre' &&
+                          selected[0].value != 'Energico'
+                        "
+                      >
                         <h5 class="text-center card-body-tit">
                           ¿Por qué estás
                           <span style="font-weight: bold">{{
-                              selected[0].value
-                          }}</span>?
+                            selected[0].value
+                          }}</span
+                          >?
                         </h5>
-                        <div :key="index" v-for="(estado, index) in selected[0].motivos">
+                        <div
+                          :key="index"
+                          v-for="(estado, index) in selected[0].motivos"
+                        >
                           <div class="form-check my-3">
-                            <input class="form-check-input" type="radio" @click="guardarMotivo($event.target.value)"
-                              :value="estado" name="motivo" :id="index" />
+                            <input
+                              class="form-check-input"
+                              type="radio"
+                              @click="guardarMotivo($event.target.value)"
+                              :value="estado"
+                              name="motivo"
+                              :id="index"
+                            />
                             <label class="form-check-label" :for="index">
                               {{ estado }}
                             </label>
@@ -232,18 +257,25 @@ export default {
                         </div>
                       </div>
 
-                      <div v-if="
-                        selected[0].value == 'Alegre' ||
-                        selected[0].value == 'Energico'
-                      ">
+                      <div
+                        v-if="
+                          selected[0].value == 'Alegre' ||
+                          selected[0].value == 'Energico'
+                        "
+                      >
                         <h5 class="text-center card-body-tit">
                           Hoy estoy
                           <span style="font-weight: bold">{{
-                              selected[0].value
+                            selected[0].value
                           }}</span>
                         </h5>
                         <div class="form-check">
-                          <input class="form-check-input" type="radio" name="motivo" checked />
+                          <input
+                            class="form-check-input"
+                            type="radio"
+                            name="motivo"
+                            checked
+                          />
                           <label class="form-check-label">
                             Estoy {{ selected[0].value }}
                           </label>
@@ -253,8 +285,12 @@ export default {
                   </div>
 
                   <div class="col-12 gy-2 text-center">
-                    <input class="btn btn-outline-secondary btn-enviarRespuesta" type="button"
-                      @click="enviarFormulario()" value="Enviar respuesta" />
+                    <input
+                      class="btn btn-outline-secondary btn-enviarRespuesta"
+                      type="button"
+                      @click="enviarFormulario()"
+                      value="Enviar respuesta"
+                    />
                   </div>
                 </div>
               </div>
@@ -275,7 +311,9 @@ export default {
                 Para descubrir porqué te sientes {{ this.respuesta.estado }} y
                 como mejorar tu estado de ánimo visita la siguiente página ...
               </p>
-              <a :href="this.respuesta.respuesta" target="_blank" class="link">Click para saber más</a>
+              <a :href="this.respuesta.respuesta" target="_blank" class="link"
+                >Click para saber más</a
+              >
             </div>
           </div>
         </div>
@@ -440,7 +478,8 @@ form {
 }
 
 @keyframes bounce-in {
-  from {}
+  from {
+  }
 
   40% {
     transform: translate(0, 100px);
@@ -461,7 +500,8 @@ form {
 }
 
 @keyframes bounce2-in {
-  from {}
+  from {
+  }
 
   40% {
     transform: translate(0, 100px);

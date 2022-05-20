@@ -27,10 +27,12 @@ export default {
     this.nombreUsuario = this.sesionStore.getUsuario.nombreApellidos;
     this.emailUsuario = this.sesionStore.getUsuario.email;
     this.datosUsuario = this.sesionStore.getUsuario.datosPersonales;
-    this.img = this.sesionStore.getUsuario.img;
+    this.img = this.sesionStore.getUsuario.fotoPerfil;
   },
 
   mounted() {
+    this.graficoSaludMental();
+    this.graficoDescanso();
     document.querySelectorAll("#nivel option").forEach((opt) => {
       if (opt.value == this.datosUsuario.nivelFisico) {
         this.nivel = this.datosUsuario.nivelFisico;
@@ -44,6 +46,7 @@ export default {
       }
     });
     document.querySelectorAll("#tiempo option").forEach((opt) => {
+      console.log(opt.value);
       if (opt.value == this.datosUsuario.disponibilidadTiempo) {
         this.tiempo = this.datosUsuario.disponibilidadTiempo;
         opt.setAttribute("selected", "");
@@ -80,14 +83,98 @@ export default {
           }
         });
     },
+
     graficoSaludMental() {
-      this.grafico = false;
-      console.log(this.grafico);
+      let datos = new FormData();
+      datos.append("idUsuario", this.id);
+      datos.append("filtro", "Mes");
+
+      fetch("http://192.168.210.162:9000/salud-mental/respuestas", {
+        method: "POST",
+        body: datos,
+      })
+        .then((response) => response.json())
+        .then((respuesta) => {
+          console.log(respuesta);
+          this.grafico = false;
+          console.log(this.grafico);
+
+          const data = {
+            labels: respuesta.label,
+            datasets: [
+              {
+                label: "My First Dataset",
+                data: respuesta.data,
+                backgroundColor: [
+                  "rgb(255, 99, 132)",
+                  "rgb(116, 196, 247)",
+                  "rgb(255, 185, 69)",
+                  "rgb(5, 105, 255)",
+                  "rgb(69, 128, 61)",
+                  "rgb(152, 79, 207)",
+                  "rgb(202, 207, 45)",
+                ],
+                hoverOffset: 4,
+              },
+            ],
+          };
+
+          const config = {
+            type: "doughnut",
+            data: data,
+          };
+
+          const myChart = new Chart(document.getElementById("myChart"), config);
+        });
     },
+
     graficoDescanso() {
       this.grafico = true;
-      console.log(this.grafico);
+      let datosDescanso = new FormData();
+      datosDescanso.append("idUsuario", this.id);
+      datosDescanso.append("filtro", "Mes");
+
+      fetch("http://192.168.210.162:9000/descanso/respuestas", {
+        method: "POST",
+        body: datosDescanso,
+      })
+        .then((response) => response.json())
+        .then((respuesta) => {
+          console.log(respuesta);
+          this.grafico = false;
+          console.log(this.grafico);
+          const data = {
+            labels: respuesta.label,
+            datasets: [
+              {
+                label: "My First Dataset",
+                data: respuesta.data,
+                backgroundColor: [
+                  "rgb(255, 99, 132)",
+                  "rgb(116, 196, 247)",
+                  "rgb(255, 185, 69)",
+                  "rgb(5, 105, 255)",
+                  "rgb(69, 128, 61)",
+                  "rgb(152, 79, 207)",
+                  "rgb(202, 207, 45)",
+                ],
+                hoverOffset: 4,
+              },
+            ],
+          };
+
+          const config = {
+            type: "doughnut",
+            data: data,
+          };
+
+          const myChart2 = new Chart(
+            document.getElementById("myChart2"),
+            config
+          );
+        });
     },
+    cambiarfoto() {},
   },
 };
 </script>
@@ -97,7 +184,12 @@ export default {
     <div class="row">
       <div class="col-12 col-md-4 d-flex justify-content-center flex-column">
         <h1 class="fontsize text-center">Mi cuenta</h1>
-        <img class="img-perfil text-center" :src="this.img" />
+        <img
+          @click="cambiarfoto()"
+          class="img-perfil text-center"
+          :src="this.img"
+        />
+        <input type="file" class="form-control-file" id="imagenUsuario" />
         <div class="form-floating mb-3">
           <input
             type="text"
@@ -208,17 +300,17 @@ export default {
           Descanso
         </button>
       </nav>
-      <div :class="[this.grafico ? 'ocultar' : '']" class="color">
+      <div :class="[this.grafico ? 'ocultar' : '']">
         <h3>Aqui va salud Mental</h3>
+        <canvas id="myChart" width="300" height="300"></canvas>
       </div>
-      <div :class="[!this.grafico ? 'ocultar' : '']" class="color">
+      <div :class="[!this.grafico ? 'ocultar' : '']">
         <h3>Aqui va descanso</h3>
+        <canvas id="myChart2" width="300" height="300"></canvas>
       </div>
-      <canvas id="myChart" width="400" height="400"></canvas>
     </div>
   </main>
 </template>
-
 
 <style scoped>
 main {

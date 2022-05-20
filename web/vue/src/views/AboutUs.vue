@@ -17,7 +17,6 @@ export default {
 };
 </script>
 
-
 <template>
   <div>
     <div class="titulo text-center mt-5">
@@ -29,7 +28,7 @@ export default {
           <div class="col-12 col-lg-4">
             <img class="logo" src="../../img/GenkiCorpusLogo.png" alt="" />
           </div>
-          <div class=" col-12 col-lg-8">
+          <div class="col-12 col-lg-8">
             <h4>Nuestra razón de ser</h4>
             <p class="mt-3 justificado">
               La misión principal de Genki Corpus es ofrecer un sitio web
@@ -41,14 +40,22 @@ export default {
             </p>
           </div>
         </div>
-        
+
         <div class="row mt-5 align-items-center">
           <div class="col-12 col-lg-7 mb-4 videoCol">
             <h4 class="mb-4">Conoce un poco más Genki Corpus</h4>
             <div class="video">
-              <iframe width="560" height="315" src="https://www.youtube.com/embed/GhDyS5UO5hQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+              <iframe
+                width="560"
+                height="315"
+                src="https://www.youtube.com/embed/GhDyS5UO5hQ"
+                title="YouTube video player"
+                frameborder="0"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowfullscreen
+              ></iframe>
             </div>
-          </div> 
+          </div>
 
           <div id="container" class="col-12 col-lg-5 text-center textoCol">
             Mejora tu
@@ -59,35 +66,50 @@ export default {
             </div>
           </div>
         </div>
-        
 
-        <div class="row  align-items-center" >
+        <div class="row align-items-center">
           <div class="col-7 equipo">
             <h4>Nuestro equipo</h4>
             <p class="mt-3 justificado">
-              Somos 4 estudiantes de DAW (Desarollo de Aplicaciones Web) que hemos decidido desarrollar nuestro proyecto de fin de ciclo 
-              sobre una de las cuestiones que más ha preocupado a la sociedad los últimos 3 años, la <span class="bold">salud</span>. La principal motivación para realizar este proyecto fue nuestra propia preocupación e interes por la salud, por nuestra idea de que ser felices y tener una vida saludable es equivalente a entender y manejar nuestras emociones, hacer actividad fisica y tener una dieta saludable.
+              Somos 4 estudiantes de DAW (Desarollo de Aplicaciones Web) que
+              hemos decidido desarrollar nuestro proyecto de fin de ciclo sobre
+              una de las cuestiones que más ha preocupado a la sociedad los
+              últimos 3 años, la <span class="bold">salud</span>. La principal
+              motivación para realizar este proyecto fue nuestra propia
+              preocupación e interes por la salud, por nuestra idea de que ser
+              felices y tener una vida saludable es equivalente a entender y
+              manejar nuestras emociones, hacer actividad fisica y tener una
+              dieta saludable.
             </p>
 
             <div class="encuentranos mt-5">
               <h5>Donde encontrarnos</h5>
               <div class="linkedin mt-4">
-                <a class="lin pe-4" href="https://www.linkedin.com/in/paumunozolivares?original_referer=" target="_blank"><i class="bi bi-linkedin"></i> Pau Muñoz Olivares</a>
-                <a class="lin pe-4" href="https://www.linkedin.com/in/victor-moreno-moron" target="_blank"><i class="bi bi-linkedin"></i> Víctor Moreno Moron</a>
-                <a class="lin pe-4" href="https://www.linkedin.com/in/sandraortizvega" target="_blank"><i class="bi bi-linkedin"></i> Sandra Ortiz Vega</a>
+                <a
+                  class="lin pe-4"
+                  href="https://www.linkedin.com/in/paumunozolivares?original_referer="
+                  target="_blank"
+                  ><i class="bi bi-linkedin"></i> Pau Muñoz Olivares</a
+                >
+                <a
+                  class="lin pe-4"
+                  href="https://www.linkedin.com/in/victor-moreno-moron"
+                  target="_blank"
+                  ><i class="bi bi-linkedin"></i> Víctor Moreno Moron</a
+                >
+                <a
+                  class="lin pe-4"
+                  href="https://www.linkedin.com/in/sandraortizvega"
+                  target="_blank"
+                  ><i class="bi bi-linkedin"></i> Sandra Ortiz Vega</a
+                >
               </div>
             </div>
-
-
-
-
           </div>
           <div class="col-5 equipo">
             <img class="equipo_foto" src="../../img/equipo.png" alt="" />
           </div>
         </div>
-
-
       </div>
     </div>
   </div>
@@ -111,32 +133,32 @@ h5 {
   font-weight: 600;
 }
 
-
 .justificado {
   text-align: justify;
   text-justify: inter-word;
 }
 
-.textoCol, .videoCo{
+.textoCol,
+.videoCo {
   margin-bottom: 20px;
-  margin-top: 15px
+  margin-top: 15px;
 }
 
 .equipo {
   margin-bottom: 20px;
-  margin-top: 50px
+  margin-top: 50px;
 }
 
 .logo {
-  display:block;
-  margin:auto;
+  display: block;
+  margin: auto;
   margin-bottom: 40px;
 }
 
 .equipo_foto {
   width: 300px;
-  display:block;
-  margin:auto;
+  display: block;
+  margin: auto;
 }
 
 a {
@@ -145,9 +167,8 @@ a {
 }
 
 .lin {
-  color: #a8cf45
+  color: #a8cf45;
 }
-
 
 @import url("https://fonts.googleapis.com/css?family=Roboto:700");
 
@@ -214,7 +235,7 @@ body {
   90% {
     margin-top: -4px;
   }
-  99%{
+  99% {
     margin-top: 33px;
   }
   100% {
