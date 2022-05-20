@@ -3,10 +3,13 @@ const app = express();
 const Descanso = express.Router();
 const CuestionarioDescanso = require('../models/Descanso/respuestaCuestionario.model');
 const TipoSueno = require('../models/Descanso/tipoSuenoCuestionario.model');
+const filtrosCuestionarios = require("../commonFunctions/filtrosCuestionarios.js");
+
+
 
 // Todas las respuestas al cuestionario
 Descanso.route("/").get((req, res) => {
-    CuestionarioDescanso.find(function (err, resultado) {
+    CuestionarioDescanso.find(function(err, resultado) {
         if (err) {
             console.log(err);
         } else {
@@ -17,7 +20,7 @@ Descanso.route("/").get((req, res) => {
 
 // Todos los tipos de sueño
 Descanso.route("/tipos-suenos").get((req, res) => {
-    TipoSueno.find(function (err, resultado) {
+    TipoSueno.find(function(err, resultado) {
         if (err) {
             console.log(err);
         } else {
@@ -71,7 +74,7 @@ Descanso.route('/respuesta-cuestionario').post((req, res) => {
     const datos = req.body;
     datos.descripcionSueno = JSON.parse(datos.descripcionSueno);
 
-    TipoSueno.find({}, function (err, resultado) {
+    TipoSueno.find({}, function(err, resultado) {
         if (err) {
             console.log(err);
         } else {
@@ -95,5 +98,46 @@ Descanso.route('/respuesta-cuestionario').post((req, res) => {
 
 
 });
+
+
+// POST - OBTENER TODAS RESPUESTAS AL CUESTIONARIO de un usuario
+Descanso.route('/respuestas').post(function(req, res) {
+    let datos = req.body;
+    let dias;
+
+    if (datos.filtro == "Semana") {
+        dias = filtrosCuestionarios.getMondayandSundayOfCurrentWeek();
+    }
+
+    if (datos.filtro == "Mes") {
+        dias = filtrosCuestionarios.getFirstandLastDayOfCurrentMonth();
+    }
+
+    CuestionarioDescanso.find({ "usuario": datos.idUsuario, "diaHora": { $gte: dias[0], $lte: dias[1] } }, (err, resultado) => {
+        if (err) {
+            console.log(err);
+        } else {
+            let array = []; 
+            resultado.forEach((el) => {
+                console.log(el);
+
+                array = array.concat(el.descripcionSueno);
+            })
+
+            console.log(array);
+
+            let r = array.reduce((cont, v) => {
+                cont[v] = (cont[v] || 0) + 1;
+                console.log(v);
+                return cont;
+            }, {});
+
+
+            res.json({ "datosProcesados": r });
+        }
+    });
+});
+
+
 
 module.exports = Descanso;
