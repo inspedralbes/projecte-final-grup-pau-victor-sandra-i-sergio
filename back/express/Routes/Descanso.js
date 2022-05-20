@@ -117,7 +117,7 @@ Descanso.route('/respuestas').post(function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            let array = []; 
+            let array = [];
             resultado.forEach((el) => {
                 console.log(el);
 
@@ -126,14 +126,21 @@ Descanso.route('/respuestas').post(function(req, res) {
 
             console.log(array);
 
-            let r = array.reduce((cont, v) => {
+            let label = [...new Set(
+                array.reduce((cont, v) => {
+                    console.log(v);
+                    cont.push(v);
+                    return cont;
+                }, [])
+            )]
+
+            let data = Object.values(array.reduce((cont, v) => {
                 cont[v] = (cont[v] || 0) + 1;
                 console.log(v);
                 return cont;
-            }, {});
+            }, {}))
 
-
-            res.json({ "datosProcesados": r });
+            res.json({ "label": label, "data": data });
         }
     });
 });

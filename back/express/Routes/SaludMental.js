@@ -115,14 +115,24 @@ SaludMental.route('/respuestas').post(function(req, res) {
         if (err) {
             console.log(err);
         } else {
-            let a = resultado.reduce((cont, v) => {
-                cont[v.estado] = (cont[v.estado] || 0) + 1;
-                console.log(v);
-                return cont;
-            }, {});
+            let label = [...new Set(
+                resultado.reduce((cont, v) => {
+                    cont.push(v.estado)
+                    console.log(v);
+                    return cont;
+                }, [])
+            )];
+
+            let data = Object.values(
+                resultado.reduce((cont, v) => {
+                    cont[v.estado] = (cont[v.estado] || 0) + 1;
+                    console.log(v);
+                    return cont;
+                }, {})
+            )
 
 
-            res.json({ "datosProcesados": a });
+            res.json({ "label": label, "data": data });
         }
     });
 });
