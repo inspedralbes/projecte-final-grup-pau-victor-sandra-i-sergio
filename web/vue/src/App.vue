@@ -20,9 +20,8 @@ export default {
 
 <style>
 .material-symbols-outlined {
-  font-variation-settings: "FILL"0, "wght"400, "GRAD"0, "opsz"48;
+  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
 }
-
 
 .scale0 {
   animation: register 1s ease-in-out;
@@ -40,14 +39,13 @@ export default {
 @keyframes register {
   from {
     transform: scale(1);
-
   }
 
   50% {
     transform: scale(1.15);
   }
 
-  95%{
+  95% {
     transform: scale(0);
   }
 
@@ -55,5 +53,4 @@ export default {
     transform: scale(0);
   }
 }
-
 </style>

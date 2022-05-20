@@ -206,7 +206,11 @@ export default {
             </li>
 
             <li class="nav-item my-1">
-              <RouterLink class="nav-link" to="/aboutUs" @click="this.cerrarNav()">
+              <RouterLink
+                class="nav-link"
+                to="/aboutUs"
+                @click="this.cerrarNav()"
+              >
                 <div class="d-flex align-items-center link_about_us">
                   <div class="align-self-center d-flex align-content-center">
                     <span class="icono_about material-symbols-outlined"
@@ -288,7 +292,8 @@ a {
 
 .offcanvas-title {
   color: #28844b;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-family: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
 }
 
 @media only screen and (max-width: 400px) {

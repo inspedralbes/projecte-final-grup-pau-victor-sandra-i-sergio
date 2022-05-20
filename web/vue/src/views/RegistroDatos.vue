@@ -249,7 +249,6 @@ export default {
   </main>
 </template>
 
-
 <style scoped>
 /***** Parte 2 registro ******/
 

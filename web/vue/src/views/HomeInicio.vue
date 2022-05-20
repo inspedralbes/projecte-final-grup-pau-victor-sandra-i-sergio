@@ -6,7 +6,7 @@ import { mapStores } from "pinia";
 
 export default {
   data() {
-    return{
+    return {
       disabled: false,
     };
   },
@@ -15,11 +15,11 @@ export default {
       router.push({ name: id });
     },
     hoverAlimentación() {
-      this.disabled = true
+      this.disabled = true;
       setTimeout(() => {
-        this.disabled = false
-      }, 1500)
-    }
+        this.disabled = false;
+      }, 1500);
+    },
   },
 
   computed: {
@@ -37,8 +37,8 @@ export default {
     <div class="row">
       <div
         :class="{ hoverA: this.disabled }"
-        class="col-12 text-center alimentacion " 
-        @mouseover="hoverAlimentación"
+        class="col-12 text-center alimentacion"
+        @mouseover="hoverAlimentación;"
         @click="this.goto('alimentacion')"
       >
         <span @click="this.goto('alimentacion')">
@@ -83,7 +83,6 @@ export default {
 </template>
 
 <style scoped>
-
 .hoverA {
   animation: hoverA 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   transform: translate3d(0, 0, 0);
@@ -111,9 +110,6 @@ export default {
     transform: translate3d(4px, 0, 0);
   }
 }
-
-
-
 
 .landingPage .col-12 span {
   font-size: 6vw;
@@ -297,6 +293,5 @@ export default {
     left: 7.3em;
     max-width: 50%;
   }
-
 }
 </style>
