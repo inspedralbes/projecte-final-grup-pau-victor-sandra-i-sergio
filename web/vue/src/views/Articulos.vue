@@ -968,6 +968,8 @@ export default {
 .articulos {
   min-height: 82.7vh;
   background-image: url("../../../public/img/fondo_saludmental.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 .container {
   max-width: 1000px;
