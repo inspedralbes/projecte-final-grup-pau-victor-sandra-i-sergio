@@ -71,7 +71,10 @@ export default {
       for (var pair of datos.entries()) {
         console.log(pair[0] + ", " + pair[1]);
       }
-      fetch("http://192.168.210.162:9000/usuario/modificar-datos", {
+
+      fetch("http://localhost:9000/usuario/modificar-datos", {
+
+        // fetch("http://192.168.210.162:9000/usuario/modificar-datos", {
         method: "PUT",
         body: datos,
       })
@@ -134,7 +137,8 @@ export default {
       datosDescanso.append("idUsuario", this.id);
       datosDescanso.append("filtro", "Mes");
 
-      fetch("http://192.168.210.162:9000/descanso/respuestas", {
+      fetch("http://localhost:9000/descanso/respuestas", {
+        // fetch("http://192.168.210.162:9000/descanso/respuestas", {
         method: "POST",
         body: datosDescanso,
       })
@@ -174,7 +178,7 @@ export default {
           );
         });
     },
-    cambiarfoto() {},
+    cambiarfoto() { },
   },
 };
 </script>
@@ -184,31 +188,16 @@ export default {
     <div class="row">
       <div class="col-12 col-md-4 d-flex justify-content-center flex-column">
         <h1 class="fontsize text-center">Mi cuenta</h1>
-        <img
-          @click="cambiarfoto()"
-          class="img-perfil text-center"
-          :src="this.img"
-        />
+        <img @click="cambiarfoto()" class="img-perfil text-center" :src="this.img" />
         <input type="file" class="form-control-file" id="imagenUsuario" />
         <div class="form-floating mb-3">
-          <input
-            type="text"
-            class="form-control"
-            id="floatingnombre"
-            :value="this.nombreUsuario"
-            placeholder="nombre"
-          />
+          <input type="text" class="form-control" id="floatingnombre" :value="this.nombreUsuario"
+            placeholder="nombre" />
           <label for="floatingInput">Nombre</label>
         </div>
         <div class="form-floating mb-3">
-          <input
-            type="email"
-            class="form-control"
-            id="floatingemail"
-            :value="this.emailUsuario"
-            placeholder="name@example.com"
-            disabled
-          />
+          <input type="email" class="form-control" id="floatingemail" :value="this.emailUsuario"
+            placeholder="name@example.com" disabled />
           <label for="floatingInput">Email address</label>
         </div>
       </div>
@@ -216,33 +205,17 @@ export default {
         <div class="row">
           <div class="col-12 col-md-6">
             <div class="form-floating mb-3">
-              <input
-                type="number"
-                class="form-control"
-                id="floatingEdad"
-                :value="this.datosUsuario.edad"
-                placeholder="Edad"
-              />
+              <input type="number" class="form-control" id="floatingEdad" :value="this.datosUsuario.edad"
+                placeholder="Edad" />
               <label for="floatingEdad">Edad</label>
             </div>
             <div class="form-floating mb-3">
-              <input
-                type="text"
-                class="form-control"
-                id="floatingSexo"
-                :value="this.datosUsuario.sexo"
-                placeholder="Sexo"
-                disabled
-              />
+              <input type="text" class="form-control" id="floatingSexo" :value="this.datosUsuario.sexo"
+                placeholder="Sexo" disabled />
               <label for="floatingSexo">Sexo</label>
             </div>
             <div class="form-floating mb-3">
-              <select
-                id="ocupacion"
-                class="form-select"
-                aria-label="Default select example"
-                v-model="this.ocupacion"
-              >
+              <select id="ocupacion" class="form-select" aria-label="Default select example" v-model="this.ocupacion">
                 <option value="Trabajo">Trabajo</option>
                 <option value="Estudio">Estudio</option>
                 <option value="Otro">Otro</option>
@@ -252,12 +225,7 @@ export default {
           </div>
           <div class="col-12 col-md-6">
             <div class="form-floating mb-3">
-              <select
-                id="tiempo"
-                class="form-select"
-                aria-label="Default select example"
-                v-model="this.tiempo"
-              >
+              <select id="tiempo" class="form-select" aria-label="Default select example" v-model="this.tiempo">
                 <option value="~ 15 min">~ 15 min</option>
                 <option value="30 min">30 min</option>
                 <option value="45 min">45 min</option>
@@ -266,12 +234,7 @@ export default {
               <label for="floatingEdad">Tiempo</label>
             </div>
             <div class="form-floating mb-3">
-              <select
-                id="nivel"
-                class="form-select"
-                aria-label="Default select example"
-                v-model="this.nivel"
-              >
+              <select id="nivel" class="form-select" aria-label="Default select example" v-model="this.nivel">
                 <option value="Principiante">Principiante</option>
                 <option value="Intermedio">Intermedio</option>
                 <option value="Avanzado">Avanzado</option>
@@ -289,11 +252,7 @@ export default {
     </div>
     <div class="row margin-top">
       <nav class="nav nav-pills nav-fill">
-        <button
-          @click="graficoSaludMental()"
-          class="btn btn-danger"
-          aria-current="page"
-        >
+        <button @click="graficoSaludMental()" class="btn btn-danger" aria-current="page">
           Salud Mental
         </button>
         <button @click="graficoDescanso()" class="btn btn-danger">
@@ -348,9 +307,11 @@ main {
 .margin-top {
   margin-top: 30px;
 }
+
 .color {
   background-color: blue;
 }
+
 .ocultar {
   display: none;
 }

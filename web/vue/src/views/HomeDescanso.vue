@@ -43,8 +43,8 @@ export default {
   },
 
   beforeMount() {
-    fetch("http://192.168.210.162:9000/descanso/tipos-suenos")
-      // fetch("http://localhost:9000/descanso/tipos-suenos")
+    // fetch("http://192.168.210.162:9000/descanso/tipos-suenos")
+      fetch("http://localhost:9000/descanso/tipos-suenos")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -116,14 +116,11 @@ export default {
         );
         guardarDatosDescanso.append("usuario", this.sesionStore.getUsuario._id);
 
-        // fetch("http://localhost:9000/descanso/guardar-datos-cuestionario", {
-        fetch(
-          "http://192.168.210.162:9000/descanso/guardar-datos-cuestionario",
-          {
-            method: "POST",
-            body: guardarDatosDescanso,
-          }
-        )
+        fetch("http://localhost:9000/descanso/guardar-datos-cuestionario", {
+        // fetch("http://192.168.210.162:9000/descanso/guardar-datos-cuestionario", {
+          method: "POST",
+          body: guardarDatosDescanso,
+        })
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
@@ -135,8 +132,8 @@ export default {
       var cuestDescanso = new FormData();
       cuestDescanso.append("descripcionSueno", JSON.stringify(this.selected));
 
-      // fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
-      fetch("http://192.168.210.162:9000/descanso/respuesta-cuestionario", {
+      fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
+        // fetch("http://192.168.210.162:9000/descanso/respuesta-cuestionario", {
         method: "POST",
         body: cuestDescanso,
       })
@@ -157,14 +154,11 @@ export default {
         );
         guardarDatosSinSueno.append("usuario", this.sesionStore.getUsuario._id);
 
-        // fetch("http://localhost:9000/descanso/guardar-datos-cuestionario", {
-        fetch(
-          "http://192.168.210.162:9000/descanso/guardar-datos-cuestionario",
-          {
-            method: "POST",
-            body: guardarDatosSinSueno,
-          }
-        )
+        fetch("http://localhost:9000/descanso/guardar-datos-cuestionario", {
+          // fetch("http://192.168.210.162:9000/descanso/guardar-datos-cuestionario", {
+          method: "POST",
+          body: guardarDatosSinSueno,
+        })
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
@@ -175,8 +169,8 @@ export default {
       var cuestSinSueno = new FormData();
       cuestSinSueno.append("descripcionSueno", JSON.stringify(this.sinsueno));
 
-      // fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
-      fetch("http://192.168.210.162:9000/descanso/respuesta-cuestionario", {
+      fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
+        // fetch("http://192.168.210.162:9000/descanso/respuesta-cuestionario", {
         method: "POST",
         body: cuestSinSueno,
       })
@@ -219,34 +213,19 @@ export default {
             </div>
 
             <div class="row justify-content-center mt-3">
-              <div
-                class="col-6 col-sm-4 col-md-3 col-lg-2 gy-3"
-                v-for="(check, index) in elemento"
-                :key="index"
-                v-bind:value="check"
-              >
+              <div class="col-6 col-sm-4 col-md-3 col-lg-2 gy-3" v-for="(check, index) in elemento" :key="index"
+                v-bind:value="check">
                 <!--  CARTAS MOTIVOS SUEÑO  -->
                 <CardSuenos
                   class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light p-2"
-                  @id="this.guardarseleccionada"
-                  :infoCuest="check"
-                  :contador="this.selected.length"
-                />
+                  @id="this.guardarseleccionada" :infoCuest="check" :contador="this.selected.length" />
               </div>
 
               <div class="col-12 gy-4 text-center">
-                <input
-                  class="btn btn-outline-light form-submit"
-                  type="button"
-                  @click="enviarFormulario(), activar()"
-                  value="Analizar sueño"
-                />
-                <input
-                  class="btn btn-outline-danger form-submit m-left"
-                  type="button"
-                  @click="enviarSinSueno(), activar()"
-                  value="No he soñado nada"
-                />
+                <input class="btn btn-outline-light form-submit" type="button" @click="enviarFormulario(), activar()"
+                  value="Analizar sueño" :disabled="!this.selected.length"/>
+                <input class="btn btn-outline-danger form-submit m-left" type="button"
+                  @click="enviarSinSueno(), activar()" value="No he soñado nada" />
               </div>
             </div>
           </div>
@@ -254,22 +233,11 @@ export default {
 
         <Transition name="bounce2">
           <!--  RESPUESTA CUESTIONARIO SUEÑO  -->
-          <div
-            v-if="this.animacion2"
-            class="container accordion acordion-margin-top"
-          >
+          <div v-if="this.animacion2" class="container accordion acordion-margin-top">
             <div class="row">
-              <div
-                v-for="(sueno, index) in selected"
-                :key="index"
-                v-bind:value="sueno.value"
-                class="col-12"
-              >
+              <div v-for="(sueno, index) in selected" :key="index" v-bind:value="sueno.value" class="col-12">
                 <div class="align-items-center justify-content-center">
-                  <Acordeon
-                    :infoAcordeon="this.resultado[index]"
-                    :index="index"
-                  />
+                  <Acordeon :infoAcordeon="this.resultado[index]" :index="index" />
                 </div>
               </div>
             </div>
@@ -348,8 +316,7 @@ export default {
 }
 
 @keyframes bounce-in {
-  from {
-  }
+  from {}
 
   40% {
     transform: translate(0, 100px);

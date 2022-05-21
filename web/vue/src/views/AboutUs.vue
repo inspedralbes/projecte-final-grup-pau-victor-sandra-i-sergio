@@ -13,7 +13,7 @@ export default {
   computed: {
     ...mapStores(sesionStore),
   },
-  mounted() {},
+  mounted() { },
 };
 </script>
 
@@ -45,24 +45,25 @@ export default {
           <div class="col-12 col-lg-7 mb-4 videoCol">
             <h4 class="mb-4">Conoce un poco más Genki Corpus</h4>
             <div class="video">
-              <iframe
-                width="560"
-                height="315"
-                src="https://www.youtube.com/embed/GhDyS5UO5hQ"
-                title="YouTube video player"
-                frameborder="0"
+              <iframe width="560" height="315" src="https://www.youtube.com/embed/GhDyS5UO5hQ"
+                title="YouTube video player" frameborder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowfullscreen
-              ></iframe>
+                allowfullscreen></iframe>
             </div>
           </div>
 
           <div id="container" class="col-12 col-lg-5 text-center textoCol">
             Mejora tu
             <div id="flip">
-              <div><div class="saludMental">Salud Mental</div></div>
-              <div><div class="alimentacion">Alimentación</div></div>
-              <div><div class="ejercicio">Condición física</div></div>
+              <div>
+                <div class="saludMental">Salud Mental</div>
+              </div>
+              <div>
+                <div class="alimentacion">Alimentación</div>
+              </div>
+              <div>
+                <div class="ejercicio">Condición física</div>
+              </div>
             </div>
           </div>
         </div>
@@ -85,24 +86,12 @@ export default {
             <div class="encuentranos mt-5">
               <h5>Donde encontrarnos</h5>
               <div class="linkedin mt-4">
-                <a
-                  class="lin pe-4"
-                  href="https://www.linkedin.com/in/paumunozolivares?original_referer="
-                  target="_blank"
-                  ><i class="bi bi-linkedin"></i> Pau Muñoz Olivares</a
-                >
-                <a
-                  class="lin pe-4"
-                  href="https://www.linkedin.com/in/victor-moreno-moron"
-                  target="_blank"
-                  ><i class="bi bi-linkedin"></i> Víctor Moreno Moron</a
-                >
-                <a
-                  class="lin pe-4"
-                  href="https://www.linkedin.com/in/sandraortizvega"
-                  target="_blank"
-                  ><i class="bi bi-linkedin"></i> Sandra Ortiz Vega</a
-                >
+                <a class="lin pe-4" href="https://www.linkedin.com/in/paumunozolivares?original_referer="
+                  target="_blank"><i class="bi bi-linkedin"></i> Pau Muñoz Olivares</a>
+                <a class="lin pe-4" href="https://www.linkedin.com/in/victor-moreno-moron" target="_blank"><i
+                    class="bi bi-linkedin"></i> Víctor Moreno Moron</a>
+                <a class="lin pe-4" href="https://www.linkedin.com/in/sandraortizvega" target="_blank"><i
+                    class="bi bi-linkedin"></i> Sandra Ortiz Vega</a>
               </div>
             </div>
           </div>
@@ -116,9 +105,12 @@ export default {
 </template>
 
 <style scoped>
+@import url("https://fonts.googleapis.com/css?family=Roboto:700");
+
 .logo {
   width: 300px;
 }
+
 iframe {
   margin: auto;
 }
@@ -170,7 +162,6 @@ a {
   color: #a8cf45;
 }
 
-@import url("https://fonts.googleapis.com/css?family=Roboto:700");
 
 body {
   margin: 0px;
@@ -192,7 +183,7 @@ body {
   overflow: hidden;
 }
 
-#flip > div > div {
+#flip>div>div {
   color: #fff;
   padding: 5px 15px;
   margin-bottom: 55px;
@@ -206,9 +197,11 @@ body {
 #flip div .alimentacion {
   background: #7ed957;
 }
+
 #flip div .saludMental {
   background: #5cb8e6;
 }
+
 #flip div .ejercicio {
   background: #ff914d;
 }
@@ -217,27 +210,35 @@ body {
   0% {
     margin-top: -270px;
   }
+
   10% {
     margin-top: -220px;
   }
+
   25% {
     margin-top: -220px;
   }
+
   40% {
     margin-top: -110px;
   }
+
   55% {
     margin-top: -110px;
   }
+
   70% {
     margin-top: -4px;
   }
+
   90% {
     margin-top: -4px;
   }
+
   99% {
     margin-top: 33px;
   }
+
   100% {
     margin-top: 33px;
   }
