@@ -153,13 +153,10 @@ h5 {
   margin: auto;
 }
 
-a {
-  text-decoration: none;
-  color: #28844b;
-}
+
 
 .lin {
-  color: #a8cf45;
+  text-decoration: none;
 }
 
 

@@ -29,26 +29,16 @@ export default {
 </script>
 
 <template>
-  <div
-    style="max-width: 12rem"
-    class="card p-2"
-    @click="enviarID(infoCuest.tipo), seleccionado()"
-    :id="infoCuest.tipo"
+  <div style="max-width: 9em" class="card p-2" @click="enviarID(infoCuest.tipo), seleccionado()" :id="infoCuest.tipo"
     v-bind:class="
       ([this.selected ? 'appear' : 'disappear'],
-      [this.selected ? 'seleccionado' : ''])
-    "
-  >
+        [this.selected ? 'seleccionado border-grey' : ''])
+    ">
     <div class="checked">
       <span class="material-symbols-outlined"> done </span>
     </div>
     <div class="d-flex justify-content-center pt-2">
-      <img
-        :src="infoCuest.img"
-        class="card-img-top img-pequena"
-        alt="emoticono"
-        :id="infoCuest.tipo"
-      />
+      <img :src="infoCuest.img" class="card-img-top img-pequena" alt="emoticono" :id="infoCuest.tipo" />
     </div>
     <div class="card-body mt-3 mb-1 text-center" :id="infoCuest.tipo">
       <h5 class="card-title" :id="infoCuest.tipo">{{ infoCuest.tipo }}</h5>
@@ -60,22 +50,20 @@ export default {
 .card {
   border-radius: 8px;
   box-shadow: 25px 38px 53px 0px rgba(0, 0, 0, 0.16);
-  transition: all 0.2s ease-in-out;
+  transition: all 0.5s ease-in-out;
   position: relative;
   border: 2px solid white;
   z-index: 2;
   color: black;
 }
 
-.card:hover {
-  box-shadow: 5px 10px 60px -12px rgba(0, 0, 0, 0.67);
-  background-color: #bdc2c7;
+.border-grey {
   border: 2px solid #535355;
-  border-radius: 0px 8px 8px 8px;
+  transition: all 0.5s ease-in-out;
 }
 
 .card-body {
-  padding: 0.2rem;
+  padding: 0rem;
 }
 
 .card-img-top {
@@ -85,7 +73,7 @@ export default {
 
 @media only screen and (max-width: 500px) {
   .card-title {
-    font-size: 1rem;
+    font-size: 0.8rem;
   }
 }
 
@@ -99,6 +87,12 @@ export default {
   z-index: 1;
 }
 
+.card:hover {
+  background-color: #bdc2c7;
+    border: 2px solid #535355;
+
+}
+
 .checked::before {
   position: absolute;
   content: "";
@@ -106,11 +100,12 @@ export default {
   height: 0;
   top: -2px;
   left: -2px;
-  border-right: 40px solid transparent;
-  border-bottom: 40px solid transparent;
-  border-left: 40px solid rgb(83, 83, 83);
+  border-right: 50px solid transparent;
+  border-bottom: 50px solid transparent;
+  border-left: 50px solid rgb(83, 83, 83);
   z-index: -1;
 }
+
 
 .card:hover .checked,
 .card:hover .checked::before {
@@ -143,6 +138,14 @@ export default {
   z-index: 1;
   opacity: 1;
 }
+
+.checked span{
+  font-size: 1.5em;
+  position: relative;
+  top: 3px;
+  left: 2px
+}
+
 .img-pequena {
   width: 60px;
 }

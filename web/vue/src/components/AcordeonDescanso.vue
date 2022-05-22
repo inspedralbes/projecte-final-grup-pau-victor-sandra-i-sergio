@@ -26,8 +26,8 @@ export default {
         aria-expanded="true"
         :aria-controls="'panelsStayOpen-collapse' + index"
       >
-        <img class="img-little" :src="this.infoAcordeon.img" />Has soñado
-        con<span>{{ this.infoAcordeon.tipo }}</span>
+        <img class="img-little" :src="this.infoAcordeon.img" />
+        <span>Has soñado con<span class="bold">{{ this.infoAcordeon.tipo }}</span></span>
       </button>
     </h2>
     <div
@@ -42,7 +42,7 @@ export default {
           Para descubrir el significado de tu sueño visita la siguiente página
         </p>
         <a :href="this.infoAcordeon.respuesta" class="link" target="_blank"
-          >Click para saber más</a
+          >Clícame para saber más</a
         >
       </div>
     </div>
@@ -56,7 +56,7 @@ export default {
 
 .img-little {
   width: 40px;
-  margin-right: 15px;
+  margin-right: .5em;
 }
 
 @media only screen and (min-width: 500px) {
@@ -72,7 +72,7 @@ export default {
   box-shadow: 0 1rem 3rem rgba(214, 208, 208, 0.384) !important;
 }
 
-span {
+span .bold{
   font-weight: 550;
   margin-left: 5px;
 }

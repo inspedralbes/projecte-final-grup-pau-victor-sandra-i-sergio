@@ -44,7 +44,7 @@ export default {
 
   beforeMount() {
     // fetch("http://192.168.210.162:9000/descanso/tipos-suenos")
-      fetch("http://localhost:9000/descanso/tipos-suenos")
+    fetch("http://localhost:9000/descanso/tipos-suenos")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -117,7 +117,7 @@ export default {
         guardarDatosDescanso.append("usuario", this.sesionStore.getUsuario._id);
 
         fetch("http://localhost:9000/descanso/guardar-datos-cuestionario", {
-        // fetch("http://192.168.210.162:9000/descanso/guardar-datos-cuestionario", {
+          // fetch("http://192.168.210.162:9000/descanso/guardar-datos-cuestionario", {
           method: "POST",
           body: guardarDatosDescanso,
         })
@@ -208,22 +208,21 @@ export default {
                 </h2>
               </div>
               <div class="col-12 text-center subtitulo">
-                <h4>Selecciona las opciones que más se asemejen a tu sueño</h4>
+                <h4 class="text-sec">Selecciona las opciones que más se asemejen a tu sueño</h4>
               </div>
             </div>
 
             <div class="row justify-content-center mt-3">
-              <div class="col-6 col-sm-4 col-md-3 col-lg-2 gy-3" v-for="(check, index) in elemento" :key="index"
-                v-bind:value="check">
+              <div class="col-4 col-sm-4 col-md-3 col-lg-2 gy-3 descansoCards" v-for="(check, index) in elemento"
+                :key="index" v-bind:value="check">
                 <!--  CARTAS MOTIVOS SUEÑO  -->
-                <CardSuenos
-                  class="d-flex align-items-center justify-content-center flex-direction-row btn btn-outline-light p-2"
+                <CardSuenos class="d-flex align-items-center justify-content-center flex-direction-row p-2"
                   @id="this.guardarseleccionada" :infoCuest="check" :contador="this.selected.length" />
               </div>
 
               <div class="col-12 gy-4 text-center">
                 <input class="btn btn-outline-light form-submit" type="button" @click="enviarFormulario(), activar()"
-                  value="Analizar sueño" :disabled="!this.selected.length"/>
+                  value="Analizar sueño" :disabled="!this.selected.length" />
                 <input class="btn btn-outline-danger form-submit m-left" type="button"
                   @click="enviarSinSueno(), activar()" value="No he soñado nada" />
               </div>
@@ -273,7 +272,7 @@ export default {
 
 .cuestionario_sueño {
   color: rgb(255, 255, 255);
-  padding: 80px 30px 30px 30px;
+  padding: 70px 30px 30px 30px;
 }
 
 .titulo_cuestionario {
@@ -294,15 +293,14 @@ export default {
 }
 
 .card {
-  max-width: 15%;
-  min-width: 150px;
+
   margin: 1%;
 }
 
 /****  RESPUESTA ACORDEON  ****/
 
 .acordion-margin-top {
-  padding-top: 10%;
+  padding-top: 5%;
 }
 
 /*******  ANIMACIONES  *******/
@@ -349,5 +347,27 @@ export default {
 
 .m-left {
   margin-left: 5px;
+}
+
+
+@media only screen and (max-width: 500px) {
+
+  .cuestionario_sueño {
+    color: rgb(255, 255, 255);
+    padding: 50px 20px 30px 20px;
+  }
+
+  .descansoCards {
+    padding: 0.25em;
+    margin-top: 0.2em
+  }
+
+  .form-submit {
+    margin-top: 0.5em
+  }
+
+  .text-sec {
+    font-size: 1.1em
+  }
 }
 </style>

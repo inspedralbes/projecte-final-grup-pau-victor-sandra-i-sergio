@@ -53,4 +53,14 @@ export default {
     transform: scale(0);
   }
 }
+
+a {
+  color: #a8cf45;
+  transition: all 0.2s ease-in-out;
+}
+
+a:hover, a:active, a:focus{
+  color: #28844b;
+}
+
 </style>
