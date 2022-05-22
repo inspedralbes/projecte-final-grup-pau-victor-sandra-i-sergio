@@ -189,7 +189,7 @@ Usuario.route('/modificar-datos').put((req, res) => {
 
 
 function comprovacionDatosPrincipales(nA = "", e, p, tipo = "") {
-    let errores = [],
+    let errores = [], 
         cont = 0;
 
     if (tipo == "register") {

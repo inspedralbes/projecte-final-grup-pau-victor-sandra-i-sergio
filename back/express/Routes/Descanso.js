@@ -9,7 +9,7 @@ const filtrosCuestionarios = require("../commonFunctions/filtrosCuestionarios.js
 
 // Todas las respuestas al cuestionario
 Descanso.route("/").get((req, res) => {
-    CuestionarioDescanso.find(function(err, resultado) {
+    CuestionarioDescanso.find(function (err, resultado) {
         if (err) {
             console.log(err);
         } else {
@@ -20,19 +20,23 @@ Descanso.route("/").get((req, res) => {
 
 // Todos los tipos de sueño
 Descanso.route("/tipos-suenos").get((req, res) => {
-    TipoSueno.find(function(err, resultado) {
+    TipoSueno.find(function (err, resultado) {
         if (err) {
             console.log(err);
         } else {
             let r = new Array();
             resultado.forEach((e) => {
-                r.push(e)
+                if (e.tipo != "No he soñado nada") {
+                    r.push(e)
+                }
             })
 
             res.json({ "tipoSueno": r });
         }
     });
 });
+
+
 
 
 // Añadir tipo de sueño
@@ -72,9 +76,10 @@ Descanso.route('/guardar-datos-cuestionario').post((req, res) => {
 
 Descanso.route('/respuesta-cuestionario').post((req, res) => {
     const datos = req.body;
+    console.log(datos)
     datos.descripcionSueno = JSON.parse(datos.descripcionSueno);
 
-    TipoSueno.find({}, function(err, resultado) {
+    TipoSueno.find({}, function (err, resultado) {
         if (err) {
             console.log(err);
         } else {
@@ -101,7 +106,7 @@ Descanso.route('/respuesta-cuestionario').post((req, res) => {
 
 
 // POST - OBTENER TODAS RESPUESTAS AL CUESTIONARIO de un usuario
-Descanso.route('/respuestas').post(function(req, res) {
+Descanso.route('/respuestas').post(function (req, res) {
     let datos = req.body;
     let dias;
 
