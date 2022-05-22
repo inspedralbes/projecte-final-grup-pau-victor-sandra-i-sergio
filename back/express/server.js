@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 
 // Puerto por el que abre esta aplicacion
-const port = 9000;
+const port = 7101;
 
 // Para produccion
 // const port = 7101;
