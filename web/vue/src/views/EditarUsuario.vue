@@ -260,12 +260,7 @@ export default {
         </button>
       </nav>
       <div :class="[this.grafico ? 'ocultar' : '']">
-        <h3>Aqui va salud Mental</h3>
         <canvas id="myChart" width="300" height="300"></canvas>
-      </div>
-      <div :class="[!this.grafico ? 'ocultar' : '']">
-        <h3>Aqui va descanso</h3>
-        <canvas id="myChart2" width="300" height="300"></canvas>
       </div>
     </div>
   </main>
