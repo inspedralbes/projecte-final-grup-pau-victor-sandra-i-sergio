@@ -29,7 +29,7 @@ export default {
       sueno: null,
       animacion1: false,
       animacion2: false,
-      sinsueno: "No he soñado nada",
+      sinsueno: ["No he soñado nada"],
       accordionClass: [
         {
           valor1: "panelsStayOpen-collapseOne",
@@ -145,6 +145,7 @@ export default {
     },
 
     enviarSinSueno() {
+      this.selected=1;
       // Si está registrado, guardar la respuesta en la BD
       if (Object.keys(this.sesionStore.getUsuario).length) {
         var guardarDatosSinSueno = new FormData();
@@ -168,7 +169,9 @@ export default {
       // Devolver la respuesta a lo respondido en el cuestionario
       var cuestSinSueno = new FormData();
       cuestSinSueno.append("descripcionSueno", JSON.stringify(this.sinsueno));
-
+      for (var pair of cuestSinSueno.entries()) {
+        console.log(pair[0] + ", " + pair[1]);
+      }
       fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
         // fetch("http://192.168.210.162:9000/descanso/respuesta-cuestionario", {
         method: "POST",
@@ -178,6 +181,7 @@ export default {
         .then((data) => {
           console.log(data);
           this.resultado = data.resultado;
+          console.log(this.resultado);
         });
     },
 
