@@ -55,12 +55,13 @@ export default {
 }
 
 a {
-  color: #a8cf45;
+  color: #a8cf45 !important;
   transition: all 0.2s ease-in-out;
+  cursor:default
 }
 
-a:hover, a:active, a:focus{
-  color: #28844b;
+a:hover, a:active, a:focus, a:active{
+  color: #28844b !important;
 }
 
 </style>
