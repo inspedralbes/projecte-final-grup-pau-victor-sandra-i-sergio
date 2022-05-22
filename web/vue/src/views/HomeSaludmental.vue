@@ -59,8 +59,7 @@ export default {
   },
 
   beforeMount() {
-    // fetch("http://192.168.210.162:9000/salud-mental/estado-emocional")
-    fetch("http://localhost:9000/salud-mental/estado-emocional")
+    fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/salud-mental/estado-emocional")
       .then((response) => response.json())
       .then((data) => {
         this.estado = data.estadoEmocional;
@@ -99,8 +98,7 @@ export default {
         });
 
         console.log(cuestSalud);
-        // fetch("http://192.168.210.162:9000/salud-mental/guardar-datoscuestionario", {
-        fetch("http://localhost:9000/salud-mental/guardar-datos-cuestionario", {
+        fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/salud-mental/guardar-datos-cuestionario", {
           method: "POST",
           body: cuestSalud,
         })
@@ -118,8 +116,7 @@ export default {
       console.log('CUEEEEST');
       console.log(noRegCuestSalud);
 
-      fetch("http://localhost:9000/salud-mental/respuesta-cuestionario", {
-        // fetch("http://192.168.210.162:9000/salud-mental/respuesta-cuestionario", {
+      fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/salud-mental/respuesta-cuestionario", {
         method: "POST",
         body: noRegCuestSalud,
       })
@@ -303,7 +300,7 @@ export default {
 <style scoped>
 section {
   min-height: 82.7vh;
-  background-image: url("../../../public/img/fondo_saludmental.png");
+  background-image: url("http://genkicorpusback.alumnes.inspedralbes.cat/img/fondo_saludmental.png");
 }
 
 #card-horizontal {

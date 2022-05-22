@@ -72,9 +72,7 @@ export default {
         console.log(pair[0] + ", " + pair[1]);
       }
 
-      fetch("http://localhost:9000/usuario/modificar-datos", {
-
-        // fetch("http://192.168.210.162:9000/usuario/modificar-datos", {
+      fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/usuario/modificar-datos", {
         method: "PUT",
         body: datos,
       })
@@ -92,7 +90,7 @@ export default {
       datos.append("idUsuario", this.id);
       datos.append("filtro", "Mes");
 
-      fetch("http://192.168.210.162:9000/salud-mental/respuestas", {
+      fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/salud-mental/respuestas", {
         method: "POST",
         body: datos,
       })
@@ -137,8 +135,7 @@ export default {
       datosDescanso.append("idUsuario", this.id);
       datosDescanso.append("filtro", "Mes");
 
-      fetch("http://localhost:9000/descanso/respuestas", {
-        // fetch("http://192.168.210.162:9000/descanso/respuestas", {
+      fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/respuestas", {
         method: "POST",
         body: datosDescanso,
       })

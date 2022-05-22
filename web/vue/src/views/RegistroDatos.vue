@@ -59,8 +59,7 @@ export default {
           })
         );
 
-        // fetch("http://192.168.210.162:9000/usuario/register-pt2", {
-          fetch('http://localhost:9000/usuario/register-pt2', {
+        fetch('http://genkicorpusback.alumnes.inspedralbes.cat:7101/usuario/register-pt2', {
           method: "PUT",
           body: datos,
         })
@@ -229,7 +228,7 @@ main {
 }
 
 .REGISTRO2 {
-  background-image: url(../../public/img/login.png);
+  background-image: url("http://genkicorpusback.alumnes.inspedralbes.cat/img/login.png");
   border-radius: 10px;
 }
 

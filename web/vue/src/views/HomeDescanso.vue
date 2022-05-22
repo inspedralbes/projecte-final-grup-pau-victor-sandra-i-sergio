@@ -43,8 +43,7 @@ export default {
   },
 
   beforeMount() {
-    // fetch("http://192.168.210.162:9000/descanso/tipos-suenos")
-    fetch("http://localhost:9000/descanso/tipos-suenos")
+    fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/tipos-suenos")
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -116,8 +115,7 @@ export default {
         );
         guardarDatosDescanso.append("usuario", this.sesionStore.getUsuario._id);
 
-        fetch("http://localhost:9000/descanso/guardar-datos-cuestionario", {
-          // fetch("http://192.168.210.162:9000/descanso/guardar-datos-cuestionario", {
+        fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/guardar-datos-cuestionario", {
           method: "POST",
           body: guardarDatosDescanso,
         })
@@ -132,8 +130,7 @@ export default {
       var cuestDescanso = new FormData();
       cuestDescanso.append("descripcionSueno", JSON.stringify(this.selected));
 
-      fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
-        // fetch("http://192.168.210.162:9000/descanso/respuesta-cuestionario", {
+      fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/respuesta-cuestionario", {
         method: "POST",
         body: cuestDescanso,
       })
@@ -145,7 +142,7 @@ export default {
     },
 
     enviarSinSueno() {
-      this.selected=1;
+      this.selected = 1;
       // Si está registrado, guardar la respuesta en la BD
       if (Object.keys(this.sesionStore.getUsuario).length) {
         var guardarDatosSinSueno = new FormData();
@@ -155,8 +152,7 @@ export default {
         );
         guardarDatosSinSueno.append("usuario", this.sesionStore.getUsuario._id);
 
-        fetch("http://localhost:9000/descanso/guardar-datos-cuestionario", {
-          // fetch("http://192.168.210.162:9000/descanso/guardar-datos-cuestionario", {
+        fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/guardar-datos-cuestionario", {
           method: "POST",
           body: guardarDatosSinSueno,
         })
@@ -172,8 +168,7 @@ export default {
       for (var pair of cuestSinSueno.entries()) {
         console.log(pair[0] + ", " + pair[1]);
       }
-      fetch("http://localhost:9000/descanso/respuesta-cuestionario", {
-        // fetch("http://192.168.210.162:9000/descanso/respuesta-cuestionario", {
+      fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/respuesta-cuestionario", {
         method: "POST",
         body: cuestSinSueno,
       })
@@ -263,7 +258,7 @@ export default {
 .submain {
   width: 100%;
   min-height: 100vh;
-  background-image: url("../../../public/img/stars-back.png");
+  background-image: url("http://genkicorpusback.alumnes.inspedralbes.cat/img/stars-back.png");
   background-size: 800px;
   background-repeat: repeat;
 }
