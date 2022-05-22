@@ -31,7 +31,7 @@ export default {
     >
       <img
         class="imgg"
-        src="../../public/img/cooking.png"
+        src="http://genkicorpusback.alumnes.inspedralbes.cat/img/cooking.png"
         alt="ilustración de personas cocinando"
       />
       <h2>Cooming soon ...</h2>

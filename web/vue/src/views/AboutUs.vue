@@ -26,7 +26,7 @@ export default {
       <div class="container m-4">
         <div class="row justify-content-center align-items-center">
           <div class="col-12 col-lg-4">
-            <img class="logo" src="../../img/GenkiCorpusLogo.png" alt="" />
+            <img class="logo" src="http://genkicorpusback.alumnes.inspedralbes.cat/img/GenkiCorpusLogo.png" alt="" />
           </div>
           <div class="col-12 col-lg-8">
             <h4>Nuestra razón de ser</h4>
@@ -96,7 +96,7 @@ export default {
             </div>
           </div>
           <div class="col-5 equipo">
-            <img class="equipo_foto" src="../../img/equipo.png" alt="" />
+            <img class="equipo_foto" src="http://genkicorpusback.alumnes.inspedralbes.cat/public/img/equipo.png" alt="" />
           </div>
         </div>
       </div>

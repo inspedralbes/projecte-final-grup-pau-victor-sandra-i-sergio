@@ -32,7 +32,7 @@ export default {
     >
       <img
         class="imgg"
-        src="../../public/img/working_out.png"
+        src="http://genkicorpusback.alumnes.inspedralbes.cat/img/working_out.png"
         alt="ilustración de personas cocinando"
       />
       <h2>Cooming soon ...</h2>

@@ -967,7 +967,7 @@ export default {
 <style scoped>
 .articulos {
   min-height: 82.7vh;
-  background-image: url("../../../public/img/fondo_saludmental.png");
+  background-image: url("http://genkicorpusback.alumnes.inspedralbes.cat/img/fondo_saludmental.png");
   background-repeat: no-repeat;
   background-size: cover;
 }

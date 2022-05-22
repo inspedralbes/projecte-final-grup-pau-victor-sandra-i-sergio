@@ -46,7 +46,7 @@ export default {
           <img
             class="img-home"
             @click="this.goto('alimentacion')"
-            src="../../public/img/alimentacion.png"
+            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/alimentacion.png"
             alt=""
           />
         </span>
@@ -57,7 +57,7 @@ export default {
           <img
             class="img-home"
             @click="this.goto('ejercicio')"
-            src="../../public/img/ejercicio.png"
+            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png"
             alt=""
           />
           Ejercicio
@@ -73,7 +73,7 @@ export default {
           <img
             class="img-home"
             @click="this.goto('saludmental')"
-            src="../../public/img/dormir.png"
+            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/dormir.png"
             alt=""
           />
         </span>

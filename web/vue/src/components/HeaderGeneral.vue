@@ -53,7 +53,7 @@ export default {
     <div class="container-fluid">
       <RouterLink to="/">
         <img
-          src="../../public/img/GenkiCorpusLogo.png"
+          src="http://genkicorpusback.alumnes.inspedralbes.cat/img/GenkiCorpusLogo.png"
           alt=""
           width="80"
           height="80"
