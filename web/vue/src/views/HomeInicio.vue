@@ -73,8 +73,8 @@ export default {
             <img
               class="img-home"
               @click="this.goto('saludmental')"
-              src="../assets/dormir.png"
-              alt="chico durmiendo en una cama"
+              src="../assets/saludMental2.png"
+              alt="chica meditando"
             />
           </div>
         </div>
@@ -94,7 +94,7 @@ export default {
             <img src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png" alt="chica haciendo ejercicio">
           </div>
           <div class="col-3 salud_div_lg shadow-lg ml-3">SALUD MENTAL Y DESCANSO
-            <img src="../assets/dormir.png" alt="chico durmiendo en una cama">
+            <img src="../assets/saludMental2.png" alt="chica meditando">
           </div>
       </div>
     </div>
@@ -145,9 +145,9 @@ export default {
 
 .salud_div_lg img {
   position: relative;
-  left: -1.5em;
-  top: 6em;
-  max-width: 120%;
+  left: -3.2em;
+  top: 15em;
+  max-width: 145%;
 }
 
 
@@ -230,9 +230,9 @@ export default {
 
 .saludmental_div_sm img {
   position: absolute;
-  top: 2.6em;
-  left: 5.5em;
-  max-width: 70%;
+  top: 0.2em;
+  left: 6.2em;
+  max-width: 85%;
   width: auto;
 }
 
@@ -273,11 +273,10 @@ export default {
     max-width: 50%;
   }
 
-  .saludmental_div_sm
- img {
-    top: 1.5em;
+  .saludmental_div_sm img {
+    top: -0.6em;
     left: 6.05em;
-    max-width: 90%;
+    max-width: 85%;
   }
 
   .saludmental_div_sm
@@ -319,10 +318,9 @@ export default {
     max-width: 50%;
   }
 
-  .saludmental_div_sm
- img {
-    top: 1.5em;
-    left: 6.05em;
+  .saludmental_div_sm img {
+    top: -0.5em;
+    left: 6em;
     max-width: 80%;
   }
 
@@ -365,11 +363,10 @@ export default {
     max-width: 40%;
   }
 
-  .saludmental_div_sm
- img {
-    top: 1.5em;
-    left: 6.05em;
-    max-width: 70%;
+  .saludmental_div_sm img {
+    top: -0.2em;
+    left: 6em;
+    max-width: 75%;
   }
 
   .saludmental_div_sm
