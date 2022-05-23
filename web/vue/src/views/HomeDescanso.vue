@@ -258,6 +258,7 @@ export default {
                   :disabled="!this.selected.length"
                 />
                 <input
+                  :disabled="this.selected.length > 0"
                   class="btn btn-outline-danger form-submit m-left"
                   type="button"
                   @click="enviarSinSueno(), activar()"
@@ -297,7 +298,6 @@ export default {
 </template>
 
 <style scoped>
-
 /****  FONDO DE PANTALLA  ***/
 
 .fondo {
