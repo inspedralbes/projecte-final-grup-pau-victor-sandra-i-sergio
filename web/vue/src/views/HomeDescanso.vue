@@ -43,7 +43,9 @@ export default {
   },
 
   beforeMount() {
-    fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/tipos-suenos")
+    fetch(
+      "http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/tipos-suenos"
+    )
       .then((response) => response.json())
       .then((data) => {
         console.log(data);
@@ -115,10 +117,13 @@ export default {
         );
         guardarDatosDescanso.append("usuario", this.sesionStore.getUsuario._id);
 
-        fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/guardar-datos-cuestionario", {
-          method: "POST",
-          body: guardarDatosDescanso,
-        })
+        fetch(
+          "http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/guardar-datos-cuestionario",
+          {
+            method: "POST",
+            body: guardarDatosDescanso,
+          }
+        )
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
@@ -130,10 +135,13 @@ export default {
       var cuestDescanso = new FormData();
       cuestDescanso.append("descripcionSueno", JSON.stringify(this.selected));
 
-      fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/respuesta-cuestionario", {
-        method: "POST",
-        body: cuestDescanso,
-      })
+      fetch(
+        "http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/respuesta-cuestionario",
+        {
+          method: "POST",
+          body: cuestDescanso,
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
@@ -152,10 +160,13 @@ export default {
         );
         guardarDatosSinSueno.append("usuario", this.sesionStore.getUsuario._id);
 
-        fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/guardar-datos-cuestionario", {
-          method: "POST",
-          body: guardarDatosSinSueno,
-        })
+        fetch(
+          "http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/guardar-datos-cuestionario",
+          {
+            method: "POST",
+            body: guardarDatosSinSueno,
+          }
+        )
           .then((response) => response.json())
           .then((data) => {
             console.log(data);
@@ -168,10 +179,13 @@ export default {
       for (var pair of cuestSinSueno.entries()) {
         console.log(pair[0] + ", " + pair[1]);
       }
-      fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/respuesta-cuestionario", {
-        method: "POST",
-        body: cuestSinSueno,
-      })
+      fetch(
+        "http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/respuesta-cuestionario",
+        {
+          method: "POST",
+          body: cuestSinSueno,
+        }
+      )
         .then((response) => response.json())
         .then((data) => {
           console.log(data);
@@ -207,23 +221,49 @@ export default {
                 </h2>
               </div>
               <div class="col-12 text-center subtitulo">
-                <h4 class="text-sec">Selecciona las opciones que más se asemejen a tu sueño</h4>
+                <h4 class="text-sec">
+                  Selecciona las opciones que más se asemejen a tu sueño
+                </h4>
               </div>
             </div>
 
             <div class="row justify-content-center mt-3">
-              <div class="col-4 col-sm-4 col-md-3 col-lg-2 gy-3 descansoCards" v-for="(check, index) in elemento"
-                :key="index" v-bind:value="check">
+              <div
+                class="col-4 col-sm-4 col-md-3 col-lg-2 gy-3 descansoCards"
+                v-for="(check, index) in elemento"
+                :key="index"
+                v-bind:value="check"
+              >
                 <!--  CARTAS MOTIVOS SUEÑO  -->
-                <CardSuenos class="d-flex align-items-center justify-content-center flex-direction-row p-2"
-                  @id="this.guardarseleccionada" :infoCuest="check" :contador="this.selected.length" />
+                <CardSuenos
+                  class="
+                    d-flex
+                    align-items-center
+                    justify-content-center
+                    flex-direction-row
+                    p-2
+                  "
+                  @id="this.guardarseleccionada"
+                  :infoCuest="check"
+                  :contador="this.selected.length"
+                />
               </div>
 
               <div class="col-12 gy-4 text-center">
-                <input class="btn btn-outline-light form-submit" type="button" @click="enviarFormulario(), activar()"
-                  value="Analizar sueño" :disabled="!this.selected.length" />
-                <input class="btn btn-outline-danger form-submit m-left" type="button"
-                  @click="enviarSinSueno(), activar()" value="No he soñado nada" />
+                <input
+                  class="btn btn-outline-light form-submit"
+                  type="button"
+                  @click="enviarFormulario(), activar()"
+                  value="Analizar sueño"
+                  :disabled="!this.selected.length"
+                />
+                <input
+                  :disabled="this.selected.length > 0"
+                  class="btn btn-outline-danger form-submit m-left"
+                  type="button"
+                  @click="enviarSinSueno(), activar()"
+                  value="No he soñado nada"
+                />
               </div>
             </div>
           </div>
@@ -231,11 +271,22 @@ export default {
 
         <Transition name="bounce2">
           <!--  RESPUESTA CUESTIONARIO SUEÑO  -->
-          <div v-if="this.animacion2" class="container accordion acordion-margin-top">
+          <div
+            v-if="this.animacion2"
+            class="container accordion acordion-margin-top"
+          >
             <div class="row">
-              <div v-for="(sueno, index) in selected" :key="index" v-bind:value="sueno.value" class="col-12">
+              <div
+                v-for="(sueno, index) in selected"
+                :key="index"
+                v-bind:value="sueno.value"
+                class="col-12"
+              >
                 <div class="align-items-center justify-content-center">
-                  <Acordeon :infoAcordeon="this.resultado[index]" :index="index" />
+                  <Acordeon
+                    :infoAcordeon="this.resultado[index]"
+                    :index="index"
+                  />
                 </div>
               </div>
             </div>
@@ -292,7 +343,6 @@ export default {
 }
 
 .card {
-
   margin: 1%;
 }
 
@@ -313,7 +363,8 @@ export default {
 }
 
 @keyframes bounce-in {
-  from {}
+  from {
+  }
 
   40% {
     transform: translate(0, 100px);
@@ -348,9 +399,7 @@ export default {
   margin-left: 5px;
 }
 
-
 @media only screen and (max-width: 500px) {
-
   .cuestionario_sueño {
     color: rgb(255, 255, 255);
     padding: 50px 20px 30px 20px;
@@ -358,15 +407,15 @@ export default {
 
   .descansoCards {
     padding: 0.25em;
-    margin-top: 0.2em
+    margin-top: 0.2em;
   }
 
   .form-submit {
-    margin-top: 0.5em
+    margin-top: 0.5em;
   }
 
   .text-sec {
-    font-size: 1.1em
+    font-size: 1.1em;
   }
 }
 </style>
