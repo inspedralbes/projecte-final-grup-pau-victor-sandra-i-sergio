@@ -41,7 +41,7 @@ export default {
         @mouseover="hoverAlimentación;"
         @click="this.goto('alimentacion')"
       >
-        <span @click="this.goto('alimentacion')">
+        <span @click="this.goto('alimentacion')" class="shadow">
           Alimentación
           <img
             class="img-home"
@@ -53,7 +53,7 @@ export default {
       </div>
 
       <div class="col-12 text-center ejercicio" @click="this.goto('ejercicio')">
-        <span @click="this.goto('ejercicio')">
+        <span @click="this.goto('ejercicio')" class="shadow">
           <img
             class="img-home"
             @click="this.goto('ejercicio')"
@@ -65,10 +65,10 @@ export default {
       </div>
 
       <div
-        class="col-12 text-center saludmental"
+        class="col-12 text-left saludmental"
         @click="this.goto('saludmental')"
       >
-        <span @click="this.goto('saludmental')">
+        <div @click="this.goto('saludmental')" class="shadow">
           Salud mental y descanso
           <img
             class="img-home"
@@ -76,40 +76,13 @@ export default {
             src="http://genkicorpusback.alumnes.inspedralbes.cat/img/dormir.png"
             alt=""
           />
-        </span>
+        </div>
       </div>
     </div>
   </main>
 </template>
 
 <style scoped>
-.hoverA {
-  animation: hoverA 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
-  transform: translate3d(0, 0, 0);
-}
-
-@keyframes hoverA {
-  10%,
-  90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-
-  20%,
-  80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%,
-  50%,
-  70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%,
-  60% {
-    transform: translate3d(4px, 0, 0);
-  }
-}
 
 .landingPage .col-12 span {
   font-size: 6vw;
@@ -130,7 +103,7 @@ export default {
 .alimentacion span {
   border-radius: 10px;
   background-color: #7ed957c4;
-  padding: 10px 60px 10px 10px;
+  padding: 40px 140px 40px 40px;
   text-transform: uppercase;
   position: relative;
 }
@@ -146,7 +119,7 @@ export default {
 .ejercicio span {
   border-radius: 10px;
   background-color: #ff914dc4;
-  padding: 10px 10px 10px 60px;
+  padding: 40px 40px 40px 140px;
   text-transform: uppercase;
   position: relative;
 }
@@ -159,12 +132,13 @@ export default {
   width: auto;
 }
 
-.saludmental span {
+.saludmental div {
   border-radius: 10px;
   background-color: #5cb8e6c4;
-  padding: 10px 10px 10px 10px;
+  padding: 30px 30px 30px 30px;
   text-transform: uppercase;
   position: relative;
+  font-size: 6vw;
 }
 
 .alimentacion:hover {
@@ -189,9 +163,9 @@ export default {
   }
 
   .saludmental img {
-    top: -2.2em;
+    top: -4.2em;
     left: 7.4em;
-    max-width: 50%;
+    max-width: 100%;
   }
 }
 

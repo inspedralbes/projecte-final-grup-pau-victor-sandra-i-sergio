@@ -254,60 +254,29 @@ export default {
 
                 <div class="col-md-6">
                   <div class="card-body">
+                    <h5 class="text-center card-body-tit">
+                      ¿Por qué estás
+                      <span style="font-weight: bold">{{
+                        selected[0].value
+                      }}</span
+                      >?
+                    </h5>
                     <div
-                      v-if="
-                        selected[0].value != 'Alegre' &&
-                        selected[0].value != 'Energico'
-                      "
+                      :key="index"
+                      v-for="(estado, index) in selected[0].motivos"
                     >
-                      <h5 class="text-center card-body-tit">
-                        ¿Por qué estás
-                        <span style="font-weight: bold">{{
-                          selected[0].value
-                        }}</span
-                        >?
-                      </h5>
-                      <div
-                        :key="index"
-                        v-for="(estado, index) in selected[0].motivos"
-                      >
-                        <div class="form-check my-3">
-                          <input
-                            class="form-check-input"
-                            type="radio"
-                            @click="guardarMotivo($event.target.value)"
-                            :value="estado"
-                            name="motivo"
-                            :id="index"
-                          />
-                          <label class="form-check-label" :for="index">
-                            {{ estado }}
-                          </label>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div
-                      v-if="
-                        selected[0].value == 'Alegre' ||
-                        selected[0].value == 'Energico'
-                      "
-                    >
-                      <h5 class="text-center card-body-tit">
-                        Hoy estoy
-                        <span style="font-weight: bold">{{
-                          selected[0].value
-                        }}</span>
-                      </h5>
-                      <div class="form-check">
+                      <div class="form-check my-3">
                         <input
                           class="form-check-input"
                           type="radio"
+                          @click="guardarMotivo($event.target.value)"
+                          :value="estado"
                           name="motivo"
+                          :id="index"
                           checked
                         />
-                        <label class="form-check-label">
-                          Estoy {{ selected[0].value }}
+                        <label class="form-check-label" :for="index">
+                          {{ estado }}
                         </label>
                       </div>
                     </div>
@@ -339,13 +308,26 @@ export default {
               Hoy estoy {{ this.respuesta.estado }}
               <img id="emojiTexto" :src="selected[0].emoji" />
             </h4>
-            <p class="card-text">
-              Para descubrir porqué te sientes {{ this.respuesta.estado }} y
-              como mejorar tu estado de ánimo visita la siguiente página ...
-            </p>
-            <a :href="this.respuesta.respuesta" target="_blank" class="link"
-              >Click para saber más</a
+
+            <div
+              v-if="
+                selected[0].value == 'Alegre' || selected[0].value == 'Enérgico'
+              "
             >
+              <p class="card-text">
+                {{ this.respuesta.respuesta }}
+              </p>
+            </div>
+
+            <div v-else>
+              <p class="card-text">
+                Para descubrir porqué te sientes {{ this.respuesta.estado }} y
+                como mejorar tu estado de ánimo visita la siguiente página ...
+              </p>
+              <a :href="this.respuesta.respuesta" target="_blank" class="link"
+                >Click para saber más</a
+              >
+            </div>
           </div>
         </div>
       </div>
