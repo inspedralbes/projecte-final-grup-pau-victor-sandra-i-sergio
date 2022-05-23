@@ -33,239 +33,353 @@ export default {
 </script>
 
 <template>
-  <main class="container landingPage">
-    <div class="row">
-      <div
-        :class="{ hoverA: this.disabled }"
-        class="col-12 text-center alimentacion"
-        @mouseover="hoverAlimentación;"
-        @click="this.goto('alimentacion')"
-      >
-        <span @click="this.goto('alimentacion')" class="shadow">
-          Alimentación
-          <img
-            class="img-home"
-            @click="this.goto('alimentacion')"
-            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/alimentacion.png"
-            alt=""
-          />
-        </span>
-      </div>
+  <main class="container landingPage ">
+    <!--------  MOVIL ------->
+    <div class="container">
+    <div class="row movil">
+      <div class="menu d-flex flex-column justify-content-start ">
+        <div class="col-12 alimentacion_div_sm" @click="this.goto('alimentacion')">
+          <span @click="this.goto('alimentacion')" class="shadow">
+            Alimentación
+            <img
+              class="img-home"
+              @click="this.goto('alimentacion')"
+              src="../assets/comer.png"
+              alt="chico comiendo una ensalada"
+            />
+          </span>
+        </div>
 
-      <div class="col-12 text-center ejercicio" @click="this.goto('ejercicio')">
-        <span @click="this.goto('ejercicio')" class="shadow">
-          <img
-            class="img-home"
-            @click="this.goto('ejercicio')"
-            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png"
-            alt=""
-          />
-          Ejercicio
-        </span>
-      </div>
-
-      <div
-        class="col-12 text-left saludmental"
-        @click="this.goto('saludmental')"
-      >
-        <div @click="this.goto('saludmental')" class="shadow">
-          Salud mental y descanso
-          <img
-            class="img-home"
-            @click="this.goto('saludmental')"
-            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/dormir.png"
-            alt=""
-          />
+        <div class="col-12 ejercicio_div_sm" @click="this.goto('ejercicio')">
+          <span @click="this.goto('ejercicio')" class="shadow ejercicio_div_sm">
+            <img
+              class="img-home"
+              @click="this.goto('ejercicio')"
+              src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png"
+              alt="chica haciendo ejercicio"
+            />
+            Ejercicio
+          </span>
+        </div>
+        <div
+          class="col-12 text-left saludmental_div_sm
+         shadow"
+          @click="this.goto('saludmental')"
+        >
+          <div @click="this.goto('saludmental')"  >
+            <div class="texto_salud">Salud mental y descanso</div>
+            <img
+              class="img-home"
+              @click="this.goto('saludmental')"
+              src="../assets/dormir.png"
+              alt="chico durmiendo en una cama"
+            />
+          </div>
         </div>
       </div>
+      </div>
     </div>
+  
+
+
+    <!--------  ORDENADOR  ------->
+    <div class="container">
+      <div class="row pc justify-content-center">
+          <div class="col-3 alimentacion_div_lg shadow-lg mr-4">ALIMENTACIÓN
+            <img src="../assets/comer.png" alt="chico comiendo ensalada">
+          </div>
+          <div class="col-3 ejercicio_div_lg shadow-lg mx-5">EJERCICIO
+            <img src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png" alt="chica haciendo ejercicio">
+          </div>
+          <div class="col-3 salud_div_lg shadow-lg ml-3">SALUD MENTAL Y DESCANSO
+            <img src="../assets/dormir.png" alt="chico durmiendo en una cama">
+          </div>
+      </div>
+    </div>
+
+
   </main>
 </template>
 
 <style scoped>
 
+.pc {
+  width: 102vw;
+}
+
+
+/* Alimentación pantalla grande */
+.alimentacion_div_lg {
+  background-color: #7ed957c4;
+  height: 70vh;
+}
+
+.alimentacion_div_lg img {
+  position: relative;
+  left: -2.5em;
+  top: 8em;
+}
+
+
+/* Ejercicio pantalla grande */
+.ejercicio_div_lg {
+  background-color:#ff914dc4;
+  height: 70vh;
+}
+
+.ejercicio_div_lg img {
+  position: relative;
+  left: -1.5em;
+  top: 6em;
+  max-width: 120%;
+}
+
+
+/* Salud pantalla grande */
+.salud_div_lg {
+  background-color: #5cb8e6c4;
+  height: 70vh;
+}
+
+.salud_div_lg img {
+  position: relative;
+  left: -1.5em;
+  top: 6em;
+  max-width: 120%;
+}
+
+
 .landingPage .col-12 span {
   font-size: 6vw;
 }
 
+.container {
+  margin: 0;
+  padding: 0;
+}
+
+.texto_salud{
+  width: 250px;
+  margin: 0;
+  padding: 0;
+}
+
+
+
+
+
+/********  PANTALLA GRANDE  ********/
+
+@media only screen and (min-width: 1100px) {
+
+}
+
+
+
+
+
+
+
+
+/********  MOVIL ********/
+
+.ejercicio_div_sm {
+  margin-top: 170px !important;
+}
+
 .landingPage .col-12 {
-  margin-top: 130px;
+  margin-top: 110px;
 }
 
-.alimentacion img {
+.alimentacion_div_sm img {
   position: absolute;
-  top: -2.5em;
-  left: 4em;
-  max-width: 90%;
+  top: -1.4em;
+  left: 8em;
+  max-width: 45%;
   width: auto;
 }
 
-.alimentacion span {
-  border-radius: 10px;
+.alimentacion_div_sm span {
+  border-radius: 0px 10px 10px 0px;
   background-color: #7ed957c4;
-  padding: 40px 140px 40px 40px;
+  padding: 40px 140px 40px 30px;
   text-transform: uppercase;
   position: relative;
+  margin: 0;
 }
 
-.ejercicio img {
+.ejercicio_div_sm img {
   position: absolute;
   top: -2.5em;
-  left: -1.5em;
-  max-width: 60%;
+  left: 6em ;
+  max-width: 50%;
   width: auto;
 }
 
-.ejercicio span {
-  border-radius: 10px;
+.ejercicio_div_sm span {
+  border-radius: 0px 10px 10px 0px;
   background-color: #ff914dc4;
-  padding: 40px 40px 40px 140px;
+  padding: 40px 200px 40px 30px;
   text-transform: uppercase;
   position: relative;
+  position: relative;
+  margin: 0;
 }
 
-.saludmental img {
+.saludmental_div_sm img {
   position: absolute;
-  top: -2.6em;
-  left: 6.25em;
-  max-width: 60%;
+  top: 2.6em;
+  left: 5.5em;
+  max-width: 70%;
   width: auto;
 }
 
-.saludmental div {
-  border-radius: 10px;
+.saludmental_div_sm {
+  border-radius: 0px 10px 10px 0px;
   background-color: #5cb8e6c4;
-  padding: 30px 30px 30px 30px;
+  padding: 40px 0px 40px 30px;
   text-transform: uppercase;
   position: relative;
-  font-size: 6vw;
+  font-size: 5vw;
+  width: 330px !important;
 }
 
-.alimentacion:hover {
-  box-shadow: red;
-}
 
 @media only screen and (min-width: 626px) {
-  .landingPage .col-12 span {
-    font-size: 4.5vw;
+  .ordenador {
+    display: none;
+  }
+  
+  .alimentacion_div_sm {
+    padding-right: 50px !important;
+    margin: 0;
   }
 
-  .alimentacion img {
-    top: -2em;
-    left: 4.5em;
-    max-width: 80%;
+  .alimentacion_div_sm img {
+    top: -1em;
+    left: 7em;
+    max-width: 40%;
   }
 
-  .ejercicio img {
-    top: -2.2em;
-    left: -2em;
-    max-width: 60%;
+  .ejercicio_div_sm {
+    padding-right: 245px !important;
   }
 
-  .saludmental img {
-    top: -4.2em;
-    left: 7.4em;
-    max-width: 100%;
+  .ejercicio_div_sm img {
+    top: -2.6em;
+    left: 6em !important;
+    max-width: 50%;
+  }
+
+  .saludmental_div_sm
+ img {
+    top: 1.5em;
+    left: 6.05em;
+    max-width: 90%;
+  }
+
+  .saludmental_div_sm
+ {
+    padding-right: 430px;
+  }
+
+  .texto_salud {
+    width: 400px;
   }
 }
 
 @media only screen and (min-width: 768px) {
+  .ordenador {
+    display: none;
+  }
+
   .landingPage .col-12 span {
     font-size: 5vw;
   }
 
-  .alimentacion img {
-    top: -2em;
-    left: 4.5em;
+  .alimentacion_div_sm {
+    padding-right: 200px !important;
+  }
+
+  .alimentacion_div_sm img {
+    top: -1em;
+    left: 7em;
+    max-width: 40%;
+  }
+
+  .ejercicio_div_sm {
+    padding-right: 270px !important;
+  }
+
+  .ejercicio_div_sm img {
+    top: -2.6em;
+    left: 6em !important;
+    max-width: 50%;
+  }
+
+  .saludmental_div_sm
+ img {
+    top: 1.5em;
+    left: 6.05em;
     max-width: 80%;
   }
 
-  .ejercicio img {
-    top: -2em;
-    left: -2em;
-    max-width: 60%;
+  .saludmental_div_sm
+ {
+    padding-right: 480px;
   }
 
-  .saludmental img {
-    top: -2.65em;
-    left: 6.05em;
-    max-width: 60%;
+  .texto_salud {
+    width: 380px;
   }
 }
 
 @media only screen and (min-width: 1024px) {
+  .ordenador {
+    display: none;
+  }
+  
   .landingPage .col-12 span {
-    font-size: 4vw;
+    font-size: 5vw;
   }
 
-  .alimentacion img {
-    top: -2em;
-    left: 4.5em;
-    max-width: 80%;
+  .alimentacion_div_sm {
+    padding-right: 220px !important;
   }
 
-  .ejercicio img {
-    top: -2.5em;
-    left: -2.4em;
+  .alimentacion_div_sm img {
+    top: -1em;
+    left: 7em;
+    max-width: 40%;
+  }
+
+  .ejercicio_div_sm {
+    padding-right: 300px !important;
+  }
+
+  .ejercicio_div_sm img {
+    top: -1.6em;
+    left: 6em !important;
+    max-width: 40%;
+  }
+
+  .saludmental_div_sm
+ img {
+    top: 1.5em;
+    left: 6.05em;
     max-width: 70%;
   }
 
-  .saludmental img {
-    top: -2.6em;
-    left: 6.05em;
-    max-width: 60%;
+  .saludmental_div_sm
+ {
+    padding-right: 550px !important;
+  }
+
+  .texto_salud {
+    width: 450px;
   }
 }
 
-@media only screen and (min-width: 1300px) {
-  .landingPage .col-12 span {
-    font-size: 3.5vw;
-  }
 
-  .alimentacion img {
-    top: -2em;
-    left: 4.5em;
-    max-width: 80%;
-  }
 
-  .ejercicio img {
-    top: -1.9em;
-    left: -2em;
-    max-width: 60%;
-  }
-
-  .saludmental img {
-    top: -2.18em;
-    left: 7.25em;
-    max-width: 50%;
-  }
-}
-
-@media only screen and (min-width: 1600px) {
-  .landingPage .col-12 span {
-    font-size: 2.75vw;
-  }
-
-  .landingPage .col-12 {
-    margin-top: 150px;
-  }
-
-  .alimentacion img {
-    top: -2em;
-    left: 4.5em;
-    max-width: 80%;
-  }
-
-  .ejercicio img {
-    top: -2em;
-    left: -2em;
-    max-width: 60%;
-  }
-
-  .saludmental img {
-    top: -2.1em;
-    left: 7.3em;
-    max-width: 50%;
-  }
-}
 </style>
