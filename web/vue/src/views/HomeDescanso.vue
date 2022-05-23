@@ -247,6 +247,7 @@ export default {
 </template>
 
 <style scoped>
+
 /****  FONDO DE PANTALLA  ***/
 
 .fondo {

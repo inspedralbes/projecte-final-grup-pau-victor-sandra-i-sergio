@@ -226,10 +226,7 @@ export default {
 
                 <div class="col-md-6">
                   <div class="card-body">
-                    <div v-if="
-                      selected[0].value != 'Alegre' &&
-                      selected[0].value != 'Energico'
-                    ">
+
                       <h5 class="text-center card-body-tit">
                         ¿Por qué estás
                         <span style="font-weight: bold">{{
@@ -245,25 +242,7 @@ export default {
                           </label>
                         </div>
                       </div>
-                    </div>
 
-                    <div v-if="
-                      selected[0].value == 'Alegre' ||
-                      selected[0].value == 'Energico'
-                    ">
-                      <h5 class="text-center card-body-tit">
-                        Hoy estoy
-                        <span style="font-weight: bold">{{
-                            selected[0].value
-                        }}</span>
-                      </h5>
-                      <div class="form-check">
-                        <input class="form-check-input" type="radio" name="motivo" checked />
-                        <label class="form-check-label">
-                          Estoy {{ selected[0].value }}
-                        </label>
-                      </div>
-                    </div>
                   </div>
                 </div>
 
@@ -285,11 +264,22 @@ export default {
               Hoy estoy {{ this.respuesta.estado }}
               <img id="emojiTexto" :src="selected[0].emoji" />
             </h4>
-            <p class="card-text">
+
+            <div v-if=" selected[0].value == 'Alegre' || selected[0].value == 'Enérgico'">
+              <p class="card-text">
+                {{this.respuesta.respuesta}}
+              </p>
+            </div>
+
+            <div v-else> 
+              <p class="card-text">
               Para descubrir porqué te sientes {{ this.respuesta.estado }} y
               como mejorar tu estado de ánimo visita la siguiente página ...
-            </p>
-            <a :href="this.respuesta.respuesta" target="_blank" class="link">Click para saber más</a>
+              </p>
+              <a :href="this.respuesta.respuesta" target="_blank" class="link">Click para saber más</a>
+            </div>
+
+            
           </div>
         </div>
       </div>

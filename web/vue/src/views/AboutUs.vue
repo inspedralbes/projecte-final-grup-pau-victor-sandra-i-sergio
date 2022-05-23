@@ -69,7 +69,7 @@ export default {
         </div>
 
         <div class="row align-items-center">
-          <div class="col-7 equipo">
+          <div class="col-12 col-lg-7 equipo">
             <h4>Nuestro equipo</h4>
             <p class="mt-3 justificado">
               Somos 4 estudiantes de DAW (Desarollo de Aplicaciones Web) que
@@ -83,20 +83,22 @@ export default {
               dieta saludable.
             </p>
 
-            <div class="encuentranos mt-5">
+            <div class="encuentranos mt-5 col-12">
               <h5>Donde encontrarnos</h5>
               <div class="linkedin mt-4">
                 <a class="lin pe-4" href="https://www.linkedin.com/in/paumunozolivares?original_referer="
-                  target="_blank"><i class="bi bi-linkedin"></i> Pau Muñoz Olivares</a>
+                  target="_blank"><i class="bi bi-linkedin"></i> Pau Muñoz Olivares</a><br>
                 <a class="lin pe-4" href="https://www.linkedin.com/in/victor-moreno-moron" target="_blank"><i
-                    class="bi bi-linkedin"></i> Víctor Moreno Moron</a>
+                    class="bi bi-linkedin"></i> Víctor Moreno Morón</a><br>
                 <a class="lin pe-4" href="https://www.linkedin.com/in/sandraortizvega" target="_blank"><i
-                    class="bi bi-linkedin"></i> Sandra Ortiz Vega</a>
+                    class="bi bi-linkedin"></i> Sandra Ortiz Vega</a><br>
+                    <a class="lin pe-4" href="https://www.linkedin.com/in/sergio-villacampa-80b19423b/" target="_blank"><i
+                    class="bi bi-linkedin"></i> Sergio Villacampa Racero</a><br>    
               </div>
             </div>
           </div>
-          <div class="col-5 equipo">
-            <img class="equipo_foto" src="http://genkicorpusback.alumnes.inspedralbes.cat/public/img/equipo.png" alt="" />
+          <div class="col-12 col-lg-5 equipo">
+            <img class="equipo_foto" src="http://genkicorpusback.alumnes.inspedralbes.cat/img/equipo.png" alt="" />
           </div>
         </div>
       </div>
@@ -153,10 +155,17 @@ h5 {
   margin: auto;
 }
 
-
+@media only screen and (max-width: 630px) {
+  iframe {
+    width: 400px;
+    margin-bottom: 20px;
+  }
+}
 
 .lin {
   text-decoration: none;
+  margin-bottom: 300px !important;
+  font-size: 16px;
 }
 
 
@@ -202,6 +211,7 @@ body {
 #flip div .ejercicio {
   background: #ff914d;
 }
+
 
 @keyframes show {
   0% {
