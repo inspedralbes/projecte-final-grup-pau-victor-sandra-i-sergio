@@ -1,36 +1,35 @@
 import { defineStore } from "pinia";
 
 export const sesionStore = defineStore("sesion", {
-  state: () => ({
-    sesion: {},
-    usuario: {},
-    rutaAnterior: "",
-    rutaActual: "",
-  }),
+    state: () => ({
+        usuario: {},
+        rutaAnterior: "",
+        rutaActual: "",
+    }),
 
-  getters: {
-    getSesion() {
-      return this.sesion;
-    },
-    getUsuario() {
-      return this.usuario;
-    },
+    getters: {
+        getUsuario() {
+            return this.usuario;
+        },
 
-    getRutaAnterior() {
-      return this.rutaAnterior;
-    },
-  },
-
-  actions: {
-    setUsuario(u) {
-      this.usuario = u;
+        getRutaAnterior() {
+            return this.rutaAnterior;
+        },
     },
 
-    setRutaActual(r) {
-      this.rutaAnterior = this.rutaActual;
-      if (r != "registroDatos" && r != "iniciarSesion") {
-        this.rutaActual = r;
-      }
+    actions: {
+        setUsuario(u) {
+            this.usuario = u;
+            window.localStorage.setItem('usuario', JSON.stringify(this.usuario));
+        },
+
+        setRutaActual(r) {
+            this.rutaAnterior = this.rutaActual;
+            if (r != "registroDatos" && r != "iniciarSesion") {
+                this.rutaActual = r;
+            }
+        },
     },
-  },
+
+
 });

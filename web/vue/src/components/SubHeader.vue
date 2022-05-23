@@ -67,14 +67,14 @@
   padding: 1px 15px;
   margin: 12px 0;
   text-decoration: none;
-  color: black;
+  color: black !important;
   font-weight: 650;
   font-size: 18px;
   transition: 0.3s ease-in-out;
 }
 
 .link_header:hover {
-  color: white;
+  color: white !important;
 }
 
 .seleccionado {

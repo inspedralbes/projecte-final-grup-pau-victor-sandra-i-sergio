@@ -22,6 +22,8 @@ export default {
     },
   },
 
+ 
+
   computed: {
     ...mapStores(sesionStore),
   },
@@ -35,47 +37,28 @@ export default {
 <template>
   <main class="container landingPage">
     <div class="row">
-      <div
-        :class="{ hoverA: this.disabled }"
-        class="col-12 text-center alimentacion"
-        @mouseover="hoverAlimentación;"
-        @click="this.goto('alimentacion')"
-      >
+      <div :class="{ hoverA: this.disabled }" class="col-12 text-center alimentacion" @mouseover="hoverAlimentación;"
+        @click="this.goto('alimentacion')">
         <span @click="this.goto('alimentacion')">
           Alimentación
-          <img
-            class="img-home"
-            @click="this.goto('alimentacion')"
-            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/alimentacion.png"
-            alt=""
-          />
+          <img class="img-home" @click="this.goto('alimentacion')"
+            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/alimentacion.png" alt="" />
         </span>
       </div>
 
       <div class="col-12 text-center ejercicio" @click="this.goto('ejercicio')">
         <span @click="this.goto('ejercicio')">
-          <img
-            class="img-home"
-            @click="this.goto('ejercicio')"
-            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png"
-            alt=""
-          />
+          <img class="img-home" @click="this.goto('ejercicio')"
+            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png" alt="" />
           Ejercicio
         </span>
       </div>
 
-      <div
-        class="col-12 text-center saludmental"
-        @click="this.goto('saludmental')"
-      >
+      <div class="col-12 text-center saludmental" @click="this.goto('saludmental')">
         <span @click="this.goto('saludmental')">
           Salud mental y descanso
-          <img
-            class="img-home"
-            @click="this.goto('saludmental')"
-            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/dormir.png"
-            alt=""
-          />
+          <img class="img-home" @click="this.goto('saludmental')"
+            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/dormir.png" alt="" />
         </span>
       </div>
     </div>
@@ -89,6 +72,7 @@ export default {
 }
 
 @keyframes hoverA {
+
   10%,
   90% {
     transform: translate3d(-1px, 0, 0);

@@ -1,10 +1,24 @@
 <script>
 import { RouterView } from "vue-router";
 import Header from "./components/HeaderGeneral.vue";
+import { sesionStore } from "@/stores/sesionStore";
+import { mapStores } from "pinia";
+
 export default {
   components: {
     RouterView,
     Header,
+  },
+
+  computed: {
+    ...mapStores(sesionStore),
+  },
+
+  created() {
+    if (window.localStorage.getItem('usuario')) {
+      console.log(JSON.parse(window.localStorage.getItem('usuario')))
+      this.sesionStore.setUsuario(JSON.parse(window.localStorage.getItem('usuario')));
+    }
   },
 };
 </script>
@@ -20,7 +34,7 @@ export default {
 
 <style>
 .material-symbols-outlined {
-  font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 48;
+  font-variation-settings: "FILL"0, "wght"400, "GRAD"0, "opsz"48;
 }
 
 .scale0 {
@@ -57,11 +71,13 @@ export default {
 a {
   color: #a8cf45 !important;
   transition: all 0.2s ease-in-out;
-  cursor:default
+  cursor: default
 }
 
-a:hover, a:active, a:focus, a:active{
+a:hover,
+a:active,
+a:focus,
+a:active {
   color: #28844b !important;
 }
-
 </style>

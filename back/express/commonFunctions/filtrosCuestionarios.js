@@ -3,8 +3,8 @@ module.exports = {
         const today = new Date();
         const first = today.getDate() - today.getDay() + 1;
 
-        const monday = new Date(today.setDate(first));
-        const sunday = new Date(today.setDate(first + 6));
+        const monday = new Date(today.setDate(first)).setHours(0, 0, 0, 0);
+        const sunday = new Date(today.setDate(first + 6)).setHours(23, 59, 59, 999);
         return [monday, sunday];
     },
 

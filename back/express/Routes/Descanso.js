@@ -118,6 +118,8 @@ Descanso.route('/respuestas').post(function (req, res) {
         dias = filtrosCuestionarios.getFirstandLastDayOfCurrentMonth();
     }
 
+    console.log(dias)
+
     CuestionarioDescanso.find({ "usuario": datos.idUsuario, "diaHora": { $gte: dias[0], $lte: dias[1] } }, (err, resultado) => {
         if (err) {
             console.log(err);

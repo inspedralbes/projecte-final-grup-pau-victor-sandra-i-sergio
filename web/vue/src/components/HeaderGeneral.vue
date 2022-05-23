@@ -42,7 +42,8 @@ export default {
       );
     },
     cerrarSesion() {
-      location.reload();
+      window.localStorage.clear()
+      window.location.href = ".";
     },
   },
 };
