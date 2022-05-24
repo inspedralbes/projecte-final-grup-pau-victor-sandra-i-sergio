@@ -10,7 +10,6 @@ export default {
   emits: ["id"],
 
   beforeMount() {
-    console.log(this.infoCuest);
   },
   methods: {},
 };

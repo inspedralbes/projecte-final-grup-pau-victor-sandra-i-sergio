@@ -127,7 +127,7 @@ export default {
                       class="icono_cuenta material-symbols-outlined"
                       ><img
                         id="img-usuario"
-                        src="https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg"
+                        :src="this.usuario.fotoPerfil"
                     /></span>
                   </div>
                   <div class="align-self-center mx-4">

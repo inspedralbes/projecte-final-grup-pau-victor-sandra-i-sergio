@@ -50,13 +50,13 @@ export default {
         this.registro = 1;
       }, 1000)
       this.mostrarPopovers();
-      console.log('asdfasdf')
+    
     },
     cambiar_login() {
       this.click_registro = 0;
       this.registro = 0;
 
-      console.log('asdfasdf')
+     
       this.mostrarPopovers();
     },
 

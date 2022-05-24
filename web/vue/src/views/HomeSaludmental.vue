@@ -40,6 +40,7 @@ export default {
   },
 
   created() {
+    //Alerta nada mas entrar si no has iniciado sesión
     if (!Object.keys(this.sesionStore.getUsuario).length) {
       Swal.fire({
         title: "¡Inicia tu sesión o registrate!",
@@ -57,7 +58,7 @@ export default {
       });
     }
   },
-
+//cargar los datos en este caso las emociones
   beforeMount() {
     fetch(
       "http://genkicorpusback.alumnes.inspedralbes.cat:7101/salud-mental/estado-emocional"
@@ -100,7 +101,7 @@ export default {
           motivo: this.motivo,
         });
 
-        console.log(cuestSalud);
+        
         fetch(
           "http://genkicorpusback.alumnes.inspedralbes.cat:7101/salud-mental/guardar-datos-cuestionario",
           {
@@ -110,7 +111,7 @@ export default {
         )
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
+            
           });
       }
 
@@ -118,9 +119,6 @@ export default {
         estado: this.selected[0].value,
         motivo: this.motivo,
       });
-
-      console.log("CUEEEEST");
-      console.log(noRegCuestSalud);
 
       fetch(
         "http://genkicorpusback.alumnes.inspedralbes.cat:7101/salud-mental/respuesta-cuestionario",
@@ -132,7 +130,6 @@ export default {
         .then((response) => response.json())
         .then((data) => {
           this.respuesta = data.resultado;
-          console.log(this.respuesta);
           this.progressBar = 2;
           this.animacionAbajoCentro = false;
           this.animacionCentroArriba = true;
@@ -174,7 +171,7 @@ export default {
     /*Utilizamos esta función para guardar el motivo que ha sido seleccionado*/
     guardarMotivo(motivo) {
       this.motivo = motivo;
-      console.log(motivo);
+      
     },
   },
 };

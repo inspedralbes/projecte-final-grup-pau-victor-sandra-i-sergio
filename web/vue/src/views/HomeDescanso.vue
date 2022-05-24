@@ -48,7 +48,7 @@ export default {
     )
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
+       
         this.elemento = data.tipoSueno;
       });
   },
@@ -87,7 +87,7 @@ export default {
       if (this.selected.length < 5) {
         if (this.selected.includes(id)) {
           this.selected = this.selected.filter((v) => {
-            console.log(v);
+          
             return v != id;
           });
         } else {
@@ -103,8 +103,6 @@ export default {
         }
       }
 
-      console.log(this.selected);
-      console.log(this.selected.length);
     },
 
     enviarFormulario() {
@@ -126,7 +124,6 @@ export default {
         )
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
             this.resultado = data.resultado;
           });
       }
@@ -144,7 +141,6 @@ export default {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
           this.resultado = data.resultado;
         });
     },
@@ -169,16 +165,12 @@ export default {
         )
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
             this.resultado = data.resultado;
           });
       }
       // Devolver la respuesta a lo respondido en el cuestionario
       var cuestSinSueno = new FormData();
       cuestSinSueno.append("descripcionSueno", JSON.stringify(this.sinsueno));
-      for (var pair of cuestSinSueno.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
       fetch(
         "http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/respuesta-cuestionario",
         {
@@ -188,9 +180,9 @@ export default {
       )
         .then((response) => response.json())
         .then((data) => {
-          console.log(data);
+          
           this.resultado = data.resultado;
-          console.log(this.resultado);
+          
         });
     },
       //iniciar animaciones
