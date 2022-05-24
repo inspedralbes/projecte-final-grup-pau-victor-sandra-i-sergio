@@ -86,7 +86,7 @@ export default {
     </div>
 
     <!--------  ORDENADOR  ------->
-    <div class="container">
+    <div class="container pc_container">
       <div class="row pc justify-content-center">
         <div
           class="col-3 alimentacion_div_lg shadow-lg mr-4"
@@ -121,7 +121,12 @@ export default {
 
 <style scoped>
 .pc {
-  width: 102vw;
+  width: 100vw;
+}
+
+.pc_container {
+  position: absolute;
+  bottom: 7px;
 }
 
 /* Alimentación pantalla grande */
@@ -182,6 +187,12 @@ export default {
 }
 
 /********  PANTALLA GRANDE  ********/
+
+h2 {
+  font-weight: 550;
+  padding-top: 1.8em;
+}
+
 
 .alimentacion_div_lg::before {
   content: "";
@@ -246,21 +257,21 @@ export default {
   .alimentacion_div_lg img {
     position: relative;
     left: -1.5em;
-    top: 12em;
+    top: 9em;
     max-width: 115%;
   }
 
   .ejercicio_div_lg img {
     position: relative;
     left: -1.1em;
-    top: 10em;
+    top: 7em;
     max-width: 120%;
   }
 
   .salud_div_lg img {
     position: relative;
     left: -2em;
-    top: 14em;
+    top: 9em;
     max-width: 140%;
   }
 }
@@ -306,7 +317,7 @@ export default {
   .salud_div_lg img {
     position: relative;
     left: -3.2em;
-    top: 12em;
+    top: 10em;
     max-width: 135%;
   }
 }
@@ -329,7 +340,7 @@ export default {
   .salud_div_lg img {
     position: relative;
     left: -3.2em;
-    top: 12em;
+    top: 8em;
     max-width: 135%;
   }
 }
@@ -425,6 +436,7 @@ export default {
   }
 }
 
+
 /********  MOVIL ********/
 
 .ejercicio_div_sm {
@@ -463,9 +475,8 @@ export default {
 .ejercicio_div_sm span {
   border-radius: 0px 10px 10px 0px;
   background-color: #ff914dc4;
-  padding: 40px 200px 40px 30px;
+  padding: 40px 200px 40px 0px;
   text-transform: uppercase;
-  position: relative;
   position: relative;
   margin: 0;
 }
@@ -552,7 +563,7 @@ export default {
   }
 
   .ejercicio_div_sm {
-    padding-right: 245px !important;
+    padding-right: 240px !important;
   }
 
   .ejercicio_div_sm img {

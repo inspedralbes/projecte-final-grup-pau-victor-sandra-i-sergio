@@ -256,88 +256,92 @@ export default {
 </template>
 
 <style scoped>
-/***** Parte 2 registro ******/
-
-main {
-  min-height: 89.75vh;
-}
-
-.ocupacion,
-.sexo {
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 8px;
-  border-radius: 8px;
-  transition: all 0.5s ease-in-out;
-  border: 1px solid rgba(255, 255, 255, 0.5);
-}
-
-.error {
-  background-color: rgba(255, 0, 0, 15%);
-  border: 1px solid rgba(255, 0, 0, 0.446);
-}
-
-.errorSlider::-webkit-slider-runnable-track {
-  -webkit-appearance: none;
-  background-color: rgba(255, 0, 0, 15%);
-  border: 1px solid rgba(197, 0, 0, 0.593);
-}
-
-.errorSlider::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  background-color: rgba(223, 0, 0, 0.883);
-  border: 1px solid rgba(255, 0, 0, 0.446);
-}
-
-.errorSlider::-webkit-slider-thumb:focus,
-.errorSlider::-webkit-slider-thumb:active {
-  border-color: rgba(223, 0, 0, 0.335) !important;
-  outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.335) !important;
-}
-
-.error:focus,
-.error:active {
-  border-color: rgba(223, 0, 0, 0.533) !important;
-  outline: 0;
-  box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.103) !important;
-}
-
-.REGISTRO2 {
-  background-image: url("http://genkicorpusback.alumnes.inspedralbes.cat/img/login.png");
-  border-radius: 10px;
-}
-
-.div2 {
-  margin: 20px;
-}
-
-.edad_row {
-  padding-left: 0;
-}
-
-.rangeNivelFisico span{
-    font-size: 0.75em;
-}
-
-.relativeP {
-  position: relative;
-  left: -1.9em;
-}
-
-.relativeI {
-  position: relative;
-  left: -0.3em;
-}
-
-.relativeA {
-  position: relative;
-  right: -1.5em;
-}
-
-@media only screen and (min-width: 380px) {
-  .div_datos {
-    max-width: 760px;
-    width: 100%;
+  /***** Parte 2 registro ******/
+  .titulo {
+    font-weight: 600;
   }
-}
+
+
+  main {
+    min-height: 89.75vh;
+  }
+
+  .ocupacion,
+  .sexo {
+    background-color: rgba(255, 255, 255, 0.5);
+    padding: 8px;
+    border-radius: 8px;
+    transition: all 0.5s ease-in-out;
+    border: 1px solid rgba(255, 255, 255, 0.5);
+  }
+
+  .error {
+    background-color: rgba(255, 0, 0, 15%);
+    border: 1px solid rgba(255, 0, 0, 0.446);
+  }
+
+  .errorSlider::-webkit-slider-runnable-track {
+    -webkit-appearance: none;
+    background-color: rgba(255, 0, 0, 15%);
+    border: 1px solid rgba(197, 0, 0, 0.593);
+  }
+
+  .errorSlider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    background-color: rgba(223, 0, 0, 0.883);
+    border: 1px solid rgba(255, 0, 0, 0.446);
+  }
+
+  .errorSlider::-webkit-slider-thumb:focus,
+  .errorSlider::-webkit-slider-thumb:active {
+    border-color: rgba(223, 0, 0, 0.335) !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.335) !important;
+  }
+
+  .error:focus,
+  .error:active {
+    border-color: rgba(223, 0, 0, 0.533) !important;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(255, 0, 0, 0.103) !important;
+  }
+
+  .REGISTRO2 {
+    background-image: url("http://genkicorpusback.alumnes.inspedralbes.cat/img/login.png");
+    border-radius: 10px;
+  }
+
+  .div2 {
+    margin: 20px;
+  }
+
+  .edad_row {
+    padding-left: 0;
+  }
+
+  .rangeNivelFisico span{
+      font-size: 0.75em;
+  }
+
+  .relativeP {
+    position: relative;
+    left: -1.9em;
+  }
+
+  .relativeI {
+    position: relative;
+    left: -0.3em;
+  }
+
+  .relativeA {
+    position: relative;
+    right: -1.5em;
+  }
+
+  @media only screen and (min-width: 380px) {
+    .div_datos {
+      max-width: 760px;
+      width: 100%;
+    }
+  }
 </style>
