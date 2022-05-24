@@ -90,20 +90,17 @@ export default {
           <div class="col-3 alimentacion_div_lg shadow-lg mr-4" @click="this.goto('alimentacion')">
             <h2 class="text-center">ALIMENTACIÓN</h2> 
             <img src="../assets/comer.png" alt="chico comiendo ensalada">
-            <div class="alimentacion_sombra"></div>
           </div>
           
           <div class="col-3 ejercicio_div_lg shadow-lg mx-5"  @click="this.goto('ejercicio')">
             <h2 class="text-center">EJERCICIO</h2>  
             <img src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png" alt="chica haciendo ejercicio">
-            <div class="ejercicio_sombra"></div>
           </div>
 
           
           <div class="col-3 salud_div_lg shadow-lg ml-3" @click="this.goto('saludmental')" >
             <h2 class="text-center">SALUD MENTAL Y DESCANSO</h2> 
             <img src="../assets/saludMental2.png" alt="chica meditando">
-            <div class="salud_sombra"></div>
           </div>
       </div>
     </div>
@@ -121,8 +118,9 @@ export default {
 
 /* Alimentación pantalla grande */
 .alimentacion_div_lg {
-  background-color: #7ed957c4;
+  background-color:#9be17d;
   height: 80vh;
+  position: relative;
 }
 
 .alimentacion_div_lg img {
@@ -134,8 +132,9 @@ export default {
 
 /* Ejercicio pantalla grande */
 .ejercicio_div_lg {
-  background-color:#ff914dc4;
+  background-color:#ffaa76;
   height: 80vh;
+  position: relative;
 }
 
 .ejercicio_div_lg img {
@@ -148,8 +147,10 @@ export default {
 
 /* Salud pantalla grande */
 .salud_div_lg {
-  background-color: #5cb8e6c4;
+  background-color: #81c8eb;
   height: 80vh;
+  position: relative;
+  position: relative;
 }
 
 .salud_div_lg img {
@@ -180,21 +181,35 @@ export default {
 
 /********  PANTALLA GRANDE  ********/
 
-.alimentacion_sombra {
-  height: 90vh;
-  background-color:#43742fc4;
+.alimentacion_div_lg::before {
+  content: "";
+  height: 104%;
+  width: 104%;
+  background-color: #43742fc4;
+  position: absolute;
+  top: -1.5em;
+  z-index: -1;
 }
 
-.salud_sombra {
-  height: 90vh;
+.ejercicio_div_lg::before {
+  content: "";
+  height: 104%;
+  width: 104%;
+  background-color: #e25a00e5;
+  position: absolute;
+  top: -1.5em;
+  z-index: -1;
+}
+
+.salud_div_lg::before {
+  content: "";
+  height: 104%;
+  width: 104%;
   background-color: #315e75c4;
+  position: absolute;
+  top: -1.5em;
+  z-index: -1;
 }
-
-.ejercicio_sombra {
-  height: 90vh;
-  background-color: #c95914c4;
-}
-
 
 
 @media only screen and (min-width: 700px) {
@@ -262,7 +277,7 @@ export default {
   .salud_div_lg img {
     position: relative;
     left: -3.2em;
-    top: 14em;
+    top: 10em;
     max-width: 140%;
   }
 }
@@ -384,27 +399,6 @@ export default {
   }
 }
 
-@media only screen and (min-width: 1900px) {
-  .alimentacion_div_lg img {
-    position: relative;
-    left: 2em;
-    top: 12em;
-  }
-
-  .ejercicio_div_lg img {
-    position: relative;
-    left: -0.1em;
-    top: 6em;
-    max-width: 20%;
-  }
-
-  .salud_div_lg img {
-    position: relative;
-    left: -3.2em;
-    top: 12em;
-    max-width: 14%;
-  }
-}
 
 @media only screen and (min-width: 1900px) {
   .alimentacion_div_lg img {
