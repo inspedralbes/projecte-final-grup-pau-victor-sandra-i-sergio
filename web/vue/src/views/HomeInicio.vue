@@ -11,6 +11,7 @@ export default {
       tamano: null,
     };
   },
+  //redirecciona a una view
   methods: {
     goto(id) {
       router.push({ name: id });
@@ -27,11 +28,11 @@ export default {
     ...mapStores(sesionStore),
   },
   created() {
-    console.log(this.tamano);
+    //para cambiar el menu segun el tamaño de la pantalla
     setInterval(() => {
       if (window.innerWidth > 900) {
         this.tamano = true;
-        console.log(this.tamano);
+        
       } else {
         this.tamano = false;
       }

@@ -10,7 +10,6 @@ export default {
   emits: ["id"],
 
   beforeMount() {
-    console.log(this.infoCuest);
   },
   methods: {
     //devuelve el tipo de sueño seleccionado
@@ -20,7 +19,6 @@ export default {
     seleccionado() {
       if (this.selected == 0 && this.contador < 5) {
         this.selected = 1;
-        console.log(this.selected);
       } else {
         this.selected = 0;
       }

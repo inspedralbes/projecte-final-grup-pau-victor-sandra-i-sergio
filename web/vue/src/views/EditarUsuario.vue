@@ -72,9 +72,6 @@ export default {
       datos.append("ocupacion", this.ocupacion);
       datos.append("disponibilidadTiempo", this.tiempo);
       datos.append("nivelFisico", this.nivel);
-      for (var pair of datos.entries()) {
-        console.log(pair[0] + ", " + pair[1]);
-      }
 
       fetch(
         "http://genkicorpusback.alumnes.inspedralbes.cat:7101/usuario/modificar-datos",
@@ -249,7 +246,6 @@ export default {
           )
             .then((response) => response.json())
             .then((data) => {
-              console.log(data);
               Swal.fire({
                 position: "center",
                 icon: data.status ? "success" : "error",

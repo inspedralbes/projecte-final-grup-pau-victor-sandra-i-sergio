@@ -26,7 +26,7 @@ export default {
     <div>
       <Header />
     </div>
-
+    <!-- imagen para informar que estamos trabajando en ello -->
     <div
       class="alimentacion aling-items-center align-items-center justify-content-center text-center"
     >

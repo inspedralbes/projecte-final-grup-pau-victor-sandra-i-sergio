@@ -16,7 +16,6 @@ export default {
 
   created() {
     if (window.localStorage.getItem('usuario')) {
-      console.log(JSON.parse(window.localStorage.getItem('usuario')))
       this.sesionStore.setUsuario(JSON.parse(window.localStorage.getItem('usuario')));
     }
   },
