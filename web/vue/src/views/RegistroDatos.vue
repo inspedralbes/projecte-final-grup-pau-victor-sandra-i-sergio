@@ -93,8 +93,8 @@ export default {
   <main
     class="container justify-content-center d-flex align-items-center scale1"
   >
-    <div class="div_datos REGISTRO2 align-items-start shadow-lg">
-      <div class="div2 p-5">
+    <div class="div_datos REGISTRO2 align-items-start shadow-lg mt-3 mb-3">
+      <div class="div2 p-4">
         <h3 class="text-center titulo mb-5">Cuentanos un poco más sobre ti</h3>
 
         <div class="row align-items-center">
@@ -164,7 +164,7 @@ export default {
                 </div>
               </div>
 
-              <div class="col-md-auto col-12">
+              <div class="col-md-auto col-12 gy-3 gy-md-0">
                 <label class="bold mb-3" for="Ocupación">Sexo</label>
                 <div
                   class="sexo p-3 pe-4 shadow-sm"
@@ -211,9 +211,13 @@ export default {
                   v-model="this.nivelFisico"
                 />
                 <br />
-                <span class="form-label relativeP">Principiante</span>
-                <span class="form-label relativeI">Intermedio</span>
-                <span class="form-label relativeA">Avanzado</span>
+
+                <div class="d-flex justify-content-between rangeNivelFisico">
+                  <span class="form-label relativeP">Principiante</span>
+                  <span class="form-label relativeI">Intermedio</span>
+                  <span class="form-label relativeA">Avanzado</span>
+
+                </div>
               </div>
             </div>
 
@@ -255,7 +259,7 @@ export default {
 /***** Parte 2 registro ******/
 
 main {
-  height: 89.75vh;
+  min-height: 89.75vh;
 }
 
 .ocupacion,
@@ -311,22 +315,23 @@ main {
   padding-left: 0;
 }
 
+.rangeNivelFisico span{
+    font-size: 0.75em;
+}
+
 .relativeP {
-  font-size: 14px;
   position: relative;
-  right: 29px;
+  left: -1.9em;
 }
 
 .relativeI {
-  font-size: 14px;
   position: relative;
-  left: 21px;
+  left: -0.3em;
 }
 
 .relativeA {
-  font-size: 14px;
   position: relative;
-  left: 75px;
+  right: -1.5em;
 }
 
 @media only screen and (min-width: 380px) {
