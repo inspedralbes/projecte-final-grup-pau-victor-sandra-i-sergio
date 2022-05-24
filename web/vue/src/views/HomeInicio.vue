@@ -87,14 +87,23 @@ export default {
     <!--------  ORDENADOR  ------->
     <div class="container">
       <div class="row pc justify-content-center">
-          <div class="col-3 alimentacion_div_lg shadow-lg mr-4">ALIMENTACIÓN
+          <div class="col-3 alimentacion_div_lg shadow-lg mr-4" @click="this.goto('alimentacion')">
+            <h2 class="text-center">ALIMENTACIÓN</h2> 
             <img src="../assets/comer.png" alt="chico comiendo ensalada">
+            <div class="alimentacion_sombra"></div>
           </div>
-          <div class="col-3 ejercicio_div_lg shadow-lg mx-5">EJERCICIO
+          
+          <div class="col-3 ejercicio_div_lg shadow-lg mx-5"  @click="this.goto('ejercicio')">
+            <h2 class="text-center">EJERCICIO</h2>  
             <img src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png" alt="chica haciendo ejercicio">
+            <div class="ejercicio_sombra"></div>
           </div>
-          <div class="col-3 salud_div_lg shadow-lg ml-3">SALUD MENTAL Y DESCANSO
+
+          
+          <div class="col-3 salud_div_lg shadow-lg ml-3" @click="this.goto('saludmental')" >
+            <h2 class="text-center">SALUD MENTAL Y DESCANSO</h2> 
             <img src="../assets/saludMental2.png" alt="chica meditando">
+            <div class="salud_sombra"></div>
           </div>
       </div>
     </div>
@@ -113,7 +122,7 @@ export default {
 /* Alimentación pantalla grande */
 .alimentacion_div_lg {
   background-color: #7ed957c4;
-  height: 70vh;
+  height: 80vh;
 }
 
 .alimentacion_div_lg img {
@@ -126,7 +135,7 @@ export default {
 /* Ejercicio pantalla grande */
 .ejercicio_div_lg {
   background-color:#ff914dc4;
-  height: 70vh;
+  height: 80vh;
 }
 
 .ejercicio_div_lg img {
@@ -140,7 +149,7 @@ export default {
 /* Salud pantalla grande */
 .salud_div_lg {
   background-color: #5cb8e6c4;
-  height: 70vh;
+  height: 80vh;
 }
 
 .salud_div_lg img {
@@ -149,7 +158,6 @@ export default {
   top: 15em;
   max-width: 145%;
 }
-
 
 .landingPage .col-12 span {
   font-size: 6vw;
@@ -172,9 +180,272 @@ export default {
 
 /********  PANTALLA GRANDE  ********/
 
-@media only screen and (min-width: 1100px) {
-
+.alimentacion_sombra {
+  height: 90vh;
+  background-color:#43742fc4;
 }
+
+.salud_sombra {
+  height: 90vh;
+  background-color: #315e75c4;
+}
+
+.ejercicio_sombra {
+  height: 90vh;
+  background-color: #c95914c4;
+}
+
+
+
+@media only screen and (min-width: 700px) {
+  .alimentacion_div_lg img {
+    position: relative;
+    left: -1.5em;
+    top: 12em;
+    max-width: 115% 
+  }
+
+  .ejercicio_div_lg img {
+    position: relative;
+    left: -1.1em;
+    top: 10em;
+    max-width: 120%;
+  }
+
+  .salud_div_lg img {
+    position: relative;
+    left: -2em;
+    top: 14em;
+    max-width: 140%;
+  }
+}
+
+
+@media only screen and (min-width: 900px) {
+  .alimentacion_div_lg img {
+    position: relative;
+    left: -1.5em;
+    top: 12em;
+    max-width: 115% 
+  }
+
+  .ejercicio_div_lg img {
+    position: relative;
+    left: -1.1em;
+    top: 10em;
+    max-width: 120%;
+  }
+
+  .salud_div_lg img {
+    position: relative;
+    left: -2em;
+    top: 14em;
+    max-width: 140%;
+  }
+}
+
+@media only screen and (min-width: 1050px) {
+  .alimentacion_div_lg img {
+    position: relative;
+    left: -0.3em;
+    top: 12em;
+    max-width: 100% !important;
+  }
+
+  .ejercicio_div_lg img {
+    position: relative;
+    left: -0.3em;
+    top: 9em;
+    max-width: 110%;
+  }
+
+  .salud_div_lg img {
+    position: relative;
+    left: -3.2em;
+    top: 14em;
+    max-width: 140%;
+  }
+}
+
+
+@media only screen and (min-width: 1280px) {
+  .alimentacion_div_lg img {
+    position: relative;
+    left: 0.6em;
+    top: 10em;
+    max-width: 90% !important;
+  }
+
+  .ejercicio_div_lg img {
+    position: relative;
+    left: -0.1em;
+    top: 6.4em;
+    max-width: 100%;
+  }
+
+  .salud_div_lg img {
+    position: relative;
+    left: -3.2em;
+    top: 12em;
+    max-width: 135%;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .alimentacion_div_lg img {
+    position: relative;
+    left: 0.6em;
+    top: 10em;
+    max-width: 90% !important;
+  }
+
+  .ejercicio_div_lg img {
+    position: relative;
+    left: 0.2em;
+    top: 6em;
+    max-width: 100%;
+  }
+
+  .salud_div_lg img {
+    position: relative;
+    left: -3.2em;
+    top: 12em;
+    max-width: 135%;
+  }
+}
+
+
+@media only screen and (min-width: 1600px) {
+  .alimentacion_div_lg img {
+    position: relative;
+    left: 1em;
+    top: 12em;
+    max-width: 509% !important;
+  }
+
+  .ejercicio_div_lg img {
+    position: relative;
+    left: -0.1em;
+    top: 8em;
+    max-width: 100%;
+  }
+
+  .salud_div_lg img {
+    position: relative;
+    left: -3.2em;
+    top: 12em;
+    max-width: 135%;
+  }
+}
+
+@media only screen and (min-width: 1730px) {
+  .alimentacion_div_lg img {
+    position: relative;
+    left: 0.5em;
+    top: 12em;
+    max-width: 509% !important;
+  }
+
+  .ejercicio_div_lg img {
+    position: relative;
+    left: -0.1em;
+    top: 8em;
+    max-width: 100%;
+  }
+
+  .salud_div_lg img {
+    position: relative;
+    left: -3.2em;
+    top: 12em;
+    max-width: 135%;
+  }
+}
+
+@media only screen and (min-width: 1800px) {
+  .alimentacion_div_lg img {
+    position: relative;
+    left: 2em;
+    top: 12em;
+  }
+
+  .ejercicio_div_lg img {
+    position: relative;
+    left: -0.1em;
+    top: 8em;
+    max-width: 90%;
+  }
+
+
+  .salud_div_lg img {
+    position: relative;
+    left: -3.2em;
+    top: 13em;
+    max-width: 145%;
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  .alimentacion_div_lg img {
+    position: relative;
+    left: 2em;
+    top: 12em;
+  }
+
+  .ejercicio_div_lg img {
+    position: relative;
+    left: -0.1em;
+    top: 6em;
+    max-width: 20%;
+  }
+
+  .salud_div_lg img {
+    position: relative;
+    left: -3.2em;
+    top: 12em;
+    max-width: 14%;
+  }
+}
+
+@media only screen and (min-width: 1900px) {
+  .alimentacion_div_lg img {
+    position: relative;
+    left: 2em;
+    top: 12em;
+    width: 80%;
+  }
+
+  .ejercicio_div_lg img {
+    position: relative;
+    left: -0.1em;
+    top: 6em;
+    max-width: 200% !important;
+  }
+
+  .salud_div_lg img {
+    position: relative;
+    left: -1.2em;
+    top: 12em;
+    max-width: 140%;
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -246,8 +517,48 @@ export default {
   width: 330px !important;
 }
 
+@media only screen and (min-width: 300px) {
+  .ordenador {
+    display: none;
+  }
+  
+  .alimentacion_div_sm {
+    padding-right: 10px !important;
+    margin: 0;
+  }
 
-@media only screen and (min-width: 626px) {
+  .alimentacion_div_sm img {
+    top: -1em;
+    left: 8em;
+    max-width: 45%;
+  }
+
+  .ejercicio_div_sm {
+    padding-right: 200px !important;
+  }
+
+  .ejercicio_div_sm img {
+    top: -3em;
+    left: 6em !important;
+    max-width: 55%;
+  }
+
+  .saludmental_div_sm img {
+    top: -1.3em;
+    left: 6.05em;
+    max-width: 85%;
+  }
+
+  .saludmental_div_sm{
+    padding-right: 230px;
+  }
+
+  .texto_salud {
+    width: 200px;
+  }
+}
+
+@media only screen and (min-width: 600px) {
   .ordenador {
     display: none;
   }
