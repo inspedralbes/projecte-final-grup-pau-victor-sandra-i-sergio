@@ -122,7 +122,7 @@ Usuario.route('/login').post((req, res) => {
                                 res.status(500).json({ 'status': false, 'msg': 'Email o contraseña incorrecta' });
                             }
                         } else {
-                            res.status(500).json({ 'status': false, 'msg': 'Email o contraseña incorrecta' });
+                            res.status(500).json({ 'status': false, 'msg': 'Cuenta no existente...' });
                         }
                     }
                 })
@@ -216,14 +216,14 @@ function comprovacionDatosPrincipales(nA = "", e, p, tipo = "") {
     if (tipo == "register") {
         //Regex nombres
         nA.split(' ').forEach((e) => { /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(e) ? null : cont++; })
-        cont ? errores.push('Nombre o apellidos mal') : null;
+        cont ? errores.push('Nombre o apellidos incorrectos') : null;
     }
 
     // Regex email
-    /^[\w\.]+@([\w]+\.)+[\w]{2,4}$/.test(e) ? null : errores.push('Email mal');
+    /^[\w\.]+@([\w]+\.)+[\w]{2,4}$/.test(e) ? null : errores.push('Email incorrecto');
 
     // Regex password de 8-16 caracteres, con al menos una letra, un numero y un caracter especial.
-    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/.test(p) ? null : errores.push('Password mal');
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/.test(p) ? null : errores.push('Password incorrecto');
 
     return errores;
 }

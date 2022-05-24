@@ -16,28 +16,36 @@ export default {
       ocupacion: "",
       sexo: "",
       error: 0,
+      errorEdad: 0,
+      errorFisico: 0,
+      errorTiempo: 0,
+      errorOcupacion: 0,
+      errorSexo: 0
     };
   },
 
   methods: {
     enviarDatos() {
+      this.error = 0;
       this.nivelFisico =
         this.nivelFisico == 1
           ? "Principiante"
           : this.nivelFisico == 3
-          ? "Avanzado"
-          : "Intermedio";
-      if (
-        this.edad == 0 ||
-        this.nivelFisico == "" ||
-        this.tiempo == "" ||
-        this.ocupacion == "" ||
-        this.sexo == ""
-      ) {
+            ? "Avanzado"
+            : "Intermedio";
+
+      this.errorEdad = (this.edad == 0) ? 1 : 0;
+      this.errorFisico = this.nivelFisico == "" ? 1 : 0;
+      this.errorTiempo = this.tiempo == "" ? 1 : 0;
+      this.errorOcupacion = this.ocupacion == "" ? 1 : 0;
+      this.errorSexo = this.sexo == "" ? 1 : 0;
+
+      if (this.errorEdad || this.errorFisico || this.errorTiempo || this.errorOcupacion || this.errorSexo) {
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "error",
           title: "Faltan campos por rellenar",
+          text: "",
           showConfirmButton: false,
           timer: 2000,
         });
@@ -90,9 +98,7 @@ export default {
 </script>
 <template>
   <!-- P.2 REGISTRO - DATOS DEL USUARIO -->
-  <main
-    class="container justify-content-center d-flex align-items-center scale1"
-  >
+  <main class="container justify-content-center d-flex align-items-center scale1">
     <div class="div_datos REGISTRO2 align-items-start shadow-lg mt-3 mb-3">
       <div class="div2 p-4">
         <h3 class="text-center titulo mb-5">Cuentanos un poco más sobre ti</h3>
@@ -104,61 +110,28 @@ export default {
                 <label class="bold" for="edad">Edad</label>
               </div>
               <div class="col-5 col-md-7 g-1">
-                <input
-                  type="number"
-                  class="form-control"
-                  :class="[this.error ? 'error' : '']"
-                  id="edad"
-                  :value="edad"
-                  min="0"
-                  max="100"
-                  @input="(event) => (edad = event.target.value)"
-                />
+                <input type="number" class="form-control" :class="[this.errorEdad && this.error ? 'error' : '']"
+                  id="edad" :value="edad" min="0" max="100" @input="(event) => (edad = event.target.value)" />
               </div>
             </div>
 
             <div class="row align-items-start mt-4">
               <div class="col-md-auto col-12">
                 <label class="bold mb-3" for="Ocupación">Ocupación</label>
-                <div
-                  class="ocupacion p-3 pe-4 shadow-sm"
-                  :class="[this.error ? 'error' : '']"
-                >
+                <div class="ocupacion p-3 pe-4 shadow-sm" :class="[this.errorOcupacion && this.error ? 'error' : '']">
                   <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="Ocupacion"
-                      id="trabajador"
-                      value="Trabajo"
-                      v-model="this.ocupacion"
-                    />
-                    <label class="form-check-label" for="trabajador"
-                      >Trabajo</label
-                    >
+                    <input class="form-check-input" type="radio" name="Ocupacion" id="trabajador" value="Trabajo"
+                      v-model="this.ocupacion" />
+                    <label class="form-check-label" for="trabajador">Trabajo</label>
                   </div>
                   <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="Ocupacion"
-                      id="estudiante"
-                      value="Estudio"
-                      v-model="this.ocupacion"
-                    />
-                    <label class="form-check-label" for="estudiante"
-                      >Estudio</label
-                    >
+                    <input class="form-check-input" type="radio" name="Ocupacion" id="estudiante" value="Estudio"
+                      v-model="this.ocupacion" />
+                    <label class="form-check-label" for="estudiante">Estudio</label>
                   </div>
                   <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="Ocupacion"
-                      id="otro"
-                      value="Otro"
-                      v-model="this.ocupacion"
-                    />
+                    <input class="form-check-input" type="radio" name="Ocupacion" id="otro" value="Otro"
+                      v-model="this.ocupacion" />
                     <label class="form-check-label" for="otro">Otro</label>
                   </div>
                 </div>
@@ -166,30 +139,15 @@ export default {
 
               <div class="col-md-auto col-12 gy-3 gy-md-0">
                 <label class="bold mb-3" for="Ocupación">Sexo</label>
-                <div
-                  class="sexo p-3 pe-4 shadow-sm"
-                  :class="[this.error ? 'error' : '']"
-                >
+                <div class="sexo p-3 pe-4 shadow-sm" :class="[this.errorSexo && this.error ? 'error' : '']">
                   <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="sexo"
-                      id="mujer"
-                      value="Mujer"
-                      v-model="this.sexo"
-                    />
+                    <input class="form-check-input" type="radio" name="sexo" id="mujer" value="Mujer"
+                      v-model="this.sexo" />
                     <label class="form-check-label" for="mujer">Mujer</label>
                   </div>
                   <div class="form-check">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      name="sexo"
-                      id="hombre"
-                      value="Hombre"
-                      v-model="this.sexo"
-                    />
+                    <input class="form-check-input" type="radio" name="sexo" id="hombre" value="Hombre"
+                      v-model="this.sexo" />
                     <label class="form-check-label" for="hombre">Hombre</label>
                   </div>
                 </div>
@@ -201,15 +159,8 @@ export default {
             <div class="row nivel_row align-items-center mt-2">
               <div class="col nivel my-3">
                 <label for="nivel" class="form-label bold">Nivel físico</label>
-                <input
-                  type="range"
-                  class="form-range"
-                  :class="[this.error ? 'errorSlider' : '']"
-                  min="1"
-                  max="3"
-                  id="nivel"
-                  v-model="this.nivelFisico"
-                />
+                <input type="range" class="form-range" :class="[this.errorFisico && this.error ? 'errorSlider' : '']"
+                  min="1" max="3" id="nivel" v-model="this.nivelFisico" />
                 <br />
 
                 <div class="d-flex justify-content-between rangeNivelFisico">
@@ -223,15 +174,9 @@ export default {
 
             <div class="row nivel_row align-items-center mt-2">
               <div class="col nivel my-3">
-                <label for="nivel" class="form-label bold"
-                  >Disponibilidad de tiempo</label
-                >
-                <select
-                  class="form-select"
-                  aria-label="Default select example"
-                  v-model="this.tiempo"
-                  :class="[this.error ? 'error' : '']"
-                >
+                <label for="nivel" class="form-label bold">Disponibilidad de tiempo</label>
+                <select class="form-select" aria-label="Default select example" v-model="this.tiempo"
+                  :class="[this.errorTiempo && this.error ? 'error' : '']">
                   <option selected disabled>Selecciona una opción</option>
                   <option>15 min</option>
                   <option>30 min</option>
@@ -243,12 +188,7 @@ export default {
           </div>
         </div>
         <div class="text-center mt-3">
-          <input
-            type="button"
-            class="btn btn-primary text-center"
-            @click="this.enviarDatos()"
-            value="Confirmar"
-          />
+          <input type="button" class="btn btn-primary text-center" @click="this.enviarDatos()" value="Confirmar" />
         </div>
       </div>
     </div>
@@ -260,6 +200,10 @@ export default {
 
 main {
   min-height: 89.75vh;
+}
+
+#edad {
+  transition: all 0.5s ease-in-out !important;
 }
 
 .ocupacion,
@@ -315,8 +259,8 @@ main {
   padding-left: 0;
 }
 
-.rangeNivelFisico span{
-    font-size: 0.75em;
+.rangeNivelFisico span {
+  font-size: 0.75em;
 }
 
 .relativeP {

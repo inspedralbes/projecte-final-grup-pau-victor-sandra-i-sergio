@@ -16,6 +16,10 @@ export default {
       ocultar: false,
       error: 0,
       scale: 0,
+      reqEmail: "El email tiene que contener el símbolo '@' y de 2 a 3 letras detrás del punto",
+      reqPassword: "La contraseña tiene es de entre 8-16 caracteres, tiene al menos una letra, un número y un carácter especial [@$!%*#?&]",
+      reqNombreApellidos: "El nombre no puede contener ningún número",
+      registro: ""
     };
   },
 
@@ -24,15 +28,36 @@ export default {
   },
 
   mounted() {
+    this.mostrarPopovers()
     this.sesionStore.setRutaActual(this.$route.name);
+
   },
 
   methods: {
+    mostrarPopovers() {
+      var popoverTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="popover"]')
+      );
+
+      popoverTriggerList.map(function (popoverTriggerEl) {
+        return new bootstrap.Popover(popoverTriggerEl);
+      });
+    },
+
     cambiar_registro() {
       this.click_registro = 1;
+      setTimeout(() => {
+        this.registro = 1;
+      }, 1000)
+      this.mostrarPopovers();
+      console.log('asdfasdf')
     },
     cambiar_login() {
       this.click_registro = 0;
+      this.registro = 0;
+
+      console.log('asdfasdf')
+      this.mostrarPopovers();
     },
 
     iniciarSesion() {
@@ -67,17 +92,19 @@ export default {
               position: "center",
               icon: data.status ? "success" : "error",
               title: data.msg,
+              text: "Intentelo de nuevo",
               showConfirmButton: false,
               timer: 1500,
             });
           });
       } else {
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "error",
-          title: this.error.join(" y "),
+          title: this.error,
+          text: "Para saber el formato de cada campo, dirigete al símbolo que aparece su lado",
           showConfirmButton: false,
-          timer: 1500,
+          timer: 3000,
         });
       }
     },
@@ -121,17 +148,19 @@ export default {
               position: "center",
               icon: data.status ? "success" : "error",
               title: data.msg,
+              text: "Intente de nuevo :)",
               showConfirmButton: false,
               timer: 1700,
             });
           });
       } else {
         Swal.fire({
-          position: "top-end",
+          position: "center",
           icon: "error",
-          title: this.error.join(" y "),
+          title: this.error,
+          text: "Para saber el formato de cada campo, dirigete al símbolo que aparece su lado",
           showConfirmButton: false,
-          timer: 2000,
+          timer: 3000,
         });
       }
     },
@@ -142,7 +171,7 @@ export default {
 
       if (email != "" && password != "" && nomApe != "") {
         if (tipo == "register") {
-          console.log("reg");
+
           //Regex nombres
           nomApe.split(" ").forEach((e) => {
             /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]+$/u.test(
@@ -155,16 +184,9 @@ export default {
         }
 
         // Regex email
-        /^[\w\.]+@([\w]+\.)+[\w]{2,4}$/.test(email)
-          ? null
-          : errores.push("Email mal formatado");
-
         // Regex password de 8-16 caracteres, con al menos una letra, un numero y un caracter especial.
-        /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/.test(
-          password
-        )
-          ? null
-          : errores.push("Password mal formatado");
+        (/^[\w\.]+@([\w]+\.)+[\w]{2,4}$/.test(email) && /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,16}$/.test(password)) ? null : errores.push("Email o password mal formatados");
+
       } else {
         errores.push("Falta por rellenar algún campo");
       }
@@ -181,62 +203,41 @@ export default {
 
     <div class="container" :class="[this.scale ? 'scale0' : '']">
       <div class="flip-box">
-        <div
-          class="flip-box-inner d-flex align-items-center"
-          v-bind:class="[this.click_registro ? 'flip' : '']"
-        >
+        <div class="flip-box-inner d-flex align-items-center" v-bind:class="[this.click_registro ? 'flip' : '']">
           <!-- INICIAR SESIÓN -->
-          <div class="flip-box-front carta_singup_front shadow col-12">
+          <div class="flip-box-front carta_singup_front shadow col-12" :class="[this.registro ? 'display-none' : '']">
             <div class="iniciar_sesion">
               <h3>Iniciar Sesión</h3>
+
               <div class="input-group mb-2 mt-5">
-                <span class="input-group-text material-symbols-outlined"
-                  >alternate_email</span
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Correo"
-                  aria-label="Correo"
-                  :value="this.emailLogin"
-                  aria-describedby="basic-addon1"
-                  @input="
+                <span class="input-group-text material-symbols-outlined" tabindex="0" data-bs-toggle="popover"
+                  data-bs-placement="left" data-bs-trigger="hover focus"
+                  :data-bs-content="this.reqEmail">alternate_email</span>
+
+                <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
+                  :value="this.emailLogin" aria-describedby="basic-addon1" @input="
                     (event) => {
                       this.emailLogin = event.target.value;
                     }
-                  "
-                />
+                  " />
               </div>
 
+
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined"
-                  >lock</span
-                >
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Contraseña"
-                  aria-label="Contraseña"
-                  aria-describedby="basic-addon2"
-                  :value="this.passwordLogin"
-                  @input="
+                <span class="input-group-text material-symbols-outlined" tabindex="0" data-bs-toggle="popover"
+                  data-bs-placement="left" data-bs-trigger="hover focus" :data-bs-content="this.reqPassword">lock</span>
+                <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
+                  aria-describedby="basic-addon2" :value="this.passwordLogin" @input="
                     (event) => {
                       this.passwordLogin = event.target.value;
                     }
-                  "
-                />
+                  " />
               </div>
 
-              <button
-                class="btn btn-primary mt-4"
-                @click="this.iniciarSesion()"
-              >
+              <button class="btn btn-primary mt-4" @click="this.iniciarSesion()">
                 Iniciar Sesión
               </button>
-              <div
-                class="login_singup col-12 mt-4 mb-5"
-                @click="cambiar_registro"
-              >
+              <div class="login_singup col-12 mt-4 mb-5" @click="cambiar_registro">
                 <span>No tienes cuenta?</span>
               </div>
             </div>
@@ -248,69 +249,44 @@ export default {
               <h3>Unete a Genki Body</h3>
 
               <div class="input-group mb-2 mt-5">
-                <span class="input-group-text material-symbols-outlined"
-                  >person</span
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Nombre y apellidos"
-                  aria-label="Nombre y apellidos"
-                  aria-describedby="basic-addon1"
-                  :value="this.nomApeRegister"
-                  @input="
+                <span class="input-group-text material-symbols-outlined" tabindex="0" data-bs-toggle="popover"
+                  data-bs-placement="left" data-bs-trigger="hover focus"
+                  :data-bs-content="this.reqNombreApellidos">person</span>
+                <input type="text" class="form-control" placeholder="Nombre y apellidos" aria-label="Nombre y apellidos"
+                  aria-describedby="basic-addon1" :value="this.nomApeRegister" @input="
                     (event) => {
                       this.nomApeRegister = event.target.value;
                     }
-                  "
-                />
+                  " />
               </div>
 
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined"
-                  >alternate_email</span
-                >
-                <input
-                  type="text"
-                  class="form-control"
-                  placeholder="Correo"
-                  aria-label="Correo"
-                  aria-describedby="basic-addon1"
-                  :value="this.emailRegister"
-                  @input="
+                <span class="input-group-text material-symbols-outlined" tabindex="0" data-bs-toggle="popover"
+                  data-bs-placement="left" data-bs-trigger="hover focus"
+                  :data-bs-content="this.reqEmail">alternate_email</span>
+                <input type="text" class="form-control" placeholder="Correo" aria-label="Correo"
+                  aria-describedby="basic-addon1" :value="this.emailRegister" @input="
                     (event) => {
                       this.emailRegister = event.target.value;
                     }
-                  "
-                />
+                  " />
               </div>
 
               <div class="input-group mb-2 mt-3">
-                <span class="input-group-text material-symbols-outlined"
-                  >lock</span
-                >
-                <input
-                  type="password"
-                  class="form-control"
-                  placeholder="Contraseña"
-                  aria-label="Contraseña"
-                  aria-describedby="basic-addon2"
-                  :value="this.passwordRegister"
-                  @input="
+                <span class="input-group-text material-symbols-outlined" tabindex="0" data-bs-toggle="popover"
+                  data-bs-placement="left" data-bs-trigger="hover focus" :data-bs-content="this.reqPassword">lock</span>
+                <input type="password" class="form-control" placeholder="Contraseña" aria-label="Contraseña"
+                  aria-describedby="basic-addon2" :value="this.passwordRegister" @input="
                     (event) => {
                       this.passwordRegister = event.target.value;
                     }
-                  "
-                />
+                  " />
               </div>
 
               <button class="btn btn-primary mt-4" @click="this.registrarse()">
                 Registrar
               </button>
-              <div
-                class="login_singup vcol-12 mt-4 mb-1"
-                @click="cambiar_login"
-              >
+              <div class="login_singup vcol-12 mt-4 mb-1" @click="cambiar_login">
                 <span>Ya tienes cuenta?</span>
               </div>
             </div>
@@ -327,9 +303,14 @@ export default {
   width: 100vw;
 }
 
+.popover {
+  position: relative !important;
+}
+
 .input-group-text
 
-/* iconos formulario */ {
+/* iconos formulario */
+  {
   background-color: #ffffff;
   color: black;
 }
@@ -341,6 +322,10 @@ h3 {
 .login_singup:hover {
   color: rgb(15, 179, 255);
   cursor: pointer;
+}
+
+.display-none {
+  display: none;
 }
 
 .carta_singup_front,
