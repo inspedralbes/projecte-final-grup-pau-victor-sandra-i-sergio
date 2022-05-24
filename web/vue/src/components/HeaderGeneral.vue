@@ -16,6 +16,7 @@ export default {
     };
   },
 
+  /*Utilizamos el setInterval para que recoja los datos de usuario*/
   mounted() {
     setInterval(() => {
       this.usuario = this.sesionStore.getUsuario;
@@ -23,6 +24,7 @@ export default {
   },
 
   methods: {
+    /*Se cierra el desplegable*/
     cerrarNav() {
       document.getElementById("offcanvasNavbar").dispatchEvent(
         new KeyboardEvent("keydown", {
@@ -41,6 +43,7 @@ export default {
         })
       );
     },
+    /*Se borran los datos guardados*/
     cerrarSesion() {
       window.localStorage.clear()
       window.location.href = ".";
