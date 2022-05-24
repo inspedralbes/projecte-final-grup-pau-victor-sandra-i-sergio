@@ -187,6 +187,7 @@ export default {
     </div>
     <section>
       <div class="container">
+
         <div class="row">
           <div class="col-12 d-flex align-items-center justify-content-center">
             <h5 class="titulo-barra">Progresión del formulario</h5>
@@ -194,68 +195,43 @@ export default {
           <div class="col-12 d-flex align-items-center justify-content-center">
             <div class="progress">
               <div
-                :class="[
-                  this.progressBar == 1
-                    ? 'load50'
-                    : this.progressBar == 2
-                    ? 'load100'
-                    : this.progressBar == 3
-                    ? 'reverse'
-                    : '',
-                ]"
-                class="progress-value"
-              ></div>
+                :class="[this.progressBar == 1 ? 'load50' : this.progressBar == 2 ? 'load100' : this.progressBar == 3 ? 'reverse' : '']"
+                class="progress-value"></div>
             </div>
           </div>
         </div>
+        
       </div>
 
-      <div
-        class="container mallaIconos"
-        v-if="this.disabled"
-        :class="[
-          this.animacionCentroArriba ? 'animacionCentroParaArriba' : '',
-          this.animacionArribaCentro ? 'animacionArribaParaCentro' : '',
-        ]"
-      >
-        <div
-          class="
+      <div class="container mallaIconos" v-if="this.disabled" :class="[
+        this.animacionCentroArriba ? 'animacionCentroParaArriba' : '',
+        this.animacionArribaCentro ? 'animacionArribaParaCentro' : '',
+      ]">
+        <div class="
             row
             justify-content-center
             cartas
             cuestionario_estado
             shadow-lg
-          "
-        >
+          ">
           <div class="col-12 text-center">
             <h2 class="titulo_cuestionario text-center">
               ¿Como te sientes hoy?
             </h2>
           </div>
 
-          <div
-            class="col-6 col-md-3 g-4 d-flex justify-content-center"
-            v-for="(opcion, index) in estado"
-            :key="index"
-            v-bind:value="opcion.value"
-          >
-            <CardVertical
-              @id="this.guardarEstado"
-              :infoCuest="this.estado[index]"
-            />
+          <div class="col-6 col-md-3 g-4 d-flex justify-content-center" v-for="(opcion, index) in estado" :key="index"
+            v-bind:value="opcion.value">
+            <CardVertical @id="this.guardarEstado" :infoCuest="this.estado[index]" />
           </div>
         </div>
       </div>
 
-      <div
-        class="container card_motivos"
-        v-if="this.disabled2"
-        :class="{
-          animacionAbajoParaCentro: this.animacionAbajoCentro,
-          animacionCentroParaArriba: this.animacionCentroArriba,
-          animacionCentroParaAbajo: this.animacionCentroAbajo,
-        }"
-      >
+      <div class="container card_motivos" v-if="this.disabled2" :class="{
+        animacionAbajoParaCentro: this.animacionAbajoCentro,
+        animacionCentroParaArriba: this.animacionCentroArriba,
+        animacionCentroParaAbajo: this.animacionCentroAbajo,
+      }">
         <div id="card-horizontal" v-if="selected" class="card mb-3 shadow">
           <div class="row justify-content-center">
             <div class="col-12 retroceder">
@@ -274,22 +250,12 @@ export default {
               <div class="card-body">
                 <h5 class="text-center card-body-tit">
                   ¿Por qué estás
-                  <span style="font-weight: bold">{{ selected[0].value }}</span
-                  >?
+                  <span style="font-weight: bold">{{ selected[0].value }}</span>?
                 </h5>
-                <div
-                  :key="index"
-                  v-for="(estado, index) in selected[0].motivos"
-                >
+                <div :key="index" v-for="(estado, index) in selected[0].motivos">
                   <div class="form-check my-3">
-                    <input
-                      class="form-check-input"
-                      type="radio"
-                      @click="guardarMotivo($event.target.value)"
-                      :value="estado"
-                      name="motivo"
-                      :id="index"
-                    />
+                    <input class="form-check-input" type="radio" @click="guardarMotivo($event.target.value)"
+                      :value="estado" name="motivo" :id="index" />
                     <label class="form-check-label" :for="index">
                       {{ estado }}
                     </label>
@@ -298,23 +264,16 @@ export default {
               </div>
 
               <div class="col-12 gy-2 text-center">
-                <input
-                  class="btn btn-outline-secondary btn-enviarRespuesta"
-                  type="button"
-                  @click="enviarFormulario()"
-                  value="Enviar respuesta"
-                />
+                <input class="btn btn-outline-secondary btn-enviarRespuesta" type="button" @click="enviarFormulario()"
+                  value="Enviar respuesta" />
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div
-        v-if="selected && disabled3"
-        class="container"
-        :class="{ animacionAbajoParaCentro: this.animacionAbajoCentro }"
-      >
+      <div v-if="selected && disabled3" class="container"
+        :class="{ animacionAbajoParaCentro: this.animacionAbajoCentro }">
         <div id="divResultado" class="card-respuesta card text-center shadow">
           <div class="card-body">
             <h4 class="card-title titlo_estado">
@@ -337,9 +296,7 @@ export default {
                 Para descubrir porqué te sientes {{ this.respuesta.estado }} y
                 como mejorar tu estado de ánimo visita la siguiente página ...
               </p>
-              <a :href="this.respuesta.respuesta" target="_blank" class="link"
-                >Click para saber más</a
-              >
+              <a :href="this.respuesta.respuesta" target="_blank" class="link">Click para saber más</a>
             </div>
           </div>
         </div>
@@ -521,8 +478,7 @@ form {
 }
 
 @keyframes bounce-center-top {
-  from {
-  }
+  from {}
 
   40% {
     transform: translate(0, 100px);
@@ -546,8 +502,7 @@ form {
 }
 
 @keyframes bounce-center-bottom {
-  from {
-  }
+  from {}
 
   40% {
     transform: translate(0, -100px);
