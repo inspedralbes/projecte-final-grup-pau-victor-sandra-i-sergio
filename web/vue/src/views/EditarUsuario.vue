@@ -238,6 +238,7 @@ export default {
           let datos = new FormData();
           datos.append("usuario", id);
           datos.append("imgBase64", canvas.toDataURL());
+          console.log(canvas.toDataURL());
 
           fetch(
             "http://genkicorpusback.alumnes.inspedralbes.cat:7101/usuario/guardarFotoPerfil",
