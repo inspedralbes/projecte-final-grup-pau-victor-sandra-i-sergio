@@ -19,8 +19,7 @@ export default {
       data: [],
       labels: [],
       gr: null,
-      size: ""
-
+      size: "",
     };
   },
   computed: {
@@ -70,7 +69,7 @@ export default {
       datos.append("img", this.img);
       datos.append("sexo", this.datosUsuario.sexo);
       datos.append("ocupacion", this.ocupacion);
-      datos.append("tiempo", this.tiempo);
+      datos.append("disponibilidadTiempo", this.tiempo);
       datos.append("nivelFisico", this.nivel);
       for (var pair of datos.entries()) {
         console.log(pair[0] + ", " + pair[1]);
@@ -85,9 +84,18 @@ export default {
       )
         .then((response) => response.json())
         .then((data) => {
+          Swal.fire({
+            position: "center",
+            icon: data.status ? "success" : "error",
+            title: data.msg,
+            showConfirmButton: false,
+            timer: 1500,
+          });
           if (data.status) {
             this.sesionStore.setUsuario(data.usuario);
-            window.location.reload()
+            setTimeout(() => {
+              window.location.reload();
+            }, 1000);
           }
         });
     },
@@ -102,31 +110,33 @@ export default {
 
     mostrarGrafico(labels, data) {
       if (this.gr != null) {
-        this.gr.destroy()
+        this.gr.destroy();
       }
-      const ctx = document.getElementById("grafico").getContext('2d');
+      const ctx = document.getElementById("grafico").getContext("2d");
       this.gr = new Chart(ctx, {
         type: "doughnut",
         data: {
           labels: labels,
-          datasets: [{
-            label: 'Mi seguimiento',
-            data: data,
-            backgroundColor: [
-              "rgb(255, 99, 132)",
-              "rgb(116, 196, 247)",
-              "rgb(255, 185, 69)",
-              "rgb(5, 105, 255)",
-              "rgb(69, 128, 61)",
-              "rgb(152, 79, 207)",
-              "rgb(202, 207, 45)",
-            ],
-            hoverOffset: 4
-          }]
+          datasets: [
+            {
+              label: "Mi seguimiento",
+              data: data,
+              backgroundColor: [
+                "rgb(255, 99, 132)",
+                "rgb(116, 196, 247)",
+                "rgb(255, 185, 69)",
+                "rgb(5, 105, 255)",
+                "rgb(69, 128, 61)",
+                "rgb(152, 79, 207)",
+                "rgb(202, 207, 45)",
+                "rgb(232, 126, 245)",
+                "rgb(141, 244, 151)",
+              ],
+              hoverOffset: 4,
+            },
+          ],
         },
-      },
-      );
-
+      });
     },
 
     graficoSaludMental() {
@@ -136,12 +146,17 @@ export default {
       datos.append("idUsuario", this.idUsuario);
       datos.append("filtro", this.filtro);
 
-      fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/salud-mental/respuestas", {
-        method: "POST",
-        body: datos,
-      }).then((response) => response.json()).then((respuesta) => {
-        this.mostrarGrafico(respuesta.label, respuesta.data)
-      });
+      fetch(
+        "http://genkicorpusback.alumnes.inspedralbes.cat:7101/salud-mental/respuestas",
+        {
+          method: "POST",
+          body: datos,
+        }
+      )
+        .then((response) => response.json())
+        .then((respuesta) => {
+          this.mostrarGrafico(respuesta.label, respuesta.data);
+        });
     },
 
     graficoDescanso() {
@@ -149,15 +164,20 @@ export default {
       datosDescanso.append("idUsuario", this.idUsuario);
       datosDescanso.append("filtro", this.filtro);
 
-      fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/respuestas", {
-        method: "POST",
-        body: datosDescanso,
-      }).then((response) => response.json()).then((respuesta) => {
-        this.mostrarGrafico(respuesta.label, respuesta.data)
-      });
+      fetch(
+        "http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/respuestas",
+        {
+          method: "POST",
+          body: datosDescanso,
+        }
+      )
+        .then((response) => response.json())
+        .then((respuesta) => {
+          this.mostrarGrafico(respuesta.label, respuesta.data);
+        });
     },
 
-    cambiarfoto() { },
+    cambiarfoto() {},
 
     cambiarOpcionNav(item) {
       document.querySelectorAll(".nav-tabs a").forEach((e) => {
@@ -172,26 +192,27 @@ export default {
 
     hacerFoto(id) {
       setTimeout(() => {
-        'use strict';
+        "use strict";
 
-        const video = document.getElementById('video');
-        const canvas = document.getElementById('canvas');
+        const video = document.getElementById("video");
+        const canvas = document.getElementById("canvas");
         const snap = document.getElementById("snap");
-        const errorMsgElement = document.querySelector('span#errorMsg');
-        this.size = document.querySelector('.m-body').getBoundingClientRect();
+        const errorMsgElement = document.querySelector("span#errorMsg");
+        this.size = document.querySelector(".m-body").getBoundingClientRect();
         const constraints = {
           audio: false,
           video: {
             width: this.size.width,
             height: this.size.height,
-          }
+          },
         };
-
 
         // Access webcam
         async function init() {
           try {
-            const stream = await navigator.mediaDevices.getUserMedia(constraints);
+            const stream = await navigator.mediaDevices.getUserMedia(
+              constraints
+            );
             handleSuccess(stream);
           } catch (e) {
             errorMsgElement.innerHTML = `navigator.getUserMedia error:${e.toString()}`;
@@ -208,22 +229,52 @@ export default {
         init();
 
         // Draw image
-        var context = canvas.getContext('2d');
+        var context = canvas.getContext("2d");
         snap.addEventListener("click", function () {
           context.drawImage(video, 0, 0, 1280, 720);
           let datos = new FormData();
-          datos.append('usuario', id);
-          datos.append('imgBase64', canvas.toDataURL());
+          datos.append("usuario", id);
+          datos.append("imgBase64", canvas.toDataURL());
 
-          fetch("http://genkicorpusback.alumnes.inspedralbes.cat:7101/usuario/guardarFotoPerfil", {
-            method: "POST",
-            body: datos
-          })
+          fetch(
+            "http://genkicorpusback.alumnes.inspedralbes.cat:7101/usuario/guardarFotoPerfil",
+            {
+              method: "POST",
+              body: datos,
+            }
+          )
+            .then((response) => response.json())
+            .then((data) => {
+              console.log(data);
+              Swal.fire({
+                position: "center",
+                icon: data.status ? "success" : "error",
+                title: data.msg,
+                showConfirmButton: false,
+                timer: 1500,
+              });
+              setTimeout(() => {
+                document.getElementById("exampleModal").dispatchEvent(
+                  new KeyboardEvent("keydown", {
+                    altKey: false,
+                    code: "Escape",
+                    ctrlKey: false,
+                    isComposing: false,
+                    key: "Escape",
+                    location: 0,
+                    metaKey: false,
+                    repeat: false,
+                    shiftKey: false,
+                    which: 27,
+                    charCode: 0,
+                    keyCode: 27,
+                  })
+                );
+              }, 1500);
+            });
         });
-      }, 500)
-
-
-    }
+      }, 500);
+    },
   },
 };
 </script>
@@ -238,19 +289,42 @@ export default {
               <h2 class="fontsize text-center">Mis datos</h2>
             </div>
             <div class="col-12 gy-2 text-center">
-              <img @click="hacerFoto(this.idUsuario)" class="img-perfil" :src="this.img" data-bs-toggle="modal"
-                data-bs-target="#exampleModal" />
+              <img
+                @click="hacerFoto(this.idUsuario)"
+                class="img-perfil"
+                :src="this.img"
+                data-bs-toggle="modal"
+                data-bs-target="#exampleModal"
+              />
             </div>
 
-
             <!-- Modal -->
-            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-              aria-hidden="true">
-              <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
-                <div class="modal-content ">
+            <div
+              class="modal fade"
+              id="exampleModal"
+              tabindex="-1"
+              aria-labelledby="exampleModalLabel"
+              aria-hidden="true"
+            >
+              <div
+                class="
+                  modal-dialog
+                  modal-lg
+                  modal-dialog-centered
+                  modal-dialog-scrollable
+                "
+              >
+                <div class="modal-content">
                   <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel"> ¡Hazte una foto! </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    <h5 class="modal-title" id="exampleModalLabel">
+                      ¡Hazte una foto!
+                    </h5>
+                    <button
+                      type="button"
+                      class="btn-close"
+                      data-bs-dismiss="modal"
+                      aria-label="Close"
+                    ></button>
                   </div>
                   <div class="modal-body" id="modal-body">
                     <div class="m-body">
@@ -272,40 +346,65 @@ export default {
                 </div>
               </div>
             </div>
-
-
           </div>
         </div>
         <div class="col-12 col-md-8 datos">
           <div class="row">
             <div class="col-12 col-lg-6">
               <div class="form-floating mb-1">
-                <input type="text" class="form-control" id="floatingnombre" :value="this.nombreUsuario"
-                  placeholder="nombre" />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="floatingnombre"
+                  :value="this.nombreUsuario"
+                  placeholder="nombre"
+                />
                 <label for="floatingInput">Nombre y Apellidos</label>
               </div>
             </div>
 
             <div class="col-12 col-lg-6">
               <div class="form-floating mb-2">
-                <input type="email" class="form-control" id="floatingemail" :value="this.emailUsuario"
-                  placeholder="name@example.com" disabled />
+                <input
+                  type="email"
+                  class="form-control"
+                  id="floatingemail"
+                  :value="this.emailUsuario"
+                  placeholder="name@example.com"
+                  disabled
+                />
                 <label for="floatingInput">Email address</label>
               </div>
             </div>
             <div class="col-12 col-md-6">
               <div class="form-floating mb-2">
-                <input type="number" class="form-control" id="floatingEdad" :value="this.datosUsuario.edad"
-                  placeholder="Edad" />
+                <input
+                  type="number"
+                  class="form-control"
+                  id="floatingEdad"
+                  :value="this.datosUsuario.edad"
+                  placeholder="Edad"
+                />
                 <label for="floatingEdad">Edad</label>
               </div>
               <div class="form-floating mb-2">
-                <input type="text" class="form-control" id="floatingSexo" :value="this.datosUsuario.sexo"
-                  placeholder="Sexo" disabled />
+                <input
+                  type="text"
+                  class="form-control"
+                  id="floatingSexo"
+                  :value="this.datosUsuario.sexo"
+                  placeholder="Sexo"
+                  disabled
+                />
                 <label for="floatingSexo">Sexo</label>
               </div>
               <div class="form-floating mb-2">
-                <select id="ocupacion" class="form-select" aria-label="Default select example" v-model="this.ocupacion">
+                <select
+                  id="ocupacion"
+                  class="form-select"
+                  aria-label="Default select example"
+                  v-model="this.ocupacion"
+                >
                   <option value="Trabajo">Trabajo</option>
                   <option value="Estudio">Estudio</option>
                   <option value="Otro">Otro</option>
@@ -315,16 +414,26 @@ export default {
             </div>
             <div class="col-12 col-md-6">
               <div class="form-floating mb-2">
-                <select id="tiempo" class="form-select" aria-label="Default select example" v-model="this.tiempo">
-                  <option value="~ 15 min">~ 15 min</option>
+                <select
+                  id="tiempo"
+                  class="form-select"
+                  aria-label="Default select example"
+                  v-model="this.tiempo"
+                >
+                  <option value="15 min">15 min</option>
                   <option value="30 min">30 min</option>
                   <option value="45 min">45 min</option>
-                  <option value="+1 h">+1 h</option>
+                  <option value="1 h">1 h</option>
                 </select>
                 <label for="floatingEdad">Tiempo</label>
               </div>
               <div class="form-floating mb-2">
-                <select id="nivel" class="form-select" aria-label="Default select example" v-model="this.nivel">
+                <select
+                  id="nivel"
+                  class="form-select"
+                  aria-label="Default select example"
+                  v-model="this.nivel"
+                >
                   <option value="Principiante">Principiante</option>
                   <option value="Intermedio">Intermedio</option>
                   <option value="Avanzado">Avanzado</option>
@@ -349,25 +458,49 @@ export default {
         <div class="col-12">
           <ul class="nav nav-tabs">
             <li class="nav-item">
-              <a id="navSaludmental" class="nav-link active"
-                @click="this.graficoSaludMental(); cambiarOpcionNav($event);">Salud Mental</a>
+              <a
+                id="navSaludmental"
+                class="nav-link active"
+                @click="
+                  this.graficoSaludMental();
+                  cambiarOpcionNav($event);
+                "
+                >Salud Mental</a
+              >
             </li>
             <li class="nav-item">
-              <a id="navDescanso" @click="this.graficoDescanso(); cambiarOpcionNav($event);"
-                class="nav-link">Descanso</a>
+              <a
+                id="navDescanso"
+                @click="
+                  this.graficoDescanso();
+                  cambiarOpcionNav($event);
+                "
+                class="nav-link"
+                >Descanso</a
+              >
             </li>
           </ul>
         </div>
 
         <div :class="[this.grafico ? 'ocultar' : '']" class="col-3 gy-2">
-          <select @change="filtroSM()" class="form-select" aria-label="Default select example" v-model="this.filtro">
+          <select
+            @change="filtroSM()"
+            class="form-select"
+            aria-label="Default select example"
+            v-model="this.filtro"
+          >
             <option value="Semana" selected>Semana</option>
             <option value="Mes">Mes</option>
           </select>
         </div>
 
         <div :class="[!this.grafico ? 'ocultar' : '']" class="col-3 gy-2">
-          <select @change="filtroD()" class="form-select" aria-label="Default select example" v-model="this.filtro">
+          <select
+            @change="filtroD()"
+            class="form-select"
+            aria-label="Default select example"
+            v-model="this.filtro"
+          >
             <option value="Semana" selected>Semana</option>
             <option value="Mes">Mes</option>
           </select>
@@ -392,7 +525,7 @@ main {
 }
 
 .modal-content {
-  height: 60vh
+  height: 60vh;
 }
 
 .m-body {
@@ -453,7 +586,7 @@ main {
 }
 
 #canvas {
-  display: none
+  display: none;
 }
 
 @media only screen and (min-width: 768px) {
