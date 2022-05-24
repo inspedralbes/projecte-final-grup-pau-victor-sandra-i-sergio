@@ -3,7 +3,7 @@
 ## Backend
 
 - Clona el repositorio y abre la carpeta "back > express" con un editor de codigo como Visual Studio Code.
-- Abre el terminal del editor y ejecuta el siguiente comando: "npm install". Luego ejecuta "npm run start:dev" y después apaga servidor clicando a ^C y S.
+- Abre el terminal del editor y ejecuta el siguiente comando: "npm install". Luego ejecuta "npm run start:dev" y después apaga servidor clicando a "^C" y "S".
 - Ahora, importa los ficheros de la carpeta "back > datosInsertarMongoDB" a tu BD de MongoDB (a la coleccion ProjecteFinal que se habrá creado automaticamente).
 - Luego, ejecuta de nuevo "npm run start:dev" y ya estará en marcha el backend en modo desarollo. Para produccion, ejecuta "npm start" y listo
 
