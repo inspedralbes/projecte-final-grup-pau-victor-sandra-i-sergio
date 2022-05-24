@@ -23,7 +23,7 @@ export default {
       errorSexo: 0
     };
   },
-
+  //envia los datos del registro parte 2 
   methods: {
     enviarDatos() {
       this.error = 0;
