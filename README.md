@@ -7,18 +7,19 @@
 - Sergio Villacampa Racero
 
 # Nom del projecte: "Genki Corpus"
-Aplicació web que engloba tots els aspectes de la salut (activitat fisica, alimnetació i descans i salut mental)
+Aplicació web que engloba tots els aspectes de la salut (activitat fisica, alimnentació i descans i salut mental)
+
 
 # Esquema carpetes del projecte
 
 
-És obligatori seguir aquesta estructura tot i que la podeu ampliar.
+
+
 
 # Aquest fitxer ha de contenir com a mínim:
- * URL de producció frontend: ""
+ * URL de producció frontend: "http://genkicorpus.alumnes.inspedralbes.cat"
  * URL de producció backend: ""
- * Estat: (explicació de en quin punt està)
-
+ * Estat: en desarrollo
 
 
 # Backlog & Sprints
