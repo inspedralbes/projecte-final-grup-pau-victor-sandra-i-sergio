@@ -62,7 +62,7 @@ export default {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#d33",
-        confirmButtonText: "Iniciar sesion",
+        confirmButtonText: "Iniciar sesión",
         cancelButtonText: "Continuar sin cuenta",
       }).then((result) => {
         if (result.isConfirmed) {

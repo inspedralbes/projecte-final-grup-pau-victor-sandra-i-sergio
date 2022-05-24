@@ -204,6 +204,7 @@ export default {
     <div class="container" :class="[this.scale ? 'scale0' : '']">
       <div class="flip-box">
         <div class="flip-box-inner d-flex align-items-center" v-bind:class="[this.click_registro ? 'flip' : '']">
+
           <!-- INICIAR SESIÓN -->
           <div class="flip-box-front carta_singup_front shadow col-12" :class="[this.registro ? 'display-none' : '']">
             <div class="iniciar_sesion">
@@ -221,7 +222,6 @@ export default {
                     }
                   " />
               </div>
-
 
               <div class="input-group mb-2 mt-3">
                 <span class="input-group-text material-symbols-outlined" tabindex="0" data-bs-toggle="popover"

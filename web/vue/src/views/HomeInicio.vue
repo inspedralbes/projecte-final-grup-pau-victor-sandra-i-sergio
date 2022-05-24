@@ -45,7 +45,7 @@ export default {
 
 <template>
   <main class="container landingPage">
-    <!--------  MOVIL ------->
+    <!--------  MÓVIL ------->
     <div class="container">
       <div class="row movil">
         <div class="menu d-flex flex-column justify-content-start">
@@ -206,7 +206,6 @@ h2 {
   font-weight: 550;
   padding-top: 1.8em;
 }
-
 
 .alimentacion_div_lg::before {
   content: "";
@@ -513,6 +512,7 @@ h2 {
   width: 330px !important;
 }
 
+/****** Cambiar menus según pantalla *******/
 @media only screen and (min-width: 300px) {
   .ordenador {
     display: none;
