@@ -8,6 +8,7 @@ export default {
   data() {
     return {
       disabled: false,
+      tamano: null,
     };
   },
   methods: {
@@ -22,12 +23,20 @@ export default {
     },
   },
 
- 
-
   computed: {
     ...mapStores(sesionStore),
   },
-
+  created() {
+    console.log(this.tamano);
+    setInterval(() => {
+      if (window.innerWidth > 900) {
+        this.tamano = true;
+        console.log(this.tamano);
+      } else {
+        this.tamano = false;
+      }
+    }, 1);
+  },
   mounted() {
     this.sesionStore.setRutaActual(this.$route.name);
   },
@@ -35,94 +44,110 @@ export default {
 </script>
 
 <template>
-  <main class="container landingPage ">
+  <main class="container landingPage">
     <!--------  MOVIL ------->
     <div class="container">
-    <div class="row movil">
-      <div class="menu d-flex flex-column justify-content-start ">
-        <div class="col-12 alimentacion_div_sm" @click="this.goto('alimentacion')">
-          <span @click="this.goto('alimentacion')" class="shadow">
-            Alimentación
-            <img
-              class="img-home"
-              @click="this.goto('alimentacion')"
-              src="../assets/comer.png"
-              alt="chico comiendo una ensalada"
-            />
-          </span>
-        </div>
+      <div class="row movil">
+        <div class="menu d-flex flex-column justify-content-start">
+          <div
+            class="col-12 alimentacion_div_sm"
+            @click="this.goto('alimentacion')"
+          >
+            <span @click="this.goto('alimentacion')" class="shadow">
+              Alimentación
+              <img
+                class="img-home"
+                @click="this.goto('alimentacion')"
+                src="../assets/comer.png"
+                alt="chico comiendo una ensalada"
+              />
+            </span>
+          </div>
 
-        <div class="col-12 ejercicio_div_sm" @click="this.goto('ejercicio')">
-          <span @click="this.goto('ejercicio')" class="shadow ejercicio_div_sm">
-            <img
-              class="img-home"
+          <div class="col-12 ejercicio_div_sm" @click="this.goto('ejercicio')">
+            <span
               @click="this.goto('ejercicio')"
-              src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png"
-              alt="chica haciendo ejercicio"
-            />
-            Ejercicio
-          </span>
-        </div>
-        <div
-          class="col-12 text-left saludmental_div_sm
-         shadow"
-          @click="this.goto('saludmental')"
-        >
-          <div @click="this.goto('saludmental')"  >
-            <div class="texto_salud">Salud mental y descanso</div>
-            <img
-              class="img-home"
-              @click="this.goto('saludmental')"
-              src="../assets/saludMental2.png"
-              alt="chica meditando"
-            />
+              class="shadow ejercicio_div_sm"
+            >
+              <img
+                class="img-home"
+                @click="this.goto('ejercicio')"
+                src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png"
+                alt="chica haciendo ejercicio"
+              />
+              Ejercicio
+            </span>
+          </div>
+          <div
+            class="col-12 text-left saludmental_div_sm shadow"
+            @click="this.goto('saludmental')"
+          >
+            <div @click="this.goto('saludmental')">
+              <div class="texto_salud">Salud mental y descanso</div>
+              <img
+                class="img-home"
+                @click="this.goto('saludmental')"
+                src="../assets/saludMental2.png"
+                alt="chica meditando"
+              />
+            </div>
           </div>
         </div>
       </div>
-      </div>
     </div>
-  
-
 
     <!--------  ORDENADOR  ------->
-    <div class="container">
-      <div class="row pc justify-content-center">
-          <div class="col-3 alimentacion_div_lg shadow-lg mr-4" @click="this.goto('alimentacion')">
-            <h2 class="text-center">ALIMENTACIÓN</h2> 
-            <img src="../assets/comer.png" alt="chico comiendo ensalada">
-            <div class="alimentacion_sombra"></div>
-          </div>
-          
-          <div class="col-3 ejercicio_div_lg shadow-lg mx-5"  @click="this.goto('ejercicio')">
-            <h2 class="text-center">EJERCICIO</h2>  
-            <img src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png" alt="chica haciendo ejercicio">
-            <div class="ejercicio_sombra"></div>
-          </div>
+    <div class="container pc_container">
+      <div
+        v-bind:class="[!this.tamano == true ? 'ocultar' : '']"
+        class="row pc justify-content-center"
+      >
+        <div
+          class="col-3 alimentacion_div_lg shadow-lg mr-4"
+          @click="this.goto('alimentacion')"
+        >
+          <h2 class="text-center">ALIMENTACIÓN</h2>
+          <img src="../assets/comer.png" alt="chico comiendo ensalada" />
+        </div>
 
-          
-          <div class="col-3 salud_div_lg shadow-lg ml-3" @click="this.goto('saludmental')" >
-            <h2 class="text-center">SALUD MENTAL Y DESCANSO</h2> 
-            <img src="../assets/saludMental2.png" alt="chica meditando">
-            <div class="salud_sombra"></div>
-          </div>
+        <div
+          class="col-3 ejercicio_div_lg shadow-lg mx-5"
+          @click="this.goto('ejercicio')"
+        >
+          <h2 class="text-center">EJERCICIO</h2>
+          <img
+            src="http://genkicorpusback.alumnes.inspedralbes.cat/img/ejercicio.png"
+            alt="chica haciendo ejercicio"
+          />
+        </div>
+
+        <div
+          class="col-3 salud_div_lg shadow-lg ml-3"
+          @click="this.goto('saludmental')"
+        >
+          <h2 class="text-center">SALUD MENTAL Y DESCANSO</h2>
+          <img src="../assets/saludMental2.png" alt="chica meditando" />
+        </div>
       </div>
     </div>
-
-
   </main>
 </template>
 
 <style scoped>
-
 .pc {
-  width: 102vw;
+  width: 100vw;
 }
 
+.pc_container {
+  position: absolute;
+  bottom: 7px;
+}
 
 /* Alimentación pantalla grande */
 .alimentacion_div_lg {
-  background-color: #7ed957c4;
+  background-color: #9be17d;
   height: 80vh;
+  position: relative;
 }
 
 .alimentacion_div_lg img {
@@ -131,11 +156,11 @@ export default {
   top: 8em;
 }
 
-
 /* Ejercicio pantalla grande */
 .ejercicio_div_lg {
-  background-color:#ff914dc4;
+  background-color: #ffaa76;
   height: 80vh;
+  position: relative;
 }
 
 .ejercicio_div_lg img {
@@ -145,11 +170,12 @@ export default {
   max-width: 120%;
 }
 
-
 /* Salud pantalla grande */
 .salud_div_lg {
-  background-color: #5cb8e6c4;
+  background-color: #81c8eb;
   height: 80vh;
+  position: relative;
+  position: relative;
 }
 
 .salud_div_lg img {
@@ -168,41 +194,56 @@ export default {
   padding: 0;
 }
 
-.texto_salud{
+.texto_salud {
   width: 250px;
   margin: 0;
   padding: 0;
 }
 
-
-
-
-
 /********  PANTALLA GRANDE  ********/
 
-.alimentacion_sombra {
-  height: 90vh;
-  background-color:#43742fc4;
+h2 {
+  font-weight: 550;
+  padding-top: 1.8em;
 }
 
-.salud_sombra {
-  height: 90vh;
+
+.alimentacion_div_lg::before {
+  content: "";
+  height: 104%;
+  width: 104%;
+  background-color: #43742fc4;
+  position: absolute;
+  top: -1.5em;
+  z-index: -1;
+}
+
+.ejercicio_div_lg::before {
+  content: "";
+  height: 104%;
+  width: 104%;
+  background-color: #e25a00e5;
+  position: absolute;
+  top: -1.5em;
+  z-index: -1;
+}
+
+.salud_div_lg::before {
+  content: "";
+  height: 104%;
+  width: 104%;
   background-color: #315e75c4;
+  position: absolute;
+  top: -1.5em;
+  z-index: -1;
 }
-
-.ejercicio_sombra {
-  height: 90vh;
-  background-color: #c95914c4;
-}
-
-
 
 @media only screen and (min-width: 700px) {
   .alimentacion_div_lg img {
     position: relative;
     left: -1.5em;
     top: 12em;
-    max-width: 115% 
+    max-width: 115%;
   }
 
   .ejercicio_div_lg img {
@@ -220,26 +261,31 @@ export default {
   }
 }
 
-
 @media only screen and (min-width: 900px) {
+  .pc {
+    visibility: visible !important;
+  }
+  .movil {
+    display: none !important;
+  }
   .alimentacion_div_lg img {
     position: relative;
     left: -1.5em;
-    top: 12em;
-    max-width: 115% 
+    top: 9em;
+    max-width: 115%;
   }
 
   .ejercicio_div_lg img {
     position: relative;
     left: -1.1em;
-    top: 10em;
+    top: 7em;
     max-width: 120%;
   }
 
   .salud_div_lg img {
     position: relative;
     left: -2em;
-    top: 14em;
+    top: 9em;
     max-width: 140%;
   }
 }
@@ -262,11 +308,10 @@ export default {
   .salud_div_lg img {
     position: relative;
     left: -3.2em;
-    top: 14em;
+    top: 10em;
     max-width: 140%;
   }
 }
-
 
 @media only screen and (min-width: 1280px) {
   .alimentacion_div_lg img {
@@ -286,7 +331,7 @@ export default {
   .salud_div_lg img {
     position: relative;
     left: -3.2em;
-    top: 12em;
+    top: 10em;
     max-width: 135%;
   }
 }
@@ -309,11 +354,10 @@ export default {
   .salud_div_lg img {
     position: relative;
     left: -3.2em;
-    top: 12em;
+    top: 8em;
     max-width: 135%;
   }
 }
-
 
 @media only screen and (min-width: 1600px) {
   .alimentacion_div_lg img {
@@ -375,34 +419,11 @@ export default {
     max-width: 90%;
   }
 
-
   .salud_div_lg img {
     position: relative;
     left: -3.2em;
     top: 13em;
     max-width: 145%;
-  }
-}
-
-@media only screen and (min-width: 1900px) {
-  .alimentacion_div_lg img {
-    position: relative;
-    left: 2em;
-    top: 12em;
-  }
-
-  .ejercicio_div_lg img {
-    position: relative;
-    left: -0.1em;
-    top: 6em;
-    max-width: 20%;
-  }
-
-  .salud_div_lg img {
-    position: relative;
-    left: -3.2em;
-    top: 12em;
-    max-width: 14%;
   }
 }
 
@@ -428,30 +449,6 @@ export default {
     max-width: 140%;
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /********  MOVIL ********/
@@ -484,7 +481,7 @@ export default {
 .ejercicio_div_sm img {
   position: absolute;
   top: -2.5em;
-  left: 6em ;
+  left: 6em;
   max-width: 50%;
   width: auto;
 }
@@ -492,9 +489,8 @@ export default {
 .ejercicio_div_sm span {
   border-radius: 0px 10px 10px 0px;
   background-color: #ff914dc4;
-  padding: 40px 200px 40px 30px;
+  padding: 40px 200px 40px 0px;
   text-transform: uppercase;
-  position: relative;
   position: relative;
   margin: 0;
 }
@@ -521,7 +517,10 @@ export default {
   .ordenador {
     display: none;
   }
-  
+  .movil {
+    display: block;
+  }
+
   .alimentacion_div_sm {
     padding-right: 10px !important;
     margin: 0;
@@ -549,7 +548,7 @@ export default {
     max-width: 85%;
   }
 
-  .saludmental_div_sm{
+  .saludmental_div_sm {
     padding-right: 230px;
   }
 
@@ -562,7 +561,7 @@ export default {
   .ordenador {
     display: none;
   }
-  
+
   .alimentacion_div_sm {
     padding-right: 50px !important;
     margin: 0;
@@ -575,7 +574,7 @@ export default {
   }
 
   .ejercicio_div_sm {
-    padding-right: 245px !important;
+    padding-right: 240px !important;
   }
 
   .ejercicio_div_sm img {
@@ -590,8 +589,7 @@ export default {
     max-width: 85%;
   }
 
-  .saludmental_div_sm
- {
+  .saludmental_div_sm {
     padding-right: 430px;
   }
 
@@ -635,8 +633,7 @@ export default {
     max-width: 80%;
   }
 
-  .saludmental_div_sm
- {
+  .saludmental_div_sm {
     padding-right: 480px;
   }
 
@@ -649,7 +646,7 @@ export default {
   .ordenador {
     display: none;
   }
-  
+
   .landingPage .col-12 span {
     font-size: 5vw;
   }
@@ -680,8 +677,7 @@ export default {
     max-width: 75%;
   }
 
-  .saludmental_div_sm
- {
+  .saludmental_div_sm {
     padding-right: 550px !important;
   }
 
@@ -690,6 +686,7 @@ export default {
   }
 }
 
-
-
+.ocultar {
+  display: none;
+}
 </style>

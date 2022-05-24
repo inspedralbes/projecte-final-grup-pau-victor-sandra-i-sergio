@@ -197,6 +197,10 @@ export default {
 
 <style scoped>
 /***** Parte 2 registro ******/
+.titulo {
+  font-weight: 600;
+}
+
 
 main {
   min-height: 89.75vh;

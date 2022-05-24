@@ -246,7 +246,7 @@ export default {
           <!-- REGISTRO -->
           <div class="flip-box-back carta_singup_back shadow col-12">
             <div class="col-12 registrarse">
-              <h3>Unete a Genki Body</h3>
+              <h3>Unete a Genki Corpus</h3>
 
               <div class="input-group mb-2 mt-5">
                 <span class="input-group-text material-symbols-outlined" tabindex="0" data-bs-toggle="popover"
