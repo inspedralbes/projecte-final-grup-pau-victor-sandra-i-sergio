@@ -10,15 +10,9 @@
 Aplicació web que engloba tots els aspectes de la salut (activitat fisica, alimnentació i descans i salut mental)
 
 
-# Esquema carpetes del projecte
-
-
-
-
-
 # Aquest fitxer ha de contenir com a mínim:
  * URL de producció frontend: "http://genkicorpus.alumnes.inspedralbes.cat"
- * URL de producció backend: ""
+ * URL de producció backend: "http://genkicorpusback.alumnes.inspedralbes.cat"
  * Estat: en desarrollo
 
 
