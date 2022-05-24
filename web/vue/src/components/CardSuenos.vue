@@ -13,6 +13,7 @@ export default {
     console.log(this.infoCuest);
   },
   methods: {
+    //devuelve el tipo de sueño seleccionado
     enviarID(infoCuest) {
       this.$emit("id", infoCuest);
     },
@@ -27,7 +28,7 @@ export default {
   },
 };
 </script>
-
+<!-- contenido de las cartas de tipo de sueño en Descanso -->
 <template>
   <div style="max-width: 9em" class="card p-2" @click="enviarID(infoCuest.tipo), seleccionado()" :id="infoCuest.tipo"
     v-bind:class="

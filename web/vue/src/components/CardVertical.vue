@@ -15,7 +15,7 @@ export default {
   methods: {},
 };
 </script>
-
+<!-- contenido de la carta principal de Salud Mental -->
 <template>
   <div
     style="max-width: 12rem"

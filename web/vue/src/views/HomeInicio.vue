@@ -58,7 +58,7 @@ export default {
               <img
                 class="img-home"
                 @click="this.goto('alimentacion')"
-                src="../assets/comer.png"
+                src="http://genkicorpusback.alumnes.inspedralbes.cat/img/comer.png"
                 alt="chico comiendo una ensalada"
               />
             </span>
@@ -87,7 +87,7 @@ export default {
               <img
                 class="img-home"
                 @click="this.goto('saludmental')"
-                src="../assets/saludMental2.png"
+                src="http://genkicorpusback.alumnes.inspedralbes.cat/img/saludMental2.png"
                 alt="chica meditando"
               />
             </div>
@@ -107,7 +107,7 @@ export default {
           @click="this.goto('alimentacion')"
         >
           <h2 class="text-center">ALIMENTACIÓN</h2>
-          <img src="../assets/comer.png" alt="chico comiendo ensalada" />
+          <img src="http://genkicorpusback.alumnes.inspedralbes.cat/img/comer.png" alt="chico comiendo ensalada" />
         </div>
 
         <div
@@ -126,7 +126,7 @@ export default {
           @click="this.goto('saludmental')"
         >
           <h2 class="text-center">SALUD MENTAL Y DESCANSO</h2>
-          <img src="../assets/saludMental2.png" alt="chica meditando" />
+          <img src="http://genkicorpusback.alumnes.inspedralbes.cat/img/saludMental2.png" alt="chica meditando" />
         </div>
       </div>
     </div>

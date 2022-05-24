@@ -13,8 +13,8 @@ export default {
   },
   methods: {},
 };
+// contenido de las ultimas cartas que salen al final del formulario Descanso
 </script>
-
 <template>
   <div class="accordion-item shadow-sm">
     <h2 class="accordion-header" :id="'panelsStayOpen-heading' + index">
