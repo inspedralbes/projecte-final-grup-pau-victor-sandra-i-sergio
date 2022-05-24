@@ -22,7 +22,9 @@ app.use(bodyParser.urlencoded({ extended: false }));
 
 // Para recoger datos en formato form-data
 var multer = require('multer');
-var upload = multer();
+var upload = multer({
+    limits: { fieldSize: 10 * 1024 * 1024 }
+});
 app.use(upload.array()); 
 app.use(express.static('public'));
 

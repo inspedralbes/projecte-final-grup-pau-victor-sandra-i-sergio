@@ -180,18 +180,15 @@ export default {
           </div>
           <div class="col-12 d-flex align-items-center justify-content-center">
             <div class="progress">
-              <div
-                :class="[
-                  this.progressBar == 1
-                    ? 'load50'
-                    : this.progressBar == 2
+              <div :class="[
+                this.progressBar == 1
+                  ? 'load50'
+                  : this.progressBar == 2
                     ? 'load100'
                     : this.progressBar == 3
-                    ? 'reverse'
-                    : '',
-                ]"
-                class="progress-value"
-              ></div>
+                      ? 'reverse'
+                      : '',
+              ]" class="progress-value"></div>
             </div>
           </div>
         </div>
@@ -226,43 +223,22 @@ export default {
               </a>
             </div>
 
-                <div class="col-md-6">
-                  <div class="card-body">
-                    <h5 class="text-center card-body-tit">
-                      ¿Por qué estás
-                      <span style="font-weight: bold">{{
-                        selected[0].value
-                      }}</span
-                      >?
-                    </h5>
-                    <div
-                      :key="index"
-                      v-for="(estado, index) in selected[0].motivos"
-                    >
-                      <div class="form-check my-3">
-                        <input
-                          class="form-check-input"
-                          type="radio"
-                          @click="guardarMotivo($event.target.value)"
-                          :value="estado"
-                          name="motivo"
-                          :id="index"
-                          checked
-                        />
-                        <label class="form-check-label" :for="index">
-                          {{ estado }}
-                        </label>
-                      </div>
-                    </div>
+            <div class="col-md-6">
+              <div class="card-body">
+                <h5 class="text-center card-body-tit">
+                  ¿Por qué estás
+                  <span style="font-weight: bold">{{
+                      selected[0].value
+                  }}</span>?
+                </h5>
+                <div :key="index" v-for="(estado, index) in selected[0].motivos">
+                  <div class="form-check my-3">
+                    <input class="form-check-input" type="radio" @click="guardarMotivo($event.target.value)"
+                      :value="estado" name="motivo" :id="index" checked />
+                    <label class="form-check-label" :for="index">
+                      {{ estado }}
+                    </label>
                   </div>
-
-                <div class="col-12 gy-2 text-center">
-                  <input
-                    class="btn btn-outline-secondary btn-enviarRespuesta"
-                    type="button"
-                    @click="enviarFormulario()"
-                    value="Enviar respuesta"
-                  />
                 </div>
               </div>
 
@@ -271,8 +247,16 @@ export default {
                   value="Enviar respuesta" />
               </div>
             </div>
+
+
+            <div class="col-12 gy-2 text-center">
+              <input class="btn btn-outline-secondary btn-enviarRespuesta" type="button" @click="enviarFormulario()"
+                value="Enviar respuesta" />
+            </div>
           </div>
+
         </div>
+
 
       </div>
 
@@ -285,11 +269,9 @@ export default {
               <img id="emojiTexto" :src="selected[0].emoji" />
             </h4>
 
-            <div
-              v-if="
-                selected[0].value == 'Alegre' || selected[0].value == 'Enérgico'
-              "
-            >
+            <div v-if="
+              selected[0].value == 'Alegre' || selected[0].value == 'Enérgico'
+            ">
               <p class="card-text">
                 {{ this.respuesta.respuesta }}
               </p>
@@ -300,9 +282,7 @@ export default {
                 Para descubrir porqué te sientes {{ this.respuesta.estado }} y
                 como mejorar tu estado de ánimo visita la siguiente página ...
               </p>
-              <a :href="this.respuesta.respuesta" target="_blank" class="link"
-                >Click para saber más</a
-              >
+              <a :href="this.respuesta.respuesta" target="_blank" class="link">Click para saber más</a>
             </div>
           </div>
         </div>
@@ -337,7 +317,6 @@ export default {
   background-color: rgba(255, 255, 255, 0.651);
   padding: 15px;
   margin: 35px auto
-
 }
 
 .retroceder {
@@ -486,8 +465,7 @@ form {
 }
 
 @keyframes bounce-center-top {
-  from {
-  }
+  from {}
 
   40% {
     transform: translate(0, 100px);
@@ -511,8 +489,7 @@ form {
 }
 
 @keyframes bounce-center-bottom {
-  from {
-  }
+  from {}
 
   40% {
     transform: translate(0, -100px);
