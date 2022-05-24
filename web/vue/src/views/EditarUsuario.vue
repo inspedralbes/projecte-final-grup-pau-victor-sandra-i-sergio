@@ -25,7 +25,7 @@ export default {
   computed: {
     ...mapStores(sesionStore),
   },
-
+    //guardar informacion del pinia en variables
   created() {
     this.idUsuario = this.sesionStore.getUsuario._id;
     this.nombreUsuario = this.sesionStore.getUsuario.nombreApellidos;
@@ -33,7 +33,7 @@ export default {
     this.datosUsuario = this.sesionStore.getUsuario.datosPersonales;
     this.img = this.sesionStore.getUsuario.fotoPerfil;
   },
-
+    //para cojer la información del usuario y ponerla en el select
   mounted() {
     this.graficoSaludMental();
     document.querySelectorAll("#nivel option").forEach((opt) => {
@@ -57,6 +57,7 @@ export default {
   },
 
   methods: {
+    //para guardar la información que ha sido modificada
     actualizarDatos() {
       let datos = new FormData();
       datos.append("idUsuario", this.idUsuario);
@@ -84,6 +85,7 @@ export default {
       )
         .then((response) => response.json())
         .then((data) => {
+          //alerta de que ha sido modificada la informacion
           Swal.fire({
             position: "center",
             icon: data.status ? "success" : "error",
@@ -91,6 +93,7 @@ export default {
             showConfirmButton: false,
             timer: 1500,
           });
+          //si se ha modificado correctamente se refresca la pàgina
           if (data.status) {
             this.sesionStore.setUsuario(data.usuario);
             setTimeout(() => {
@@ -99,15 +102,17 @@ export default {
           }
         });
     },
-
+      //para obtener los datos de salud mental para cargar el grafico
     filtroSM() {
       this.graficoSaludMental();
     },
 
+      //para obtener los datos de descanso para cargar el grafico
     filtroD() {
       this.graficoDescanso();
     },
 
+      //se crea el grafico
     mostrarGrafico(labels, data) {
       if (this.gr != null) {
         this.gr.destroy();
@@ -138,9 +143,8 @@ export default {
         },
       });
     },
-
+      //para crear el grafico con los datos de salud mental
     graficoSaludMental() {
-      console.log("AAAAAAAA");
 
       let datos = new FormData();
       datos.append("idUsuario", this.idUsuario);
@@ -159,6 +163,7 @@ export default {
         });
     },
 
+      //para crear el grafico con los datos de descanso
     graficoDescanso() {
       let datosDescanso = new FormData();
       datosDescanso.append("idUsuario", this.idUsuario);
@@ -176,9 +181,7 @@ export default {
           this.mostrarGrafico(respuesta.label, respuesta.data);
         });
     },
-
-    cambiarfoto() {},
-
+      //para identificar en que sección estamos viendo el grafico
     cambiarOpcionNav(item) {
       document.querySelectorAll(".nav-tabs a").forEach((e) => {
         e.classList.remove("active");
@@ -253,6 +256,8 @@ export default {
                 showConfirmButton: false,
                 timer: 1500,
               });
+
+              //se simula un escape automaticamente para cerrar el modal
               setTimeout(() => {
                 document.getElementById("exampleModal").dispatchEvent(
                   new KeyboardEvent("keydown", {
@@ -349,6 +354,7 @@ export default {
           </div>
         </div>
         <div class="col-12 col-md-8 datos">
+          <!-- datos del usuario -->
           <div class="row">
             <div class="col-12 col-lg-6">
               <div class="form-floating mb-1">
@@ -450,6 +456,7 @@ export default {
         </div>
       </div>
 
+        <!-- para ver los graficos -->
       <div class="row estadistica mt-3 justify-content-end">
         <div class="col-12 text-center">
           <h2>Mi seguimiento</h2>
