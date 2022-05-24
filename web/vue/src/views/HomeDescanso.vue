@@ -41,7 +41,7 @@ export default {
       ],
     };
   },
-
+      //cargar los datos en este caso los tipos de sueño
   beforeMount() {
     fetch(
       "http://genkicorpusback.alumnes.inspedralbes.cat:7101/descanso/tipos-suenos"
@@ -52,7 +52,7 @@ export default {
         this.elemento = data.tipoSueno;
       });
   },
-
+    //Alerta nada mas entrar si no has iniciado sesión
   created() {
     if (!Object.keys(this.sesionStore.getUsuario).length) {
       Swal.fire({
@@ -82,7 +82,7 @@ export default {
     retroceder() {
       window.history.back();
     },
-
+      // guarda los datos del tipo de sueño seleccionado, no puede ser superior a 5 seleccionadas
     guardarseleccionada(id) {
       if (this.selected.length < 5) {
         if (this.selected.includes(id)) {
@@ -193,7 +193,7 @@ export default {
           console.log(this.resultado);
         });
     },
-
+      //iniciar animaciones
     activar() {
       this.animacion1 = true;
       setTimeout(() => {
