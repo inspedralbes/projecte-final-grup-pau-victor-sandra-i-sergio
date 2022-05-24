@@ -40,6 +40,7 @@ export default {
   },
 
   created() {
+    //Alerta nada mas entrar si no has iniciado sesión
     if (!Object.keys(this.sesionStore.getUsuario).length) {
       Swal.fire({
         title: "¡Inicia tu sesión o registrate!",
@@ -57,7 +58,7 @@ export default {
       });
     }
   },
-
+//cargar los datos en este caso las emociones
   beforeMount() {
     fetch(
       "http://genkicorpusback.alumnes.inspedralbes.cat:7101/salud-mental/estado-emocional"
