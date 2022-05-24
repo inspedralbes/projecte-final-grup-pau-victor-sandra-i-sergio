@@ -75,6 +75,7 @@ export default {
       (this.selected = ""), (this.estado = null);
     },
 
+    /*Esta funcion sirve para deshacer la barra de progreso i activar otras animaciones*/
     retroceder() {
       this.animacionAbajoCentro = false;
       this.animacionCentroAbajo = true;
@@ -90,6 +91,7 @@ export default {
       }, 1000);
     },
 
+    /*Hacemos dos POST, el primero sirve para guardar los datos y el segundo para recoger la información que ha sido recibida*/
     enviarFormulario() {
       if (Object.keys(this.sesionStore.getUsuario).length != 0) {
         var cuestSalud = new URLSearchParams({
@@ -151,6 +153,7 @@ export default {
         });
     },
 
+    /*Utilizamos esta función para guardar el estado que ha sido seleccionado*/
     guardarEstado(valor) {
       this.progressBar = 1;
       this.animacionCentroArriba = true;
@@ -159,6 +162,7 @@ export default {
         return v.value == valor;
       });
 
+      /*Una minipausa antes de aplicar las animaciones*/
       setTimeout(() => {
         this.disabled = false;
         this.disabled2 = true;
@@ -167,6 +171,7 @@ export default {
       }, 1000);
     },
 
+    /*Utilizamos esta función para guardar el motivo que ha sido seleccionado*/
     guardarMotivo(motivo) {
       this.motivo = motivo;
       console.log(motivo);
@@ -316,7 +321,7 @@ export default {
               Hoy estoy {{ this.respuesta.estado }}
               <img id="emojiTexto" :src="selected[0].emoji" />
             </h4>
-
+            <!--Depende de que estado haya sido escogido, se mostrara una cosa o la otra-->
             <div
               v-if="
                 selected[0].value == 'Alegre' || selected[0].value == 'Enérgico'

@@ -17,6 +17,7 @@ export default {
   },
 
   methods: {
+    /*Estas 4 funciones sirven esconder la lista y mostrar el articulo que corresponde*/
     articulo1() {
       let articulos = document.getElementById("lista-articulos");
       let articulo = document.getElementById("articulo1");
@@ -45,6 +46,7 @@ export default {
       articulo.style.display = "block";
     },
 
+    /*Esta funcion esconde el articulo para volver a mostrar la lista*/
     retroceder() {
       let articulos = document.getElementById("lista-articulos");
       let articulo1 = document.getElementById("articulo1");
@@ -971,15 +973,18 @@ export default {
   background-repeat: no-repeat;
   background-size: cover;
 }
+
 .container {
   max-width: 1000px;
 }
+
 #articulo1,
 #articulo2,
 #articulo3,
 #articulo4 {
   display: none;
 }
+
 .jumbotron {
   background-color: white;
   border-bottom: gray groove 1px;
@@ -987,26 +992,13 @@ export default {
   border-left: gray groove 1px;
   border-top: gray groove 1px;
 }
+
 .lista {
   justify-content: center;
 }
-.lista ol {
-  list-style: none;
-  counter-reset: my-counter;
-  margin: 0rem;
-  padding: 0rem 0rem 0rem 1.5rem;
-}
-.lista li {
-  counter-increment: my-counter;
-  border-left: solid 2px #cdcdcd;
-  padding-top: 2rem;
-  padding-bottom: 1rem;
-  display: grid;
-  grid-template-columns: auto 1fr;
-  grid-template-rows: auto;
-  grid-template-areas: "icon:text";
-  align-items: start;
-}
+
+/*Contador para la lista de articulos*/
+
 .lista li:before {
   content: counter(my-counter);
   font-weight: bold;
@@ -1020,6 +1012,26 @@ export default {
   margin-right: auto;
   grid-area: icon;
 }
+
+.lista ol {
+  list-style: none;
+  counter-reset: my-counter;
+  margin: 0rem;
+  padding: 0rem 0rem 0rem 1.5rem;
+}
+
+.lista li {
+  counter-increment: my-counter;
+  border-left: solid 2px #cdcdcd;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  grid-template-rows: auto;
+  grid-template-areas: "icon:text";
+  align-items: start;
+}
+
 .card {
   grid-area: text;
   margin-left: 4rem;
@@ -1035,60 +1047,76 @@ export default {
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
 }
+
 .btn-success {
   background-color: #5cb8e6;
   color: #fff;
   border-color: #5cb8e6;
   border-radius: 0px;
 }
+
 #btn-articulo {
   cursor: pointer;
 }
 #btn-articulo:hover {
   background-color: lightgray;
 }
+
 .card-footer {
   background-color: white;
 }
+
 #enlace {
   text-align: right;
 }
+
 a {
   color: white;
   text-decoration: none;
 }
+
 button:hover {
   background-color: white;
 }
+
 button:hover span {
   color: #5cb8e6;
 }
+
 #img-article {
   max-width: 921px;
   max-height: 560px;
 }
+
 ul {
   list-style: none;
 }
+
 .lista-normal {
   list-style: initial;
 }
+
 .blockquote {
   max-width: 75%;
   margin-left: auto;
   margin-right: auto;
 }
+
 .retroceder {
   margin-top: 10px;
   margin-left: 10px;
 }
+
 hr {
   margin-left: 10%;
   margin-right: 10%;
 }
+
 h4 {
   color: lightblue;
 }
+
+/*CSS Responsive para mobil*/
 
 @media only screen and (max-width: 1000px) {
   #img-article {
