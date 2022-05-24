@@ -101,7 +101,7 @@ export default {
   <main class="container justify-content-center d-flex align-items-center scale1">
     <div class="div_datos REGISTRO2 align-items-start shadow-lg mt-3 mb-3">
       <div class="div2 p-4">
-        <h3 class="text-center titulo mb-5">Cuentanos un poco más sobre ti</h3>
+        <h3 class="text-center titulo mb-5">Cúentanos un poco más sobre ti</h3>
 
         <div class="row align-items-center">
           <div class="col-md-7 col-12">
