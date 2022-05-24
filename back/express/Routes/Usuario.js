@@ -73,8 +73,6 @@ Usuario.route('/register-pt2').put((req, res) => {
             datos.datosPersonales.edad = parseInt(datos.datosPersonales.edad.replace(/[^0-9]/g, ''));
         }
 
-
-
         let errores = comprovacionDatosSecundarios(datos.datosPersonales.sexo, datos.datosPersonales.disponibilidadTiempo, datos.datosPersonales.nivelFisico, datos.datosPersonales.ocupacion, datos.datosPersonales.edad)
         console.log(errores.length)
 
@@ -82,9 +80,9 @@ Usuario.route('/register-pt2').put((req, res) => {
             res.status(500);
             res.json({ 'status': false, 'msg': errores, 'chk': true });
         } else {
-            datos.img = (datos.datosPersonales.sexo == 'Hombre') ? 'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg' : 'https://www.sanboni.edu.co/onu/wp-content/uploads/avatar-mujer.png';
+            datos.fotoPerfil = (datos.datosPersonales.sexo == 'Hombre') ? 'https://icon-library.com/images/avatar-icon-images/avatar-icon-images-4.jpg' : 'https://www.sanboni.edu.co/onu/wp-content/uploads/avatar-mujer.png';
 
-            UsuarioModel.findOneAndUpdate({ _id: datos.idUsuario }, { $set: { datosPersonales: datos.datosPersonales, fotoPerfil: datos.img } }, { returnOriginal: false }, (err, response) => {
+            UsuarioModel.findOneAndUpdate({ _id: datos.idUsuario }, { $set: { datosPersonales: datos.datosPersonales, fotoPerfil: datos.fotoPerfil } }, { returnOriginal: false }, (err, response) => {
                 if (err) {
                     console.log(err);
                 } else {
@@ -156,7 +154,7 @@ Usuario.route('/modificar-datos').put((req, res) => {
             }
 
             let errores = comprovacionDatosPrincipales(datos.nombreApellidos, datos.email, '!r123sdf26', 'register')
-            let errores2 = comprovacionDatosSecundarios(datos.sexo, datos.tiempo, datos.nivelFisico, datos.ocupacion, datos.edad)
+            let errores2 = comprovacionDatosSecundarios(datos.sexo, datos.disponibilidadTiempo, datos.nivelFisico, datos.ocupacion, datos.edad)
             if (errores.length || errores2.length) {
                 res.status(500).json({ 'status': false, 'msg': errores, 'msg2': errores2, 'chk': true });
             } else {
@@ -167,7 +165,7 @@ Usuario.route('/modificar-datos').put((req, res) => {
                             "edad": datos.edad,
                             "sexo": datos.sexo,
                             "ocupacion": datos.ocupacion,
-                            "tiempo": datos.tiempo,
+                            "disponibilidadTiempo": datos.disponibilidadTiempo,
                             "nivelFisico": datos.nivelFisico
                         },
                         nombreApellidos: datos.nombreApellidos,
@@ -237,7 +235,7 @@ function comprovacionDatosSecundarios(sexo, tiempo, nivelFisico, ocupacion, edad
     (nivelFisico != 'Principiante' && nivelFisico != 'Avanzado' && nivelFisico != 'Intermedio') ? cont.push('Nivel fisico mal') : null;
     (ocupacion != 'Trabajo' && ocupacion != 'Estudio' && ocupacion != 'Otro') ? cont.push('Ocupacion mal') : null;
     (!Number.isInteger(edad) || edad > 100 || edad < 0) ? cont.push('Edad mal') : null;
-    (tiempo != '~ 15 min' && tiempo != '30 min' && tiempo != '45 min' && tiempo != '+1 h') ? cont.push('Tiempo disponible mal') : null;
+    (tiempo != '15 min' && tiempo != '30 min' && tiempo != '45 min' && tiempo != '1 h') ? cont.push('Tiempo disponible mal') : null;
 
     return cont;
 }
