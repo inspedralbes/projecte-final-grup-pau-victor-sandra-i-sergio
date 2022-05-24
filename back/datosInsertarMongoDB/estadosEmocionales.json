@@ -1,0 +1,111 @@
+[
+    {
+        "value": "Alegre",
+        "emoji": "@/../public/img/emojis_estado_animo/Alegre.png",
+        "motivos": {
+            "motivo1": "Algo",
+            "motivo2": "Algo2",
+            "motivo3": "Otros"
+        },
+        "respuestas": {
+            "motivo1": "fasdfadfadf",
+            "motivo2": "sdfdfadfas",
+            "motivo3": "sdfadfasdfasdf"
+        }
+    },
+    {
+        "value": "Desanimado",
+        "emoji": "@/../public/img/emojis_estado_animo/Desanimado.png",
+        "motivos": {
+            "motivo1": "Últimamente estoy siempre cansado sin importar lo que haga",
+            "motivo2": "Nada me genera especial interés y me cuesta disfrutar de las cosas",
+            "motivo3": "Otro"
+        },
+        "respuestas": {
+            "motivo1": "https://psicologiaymente.com/psicologia/por-que-estoy-cansado-sin-ganas-de-hacer-nada",
+            "motivo2": "https://lamenteesmaravillosa.com/apatia-estado-animo-la-desmotivacion-agotamiento/",
+            "motivo3": [
+                "https://aprende.com/blog/bienestar/inteligencia-emocional/mejora-tu-estado-de-animo-con-estos-ejercicios/",
+                "https://www.psicologosmadridcapital.com/blog/consejos-para-subir-animo/"
+            ]
+        }
+    },
+    {
+        "value": "Irritado",
+        "emoji": "@/../public/img/emojis_estado_animo/Irritado.png",
+        "motivos": {
+            "motivo1": "Estoy pasando situaciones complicadas, estoy a la defensiva",
+            "motivo2": "He tenido un mal dia",
+            "motivo3": "Otro"
+        },
+        "respuestas": {
+            "motivo1": [
+                "https://lamenteesmaravillosa.com/pasos-superar-situaciones-dificiles/",
+                "https://www.lavanguardia.com/vivo/psicologia/20201003/483107579702/consejos-irritabilidad.html"
+            ],
+            "motivo2": "https://lamenteesmaravillosa.com/claves-para-mejorar-un-mal-dia/",
+            "motivo3": [
+                "https://lamenteesmaravillosa.com/por-que-me-siento-irritable-ultimamente-causas-y-como-afrontarlo/",
+                "https://psicologiaymente.com/psicologia/irritabilidad"
+            ]
+        }
+    },
+    {
+        "value": "Nervioso",
+        "emoji": "@/../public/img/emojis_estado_animo/Nervioso.png",
+        "motivos": {
+            "motivo1": "Estoy viviendo situaciones de incertidumbre",
+            "motivo2": "Estoy atravesando adversidades",
+            "motivo3": "Otro"
+        },
+        "respuestas": {
+            "motivo1": "https://psicologiaymente.com/clinica/miedo-incertidumbre",
+            "motivo2": "https://lamenteesmaravillosa.com/el-arte-de-andar-en-equilibrio-en-tiempos-de-inestabilidad/",
+            "motivo3": "sdfadfasdfasdf"
+        }
+    },
+    {
+        "value": "Energico",
+        "emoji": "@/../public/img/emojis_estado_animo/Enérgico.png",
+        "motivos": {
+            "motivo1": "asdf",
+            "motivo2": "adsfasdf",
+            "motivo3": "Otro"
+        },
+        "respuestas": {
+            "motivo1": "fasdfadfadf",
+            "motivo2": "sdfdfadfas",
+            "motivo3": "sdfadfasdfasdf"
+        }
+    },
+    {
+        "value": "Estresado",
+        "emoji": "@/../public/img/emojis_estado_animo/Estresado.png",
+        "motivos": {
+            "motivo1": "Estoy siendo muy autoexigente",
+            "motivo2": "Tengo una rutina muy ajetreada, me siento sobrecargado",
+            "motivo3": "Otro"
+        },
+        "respuestas": {
+            "motivo1": "https://lamenteesmaravillosa.com/sensacion-no-estar-haciendo-suficiente-productividad-toxica/",
+            "motivo2": "https://lamenteesmaravillosa.com/5-secretos-para-sobrevivir-a-una-rutina-exigente/",
+            "motivo3": "https://lamenteesmaravillosa.com/7-claves-gestionar-el-estres/"
+        }
+    },
+    {
+        "value": "Triste",
+        "emoji": "@/../public/img/emojis_estado_animo/Triste.png",
+        "motivos": {
+            "motivo1": "Estoy experimentando un duelo emocional",
+            "motivo2": "Estoy viviendo una época de cambios que me asustan",
+            "motivo3": "Siento que he fracasado o me da miedo hacerlo",
+            "motivo4": "Otro"
+        },
+        "respuestas": {
+            "motivo1": "https://lamenteesmaravillosa.com/no-duelo-cure-sin-aceptacion/",
+            "motivo2": "https://lamenteesmaravillosa.com/tengo-miedo-cambio/",
+            "motivo3": "https://lamenteesmaravillosa.com/miedo-al-fracaso/",
+            "motivo4": "https://lamenteesmaravillosa.com/la-tristeza-se-va-cuando-aceptas-lo-quiere-decirte/"
+        }
+    }
+]

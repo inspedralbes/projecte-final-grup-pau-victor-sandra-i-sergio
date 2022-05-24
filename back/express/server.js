@@ -17,8 +17,8 @@ app.use(cors({
 
 // Para recoger datos en formato URLencoded
 const bodyParser = require('body-parser');
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ limit: '50mb', extended: false }));
 
 // Para recoger datos en formato form-data
 var multer = require('multer');

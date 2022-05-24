@@ -233,6 +233,7 @@ export default {
         snap.addEventListener("click", function () {
           context.drawImage(video, 0, 0, 1280, 720);
           let datos = new FormData();
+          console.log(canvas.toDataURL())
           datos.append("usuario", id);
           datos.append("imgBase64", canvas.toDataURL());
 
