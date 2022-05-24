@@ -8,6 +8,7 @@ export default {
   data() {
     return {
       disabled: false,
+      tamano: null,
     };
   },
   methods: {
@@ -25,7 +26,17 @@ export default {
   computed: {
     ...mapStores(sesionStore),
   },
-
+  created() {
+    console.log(this.tamano);
+    setInterval(() => {
+      if (window.innerWidth > 900) {
+        this.tamano = true;
+        console.log(this.tamano);
+      } else {
+        this.tamano = false;
+      }
+    }, 1);
+  },
   mounted() {
     this.sesionStore.setRutaActual(this.$route.name);
   },
@@ -87,7 +98,10 @@ export default {
 
     <!--------  ORDENADOR  ------->
     <div class="container pc_container">
-      <div class="row pc justify-content-center">
+      <div
+        v-bind:class="[!this.tamano == true ? 'ocultar' : '']"
+        class="row pc justify-content-center"
+      >
         <div
           class="col-3 alimentacion_div_lg shadow-lg mr-4"
           @click="this.goto('alimentacion')"
@@ -503,9 +517,6 @@ h2 {
   .ordenador {
     display: none;
   }
-  .pc {
-    visibility: hidden;
-  }
   .movil {
     display: block;
   }
@@ -673,5 +684,9 @@ h2 {
   .texto_salud {
     width: 450px;
   }
+}
+
+.ocultar {
+  display: none;
 }
 </style>
