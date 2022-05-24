@@ -259,6 +259,12 @@ export default {
               </a>
             </div>
 
+            <div class="col-md-3 centrado-vertical">
+              <div class="row justify-content-center">
+                <img :src="selected[0].emoji" />
+              </div>
+            </div>
+
             <div class="col-md-6">
               <div class="card-body">
                 <h5 class="text-center card-body-tit">
@@ -278,7 +284,6 @@ export default {
                       :value="estado"
                       name="motivo"
                       :id="index"
-                      checked
                     />
                     <label class="form-check-label" :for="index">
                       {{ estado }}
@@ -641,5 +646,9 @@ form {
   100% {
     width: 10%;
   }
+}
+
+.centrado-vertical {
+  line-height: 0%;
 }
 </style>
