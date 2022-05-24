@@ -8,8 +8,6 @@ export default {
   props: ["infoAcordeon", "index"],
 
   beforeMount() {
-    console.log(this.infoAcordeon);
-    console.log(this.index);
   },
   methods: {},
 };
