@@ -589,6 +589,12 @@ main {
   display: none;
 }
 
+@media only screen and (min-width: 300px) {
+  .grafico {
+    width: 100% !important;
+  }
+}
+
 @media only screen and (min-width: 768px) {
   .datos {
     margin-top: 0px;
@@ -597,6 +603,22 @@ main {
   .img-perfil {
     width: 70%;
     margin: auto;
+  }
+
+  .grafico {
+    width: 90% !important;
+  }
+}
+
+@media only screen and (min-width: 1000px) {
+  .grafico {
+    width: 70% !important;
+  }
+}
+
+@media only screen and (min-width: 1400px) {
+  .grafico {
+    width: 50% !important;
   }
 }
 </style>
