@@ -976,7 +976,8 @@ export default {
 }
 #articulo1,
 #articulo2,
-#articulo3 {
+#articulo3,
+#articulo4 {
   display: none;
 }
 .jumbotron {
